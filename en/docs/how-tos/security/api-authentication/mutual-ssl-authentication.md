@@ -1,0 +1,71 @@
+# Mutual SSL Authentication
+
+-   [Enabling Mutual SSL Authentication for an API](#MutualSSLAuthentication-EnablingMutualSSLAuthenticationforanAPI)
+-   [Configure Client and WSO2 Microgateway for Mutual SSL](#MutualSSLAuthentication-ConfigureClientandWSO2MicrogatewayforMutualSSL)
+-   [Invoking an API using certificate-based authentication](#MutualSSLAuthentication-InvokinganAPIusingcertificate-basedauthentication)
+
+Certificate-based authentication on the Microgateway is authenticating a request based on a digital certificate, before granting access to the backend. By way of certificate-based authentication, the Microgateway supports mutual SSL. In mutual SSL, both parties the client and the server identifies themselves in order to create a successful SSL connection. Mutual SSL allows a client to make a request without a username and password, provided that the server is aware of the client's certificate.
+
+### Enabling Mutual SSL Authentication for an API
+
+You can use the x-wso2-transports extension to enable mutual SSL client verification for the API. By default, Mutual SSL is optional.
+
+**API definition**
+
+``` yml
+    x-wso2-mutual-ssl: "mandatory" # can be "mandatory" or "optional"
+```
+
+    Extension
+    Key
+    value
+    Description
+    `             x-wso2-mutual-ssl            `
+    mutualssl
+    `              mandatory             `
+
+    Enable mutual SSL. The client should be verified and the mutual SSL handshake must be passed. the API request will be unauthorized if the handshake is failed.
+    `             optional            `
+    Disable mutual SSL. Even if the mutual SSL handshake failed, the API request is not necessarily unauthenticated. If the mutual SSL handshake is passed, the request will be filtered by the mutual SSL handler.
+
+    ### Configure Client and WSO2 Microgateway for Mutual SSL
+
+    Add the client's public certificate to the WSO2 Microgateway's trustStorePath in listenerConfig configuration. Also, configure Microgateway's public certificate on the client-side. For more information [importing certificates to the WSO2 Microgateway Truststore](https://docs.wso2.com/display/MG310/Importing+Certificates+to+the+API+Microgateway+Truststore)
+
+    **micro-gw.conf**
+
+``` yml
+    [listenerConfig]
+    keyStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaKeystore.p12"
+    keyStorePassword = "ballerina"
+    trustStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaTruststore.p12"
+    trustStorePassword = "ballerina"
+```
+
+    !!! note
+    Mutual SSL authentication is currently supporting only HTTP 1.1 . Therefore the following configuration should be added to the micro-gw.conf file.
+    **micro-gw.conf**
+``` yml
+    [http2]
+    enable = false
+```
+
+### Invoking an API using certificate-based authentication
+
+When invoking an API, you can pass the certificate to the API Microgateway as follows.
+
+!!! note
+    In this tutorial, a self-signed certificate is added into the already available ballerina truststore.
+!!! note
+    The instructions below are based on Firefox 65.0.1.
+
+1.  Navigate to the browsers certificate management section. on Firefox, navigate to Preferences &gt; Privacy & Security &gt; Certificates
+    ![](attachments/141247073/141247077.png){width="700"}
+2.  Add the certificate used for the SSL connection.
+    ![](attachments/141247073/141247076.png){width="650"}
+3.  Invoke the REST API using a REST API client from the browser.
+    ![](attachments/141247073/141247075.png){width="1000"}
+4.  The browser will present a user identification request, to select a certificate in order to use for the SSL connection. Select the certificate you added and click OK.
+    ![](attachments/141247073/141247074.png){width="499"}
+
+

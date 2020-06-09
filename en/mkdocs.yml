@@ -1,0 +1,181 @@
+# Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+#
+# WSO2 Inc. licenses this file to you under the Apache License,
+# Version 2.0 (the "License"); you may not use this file except
+# in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied. See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+# Project information
+site_name: WSO2 API Microgateway 3.2.0
+site_description: Documentation for WSO2 API Microgateway
+site_author: WSO2
+site_url: https://mg.docs.wso2.com/en/latest/
+
+# Repository
+repo_name: wso2/docs-mg
+repo_url: https://github.com/wso2/docs-mg
+edit_uri: https://github.com/wso2/docs-mg/edit/master/en/docs/
+dev_addr: localhost:8000
+
+# Copyright
+copyright: WSO2 API Microgateway - Documentation
+
+# Configuration
+theme:
+    name: material
+    custom_dir: theme/material
+    palette:
+        primary: deep-orange
+        accent: deep-orange
+    logo: images/logo.svg
+    favicon: images/favicon.png
+    highlightjs: true
+    feature:
+        tabs: true
+    language: 'en'
+#Breaks build if there's a warning
+strict: false
+# Navigation
+nav:
+    - Welcome to WSO2 API Microgateway: index.md
+    - Getting Started:
+          - Overview: getting-started/overview.md
+          - Quick Start Guide: 
+              - Quick Start Guide - Docker: getting-started/quick-start-guide/quick-start-guide-docker.md
+              - Quick Start Guide - Binary: getting-started/quick-start-guide/quick-start-guide-binary.md
+          - About this Release: getting-started/about-this-release.md
+    - Concepts: 
+          - Developer First APIs: concepts/developer-first-apis.md
+          - Imported APIs: concepts/imported-apis.md
+          - OpenAPI Extensions: concepts/openapi-extensions.md
+          - The Policy Hub: concepts/the-policy-hub.md
+          - Caching: concepts/caching.md
+    - How Tos:
+        - Adding APIs:
+            - Using an OpenAPI Definition: how-tos/adding-apis/using-an-openapi-definition.md
+            - Importing a Group of APIs from WSO2 API Manager: how-tos/adding-apis/importing-a-group-of-apis-from-wso2-api-manager.md
+            - Importing a Single API from WSO2 API Manager: how-tos/adding-apis/importing-a-single-api-from-wso2-api-manager.md
+        - Add a gRPC API: how-tos/add-a-grpc-api.md
+        - Defining Endpoints in an OpenAPI Definition: how-tos/defining-a-backend-security-scheme.md
+        - Message Transformation:
+            - Message Transformation Overview: how-tos/message-transformation/message-transformation-overview.md
+            - How to add interceptors from Policy Hub: how-tos/message-transformation/how-to-add-interceptors-from-policy-hub.md
+        - API Schema Validation: how-tos/api-schema-validation.md
+        - HTTP 2.0: how-tos/http-2.0.md
+        - Rate Limiting:
+            - Rate Limiting Overview: how-tos/rate-limiting/rate-limiting-overview.md
+            - Distributed Throttling: how-tos/rate-limiting/distributed-throttling.md
+            - Adding Throttling Policies: how-tos/rate-limiting/adding-throttling-policies.md
+        - Service Discovery: how-tos/service-discovery.md
+        - Security:
+            - Authentication:
+                - API Authentication: how-tos/security/api-authentication/api-authentication.md
+                - Secure APIs Using OAuth2.0 Access Tokens:
+                    - Secure APIs using JWT - Self Contained JWT: how-tos/security/api-authentication/secure-apis-using-oauth2.0-access-tokens/secure-apis-using-jwt-self-contained-jwt.md
+                    - Secure APIs Using Opaque Tokens: how-tos/security/api-authentication/secure-apis-using-oauth2.0-access-tokens/secure-apis-using-opaque-tokens.md
+                - API Key Authentication: how-tos/security/api-authentication/api-key-authentication.md
+                - Basic Authentication: how-tos/security/api-authentication/basic-authentication.md
+                - Mutual SSL Authentication: how-tos/security/api-authentication/mutual-ssl-authentication.md
+                - Configuring an External Key Manager: how-tos/security/api-authentication/configuring-an-external-key-manager.md
+                - Making Application Security Optional: how-tos/security/api-authentication/making-application-security-optional.md
+                - Disabling Security: how-tos/security/api-authentication/disabling-security.md
+            - Authorization:
+                 - API Authorization: how-tos/security/api-authorization/api-authorization.md
+                 - Scope Validation: how-tos/security/api-authorization/scope-validation.md
+            - Transport Security: how-tos/security/transport-security.md
+            - Enabling CORS: how-tos/security/enabling-cors.md
+            - API Key Security Token Service: how-tos/security/api-key-security-token-service.md
+            - Use a Custom Authorization Header: how-tos/security/use-a-custom-authorization-header.md
+            - JWT Token Revocation: how-tos/security/jwt-token-revocation.md
+            - Importing Certificates to the API Microgateway Truststore: how-tos/security/importing-certificates-to-the-api-microgateway-truststore.md
+            - Define Security using extension: how-tos/security/define-security-using-extension.md
+        - Analytics for Microgateway: how-tos/analytics-for-microgateway.md
+        - Observability: how-tos/observability.md
+        - Defining a Backend Security Scheme: how-tos/defining-endpoints-in-an-openapi-definition.md
+        - Overriding Endpoint Information:
+            - Overriding Endpoints for Developer-first Approach APIs: how-tos/overriding-endpoint-information/overriding-endpoints-for-developer-first-approach-apis.md
+            - Overriding Endpoints for Imported APIs: how-tos/overriding-endpoint-information/overriding-endpoints-for-imported-apis.md
+        - File Upload via Multipart Requests: how-tos/file-upload-via-multipart-requests.md
+        - Configure Caching: how-tos/configure-caching.md
+        - Manage Microgateway APIs with WSO2 API Manager: how-tos/manage-microgateway-apis-with-wso2-api-manager.md
+        - Adding Extension Points: how-tos/adding-extension-points.md
+    - Install and Setup:
+        - Install on VM: install-and-setup/install-on-vm.md
+        - Install on Docker: install-and-setup/install-on-docker.md
+        - Install on Kubernetes: install-and-setup/install-on-kubernetes.md
+        - Configuration for WSO2 API Manager: install-and-setup/configuration-for-wso2-api-manager.md
+    - FAQs: faqs.md
+    - Troubleshooting:
+        - Troubleshooting the Microgateway: troubleshooting/troubleshooting.md
+        - Adding Debug Logs: troubleshooting/adding-debug-logs.md
+    - Reference:
+        - Project Directory: reference/project-directory.md
+        - Configurations:
+            - Configurations Overview: reference/configurations/configurations-overview.md
+            - toolkit-config.toml: reference/configurations/toolkit-config.toml.md
+            - micro-gw.conf: reference/configurations/micro-gw.conf.md
+            - deployment.toml for Docker: reference/configurations/deployment.toml-for-docker.md
+            - deployment.toml for Kubernetes: reference/configurations/deployment.toml-for-kubernetes.md
+        - Default Ports: reference/default-ports.md
+# Extensions
+markdown_extensions:
+    - markdown.extensions.admonition
+    - markdown.extensions.codehilite:
+          linenums: true
+          use_pygments: false
+    - markdown.extensions.def_list
+    - markdown.extensions.footnotes
+    - markdown.extensions.meta
+    - markdown.extensions.toc:
+          permalink: true
+    - pymdownx.arithmatex
+    - pymdownx.betterem:
+          smart_enable: all
+    - pymdownx.caret
+    - pymdownx.critic
+    - pymdownx.details
+    - pymdownx.emoji:
+          emoji_generator: !!python/name:pymdownx.emoji.to_svg
+    - pymdownx.inlinehilite
+    - pymdownx.keys
+    - pymdownx.mark
+    - pymdownx.smartsymbols
+    - pymdownx.superfences
+    - pymdownx.tasklist:
+          custom_checkbox: true
+    - pymdownx.tilde
+plugins:
+    - search
+    - markdownextradata: {}
+    - exclude:
+          glob:
+              - wip/*
+extra_css:
+    - assets/lib/highlightjs/default.min.css
+    - assets/css/theme.css
+    - assets/lib/json-formatter/json-formatter.css
+extra_javascript:
+    - assets/lib/json-formatter/json-formatter.umd.js
+    - assets/lib/highlightjs/highlight.min.js
+    - assets/js/theme.js
+    - assets/lib/backtotop/js/util.js
+    - assets/lib/backtotop/js/main.js
+extra:
+    social:
+        - type: github
+          link: https://github.com/wso2
+        - type: twitter
+          link: https://twitter.com/wso2
+        - type: linkedin
+          link: https://www.linkedin.com/company/wso2
+    site_version: 3.2.0
+    base_path: https://mg.docs.wso2.com/en/latest
