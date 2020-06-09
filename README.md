@@ -1,5 +1,3 @@
-
-
 # WSO2 API Microgateway Documentation
 
 [![BUILD STATUS](https://wso2.org/jenkins/view/docs/job/docs/job/docs-mgw/badge/icon)(https://wso2.org/jenkins/view/docs/job/docs/job/docs-mgw)]
