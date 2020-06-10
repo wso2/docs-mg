@@ -9,7 +9,7 @@
 
 ### Before you begin...
 
-Make sure to install and set up all the [installation prerequisites](_Install_on_VM_) .
+Make sure to install and set up all the [installation prerequisites]({{base_path}}/install-and-setup/install-on-vm/) .
 
 ### Step 1 - Generate an executable using WSO2 API Microgateway Toolkit
 
@@ -54,8 +54,8 @@ Make sure to install and set up all the [installation prerequisites](_Install_o
 
 !!! info
     More Information
-    -   For more information on the MGW project directory that gets created, see [Project Directory](_Project_Directory_) .
-    -   Check out the troubleshooting guide if you run into an issue on [Microgateway project duplication](Troubleshooting_141247127.html#Troubleshooting-proj-duplication) .
+    -   For more information on the MGW project directory that gets created, see [Project Directory]({{base_path}}/reference/project-directory/) .
+    -   Check out the troubleshooting guide if you run into an issue on [Microgateway project duplication]({{base_path}}/troubleshooting/troubleshooting/) .
 
 ##### Step 1.2 - Build the project
 

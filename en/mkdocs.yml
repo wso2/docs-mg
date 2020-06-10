@@ -43,13 +43,14 @@ theme:
         tabs: true
     language: 'en'
 #Breaks build if there's a warning
-strict: false
+strict: true
 # Navigation
 nav:
     - Welcome to WSO2 API Microgateway: index.md
     - Getting Started:
           - Overview: getting-started/overview.md
-          - Quick Start Guide: 
+          - Quick Start Guide:
+              - Quick Start Overview: getting-started/quick-start-guide/quick-start-guide-overview.md
               - Quick Start Guide - Docker: getting-started/quick-start-guide/quick-start-guide-docker.md
               - Quick Start Guide - Binary: getting-started/quick-start-guide/quick-start-guide-binary.md
           - About this Release: getting-started/about-this-release.md
@@ -159,6 +160,7 @@ plugins:
     - exclude:
           glob:
               - wip/*
+              - customizations.md
 extra_css:
     - assets/lib/highlightjs/default.min.css
     - assets/css/theme.css

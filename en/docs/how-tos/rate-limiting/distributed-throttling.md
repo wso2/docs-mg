@@ -4,7 +4,7 @@ WSO2 API Microgateway has an [in-memory mechanism by default to handle throttlin
 
 The API Microgateway upon recieving a request, checks against the local counter and if throttling limit  has not exceeded it publishes the events via a stream to a central traffic management solution. This is done over HTTP. The  central traffic management solution then  executes throttle policies against the events streams. When a particular request is throttled, the  central traffic management solution sends the details of the throttled out event to a JMS topic. Each API Microgateway node is subscribed to this JMS topic, and updates the local counter when the JMS topic is updated.  Hence the API Microgateway nodes gets notified of the throttle decisions through JMS messages.
 
-![](attachments/141247092/141247093.png){width="852"}
+![distributed throttling]({{base_path}}/assets/img/how-tos/distributed-throttling.png)
 
 #### Enabling distributed throttling
 

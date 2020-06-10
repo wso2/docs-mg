@@ -11,7 +11,7 @@ Let's deploy WSO2 API Microgateway in Docker.
 
 ### Step 1 - Follow the installation prerequisites
 
-Make sure to install and set up [Docker](https://www.docker.com) and the [installation prerequisites for the Microgateway Toolkit](Install-on-VM_141247030.html#InstallonVM-MicrogatewayToolkit) .
+Make sure to install and set up [Docker](https://www.docker.com) and the [installation prerequisites for the Microgateway Toolkit]({{base_path}}/install-and-setup/install-on-vm/#microgateway-toolkit) .
 
 ### Step 2 - Create a microgateway project
 

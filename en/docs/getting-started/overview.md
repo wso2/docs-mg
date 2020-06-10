@@ -17,7 +17,7 @@ In summary, the API Microgateway is a simplified lightweight version of the API 
 
 ### How the API Microgateway works
 
-![](attachments/141246975/141255336.png){height="400"}
+![API Microgateway overview]({{base_path}}/assets/img/api-mg-overview.png)
 
 WSO2 API Microgateway comes with a toolkit that is responsible for API Microgateway related development tasks. This command line tool helps devlopers to create  API Microgateway projects, which are used later to build the executable for API Microgateway runtime component.
 
@@ -25,7 +25,7 @@ After setting up the API Mircogateway CLI, the user can initiate the API Microga
 
 When you issue a build command, the project build is triggered and an executable is created with API definitions. You can directly run this executable on the Cloud, on-premise, or on a local workstation as required using the API Microgateway runtime component.
 
-For details on how analytics works with API Microgateway and how to configure Analytics, see [Analytics for API Microgateway](_Analytics_for_Microgateway_) .
+For details on how analytics works with API Microgateway and how to configure Analytics, see [Analytics for API Microgateway]({{base_path}}/how-tos/analytics-for-microgateway/) .
 
 ### API Microgateway vs API Gateway
 
@@ -94,11 +94,11 @@ API Gateway and API Microgateway both support different security mechanisms.
 |                              |                                                                       |                                                                       |
 |------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
 | Security Mechanism           | API Microgateway                                                      | API Gateway                                                           |
-| Oauth2 opaque tokens         | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick} | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick} |
-| Oauth2 self-contained tokens | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick} | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick} |
-| Mutual SSL                   | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick} | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick} |
-| Basic Auth                   | Config based supported, can not plug user stores                      | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick} |
-| API Keys                     | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick} | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick} |
+| Oauth2 opaque tokens         | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} |
+| Oauth2 self-contained tokens | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} |
+| Mutual SSL                   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} |
+| Basic Auth                   | Config based supported, can not plug user stores                      | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} |
+| API Keys                     | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} |
 
 ###### 
 Feature Comparison
@@ -106,20 +106,20 @@ Feature Comparison
 |                                                    |                                                                         |                                                                         |
 |----------------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
 | Feature                                            | API Microgateway                                                        | API Gateway                                                             |
-| SOAP backends                                      | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   |
-| REST APIs                                          | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   |
-| JMS backends                                       | ![(error)](images/icons/emoticons/error.svg){.emoticon .emoticon-cross} | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   |
-| GraphQL APIs                                       | ![(error)](images/icons/emoticons/error.svg){.emoticon .emoticon-cross} | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   |
-| GRPC Services                                      | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   | ![(error)](images/icons/emoticons/error.svg){.emoticon .emoticon-cross} |
-| Web socket APIs                                    | ![(error)](images/icons/emoticons/error.svg){.emoticon .emoticon-cross} | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   |
-| Custom mediation/transformation                    | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   |
-| Advance throttling(bandwidth, headers, IP address) | ![(error)](images/icons/emoticons/error.svg){.emoticon .emoticon-cross} | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   |
-| Schema validation                                  | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   |
-| JWT revocation                                     | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   |
-| Per resource Endpoints                             | ![(tick)](images/icons/emoticons/check.svg){.emoticon .emoticon-tick}   | ![(error)](images/icons/emoticons/error.svg){.emoticon .emoticon-cross} |
+| SOAP backends                                      | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
+| REST APIs                                          | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
+| JMS backends                                       | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
+| GraphQL APIs                                       | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
+| GRPC Services                                      | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} |
+| Web socket APIs                                    | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
+| Custom mediation/transformation                    | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
+| Advance throttling(bandwidth, headers, IP address) | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
+| Schema validation                                  | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
+| JWT revocation                                     | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
+| Per resource Endpoints                             | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} |
 
 !!! info
     What's Next?
-    [Microgateway Quick Start Guide](_Quick_Start_Guide_)
+    [Microgateway Quick Start Guide]({{base_path}}/getting-started/quick-start-guide/quick-start-guide-overview/)
 
 

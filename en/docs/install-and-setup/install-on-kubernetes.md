@@ -21,7 +21,7 @@ Follow the instructions below to deploy WSO2 API Microgateway in Kubernetes.
 
 Make sure to do the following:
 
-1.  Carry  out the [installation prerequisites for WSO2 API Microgateway Toolkit](Install-on-VM_141247030.html#InstallonVM-MicrogatewayToolkit) .
+1.  Carry  out the [installation prerequisites for WSO2 API Microgateway Toolkit]({{base_path}}/install-and-setup/install-on-vm/#microgateway-toolkit) .
 2.  [Install and setup kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) in your client machine.
 3.  Setup a Kubernetes cluster.
 4.  Make sure that kubectl points to your Kubernetes cluster.
@@ -55,7 +55,7 @@ Make sure to do the following:
         The latter mentioned instructions uses the developer first approach. However, if you wish to work with APIs that you have published in WSO2 API Manager, you can either [import a single API](_Importing_a_Single_API_from_WSO2_API_Manager_) or [you can import the APIs as a group](_Importing_a_Group_of_APIs_from_WSO2_API_Manager_) .
 
 2.  Create the input for WSO2 API Microgateway Toolkit.
-    Create a `           deployment.toml          ` file that you will use as the input when creating the microgateway project. This TOML file should contain the relevant deployment configurations as shown below. For more information on each of the above parameters, see [deployment.toml for Kubernetes](_deployment.toml_for_Kubernetes_) .
+    Create a `           deployment.toml          ` file that you will use as the input when creating the microgateway project. This TOML file should contain the relevant deployment configurations as shown below. For more information on each of the above parameters, see [deployment.toml for Kubernetes]({{base_path}}/reference/configurations/deployment.toml-for-kubernetes/) .
 
     ``` yml
         [kubernetes]

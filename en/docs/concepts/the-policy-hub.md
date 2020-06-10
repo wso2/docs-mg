@@ -8,7 +8,7 @@ Microgateway policy hub creates a place for developer community to share their e
 
 As per the below diagram, the developer will utilize the [Ballerina Central](https://central.ballerina.io/) as the Policy Hub ( i.e. Policy Sharing website) for the purpose of searching, listing and uploading policies (i.e interceptors.). The interceptor functions will be placed inside ballerina modules in the Ballerina Central’s Repository. Users will be able to specify which interceptor to engage per API or per Resource within the OpenAPI Definition. During the build time of a project, the specified module will be pulled from the ballerina central, and the interceptor’s functionality will be applied when the API is being invoked.
 
-![policy hub- how it works](img/concepts/policy-hub-how-it-works.png){height="400"}
+![policy hub- how it works]({{base_path}}/img/concepts/policy-hub-how-it-works.png){height="400"}
 
 ## Create a new module
 

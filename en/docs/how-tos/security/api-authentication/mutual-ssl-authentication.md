@@ -60,12 +60,12 @@ When invoking an API, you can pass the certificate to the API Microgateway as fo
     The instructions below are based on Firefox 65.0.1.
 
 1.  Navigate to the browsers certificate management section. on Firefox, navigate to Preferences &gt; Privacy & Security &gt; Certificates
-    ![](attachments/141247073/141247077.png){width="700"}
+    ![browser certificates]({{base_path}}/assets/img/how-tos/mutual-ssl-browse-certs.png){width="700"}
 2.  Add the certificate used for the SSL connection.
-    ![](attachments/141247073/141247076.png){width="650"}
+    ![add certificate]({{base_path}}/assets/img/how-tos/mutual-ssl-add-cert.png){width="650"}
 3.  Invoke the REST API using a REST API client from the browser.
-    ![](attachments/141247073/141247075.png){width="1000"}
+    ![invoke rest API]({{base_path}}/assets/img/how-tos/invoke-rest-api.png)
 4.  The browser will present a user identification request, to select a certificate in order to use for the SSL connection. Select the certificate you added and click OK.
-    ![](attachments/141247073/141247074.png){width="499"}
+    ![user identification request]({{base_path}}/assets/img/how-tos/mutual-ssl-user-identification-request.png)
 
 

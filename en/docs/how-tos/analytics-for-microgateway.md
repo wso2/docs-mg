@@ -32,7 +32,7 @@ Periodical data publishing has the following advantages:
 
 The current architecture depicting the connection between the API Microgateway and the Analytics server is shown below.
 
-![](attachments/141247095/141247103.png){width="800"}
+![ Connection between API Microgateway and Analytics server]({{base_path}}/assets/img/how-tos/connection-api-mg-and-analytics-server.png){width="800"}
 
 ##### How periodical publishing works
 
@@ -74,8 +74,8 @@ Real-Time data publishing has the following advantages:
 
 The following sections describe how to configure the WSO2 API-M Analytics Server for Microgateway.
 
--   [**Using periodical data publishing**](#dc4e6aa343ac4701b16ea70e6d5550ab)
--   [**Using real-time data publishing**](#05d89277aea94d6e934914ae9ee64946)
+-   [**Using periodical data publishing**]({{base_path}}/how-tos/analytics-for-microgateway/#using-periodical-data-publishing-file-based)
+-   [**Using real-time data publishing**]({{base_path}}/how-tos/analytics-for-microgateway/#using-real-time-data-publishing-grpc-based)
 
 #### Using periodical data publishing (file-based)
 
@@ -219,16 +219,15 @@ To do the configurations for Microgateway analytics, open the `            <MICR
 ##### Step 1 - Configuring the WSO2 API-M Analytics Server
 
 1.  Open the &lt;APIM-ANALYTICS-HOME&gt;/ conf / worker / deployment .yaml file
-2.  Locate the `             siddhi → refs → ref → name → grpcSource            ` parameter section. Change the IP and port of the receiver.url to point to the Microgateway. ![](attachments/141247095/141253384.png){height="129"}
-3.  The SSL configurations for the connection can be defined under `              siddhi → extensions → extension → grpc             ` as follows. ![](attachments/141247095/141253385.png){height="187"}
-
+2.  Locate the `             siddhi → refs → ref → name → grpcSource            ` parameter section. Change the IP and port of the receiver.url to point to the Microgateway. ![]({{base_path}}/assets/img/how-tos/siddhi-grpc-source.png/siddhi-grpc-source.png.png){height="129"}
+3.  The SSL configurations for the connection can be defined under `              siddhi → extensions → extension → grpc             ` as follows. ![SSL configuration for Siddhi]({{base_path}}/assets/img/how-tos/siddhi-grpc-source.png/ssl-config-for-siddhi.png)
 ##### Step 2 - Configuring the Microgateway for Analytics
 
 1.  Open the &lt;MICRO\_GW\_HOME&gt;/conf/default-micro-gw.conf.template. Locate `             analytics.gRPCAnalytics            ` located under the `             analytics            ` section.
 2.  Copy the analy `             tics.gRPCAnalytics            ` and paste it under the `             analytics            ` section in the &lt;MICRO\_GW\_HOME&gt;/conf/micro-gw.conf file.
 3.  Configure the following parameters in the copied section.
 
-![](attachments/141247095/141253386.png){height="113"}
+![onfigure Microgateway for analytics({{base_path}}/assets/img/how-tos/configure-MGW-for-analytics.png)
 
 <table>
 <thead>
@@ -267,10 +266,10 @@ A report containing the number of requests served by the Microgateway can be gen
     Configure API Manager Analytics using the **Quick setup** or **Standard Setup** . For instructions, see [Configuring APIM Analytics](https://apim.docs.wso2.com/en/latest/learn/analytics/configuring-apim-analytics/) .
 
 1.  Login to admin portal (https://&lt;host&gt;:&lt;port&gt;/admin/) and navigate to the Microgateway tab and click on 'Usage Reports'.
-    ![](attachments/141247095/141247098.png){height="250"}
+    ![]({{base_path}}/assets/img/how-tos/portal-left-menu.png){height="250"}
 2.  Select a year and a month to generate the report for the respective month
-    ![](attachments/141247095/141247096.png){height="250"}
+    ![]({{base_path}}/assets/img/how-tos/useage-reports.png){height="250"}
 3.  Select 'Generate' button to generate a pdf with the usage information
-    ![](attachments/141247095/141247097.png){height="250"}
+    ![]({{base_path}}/assets/img/how-tos/request-summary.png){height="250"}
 
 
