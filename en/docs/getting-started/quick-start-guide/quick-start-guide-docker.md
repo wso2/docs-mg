@@ -13,7 +13,7 @@ Let's get started. See the video tutorial here or a separate step-by-step tuto
 
 ### Before you begin..
 
-Make sure to install and set up [Docker](https://www.docker.com) and the [installation prerequisites for the Microgateway Toolkit](Install-on-VM_141247030.html#InstallonVM-MicrogatewayToolkit) .
+Make sure to install and set up [Docker](https://www.docker.com) and the [installation prerequisites for the Microgateway Toolkit]({{base_path}}/install-and-setup/install-on-vm/#microgateway-toolkit)) .
 
 ### Step 1 - Generate an executable using WSO2 API Microgateway Toolkit
 
@@ -54,8 +54,8 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [instal
 
 !!! info
     More Information
-    -   For more information on the MGW project directory that gets created, see [Project Directory](_Project_Directory_) .
-    -   Check out the troubleshooting guide if you run into an issue on [Microgateway project duplication](Troubleshooting_141247127.html#Troubleshooting-proj-duplication) .
+    -   For more information on the MGW project directory that gets created, see [Project Directory]({{base_path}}/reference/project-directory/) .
+    -   Check out the troubleshooting guide if you run into an issue on [Microgateway project duplication]({{base_path}}/troubleshooting/troubleshooting/) .
 
 ##### Step 1.2 - Build the project and the docker image
 

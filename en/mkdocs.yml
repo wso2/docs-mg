@@ -49,7 +49,8 @@ nav:
     - Welcome to WSO2 API Microgateway: index.md
     - Getting Started:
           - Overview: getting-started/overview.md
-          - Quick Start Guide: 
+          - Quick Start Guide:
+              - Quick Start Overview: getting-started/quick-start-guide/quick-start-guide-overview.md
               - Quick Start Guide - Docker: getting-started/quick-start-guide/quick-start-guide-docker.md
               - Quick Start Guide - Binary: getting-started/quick-start-guide/quick-start-guide-binary.md
           - About this Release: getting-started/about-this-release.md
@@ -159,6 +160,7 @@ plugins:
     - exclude:
           glob:
               - wip/*
+              - customizations.md
 extra_css:
     - assets/lib/highlightjs/default.min.css
     - assets/css/theme.css
@@ -178,4 +180,4 @@ extra:
         - type: linkedin
           link: https://www.linkedin.com/company/wso2
     site_version: 3.2.0
-    base_path: https://mg.docs.wso2.com/en/latest
+    base_path: http://localhost:8000

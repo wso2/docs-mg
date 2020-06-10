@@ -12,7 +12,7 @@ WSO2 API Microgateway uses Real-time and Persistent Notifications to identify to
 -   [Real-time Notifier](#JWTTokenRevocation-Real-timeNotifier)
 -   [Persistent Notifier](#JWTTokenRevocation-PersistentNotifier)
 
-![](attachments/141247081/141247082.png){width="900"}
+![JWT revocation]({{base_path}}/assets/img/how-tos/jwt-revocation.png){width="900"}
 
 #### Real-time Notifier
 

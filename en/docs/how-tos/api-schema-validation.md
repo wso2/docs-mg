@@ -13,21 +13,21 @@ When validating requests/responses, the validator gets the payload of the reques
 
 -   Sending a valid request
 
-![](attachments/141247116/141257716.png){width="812"}
+![send a valid request]({{base_path}}/assets/img/how-tos/sending-a-valid-request.png)
 
 -   Sending an invalid request
 
-![](attachments/141247116/141257717.png){width="812"}
+![send an invalid request]({{base_path}}/assets/img/how-tos/sending-an-invalid-request.png)
 
 ### Response validation
 
 -   The backend sends a valid response
 
-![](attachments/141247116/141257718.png){width="812"}
+![Validate a valid response]({{base_path}}/assets/img/how-tos/response-validation-valid.png)
 
 -   The backend sends an invalid response
 
-![](attachments/141247116/141257719.png){width="812"}
+![validate an invalid response]({{base_path}}/assets/img/how-tos/response-validation-invalid.png)
 
 ### Enable the schema validation
 

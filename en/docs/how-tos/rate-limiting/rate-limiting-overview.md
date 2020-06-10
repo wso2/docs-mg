@@ -6,7 +6,7 @@ The WSO2 API Microgateway supports [resource level](https://docs.wso2.com/displa
 
 In case of a lock down environment or offline mode where there is no connection with a central traffic management solution, the default node-level throttling can be used.
 
-![](attachments/141247087/141247090.jpg){width="841"}
+![rate limiting-overview]({{base_path}}/assets/img/how-tos/rate-limiting-overview.jpg){width="841"}
 
 #### Different levels of throttling
 

@@ -52,7 +52,7 @@ Follow the instructions below to install the WSO2 API Microgateway related binar
         5.  Click **New,** add the path of the Microgateway Toolkit `                  bin                 ` folder that you copied previously and click **OK** three times to save the newly added system variable.
             ![](attachments/141247030/141247032.png)
 
-5.  Optionally, [configure WSO2 API Microgateway Toolkit with WSO2 API Manager 3.0.0](Configuration-for-WSO2-API-Manager_141247041.html#ConfigurationforWSO2APIManager-ConfiguringtheMicrogateway3.0.xToolkit) .
+5.  Optionally, [configure WSO2 API Microgateway Toolkit with WSO2 API Manager 3.0.0]({{base_path}}/install-and-setup/configuration-for-wso2-api-manager/#configuring-the-microgateway-31x-toolkit) .
 
     !!! note
         This is only applicable if you are working with WSO2 API Manager 3.0.0.
