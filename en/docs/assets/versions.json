@@ -1,0 +1,13 @@
+{
+  "next": "master",
+  "current": "master",
+  "list": [
+    "3.2.0"
+   ],
+  "all": {
+    "3.2.0":{
+        "doc": "3.2.0",
+        "notes": "3.2.0/getting-started/about-this-release/"
+    }
+  }
+}
