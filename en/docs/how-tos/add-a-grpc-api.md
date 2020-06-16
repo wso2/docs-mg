@@ -1,10 +1,10 @@
 # Add a gRPC API
 
-# What is gRPC
+### What is gRPC
 
-gRPC is a high-performance RPC framework implemented on top of HTTP/2. And also it is a CNCF (Cloud Native Computation Foundation) incubating project. You can find more details [here](https://grpc.io/) .
+gRPC is a high-performance RPC framework implemented on top of HTTP/2. And also it is a CNCF (Cloud Native Computation Foundation) incubating project. You can find more details [here](https://grpc.io/).
 
-# Why you need a microgateway for gRPC
+### Why you need a microgateway for gRPC
 
 One of the most important features in gRPC is that you can generate your client and server stubs in so many different programming languages. But if the gRPC service developer needs some advanced features like authentication, authorization, and rate-limiting, it is required to put a considerable effort. By using the wso2 microgateway, the service developer can focus on the actual service implementation rather than worrying about those features. The following features are provided by the wso2 microgateway.
 
@@ -19,13 +19,11 @@ One of the most important features in gRPC is that you can generate your client 
 
 Please refer to the " **Microgateway Extensions** " segment below for more information.
 
-# Microgateway Extensions
+### Microgateway Extensions
 
 To generate the microgateway for gRPC services, there is a set of extensions introduced which need to be added to the existing service .proto files inside the microgateway project. Those extensions are defined in a separate .proto file called "wso2\_options.proto" which is defined by the microgateway.
 
-wso2\_options.proto
-
-``` text
+``` text tab="wso2_options.proto"
     syntax = "proto3";
     package wso2;
 
@@ -67,8 +65,7 @@ wso2\_options.proto
     }
 ```
 
-    ## Service Extensions
-
+#### Service Extensions
     <table>
     <thead>
     <tr class="header">
@@ -105,143 +102,127 @@ wso2\_options.proto
     </tbody>
     </table>
 
-    ## Method Extensions
+#### Method Extensions
 
     | Extension                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Sample                                      |
     |-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
     | wso2.method\_throttling\_tier | This field defines the throttling tier for the method. If there is a service level throttling tier, it will be overridden by this. If the throttling tier exceeds, gRPC client will receive a response with the grpc-status "8" which indicated that there has been " *too many functions calls* ". It is required to make sure that the throttling policy value should be inside the **policies.yaml** under *resourcePolicies* .(&lt;microgateway-project&gt;/policies.yaml). | option (wso2.throttling\_tier) = 10kPerMin; |
     | wso2.scopes                   | This field accepts a string that denotes the scope. If there are multiple scopes, it should be provided as a comma separated string value. This extension can be used only if the selected security scheme is OAUTH2 or JWT.                                                                                                                                                                                                                                                    | option (wso2.scopes) = "scope1, scope2"     |
 
-    # How to setup gRPC microgateway
+### How to setup gRPC microgateway
 
-    1.  Implement a gRPC server and a client.
-
+1.  Implement a gRPC server and a client.
     First, you need to design your service definition in a .proto file/files and implement the gRPC server and the client based on that. There are many examples you can find online which implemented in different programming languages. For this guide, the following gRPC service definition will be used. You can find the java gRPC client and java gRPC service implementation for the following .proto [here](https://github.com/VirajSalaka/HelloworldGrpcImpl) .
 
     ``` text
-        syntax = "proto3";
-        package org.virajsalaka.grpc;
+    syntax = "proto3";
+    package org.virajsalaka.grpc;
 
-        service HelloWorld {
-        rpc hello (HelloRequest) returns (HelloReply);
-        }
+    service HelloWorld {
+    rpc hello (HelloRequest) returns (HelloReply);
+    }
 
-        message HelloRequest {
-        string input = 1;
-        }
+    message HelloRequest {
+    string input = 1;
+    }
 
-        message HelloReply {
-        string output = 1;
-        }
+    message HelloReply {
+    string output = 1;
+    }
+    ```
+2.  Make sure to follow [install and set up]({{base_path}}/install-and-setup/install-on-vm/) guide.
+3.  Create an API Microgateway project (e.g., grpc-helloworld-project).
+    Navigate to a preferred folder where you want to create the Microgateway project, and then run the following command.
+
+    ``` java tab="Format"
+    micro-gw init <project-name>
     ```
 
-        2.  Make sure to follow [install and set up](_Install_and_Setup_) guide.
-        3.  Create an API Microgateway project (e.g., grpc-helloworld-project).
-        Navigate to a preferred folder where you want to create the Microgateway project, and then run the following command.
-
-        -   [**Format**](#format-create-proj)
-        -   [**Example**](#eg-create-proj)
-
-    ``` java
-        micro-gw init <project-name>
+    ``` java tab="Example"
+    micro-gw init grpc-helloworld-project
     ```
 
-    ``` java
-        micro-gw init grpc-helloworld-project
-    ```
-
-        4.  Navigate to the directory &lt;project-location&gt;/grpc\_definitions. Create a sub-directory inside. And then copy the .proto file/files of your project to that sub-directory preserving the directory structure. (In the protocol buffers context, the compiler should be able to compile the service .proto files without providing --proto-path parameter.) In our case, it is only required to copy the above mentioned .proto file. Then, the directory structure will appear as follows.
+4.  Navigate to the directory &lt;project-location&gt;/grpc\_definitions. Create a sub-directory inside. And then copy the .proto file/files of your project to that sub-directory preserving the directory structure. (In the protocol buffers context, the compiler should be able to compile the service .proto files without providing --proto-path parameter.) In our case, it is only required to copy the above mentioned .proto file. Then, the directory structure will appear as follows.
 
     ``` text
-        grpc-helloworld-project
-        ├── api_definitions
-        ├── conf
-        ├── extensions
-        ├── grpc_definitions
-        │   └── HelloWorld
-        │       └── wso2_hello_world.proto
-        ├── interceptors
-        ├── lib
-        └── policies.yaml
+    grpc-helloworld-project
+    ├── api_definitions
+    ├── conf
+    ├── extensions
+    ├── grpc_definitions
+    │   └── HelloWorld
+    │       └── wso2_hello_world.proto
+    ├── interceptors
+    ├── lib
+    └── policies.yaml
     ```
 
-        5.  It is mandatory to customize the gRPC service definition .proto file/files with the predefined set of extensions. First, you need to add the specific import statement to allow wso2 microgateway specific extensions. To keep the example simple, only the production endpoint field and the security scheme is added. To add more functionalities like authorization and rate-limiting, please refer to the above section on extensions. (Please note that you do not need to copy the wso2\_options.proto file to the grpc\_definitions directory as it is internally handled by the toolkit).
+ 5.  It is mandatory to customize the gRPC service definition .proto file/files with the predefined set of extensions. First, you need to add the specific import statement to allow wso2 microgateway specific extensions. To keep the example simple, only the production endpoint field and the security scheme is added. To add more functionalities like authorization and rate-limiting, please refer to the above section on extensions. (Please note that you do not need to copy the wso2\_options.proto file to the grpc\_definitions directory as it is internally handled by the toolkit).
 
     ``` java
-        syntax = "proto3";
-        package org.virajsalaka.grpc;
+    syntax = "proto3";
+    package org.virajsalaka.grpc;
 
-        // To import the optional extensions defined for wso2 microgateway
-        import "wso2_options.proto";
+    // To import the optional extensions defined for wso2 microgateway
+    import "wso2_options.proto";
 
-        service HelloWorld {
-        rpc hello (HelloRequest) returns (HelloReply);
+    service HelloWorld {
+    rpc hello (HelloRequest) returns (HelloReply);
 
-        //production endpoint of the backend grpc server
-        option (wso2.production_endpoints) = {
-        url : "http://localhost:50051"; 
-        };
+    //production endpoint of the backend grpc server
+    option (wso2.production_endpoints) = {
+    url : "http://localhost:50051"; 
+    };
 
-        //Security scheme is set as API-Key
-        option (wso2.security) = APIKEY;
-        }
+    //Security scheme is set as API-Key
+    option (wso2.security) = APIKEY;
+    }
 
-        message HelloRequest {
-        string input = 1;
-        }
+    message HelloRequest {
+    string input = 1;
+    }
 
-        message HelloReply {
-        string output = 1;
-        }
+    message HelloReply {
+    string output = 1;
+    }
     ```
 
-        6.  Build the microgateway project.
+6.  Build the microgateway project.
 
-        -   [**Format**](#format-create-proj)
-        -   [**Example**](#eg-create-proj)
-
-    ``` java
-        micro-gw build <project-name>
+    ``` java tab="Format"
+    micro-gw build <project-name>
     ```
 
-    ``` java
-        micro-gw build grpc-helloworld-project
+    ``` java tab="Example"
+    micro-gw build grpc-helloworld-project
     ```
 
-        7.  Run the microgateway project. (Microgateway Runtime is used here. Please refer [installation prerequisites](https://docs.wso2.com/display/MG300/Installation+Prerequisites) for more information).
+7.  Run the microgateway project. (Microgateway Runtime is used here. Please refer [installation prerequisites]({{base_path}}/install-and-setup/install-on-vm/#microgateway-runtime) for more information).
 
-        -   [**Format**](#format-create-proj)
-        -   [**Example**](#eg-create-proj)
-
-    ``` java
-        gateway <path to generated microgateway artifact>
+    ``` java tab="Format"
+    gateway <path to generated microgateway artifact>
     ```
 
-    ``` java
-        gateway /home/wso2/grpc-helloworld-project/target/grpc-helloworld-project.jar
+    ``` java tab="Example"
+    gateway /home/wso2/grpc-helloworld-project/target/grpc-helloworld-project.jar
     ```
 
-        8.  For the provided sample implementation, you need to obtain an API-KEY token.
+8.  For the provided sample implementation, you need to obtain an API-KEY token.
 
     ``` text
-        curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRtaW46YWRtaW4=" -k
+    curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRtaW46YWRtaW4=" -k
     ```
 
-        9.  Finally, you can start your gRPC server and gRPC client with the acquired token.
+9.  Finally, you can start your gRPC server and gRPC client with the acquired token.
 
-        -   [**gRPC server Invocation**](#5eefc0e8c36949d7b79fb1b96577e08a)
-        -   [**gRPC client Invocation**](#b162f680baf14b06aee84d6ede86cc66)
+    To start the gRPC server in the provided [sample implementation](https://github.com/VirajSalaka/HelloworldGrpcImpl) ,
 
-        To start the gRPC server in the provided [sample implementation](https://github.com/VirajSalaka/HelloworldGrpcImpl) ,
-
-``` text
+    ``` text tab="gRPC server Invocation"
     java -jar serverImpl/target/serverImpl-1.0-SNAPSHOT.jar <port>
-```
+    ```
 
-    To start the gRPC client in the provided [sample implementation](https://github.com/VirajSalaka/HelloworldGrpcImpl) ,
-
-``` text
+    ``` text tab="gRPC client Invocation"
     java -jar clientImpl/target/clientImpl-1.0-SNAPSHOT.jar <your input> <api_key_token> <port>
-```
+    ```
 
 

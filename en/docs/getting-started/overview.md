@@ -1,12 +1,5 @@
 # Overview
 
--   [Introduction](#Overview-Introduction)
--   [How the API Microgateway works](#Overview-HowtheAPIMicrogatewayworks)
--   [API Microgateway vs API Gateway](#Overview-APIMicrogatewayvsAPIGateway)
-    -   [Design and deployment comparison](#Overview-Designanddeploymentcomparison)
-    -   [Security Comparison](#Overview-SecurityComparison)
-    -   [Feature Comparison](#Overview-FeatureComparison)
-
 ### Introduction
 
 The WSO2 API Microgateway is a lightweight message processor for APIs. The API Microgateway is used for message security, transport security, routing, and other common API Management related quality of services. It can process incoming and outgoing messages while collecting information required for usage metering and throttling capabilities. The API Microgateway natively supports scaling in highly decentralized environments including microservice architecture. An immutable, ephemeral Microgateway fits well with the microservice architecture. The API Microgateway is also capable of operating in lockdown environments such as IoT devices since connectivity from the API Microgateway to the API Management system is not mandatory.
@@ -33,90 +26,45 @@ API Microgateway and the "traditional" API Gateway can be compared in different 
 
 ###### Design and deployment comparison
 
-<table>
-<tbody>
-<tr class="odd">
-<td>Design/ Deployment</td>
-<td><p>API Microgateway</p></td>
-<td><p>API Gateway</p></td>
-</tr>
-<tr class="even">
-<td><p>Architecture</p></td>
-<td><p>Designed for microservices</p></td>
-<td><p>Designed for monolith</p></td>
-</tr>
-<tr class="odd">
-<td><p>Horizontal Scaling<br />
-</p></td>
-<td><p>Scales independently as the runtime does not have a direct dependency on other components. Security and throttling validations are done within the Microgateway.<br />
-</p></td>
-<td><p>Scaling can be done with other components. For example, the traffic manager (one node per dedicated cluster of gateway nodes ) and key manager can be scaled along with the gateway.<br />
-</p></td>
-</tr>
-<tr class="even">
-<td><p>Deployment distribution</p></td>
-<td><p>Decentralized</p></td>
-<td><p>Centralized<br />
-</p></td>
-</tr>
-<tr class="odd">
-<td><p>Runtime footprint</p></td>
-<td><p>Lightweight and can run on computers with low performance.</p></td>
-<td><p>Designed to run on high performing computers with high load (memory and high CPUs )</p></td>
-</tr>
-<tr class="even">
-<td><p>Isolated lockdown environments</p></td>
-<td><p>Designed to work in a network isolated environment</p></td>
-<td><p>Limited functionalities(affect on throttling/ analytics)</p></td>
-</tr>
-<tr class="odd">
-<td><p>Cloud ready</p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-</tr>
-<tr class="even">
-<td><p>Automated API CI/CD flows</p></td>
-<td><p>Supported with CLI tools</p></td>
-<td><p>Supported with CLI tools</p></td>
-</tr>
-<tr class="odd">
-<td><p>Update APIs</p></td>
-<td><p>Immutable gateways. Rebuild the gateway upon updating the API</p></td>
-<td><p>Mutable gateway, updating APIs supported</p></td>
-</tr>
-</tbody>
-</table>
+|Design/ Deployment       |API Microgateway                                         |API Gateway                        |
+|-------------------------|---------------------------------------------------------|-----------------------------------|
+|Architecture             |Designed for microservices                               |Designed for monolith              |
+|Horizontal Scaling       |Scales independently as the runtime does not have a direct dependency on other components. Security and throttling validations are done within the Microgateway.                           |  Scaling can be done with other components. For example, the traffic manager (one node per dedicated cluster of gateway nodes ) and key manager can be scaled along with the gateway.|
+|Deployment distribution  | Decentralized                                           | Centralized                       |
+|Runtime footprint        | Lightweight and can run on computers with low performance.| Designed to run on high performing computers with high load (memory and high CPUs )|
+|Isolated lockdown environments| Designed to work in a network isolated environment| Limited functionalities(affect on throttling/ analytics)|
+|Cloud ready              | Yes                                                     | Yes                               |
+|Automated API CI/CD flows| Supported with CLI tools                                |Supported with CLI tools           |
+|Update APIs              | Immutable gateways. Rebuild the gateway upon updating the API| Mutable gateway, updating APIs supported|
 
-###### Security Comparison
+ ###### Security Comparison
 
 API Gateway and API Microgateway both support different security mechanisms.
 
-|                              |                                                                       |                                                                       |
-|------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
-| Security Mechanism           | API Microgateway                                                      | API Gateway                                                           |
-| Oauth2 opaque tokens         | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} |
-| Oauth2 self-contained tokens | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} |
-| Mutual SSL                   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} |
-| Basic Auth                   | Config based supported, can not plug user stores                      | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} |
-| API Keys                     | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick} |
+| Security Mechanism           | API Microgateway                                              | API Gateway                       |
+|------------------------------|:-------------------------------------------------------------:|:---------------------------------:|
+| Oauth2 opaque tokens         | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) |
+| Oauth2 self-contained tokens | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) |
+| Mutual SSL                   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) |
+| Basic Auth                   | Config based supported, can not plug user stores                      | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) |
+| API Keys                     | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) |
 
 ###### 
 Feature Comparison
 
-|                                                    |                                                                         |                                                                         |
-|----------------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| Feature                                            | API Microgateway                                                        | API Gateway                                                             |
-| SOAP backends                                      | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
-| REST APIs                                          | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
-| JMS backends                                       | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
-| GraphQL APIs                                       | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
-| GRPC Services                                      | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} |
-| Web socket APIs                                    | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
-| Custom mediation/transformation                    | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
-| Advance throttling(bandwidth, headers, IP address) | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
-| Schema validation                                  | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
-| JWT revocation                                     | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   |
-| Per resource Endpoints                             | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg){.emoticon .emoticon-tick}   | ![(error)]({{base_path}}/assets/img/getting-started/error.svg){.emoticon .emoticon-cross} |
+|   Feature                                                  | API Microgateway                                                                        |          API Gateway                                                                |
+|----------------------------------------------------|:-------------------------------------------------------------------------:|:-----------------------------------------------------------------------:|
+| SOAP backends                                      | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
+| REST APIs                                          | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
+| JMS backends                                       | ![(error)]({{base_path}}/assets/img/getting-started/error.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
+| GraphQL APIs                                       | ![(error)]({{base_path}}/assets/img/getting-started/error.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
+| GRPC Services                                      | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   | ![(error)]({{base_path}}/assets/img/getting-started/error.svg) |
+| Web socket APIs                                    | ![(error)]({{base_path}}/assets/img/getting-started/error.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
+| Custom mediation/transformation                    | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
+| Advance throttling(bandwidth, headers, IP address) | ![(error)]({{base_path}}/assets/img/getting-started/error.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
+| Schema validation                                  | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
+| JWT revocation                                     | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
+| Per resource Endpoints                             | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   | ![(error)]({{base_path}}/assets/img/getting-started/error.svg) |
 
 !!! info
     What's Next?

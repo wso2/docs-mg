@@ -2,11 +2,11 @@
 
 WSO2 API Microgateway 3.1.0 (WSO2 MGW 310) is the successor of WSO2 API Microgateway version 3.0.2. For more information on WSO2 API Microgateway, see the [overview]({{base_path}}/getting-started/overview/) and visit our [webiste.](https://wso2.com/api-management/api-microgateway/)
 
--   [What's New](#AboutThisRelease-What'sNew)
--   [What's Improved](#AboutThisRelease-What'sImproved)
--   [What has changed in this release](#AboutThisRelease-Whathaschangedinthisrelease)
--   [Fixed issues](#AboutThisRelease-Fixedissues)
--   [Known issues](#AboutThisRelease-Knownissues)
+-   [What's New](#whats-new)
+-   [What's Improved](#whats-improved)
+-   [What has changed in this release](#what-has-changed-in-this-release)
+-   [Fixed issues](#fixed-issues)
+-   [Known issues](#known-issues)
 
 ### What's New
 
@@ -53,12 +53,10 @@ WSO2 API Microgateway 3.1.0 (WSO2 MGW 310) is the successor of WSO2 API Microgat
 -   **Change of the project structure**
     The project structure created with init command has an additional directory called "grpc\_definitions" to include the custom protocol definitions of the gRPC services. For more information, see [Project Directory]({{base_path}}/reference/project-directory/) .
 
-### 
-Fixed issues
+### Fixed issues
 
 [WSO2 API Microgateway 3.1.0 - Fixed Issues in the product-microgateway GitHub repository.](https://github.com/wso2/product-microgateway/issues?q=is%3Aissue+is%3Aclosed+label%3AType%2FBug+project%3Awso2%2Fproduct-microgateway%2F3)
 
-### 
-Known issues
+### Known issues
 
 [WSO2 API Microgateway 3.1.0 - Known Issues in the product-microgateway GitHub repository](https://github.com/wso2/product-microgateway/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue)

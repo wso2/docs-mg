@@ -6,20 +6,15 @@ By default Microgateway uses **Authorization** header to receive the authorizati
 
 Below extension can be used to do above configuration per API. This extension is not supported in resource level.
 
-**Adding open API extension inside the definition**
-
-``` java
-    x-wso2-auth-header: "XAuth"
+``` java tab="Adding open API extension inside the definition"
+x-wso2-auth-header: "XAuth"
 ```
 
-    ## Global configuration
+## Global configuration
 
-    This configuration should be done in the micro-gw.conf file. Configuration is global for all API in a specific runtime.
+This configuration should be done in the micro-gw.conf file. Configuration is global for all API in a specific runtime.
 
-    **Adding configuration**
-
-``` java
+``` java tab="Adding configuration"
     [authConfig]
     authorizationHeader = "XAuth"
-
 ```

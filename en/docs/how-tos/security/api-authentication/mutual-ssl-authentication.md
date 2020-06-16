@@ -1,9 +1,5 @@
 # Mutual SSL Authentication
 
--   [Enabling Mutual SSL Authentication for an API](#MutualSSLAuthentication-EnablingMutualSSLAuthenticationforanAPI)
--   [Configure Client and WSO2 Microgateway for Mutual SSL](#MutualSSLAuthentication-ConfigureClientandWSO2MicrogatewayforMutualSSL)
--   [Invoking an API using certificate-based authentication](#MutualSSLAuthentication-InvokinganAPIusingcertificate-basedauthentication)
-
 Certificate-based authentication on the Microgateway is authenticating a request based on a digital certificate, before granting access to the backend. By way of certificate-based authentication, the Microgateway supports mutual SSL. In mutual SSL, both parties the client and the server identifies themselves in order to create a successful SSL connection. Mutual SSL allows a client to make a request without a username and password, provided that the server is aware of the client's certificate.
 
 ### Enabling Mutual SSL Authentication for an API
@@ -13,42 +9,33 @@ You can use the x-wso2-transports extension to enable mutual SSL client verifica
 **API definition**
 
 ``` yml
-    x-wso2-mutual-ssl: "mandatory" # can be "mandatory" or "optional"
+x-wso2-mutual-ssl: "mandatory" # can be "mandatory" or "optional"
 ```
 
-    Extension
-    Key
-    value
-    Description
-    `             x-wso2-mutual-ssl            `
-    mutualssl
-    `              mandatory             `
+|value| Description|
+|-----|------------|
+|mandatory| Enable mutual SSL. The client should be verified and the mutual SSL handshake must be passed. the API request will be unauthorized if the handshake is failed.|
+|optional|Disable mutual SSL. Even if the mutual SSL handshake failed, the API request is not necessarily unauthenticated. If the mutual SSL handshake is passed, the request will be filtered by the mutual SSL handler.|
 
-    Enable mutual SSL. The client should be verified and the mutual SSL handshake must be passed. the API request will be unauthorized if the handshake is failed.
-    `             optional            `
-    Disable mutual SSL. Even if the mutual SSL handshake failed, the API request is not necessarily unauthenticated. If the mutual SSL handshake is passed, the request will be filtered by the mutual SSL handler.
+### Configure Client and WSO2 Microgateway for Mutual SSL
 
-    ### Configure Client and WSO2 Microgateway for Mutual SSL
+Add the client's public certificate to the WSO2 Microgateway's trustStorePath in listenerConfig configuration. Also, configure Microgateway's public certificate on the client-side. For more information [importing certificates to the WSO2 Microgateway Truststore]({{base_path}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/)
 
-    Add the client's public certificate to the WSO2 Microgateway's trustStorePath in listenerConfig configuration. Also, configure Microgateway's public certificate on the client-side. For more information [importing certificates to the WSO2 Microgateway Truststore](https://docs.wso2.com/display/MG310/Importing+Certificates+to+the+API+Microgateway+Truststore)
-
-    **micro-gw.conf**
-
-``` yml
-    [listenerConfig]
-    keyStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaKeystore.p12"
-    keyStorePassword = "ballerina"
-    trustStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaTruststore.p12"
-    trustStorePassword = "ballerina"
+``` yml tab="micro-gw.conf"
+[listenerConfig]
+keyStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaKeystore.p12"
+keyStorePassword = "ballerina"
+trustStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaTruststore.p12"
+trustStorePassword = "ballerina"
 ```
 
-    !!! note
-    Mutual SSL authentication is currently supporting only HTTP 1.1 . Therefore the following configuration should be added to the micro-gw.conf file.
-    **micro-gw.conf**
-``` yml
+!!! note
+    Mutual SSL authentication is currently supporting only HTTP 1.1 . Therefore the following
+    configuration should be added to the micro-gw.conf file.
+    ```yml
     [http2]
     enable = false
-```
+    ```
 
 ### Invoking an API using certificate-based authentication
 
@@ -56,6 +43,7 @@ When invoking an API, you can pass the certificate to the API Microgateway as fo
 
 !!! note
     In this tutorial, a self-signed certificate is added into the already available ballerina truststore.
+
 !!! note
     The instructions below are based on Firefox 65.0.1.
 
