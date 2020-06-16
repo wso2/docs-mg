@@ -13,73 +13,69 @@ Microgateway by default connect with WSO2 API Manager key validation service whi
 **Enable external key manager**
 
 ``` yml
-    # Key manager configurations
-    [keyManager]
-    # Connection URL of the Key Manager server
-    serverUrl = "https://localhost:9443"
-    # The token endpoint context of the Key Manager server
-    tokenContext = "oauth2"
-    # timestamp skew in seconds which added when checking the token validity period
-    timestampSkew = 5000
-    # External Key Manager
-    external = true
+# Key manager configurations
+[keyManager]
+# Connection URL of the Key Manager server
+serverUrl = "https://localhost:9443"
+# The token endpoint context of the Key Manager server
+tokenContext = "oauth2"
+# timestamp skew in seconds which added when checking the token validity period
+timestampSkew = 5000
+# External Key Manager
+external = true
 ```
 
-    Different key managers might use different mechanisms to **secure the introspect endpoint.** Microgateway supports following authentication schemes with introspection endpoint
+Different key managers might use different mechanisms to **secure the introspect endpoint.** Microgateway supports following authentication schemes with introspection endpoint
 
-    1.  **Basic Authentication**
+1.  **Basic Authentication**
 
     Following configuration can be used to provide the basic authentication details.
 
     **Basic authentication configs**
 
     ``` yml
-        # Basic security configurations
-        [keymanager.security.basic]
-        enabled = true
-        username = "admin"
-        password = "admin"
+    # Basic security configurations
+    [keymanager.security.basic]
+    enabled = true
+    username = "admin"
+    password = "admin"
     ```
 
-        These values can be set as environment variables as well.
+    These values can be set as environment variables as well.
 
-        2.  **OAuth2**
+2.  **OAuth2**
 
-        If OAuth2 is used in key manager to protect the introspect endpoint then in microgateway oauth2 authentication should be enabled for introspection.
+    If OAuth2 is used in key manager to protect the introspect endpoint then in microgateway oauth2 authentication should be enabled for introspection.
 
-        **OAuth2 authentication**
+    **OAuth2 authentication**
 
-``` yml
+    ``` yml
     keymanager.security.oauth2]
     enabled = true
     # Authentication credentials should be sent via (AUTH_HEADER_BEARER/POST_BODY_BEARER/NO_BEARER)?
     credentialBearer = "AUTH_HEADER_BEARER"
     # Token URL for the authorization endpoint
     tokenUrl = ""
-```
+    ```
 
     Microgateway supports different grants when introspect endpoint is secured with the OAuth2.
 
-    -   Client Credentials
+     - Client Credentials - Client Credentials Grant config
 
-    **Client Credentials Grant config**
-
-    ``` yml
+        ``` yml
         # Oauth2 security grants
         [keymanager.security.oauth2.clientCredential]
         enabled = true
         clientId = ""
         clientSecret = ""
         scopes = ""
-    ```
+        ```
 
         This will use the client credential grant type to get a valid token in order to call the introspect endpoint. The gateway will re use this token until its expiry time and renew the token only when token gets expired.
 
-        -   Password grant
+     - Password grant
 
-        **Password grant**
-
-    ``` yml
+        ``` yml
         [keymanager.security.oauth2.password]
         enabled = true
         clientId = ""
@@ -87,25 +83,21 @@ Microgateway by default connect with WSO2 API Manager key validation service whi
         scopes = ""
         username = ""
         password = ""
-    ```
+        ```
 
-        -   Direct token
+     - Direct token -Direct Access Token Method
 
-        **Direct Access Token Method**
-
-    ``` yml
+        ``` yml
         [keymanager.security.oauth2.directToken]
         enabled = true
         accessToken = ""
-    ```
+        ```
 
         In this method the access token can be directly configured in the configuration, so that gateway will send that token when calling the secured introspection endpoint
 
-        -   Refresh Grant
+    -   Refresh Grant
 
-        **Refresh Grant**
-
-    ``` yml
+        ``` yml
         [keymanager.security.oauth2.refresh]
         enabled = true
         refreshUrl = ""
@@ -113,7 +105,7 @@ Microgateway by default connect with WSO2 API Manager key validation service whi
         refreshToken = ""
         clientId = ""
         clientSecret = ""
-    ```
+        ```
 
         The refresh grant can used with "Password Grant" or with "Direct Token" method in order to renew the token in case of the access token expires. When refresh config is enabled, if password grant is used then gateway will automatically renews the access token if the existing token expires. And also it will renew the token when direct token method is used also.
 

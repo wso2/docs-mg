@@ -2,8 +2,8 @@
 
 Microgateway contains the following caching mechanisms to increase the performance of the gateway.
 
--   [OAuth cache](#Caching-OAuthcache)
--   [Response cache](#Caching-Responsecache)
+-   [OAuth cache](#oauth-cache)
+-   [Response cache](#response-cache)
 
 ## OAuth cache
 

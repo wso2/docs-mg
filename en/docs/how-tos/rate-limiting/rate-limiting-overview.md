@@ -2,11 +2,11 @@
 
 The WSO2 API Microgateway by default has an inbuilt mechanism to handle rate limiting. When a Microgateway project is initialized, an execution plan, which is related to the subscription-level throttling policy defined in the API, is created in-memory. The API Microgateway monitors the incoming requests and publishes the events to a stream defined in the inbuilt stream processing engine. This stream is then read and fed into the relevant pre-defined execution plan. The execution plan detects the throttling point and publishes an event to a stream (globalThrottleStream). When the globalThrottleStream is updated, the API Microgateway updates its local counteis in background as gateway is subscribed to the global throttle stream.
 
-The WSO2 API Microgateway supports [resource level](https://docs.wso2.com/display/MG300/Adding+Throttling+Policies) , [subscription level](#RateLimiting-subscription-level-throttling) and [application level throttling](#RateLimiting-application-level-throttling) .
+The WSO2 API Microgateway supports [resource level]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies/) , [subscription level](#subscription-level-throttling-api-subscriber) and [application level throttling](#application-level-throttling-application-developer) .
 
 In case of a lock down environment or offline mode where there is no connection with a central traffic management solution, the default node-level throttling can be used.
 
-![rate limiting-overview]({{base_path}}/assets/img/how-tos/rate-limiting-overview.jpg){width="841"}
+![rate limiting-overview]({{base_path}}/assets/img/how-tos/rate-limiting-overview.jpg)
 
 #### Different levels of throttling
 

@@ -1101,3 +1101,7 @@ html .md-footer-meta.md-typeset a,
   .algolia-autocomplete .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion:not(.suggestion-layout-simple) .algolia-docsearch-suggestion--content {
     background-color: #ffaa001f !important;
   }
+.center {
+    display: block;
+    margin: 100 auto;
+}

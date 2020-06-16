@@ -12,7 +12,7 @@ OpenAPI specification doesn't define all required properties for a API gateway. 
 
 and many other gateway specific features per API or per Resource. Since Microgateway is using the OpenAPI definition as the SSOT (Single Source Of Truth), These additional properties should somehow go into OpenAPI definition maintained inside the Microgateway project. Microgateway utilizes OpenAPI Specification's vendor extensions for this purpose.
 
-So to define above metioned additional API/Resource specific gateway attributes, Microgateway introduces set of vendor extensions for developers. List of available extensions are documented [here](_OpenAPI_Extensions_) .
+So to define above metioned additional API/Resource specific gateway attributes, Microgateway introduces set of vendor extensions for developers. List of available extensions are documented [here]({{base_path}}/concepts/openapi-extensions/) .
 
 ## How to work with standard open API definition
 
@@ -51,6 +51,6 @@ Following properties of the open API is not recommended to be editied, as it wil
         - url: https://api.example.com/v1 
     ```
 
-        Then microgateway will expose the API using the base path(or context) /v1 if the x-wso2-basePath extension is not present. Then editing the last part of the servers url(/v1) will expose API as a different context. If editing the servers url is a must due to the changes in the actual back end service, then we can use the x-wso2-basePath extension as a fixed context and edit the servers url. So API will be exposed with the same base bath as it was before.
+ Then microgateway will expose the API using the base path(or context) /v1 if the x-wso2-basePath extension is not present. Then editing the last part of the servers url(/v1) will expose API as a different context. If editing the servers url is a must due to the changes in the actual back end service, then we can use the x-wso2-basePath extension as a fixed context and edit the servers url. So API will be exposed with the same base bath as it was before.
 
 

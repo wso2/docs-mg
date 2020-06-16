@@ -66,7 +66,7 @@ nav:
             - Importing a Group of APIs from WSO2 API Manager: how-tos/adding-apis/importing-a-group-of-apis-from-wso2-api-manager.md
             - Importing a Single API from WSO2 API Manager: how-tos/adding-apis/importing-a-single-api-from-wso2-api-manager.md
         - Add a gRPC API: how-tos/add-a-grpc-api.md
-        - Defining Endpoints in an OpenAPI Definition: how-tos/defining-a-backend-security-scheme.md
+        - Defining Endpoints in an OpenAPI Definition: how-tos/defining-endpoints-in-an-openapi-definition.md
         - Message Transformation:
             - Message Transformation Overview: how-tos/message-transformation/message-transformation-overview.md
             - How to add interceptors from Policy Hub: how-tos/message-transformation/how-to-add-interceptors-from-policy-hub.md
@@ -90,7 +90,6 @@ nav:
                 - Making Application Security Optional: how-tos/security/api-authentication/making-application-security-optional.md
                 - Disabling Security: how-tos/security/api-authentication/disabling-security.md
             - Authorization:
-                 - API Authorization: how-tos/security/api-authorization/api-authorization.md
                  - Scope Validation: how-tos/security/api-authorization/scope-validation.md
             - Transport Security: how-tos/security/transport-security.md
             - Enabling CORS: how-tos/security/enabling-cors.md
@@ -101,7 +100,7 @@ nav:
             - Define Security using extension: how-tos/security/define-security-using-extension.md
         - Analytics for Microgateway: how-tos/analytics-for-microgateway.md
         - Observability: how-tos/observability.md
-        - Defining a Backend Security Scheme: how-tos/defining-endpoints-in-an-openapi-definition.md
+        - Defining a Backend Security Scheme: how-tos/defining-a-backend-security-scheme.md
         - Overriding Endpoint Information:
             - Overriding Endpoints for Developer-first Approach APIs: how-tos/overriding-endpoint-information/overriding-endpoints-for-developer-first-approach-apis.md
             - Overriding Endpoints for Imported APIs: how-tos/overriding-endpoint-information/overriding-endpoints-for-imported-apis.md
@@ -114,11 +113,11 @@ nav:
         - Install on Docker: install-and-setup/install-on-docker.md
         - Install on Kubernetes: install-and-setup/install-on-kubernetes.md
         - Configuration for WSO2 API Manager: install-and-setup/configuration-for-wso2-api-manager.md
-    - FAQs: faqs.md
     - Troubleshooting:
         - Troubleshooting the Microgateway: troubleshooting/troubleshooting.md
         - Adding Debug Logs: troubleshooting/adding-debug-logs.md
     - Reference:
+        - FAQs: faqs.md
         - Project Directory: reference/project-directory.md
         - Configurations:
             - Configurations Overview: reference/configurations/configurations-overview.md
@@ -180,4 +179,4 @@ extra:
         - type: linkedin
           link: https://www.linkedin.com/company/wso2
     site_version: 3.2.0
-    base_path: https://mg.docs.wso2.com/en/latest
+    base_path: http://localhost:8000
