@@ -58,34 +58,34 @@ import org.wso2.micro.gateway.interceptor.Request;
 import org.wso2.micro.gateway.interceptor.Response;
 
 public class SampleInterceptor implements Interceptor {
-public static String value="json";
-public boolean interceptRequest(Caller caller, Request request) {
-boolean hasApiKey = request.hasHeader("X-API-KEY");
-if (!hasApiKey) {
-Response response = new Response();
-JSONObject responsePayload = new JSONObject().put("error", "Missing required header");
-response.setResponseCode(400);
-response.setJsonPayload(responsePayload);
-caller.respond(response);
-// If we respond from the interceptor it is necessary to set the return value as false. 
-// Otherwise the usual request flow will continue.
-return false; 
-}
-return true;
-}
-    public boolean interceptResponse(Caller caller, Response response) {
-// Send a custom json message if the response contains the key "error"
-try {
-JSONObject responseObject = response.getJsonPayload();
-if(responseObject.has("error")){
-JSONObject customErrorMessage = new JSONObject().put("error", "Invalid json payload returned");
-response.setJsonPayload(customErrorMessage);
-}
-} catch (InterceptorException e) {
-System.out.println("Error while getting the response payload");
-}
-return true;
-} 
+     public static String value="json";
+     public boolean interceptRequest(Caller caller, Request request) {
+          boolean hasApiKey = request.hasHeader("X-API-KEY");
+          if (!hasApiKey) {
+              Response response = new Response();
+              JSONObject responsePayload = new JSONObject().put("error", "Missing required header");
+              response.setResponseCode(400);
+              response.setJsonPayload(responsePayload);
+              caller.respond(response);
+              // If we respond from the interceptor it is necessary to set the return value as false. 
+              // Otherwise the usual request flow will continue.
+              return false; 
+          }
+          return true;
+     }
+     public boolean interceptResponse(Caller caller, Response response) {
+          // Send a custom json message if the response contains the key "error"
+          try {
+               JSONObject responseObject = response.getJsonPayload();
+               if(responseObject.has("error")){
+                   JSONObject customErrorMessage = new JSONObject().put("error", "Invalid json payload returned");
+                   response.setJsonPayload(customErrorMessage);
+          }
+          } catch (InterceptorException e) {
+               System.out.println("Error while getting the response payload");
+          }
+          return true;
+     } 
 }
 ```
 
@@ -95,9 +95,9 @@ return true;
     **Interceptor dependency**
     ``` java
     <dependency>
-    <groupId>org.wso2.am.microgw</groupId>
-    <artifactId>mgw-interceptor</artifactId>
-    <version>3.1.0</version>
+      <groupId>org.wso2.am.microgw</groupId>
+      <artifactId>mgw-interceptor</artifactId>
+      <version>3.1.0</version>
     </dependency>
     ```
 ### Adding interceptors to the project
@@ -112,30 +112,30 @@ Java Interceptors can be added to a particular resource as opposed to the whole 
 
 ``` java
 paths:
-"/pet/findByStatus":
-get:
-tags:
-- pet
-summary: Finds Pets by status
-description: Multiple status values can be provided with comma separated strings
-operationId: findPetsByStatus
-x-wso2-request-interceptor: java:org.mgw.interceptor.SampleInterceptor
-x-wso2-response-interceptor: java:org.mgw.interceptor.SampleInterceptor
-parameters:
-- name: status
-in: query
-description: Status values that need to be considered for filter
-required: true
-explode: true
-schema:
-type: array
-items:
-type: string
-enum:
-- available
-- pending
-- sold
-default: available
+  "/pet/findByStatus":
+  get:
+    tags:
+      - pet
+    summary: Finds Pets by status
+    description: Multiple status values can be provided with comma separated strings
+    operationId: findPetsByStatus
+    x-wso2-request-interceptor: java:org.mgw.interceptor.SampleInterceptor
+    x-wso2-response-interceptor: java:org.mgw.interceptor.SampleInterceptor
+    parameters:
+      - name: status
+        in: query
+        description: Status values that need to be considered for filter
+        required: true
+        explode: true
+        schema:
+          type: array
+        items:
+          type: string
+          enum:
+            - available
+            - pending
+            - sold
+            default: available
 ```
 
 #### Add interceptors globally at the API level
@@ -146,15 +146,15 @@ You can add an interceptor so that it gets applied at the API level, which is 
 
 ``` java
 openapi: 3.0.0
-version: 1.0.0
-title: Swagger Petstore New
-termsOfService: http://swagger.io/terms/
+    version: 1.0.0
+    title: Swagger Petstore New
+    termsOfService: http://swagger.io/terms/
 x-wso2-basePath: /petstore/v1
 x-wso2-request-interceptor: java:org.mgw.interceptor.SampleInterceptor
 x-wso2-response-interceptor: java:org.mgw.interceptor.SampleInterceptor
 x-wso2-production-endpoints:
-urls:
-- https://petstore.swagger.io/v
+    urls:
+        - https://petstore.swagger.io/v
 ```
 
 ### Writing an interceptor
@@ -165,26 +165,28 @@ This section explains writing interceptors  in [Ballerina](https://ballerina.io
 
 ``` java
 import ballerina/http;
-    public function validateRequest (http:Caller outboundEp, http:Request req) {
-// Backend requires X-API-KEY header. No point in passing the request to the backend 
-// if the header is not present in the request.
+    
+public function validateRequest (http:Caller outboundEp, http:Request req) {
+    // Backend requires X-API-KEY header. No point in passing the request to the backend 
+    // if the header is not present in the request.
 boolean hasApiKey = req.hasHeader("X-API-KEY");
 if (!hasApiKey) {
-http:Response res = new;
-res.statusCode = 400;
-json message = {"error": "Missing required header"};
-res.setPayload(message);
-var status = outboundEp->respond(res);
+    http:Response res = new;
+    res.statusCode = 400;
+    json message = {"error": "Missing required header"};
+    res.setPayload(message);
+    var status = outboundEp->respond(res);
+   }
 }
-}
-    public function validateResponse (http:Caller outboundEp, http:Response res) {
-// Client only supports json. Therefore we need to make sure only json responses are returned
-var payload = res.getJsonPayload();
-if (payload is error) {
-res.statusCode = 500;
-json message = {"error": "Error while generating response"};
-res.setPayload(message);
-}
+
+public function validateResponse (http:Caller outboundEp, http:Response res) {
+    // Client only supports json. Therefore we need to make sure only json responses are returned
+    var payload = res.getJsonPayload();
+    if (payload is error) {
+        res.statusCode = 500;
+        json message = {"error": "Error while generating response"};
+        res.setPayload(message);
+    }
 } 
 ```
 
@@ -204,30 +206,30 @@ Interceptors can be added to a particular resource as opposed to the whole API i
 
 ``` java
 paths:
-"/pet/findByStatus":
-get:
-tags:
-- pet
-summary: Finds Pets by status
-description: Multiple status values can be provided with comma separated strings
-operationId: findPetsByStatus
-x-wso2-request-interceptor: validateRequest
-x-wso2-response-interceptor: validateResponse
-parameters:
-- name: status
-in: query
-description: Status values that need to be considered for filter
-required: true
-explode: true
-schema:
-type: array
-items:
-type: string
-enum:
-- available
-- pending
-- sold
-default: available
+  "/pet/findByStatus":
+  get:
+    tags:
+      - pet
+    summary: Finds Pets by status
+    description: Multiple status values can be provided with comma separated strings
+    operationId: findPetsByStatus
+    x-wso2-request-interceptor: validateRequest
+    x-wso2-response-interceptor: validateResponse
+    parameters:
+    - name: status
+      in: query
+      description: Status values that need to be considered for filter
+      required: true
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - available
+            - pending
+            - sold
+            default: available
 ```
 
 #### Add interceptors globally at the API level
@@ -238,15 +240,15 @@ You can add an interceptor so that it gets applied at the API level, which is 
 
 ``` java
 openapi: 3.0.0
-version: 1.0.0
-title: Swagger Petstore New
-termsOfService: http://swagger.io/terms/
+    version: 1.0.0
+    title: Swagger Petstore New
+    termsOfService: http://swagger.io/terms/
 x-wso2-basePath: /petstore/v1
 x-wso2-request-interceptor: validateRequest
 x-wso2-response-interceptor: validateResponse
 x-wso2-production-endpoints:
-urls:
-- https://petstore.swagger.io/v
+    urls: 
+       - https://petstore.swagger.io/v
 ```
 
 

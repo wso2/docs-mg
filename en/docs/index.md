@@ -8,7 +8,9 @@ template: templates/single-column.html
 
 **Welcome to WSO2 API Microgateway 3.2.0 Documentation!** [WSO2 API Microgateway](https://wso2.com/api-management/api-microgateway/) (WSO2 MGW) is an API Gateway for micro services, which is cloud-native, decentralized and developer centric.
 
-Get started with WSO2 API Microgateway
+The WSO2 API Microgateway is a lightweight message processor for APIs. The API Microgateway is used for message security, transport security, routing, and other common API Management related quality of services
+
+To learn more, [get started with WSO2 API Microgateway]({{base_path}}/getting-started/quick-start-guide/quick-start-guide-overview/).
 </p> 
    </div>
    <div class="md-main md-content rightImage">
@@ -18,72 +20,74 @@ Get started with WSO2 API Microgateway
 </div>
 <div>
    <div class="content"> 
-     <div class="card" onclick="location.href='getting-started/quick-start-guide';">
+     <div class="card" onclick="location.href='getting-started/quick-start-guide/quick-start-guide-overview';">
 		<div class="line"></div>
            	<div class="card-icon">
 			<i class="material-icons md-36">timer</i>
 		</div>
 		<div class="card-content" >
-			<p class="title">5-min Quick Start</p>
+			<p class="title">Quick Start</p>
 			<a href="http://www.google.com"></a>
-			<p class="hint"> Create, publish  and consume an API in 5 minutes.</p>
+			<p class="hint"> Proxy your services using the WSO2 API Microgateway in no time.</p>
       		</div>
 		</div>
       <!-- card -->
-      <div class="card" onclick="location.href='learn/design-api/create-api/create-a-rest-api';">
+      <div class="card" onclick="location.href='concepts/developer-first-apis';">
             <div class="line"></div>
             <div class="card-icon"><i class="material-icons md-36">create</i></div>
              <div class="card-content">
-                  <p class="title">Design API</p>
-                  <p class="hint">Develop, publish, manage and monitor APIs </p>
+                  <p class="title">Concepts</p>
+                  <p class="hint"> Learn the basic concepts of the WSO2 API Microgateway </p>
              </div>
       </div>
       <!-- end card -->
       <!-- card -->
-      <div class="card" onclick="location.href='learn/consume-api/discover-apis/search';">
+      <div class="card" onclick="location.href='how-tos/adding-apis/using-an-openapi-definition';">
+            <div class="line"></div>
+            <div class="card-icon"><i class="material-icons md-36">create</i></div>
+             <div class="card-content">
+                  <p class="title">Add API</p>
+                  <p class="hint">Import APIs to API Microgateway </p>
+             </div>
+      </div>
+      <!-- end card -->
+      <!-- card -->
+      <div class="card" onclick="location.href='how-tos/message-transformation/message-transformation-overview';">
             <div class="line"></div>
             <div class="card-icon"><i class="material-icons md-36">store</i></div>
 <div class="card-content">
-            <div><p class="title">Consume API</p></div>
-            <p class="hint"> Find, explore, subscribe, consume and evaluate APIs</p>
+            <div><p class="title">Message Transformaton</p></div>
+            <p class="hint">Learn how messages can be transformed</p>
       </div>
 </div>
-      <!-- end card -->
-      <!-- card -->
-      <div class="card" onclick="location.href='learn/api-gateway/overview-of-the-api-gateway';">
-            <div class="line"></div> 
-            <div class="card-icon"><i class="material-icons md-36">input</i></div>
-<div class="card-content">
-            <p class="title">API Gateway</p>
-            <p class="hint">Intercept API requests, apply policies and manage API statistics</p>
-      </div>
- </div>
-      <!-- end card -->
-      <!-- card -->
+      <!-- end card -->      <!-- card -->
   
  </div>
  <div class="content">
       <!-- end card -->
       <!-- end card -->
       <!-- card -->
+
+ <!-- card -->
+  <div class="card" onclick="location.href='how-tos/api-schema-validation';">
+        <div class="line"></div> 
+        <div class="card-icon"><i class="material-icons md-36">input</i></div>
+<div class="card-content">
+            <p class="title">API Schema Validation</p>
+            <p class="hint">Validate the  API request/response against the API definition</p>
+      </div>
+ </div>
+      <!-- end card -->      
    <!-- card -->
-      <div class="card" onclick="location.href='https://docs.wso2.com/display/MG310';">
+      <div class="card" onclick="location.href='how-tos/security/api-authentication/api-authentication';">
 	   <div class="line"></div>
-            <div class="card-icon"><i class="material-icons md-36">input</i></div>
+                  <div class="card-icon"><i class="material-icons md-36">security</i></div>
             <div class="card-content">
-                <p class="title">API Microgateway</p>
-                <p class="hint">A cloud-native, developer-centric, decentralized API gateway for microservices.</p>
+                <p class="title">Security</p>
+                <p class="hint">Authenticate and authorize API requests</p>
             </div>
       </div>
-      <div class="card" onclick="location.href='learn/api-security/api-authentication/api-authentication-overview';">
-	    <div class="line"></div>
-            <div class="card-icon"><i class="material-icons md-36">security</i></div>
-            <div class="card-content">
-		    <p class="title">API Security</p>
-		    <p class="hint">Authenticate and authorize API requests</p>
-            </div>
-      </div>
-      <div class="card" onclick="location.href='learn/rate-limiting/introducing-throttling-use-cases';">
+      <div class="card" onclick="location.href='how-tos/rate-limiting/rate-limiting-overview';">
 	    <div class="line"></div>
             <div class="card-icon"><i class="material-icons md-36">traffic</i></div>
             <div class="card-content">
@@ -93,7 +97,7 @@ Get started with WSO2 API Microgateway
       </div>
         <!-- end card -->
       <!-- card -->
-      <div class="card" onclick="location.href='learn/analytics/overview-of-api-analytics';">
+      <div class="card" onclick="location.href='how-tos/analytics-for-microgateway';">
 	    <div class="line"></div>
             <div class="card-icon"><i class="material-icons md-36">show_chart</i></div>
             <div class="card-content">
@@ -101,7 +105,6 @@ Get started with WSO2 API Microgateway
 		    <p class="hint">Monitor system behavior, as well as API and application usage</p>
             </div>
       </div>
-      <!-- end card -->
   </div>
 </div>
 

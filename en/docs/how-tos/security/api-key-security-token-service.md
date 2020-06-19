@@ -59,11 +59,11 @@ To configure the API Key STS, open &lt;MGW-RUNTIME\_HOME&gt;/conf/micro-gw.conf 
 Use the cURL command below to get an API Key.
 
 ``` java tab="Format"
-    curl -k -X GET "<host>:<port>/apikey" -H  "Authorization:Basic base64(username:password)"
+curl -k -X GET "<host>:<port>/apikey" -H  "Authorization:Basic base64(username:password)"
 ```
 
 ``` java tab="Example"
-    curl -k -X GET "https://localhost:9095/apikey" -H  "Authorization:Basic YWRtaW46YWRtaW4="
+curl -k -X GET "https://localhost:9095/apikey" -H  "Authorization:Basic YWRtaW46YWRtaW4="
 ```
 
 You can request an API Key valid for a specific time period in invoke time as follows :

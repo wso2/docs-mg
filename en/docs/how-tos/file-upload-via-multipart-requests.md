@@ -1,8 +1,5 @@
 # File Upload via Multipart Requests
 
--   [File uploads with other data](#FileUploadviaMultipartRequests-Fileuploadswithotherdata)
--   [Multiple File Upload](#FileUploadviaMultipartRequests-MultipleFileUpload)
-
 #### File uploads with other data
 
 First, use the requestBody keyword to describe the request payload containing a file. Under content, you can use the multipart media type to describe a file sent with other data.
@@ -12,35 +9,34 @@ First, use the requestBody keyword to describe the request payload containing a 
 
 ``` yml
     requestBody:
-    content:
-    multipart/form-data:
-    schema:
-    type: object
-    properties:
-    orderId:
-    type: integer
-    userId:
-    type: integer
-    fileName:
-    type: string
-    format: binary
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              orderId:
+                type: integer
+              userId:
+                type: integer
+              fileName:
+                type: string
+                format: binary
 ```
 
-    #### 
-    Multiple File Upload
+#### Multiple File Upload
 
-    You can use the multipart media type to define uploading an array of files.
+You can use the multipart media type to define uploading an array of files.
 
 ``` yml
     requestBody:
-    content:
-    multipart/form-data:
-    schema:
-    type: object
-    properties:
-    filename:
-    type: array
-    items:
-    type: string
-    format: binary
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              filename:
+                type: array
+                items:
+                  type: string
+                  format: binary
 ```

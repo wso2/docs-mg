@@ -12,9 +12,9 @@ You need to define the throttling policy (or policies) in the `policies.yaml` fi
 
 ``` java
 - 10kPerMin:
-count: 10000
-unitTime: 1
-timeUnit: min
+     count: 10000
+     unitTime: 1
+     timeUnit: min
 ```
 
 ### Adding an API level throttling policy
@@ -25,8 +25,8 @@ timeUnit: min
 x-wso2-basePath: /petstore/v1
 x-wso2-throttling-tier: 10kPerMin
 x-wso2-production-endpoints:
-urls:
-- https://petstore.swagger.io/v2
+   urls:
+     - https://petstore.swagger.io/v2
 ```
 
 ### Adding a resource level throttling policy
@@ -35,12 +35,12 @@ urls:
 
 ``` java
 paths:
-"/pet/findByStatus":
-get:
-tags:
-- pet
-summary: Finds Pets by status
-description: Multiple status values can be provided with comma separated strings
-operationId: findPetsByStatus
-x-wso2-throttling-tier: 10kPerMin
+  "/pet/findByStatus":
+    get:
+      tags:
+      - pet
+      summary: Finds Pets by status
+      description: Multiple status values can be provided with comma separated strings
+      operationId: findPetsByStatus
+      x-wso2-throttling-tier: 10kPerMin
 ```

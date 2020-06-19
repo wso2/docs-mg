@@ -11,15 +11,15 @@ Make sure to carry out all the [installation prerequisites]({{base_path}}/instal
 Let's initialize a API Microgateway project named marketing\_project. Navigate to a preferred folder where you want to create the Microgateway project. Thereafter, run the following command.
 
 ``` java tab="Format"
-    micro-gw init <project-name>
+micro-gw init <project-name>
 ```
 
 ``` java tab="Example"
-    micro-gw init marketing_project
+micro-gw init marketing_project
 ```
 
 ``` java tab="Response"
-    Project 'marketing_project' is initialized successfully.
+Project 'marketing_project' is initialized successfully.
 ```
 
 ### Step 3 - Build the Microgateway project
@@ -47,8 +47,8 @@ Let's initialize a API Microgateway project named marketing\_project. Navigate t
     ID for API with name PizzaShackAPI : api_30e623704c5c5479b7c0d9ab78e965df02c1610401e37cbd557e6353e3191c76
 
     -  Username and Password - Enter your user credentials. The username and password should correspond to a valid user in WSO2 API Manager
-    -   APIM base URL - This is the WSO2 API Manager URL. If you want to use the default value, click enter.
-    -   Trust store location and password of WSO2 API Microgateway Toolkit - If you want to use the default value, click enter.
+    -  APIM base URL - This is the WSO2 API Manager URL. If you want to use the default value, click enter.
+    -  Trust store location and password of WSO2 API Microgateway Toolkit - If you want to use the default value, click enter.
     ```
 
     After the API is imported, you can find the auto-generated Swagger definition in the `<MGW-project>/gen/api_definitions/<Swagger-file-name>.JSON` directory of the project (e.g., `/marketing_project/gen/api_definitions/api_30e623704c5c5479b7c0d9ab78e965df02c1610401e37cbd557e6353e3191c76.json` )
@@ -58,33 +58,33 @@ Let's initialize a API Microgateway project named marketing\_project. Navigate t
         If the API in the API manager has synapse mediations as custom mediations, then those mediations will not be supported by the microgateway. The logic in custom mediation will have to be reimplement using the [microgateway message transformation feature.](https://docs.wso2.com/display/MG310/Message+Transformation)
 
 2.  Build the WSO2 API Microgateway project (e.g.,marketing\_project).
-    Navigate to the `           <MGW_HOME>/bin          ` directory and run the following command.
+    Navigate to the `<MGW_HOME>/bin` directory and run the following command.
 
     ``` java tab="Format"
-        micro-gw build <project-name>
+    micro-gw build <project-name>
     ```
 
     ``` java tab="Example"
-        micro-gw build marketing_project
+    micro-gw build marketing_project
     ```
 
     ``` yml tab="Response"
-        Compiling source
-        wso2/marketing_project:3.1.0
+    Compiling source
+    wso2/marketing_project:3.1.0
 
-        Creating balos
-        target/balo/u-2019r3-java8-3.1.0.balo
+    Creating balos
+    target/balo/u-2019r3-java8-3.1.0.balo
 
-        Running tests
-        wso2/marketing_project:3.1.0
-        No tests found
+    Running tests
+    wso2/marketing_project:3.1.0
+    No tests found
 
 
-        Generating executables
-        target/bin/marketing_project.jar
+    Generating executables
+    target/bin/marketing_project.jar
 
-        BUILD SUCCESSFUL
-        Target: wso2am-micro-gw-toolkit-macos-3.1.0/bin//target/marketing_project.jar
+    BUILD SUCCESSFUL
+    Target: wso2am-micro-gw-toolkit-macos-3.1.0/bin//target/marketing_project.jar
     ```
 
     This creates a jar file ( `/marketing_project/target/marketing_project.jar` ) that you can use to expose the API via WSO2 API Microgateway runtime.

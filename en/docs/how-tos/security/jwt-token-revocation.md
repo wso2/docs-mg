@@ -23,11 +23,11 @@ The following code snippet shows how the revoked token map object is passed and 
 
 ``` java
 [tokenRevocationConfig.persistent]
-enablePersistentStorageRetrieval = true
-useDefault = false
-hostname = "https://127.0.0.1:2379/v2/keys/jti/"
-username = "root"
-password = "root"
+    enablePersistentStorageRetrieval = true
+    useDefault = false
+    hostname = "https://127.0.0.1:2379/v2/keys/jti/"
+    username = "root"
+    password = "root"
 ```
 
 ### Enabling notifications to identify revoked tokens

@@ -13,11 +13,11 @@ When a JWT is used as an access token, API Microgateway validates the following 
 
 ``` yml
 [[jwtTokenConfig]]
-issuer = "https://localhost:9443/oauth2/token"
-audience = "http://org.wso2.apimgt/gateway"
-certificateAlias = "wso2apim310"
-# Validate subscribed APIs
-validateSubscription = false
+    issuer = "https://localhost:9443/oauth2/token"
+    audience = "http://org.wso2.apimgt/gateway"
+    certificateAlias = "wso2apim310"
+    # Validate subscribed APIs
+    validateSubscription = false
 ```
 
  The certificateAlias, issuer, audience of the above configuration will be used to validate the signature, iss claim and aud claim of the JWT respectively. This configuration should be added to the micro-gw.conf file located in &lt;MICRO-GW-RUNTIME\_HOME&gt;/conf/.
@@ -38,18 +38,18 @@ validateSubscription = false
 # JWT token authorization configurations. You can provide multiple JWT issuers
 # Issuer 1
 [[jwtTokenConfig]]
-issuer = "https://localhost:9443/oauth2/token"
-audience = "http://org.wso2.apimgt/gateway"
-certificateAlias = "wso2apim310"
-# Validate subscribed APIs
-validateSubscription = false
+    issuer = "https://localhost:9443/oauth2/token"
+    audience = "http://org.wso2.apimgt/gateway"
+    certificateAlias = "wso2apim310"
+    # Validate subscribed APIs
+    validateSubscription = false
 # Issuer 2
 [[jwtTokenConfig]]
-issuer = "https://host:port/issuer"
-audience = "http://org.wso2.apimgt/gateway"
-certificateAlias = "alias"
-# Validate subscribed APIs
-validateSubscription = false
+    issuer = "https://host:port/issuer"
+    audience = "http://org.wso2.apimgt/gateway"
+    certificateAlias = "alias"
+    # Validate subscribed APIs
+    validateSubscription = false
 ```
 
 ### Passing a token to the backend.
@@ -58,8 +58,8 @@ validateSubscription = false
 
 ``` yml
 [jwtConfig]
-# JWT header when forwarding the request to the backend
-header = "X-JWT-Assertion"
+    # JWT header when forwarding the request to the backend
+    header = "X-JWT-Assertion"
 ```
 
 
