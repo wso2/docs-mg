@@ -3,7 +3,7 @@ template: templates/single-column.html
 ---
 
 <!--
- * Copyright (c) 2020, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  * WSO2 Inc. licenses this file to you under the Apache License,
  * Version 2.0 (the "License"); you may not use this file except
@@ -20,5 +20,5 @@ template: templates/single-column.html
  * under the License.
 -->
 
-Try one of the navigation links above or use the search engine in the top right corner. 
+Try one of the navigation links above or use the search engine in the top right corner. 
 

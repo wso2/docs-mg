@@ -5,20 +5,20 @@ For signature validation of JWTs, you need to add the public certificate of the 
 1.  Convert the public certificate to a PEM format. For example,
 
     ``` java
-        openssl x509 -inform der -in public_certificate.cert -out certificate.pem
+    openssl x509 -inform der -in public_certificate.cert -out certificate.pem
     ```
 
-        2.  Import the certificate to the truststore. The `           ballerinaTruststore.p12          ` resides in the generated distribution of the API Microgateway runtime and toolkit in the following locations.
+2.  Import the certificate to the truststore. The `           ballerinaTruststore.p12          ` resides in the generated distribution of the API Microgateway runtime and toolkit in the following locations.
 
     ``` java
-        keytool -import -keystore <MGW_TOOLKIT_HOME>/lib/platform/bre/security/ballerinaTruststore.p12 -alias wso2carbonjwt -file certificate.pem
+    keytool -import -keystore <MGW_TOOLKIT_HOME>/lib/platform/bre/security/ballerinaTruststore.p12 -alias wso2carbonjwt -file certificate.pem
     ```
 
     ``` java
-        keytool -import -keystore <MGW_RUNTIME_HOME>/runtime/bre/security/ballerinaTruststore.p12 -alias wso2carbonjwt -file certificate.pem
+    keytool -import -keystore <MGW_RUNTIME_HOME>/runtime/bre/security/ballerinaTruststore.p12 -alias wso2carbonjwt -file certificate.pem
     ```
 
-        !!! note
+    !!! note
         Use the keytool that comes in JDK 8u60 or later.
 
 ### Default Certificates and aliases in WSO2 Microgateway 3.1.0 Truststore

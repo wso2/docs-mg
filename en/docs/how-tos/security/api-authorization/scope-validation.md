@@ -96,14 +96,14 @@ Then, the required scopes should be added to the "micro-gw.conf" file (comma sep
 
 ``` java tab="Format"
 [b7a.users.<username>]
-password="@<HASH_ALGO>:{<HASH_ALGO(password)>}"
-scopes="scope1,scope2"
+    password="@<HASH_ALGO>:{<HASH_ALGO(password)>}"
+    scopes="scope1,scope2"
 ```
 
 ``` java tab="Example"
 ["b7a.users.shani"]
-password="@sha256:{5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8}"
-scopes="read,write"
+    password="@sha256:{5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8}"
+    scopes="read,write"
 ```
 
  The users with the scopes in the configuration can access the endpoints with certain scopes included in the oauth2 scheme using basic authentication.

@@ -2,24 +2,16 @@
 
 WSO2 API Microgateway provides the capability to publish events to a configured analytics server, in order to generate analytics. The Microgateway is also capable of generating a usage report to gain insights into the analytics generated. This page describes the feature and explains how the feature could be used to generate useful analytics in order to gain important insights of the APIs deployed on the Microgateway.
 
--   [Overview](#AnalyticsforMicrogateway-Overview)
-    -   [Periodically Publishing Events (file-based)](#AnalyticsforMicrogateway-PeriodicallyPublishingEvents(file-based))
-    -   [Real-Time Publishing Events (gRPC based)](#AnalyticsforMicrogateway-Real-TimePublishingEvents(gRPCbased))
--   [Configuring Analytics for the Microgateway](#AnalyticsforMicrogateway-ConfiguringAnalyticsfortheMicrogateway)
-    -   [Using periodical data publishing (file-based)](#AnalyticsforMicrogateway-Usingperiodicaldatapublishing(file-based))
-    -   [Using real-time data publishing (gRPC-based)](#AnalyticsforMicrogateway-Usingreal-timedatapublishing(gRPC-based))
--   [Generating a Microgateway usage report](#AnalyticsforMicrogateway-GeneratingaMicrogatewayusagereport)
-
 ### Overview
 
 WSO2 API Microgateway supports publishing events to an analytics server in one of the two following methods.
 
-1.  [Periodically publishing events (file-based)](#AnalyticsforMicrogateway-AnalyticsforMicrogateway-PeriodicallyPublishingEvents(file-based))
-2.  [Real-time publishing events (gRPC-based)](#AnalyticsforMicrogateway-AnalyticsforMicrogateway-Real-TimePublishing(gRPCbased))
+1.  [Periodically publishing events (file-based)](#periodically-publishing-events-file-based)
+2.  [Real-time publishing events (gRPC-based)](#real-time-publishing-gRPC-based)
 
 The Following topics introduce and explain the difference between the two methods, as well as provide instructions on how to use them in the Microgateway to generate analytics.
 
-#### Periodically Publishing Events (file-based)
+### Periodically Publishing Events (file-based)
 
 API Microgateway is capable of publishing events periodically to an analytics server.  The period in which the data is published can be configured.  A file-based approach is used in this method.
 
@@ -28,29 +20,29 @@ Periodical data publishing has the following advantages:
 1.  A persistent connection to the analytics server is not a mandatory requirement (lossless publishing)
 2.  No backpressure to the Gateway if the analytics server is loaded, allowing the gateway to operate smoothly.
 
-##### Architecture
+#### Architecture
 
 The current architecture depicting the connection between the API Microgateway and the Analytics server is shown below.
 
 ![ Connection between API Microgateway and Analytics server]({{base_path}}/assets/img/how-tos/connection-api-mg-and-analytics-server.png){width="800"}
 
-##### How periodical publishing works
+#### How periodical publishing works
 
 The Microgateway receives the requests from the API. To process the requests, there are two main tasks that run in the Microgateway.
 
 When an API is invoked through the Microgateway, the subsequent events related to the invocations are populated and written in a file. To avoid the files attaining a large size,  the following tasks are executed at particular time intervals.
 
-###### File rotating task
+##### File rotating task
 
--   This task creates large files by rotating them at particular time intervals. The size of the files depends on the TPS (Transactions Per Second) of the environment in which the Microgateway is running. Once the file is rotated, it is compressed into a zipped file. The `          rotatingPeriod         ` can be configured as described [below](#AnalyticsforMicrogateway-AnalyticsforMicrogateway-Usingperiodicaldatapublishing(file-based)) .
+-   This task creates large files by rotating them at particular time intervals. The size of the files depends on the TPS (Transactions Per Second) of the environment in which the Microgateway is running. Once the file is rotated, it is compressed into a zipped file. The `rotatingPeriod` can be configured as described [below](#using-periodical-data-publishing-file-based)) .
 
-###### File uploading task
+##### File uploading task
 
--   This task uploads the zipped file created by the previous task, to a microservice running on the Analytics Server. This zip file is then persisted in the `          WSO2AM_STATS_DB         ` database in the Analytics server node. A task running in the Analytics server processes the persisted data and sends it to the event stream. The time interval in which the zipped files are uploaded can be configured by setting the `          uploadingTimeSpanInMillis         ` parameter.
+-   This task uploads the zipped file created by the previous task, to a microservice running on the Analytics Server. This zip file is then persisted in the `WSO2AM_STATS_DB ` database in the Analytics server node. A task running in the Analytics server processes the persisted data and sends it to the event stream. The time interval in which the zipped files are uploaded can be configured by setting the `uploadingTimeSpanInMillis` parameter.
 
 After successfully completing the upload and persistence is achieved, the corresponding files are deleted from the Microgateway filesystem.
 
-#### Real-Time Publishing Events (gRPC based)
+### Real-Time Publishing Events (gRPC based)
 
 The Micorgateway is capable of publishing events in real-time to an analytics server using gRPC.
 
@@ -62,20 +54,17 @@ Real-Time data publishing has the following advantages:
 -   Server-fail detection and failure recovery mechanisms.
 -   Real-Time analytics data viewing capability.
 
-##### Architecture
+#### Architecture
 
 &lt;&lt;TO-DO&gt;&gt;
 
-##### How real-time publishing works
+#### How real-time publishing works
 
 &lt;&lt;TO-DO&gt;&gt;
 
 ### Configuring Analytics for the Microgateway
 
 The following sections describe how to configure the WSO2 API-M Analytics Server for Microgateway.
-
--   [**Using periodical data publishing**]({{base_path}}/how-tos/analytics-for-microgateway/#using-periodical-data-publishing-file-based)
--   [**Using real-time data publishing**]({{base_path}}/how-tos/analytics-for-microgateway/#using-real-time-data-publishing-grpc-based)
 
 #### Using periodical data publishing (file-based)
 
@@ -87,16 +76,16 @@ The following sections describe how to configure the WSO2 API-M Analytics Server
 1.  Create the `              AM_USAGE_UPLOADED_FILES             ` table in the APIM\_ANALYTICS\_DB . A sample MySQL script to create the table is given below (This step is only required if you followed the **Standard setup** when configuring API Manager Analytics).
 
     ``` java
-        CREATE TABLE IF NOT EXISTS AM_USAGE_UPLOADED_FILES (
-        FILE_NAME varchar(255) NOT NULL,
-        FILE_TIMESTAMP TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FILE_PROCESSED tinyint(1) DEFAULT 0,
-        FILE_CONTENT MEDIUMBLOB DEFAULT NULL,
-        PRIMARY KEY (FILE_NAME, FILE_TIMESTAMP)
-        );
+    CREATE TABLE IF NOT EXISTS AM_USAGE_UPLOADED_FILES (
+    FILE_NAME varchar(255) NOT NULL,
+    FILE_TIMESTAMP TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FILE_PROCESSED tinyint(1) DEFAULT 0,
+    FILE_CONTENT MEDIUMBLOB DEFAULT NULL,
+    PRIMARY KEY (FILE_NAME, FILE_TIMESTAMP)
+    );
     ```
 
-        !!! warning
+    !!! warning
         Make sure that you correctly configured the APIM\_ANALYTICS\_DB between WSO2 API Manager and WSO2 API-M Analytics.
 
 !!! info
@@ -146,47 +135,47 @@ The following sections describe how to configure the WSO2 API-M Analytics Server
 
 ##### Step 2 - Configuring the Microgateway for Analytics
 
-To do the configurations for Microgateway analytics, open the `            <MICROGW_HOME>/conf/micro-gw.conf           ` file. The sample below shows the analytics-related configurations.
+To do the configurations for Microgateway analytics, open the `<MICROGW_HOME>/conf/micro-gw.conf` file. The sample below shows the analytics-related configurations.
 
 ``` java
-    enable=true
-    uploadingTimeSpanInMillis=600000
-    uploadingEndpoint="https://localhost:9444/analytics/v1.0/usage/upload-file"
-    rotatingPeriod=60000
-    task.uploadFiles=true
-    username="admin"
-    password="admin"
+enable=true
+uploadingTimeSpanInMillis=600000
+uploadingEndpoint="https://localhost:9444/analytics/v1.0/usage/upload-file"
+rotatingPeriod=60000
+task.uploadFiles=true
+username="admin"
+password="admin"
 ```
 
-    The configurations are described in the table below.
+The configurations are described in the table below.
 
-    <table>
-    <thead>
-    <tr class="header">
-    <th>Property</th>
-    <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><pre><code>enable</code></pre></td>
-    <td>Set this to true to enable Microgateway analytics. When enabled, the Microgateway starts persisting files with the analytics data in the <code>                &lt;MICROGW_HOME&gt;/api-usage-data               </code> folder.</td>
-    </tr>
-    <tr class="even">
-    <td><pre><code>uploadingTimeSpanInMillis</code></pre></td>
-    <td>The time interval in which the uploading task runs.</td>
-    </tr>
-    <tr class="odd">
-    <td><pre><code>uploadingEndpoint</code></pre></td>
-    <td>The endpoint URL of the web application, to which the file has to be uploaded. This web app is deployed in the Analytics server, to retrieve files containing analytics data.</td>
-    </tr>
-    <tr class="even">
-    <td><pre><code>rotatingPeriod</code></pre></td>
-    <td><div class="content-wrapper">
-    <p>The time interval, after which the file is rotated and compressed. This depends on the TPS (Transactions Per Second) capacity of the environment.</p>
-    !!! tip
-    <p>Best Practice</p>
-    <p>To avoid creating large files, we recommend setting a low <code>                  rotatingPeriod                 </code> if your environment has a higher TPS.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><pre><code>enable</code></pre></td>
+<td>Set this to true to enable Microgateway analytics. When enabled, the Microgateway starts persisting files with the analytics data in the <code>                &lt;MICROGW_HOME&gt;/api-usage-data               </code> folder.</td>
+</tr>
+<tr class="even">
+<td><pre><code>uploadingTimeSpanInMillis</code></pre></td>
+<td>The time interval in which the uploading task runs.</td>
+</tr>
+<tr class="odd">
+<td><pre><code>uploadingEndpoint</code></pre></td>
+<td>The endpoint URL of the web application, to which the file has to be uploaded. This web app is deployed in the Analytics server, to retrieve files containing analytics data.</td>
+</tr>
+<tr class="even">
+<td><pre><code>rotatingPeriod</code></pre></td>
+<td><div class="content-wrapper">
+<p>The time interval, after which the file is rotated and compressed. This depends on the TPS (Transactions Per Second) capacity of the environment.</p>
+!!! tip
+<p>Best Practice</p>
+<p>To avoid creating large files, we recommend setting a low <code>                  rotatingPeriod                 </code> if your environment has a higher TPS.</p>
 
 </div></td>
 </tr>
@@ -216,18 +205,19 @@ To do the configurations for Microgateway analytics, open the `            <MICR
 
 #### Using real-time data publishing (gRPC-based)
 
-##### Step 1 - Configuring the WSO2 API-M Analytics Server
+##### **Step 1 - Configuring the WSO2 API-M Analytics Server**
 
 1.  Open the &lt;APIM-ANALYTICS-HOME&gt;/ conf / worker / deployment .yaml file
-2.  Locate the `             siddhi → refs → ref → name → grpcSource            ` parameter section. Change the IP and port of the receiver.url to point to the Microgateway. ![]({{base_path}}/assets/img/how-tos/siddhi-grpc-source.png/siddhi-grpc-source.png.png){height="129"}
-3.  The SSL configurations for the connection can be defined under `              siddhi → extensions → extension → grpc             ` as follows. ![SSL configuration for Siddhi]({{base_path}}/assets/img/how-tos/siddhi-grpc-source.png/ssl-config-for-siddhi.png)
-##### Step 2 - Configuring the Microgateway for Analytics
+2.  Locate the `siddhi → refs → ref → name → grpcSource` parameter section. Change the IP and port of the receiver.url to point to the Microgateway. ![]({{base_path}}/assets/img/how-tos/siddhi-grpc-source.png/siddhi-grpc-source.png.png)
+3.  The SSL configurations for the connection can be defined under `siddhi → extensions → extension → grpc` as follows. ![SSL configuration for Siddhi]({{base_path}}/assets/img/how-tos/siddhi-grpc-source.png/ssl-config-for-siddhi.png)
 
-1.  Open the &lt;MICRO\_GW\_HOME&gt;/conf/default-micro-gw.conf.template. Locate `             analytics.gRPCAnalytics            ` located under the `             analytics            ` section.
-2.  Copy the analy `             tics.gRPCAnalytics            ` and paste it under the `             analytics            ` section in the &lt;MICRO\_GW\_HOME&gt;/conf/micro-gw.conf file.
+##### **Step 2 - Configuring the Microgateway for Analytics**
+
+1.  Open the &lt;MICRO\_GW\_HOME&gt;/conf/default-micro-gw.conf.template. Locate `analytics.gRPCAnalytics` located under the `analytics` section.
+2.  Copy the `analytics.gRPCAnalytics` and paste it under the `analytics` section in the &lt;MICRO\_GW\_HOME&gt;/conf/micro-gw.conf file.
 3.  Configure the following parameters in the copied section.
 
-![onfigure Microgateway for analytics({{base_path}}/assets/img/how-tos/configure-MGW-for-analytics.png)
+![Configure Microgateway for analytics({{base_path}}/assets/img/how-tos/configure-MGW-for-analytics.png)
 
 <table>
 <thead>
@@ -266,10 +256,15 @@ A report containing the number of requests served by the Microgateway can be gen
     Configure API Manager Analytics using the **Quick setup** or **Standard Setup** . For instructions, see [Configuring APIM Analytics](https://apim.docs.wso2.com/en/latest/learn/analytics/configuring-apim-analytics/) .
 
 1.  Login to admin portal (https://&lt;host&gt;:&lt;port&gt;/admin/) and navigate to the Microgateway tab and click on 'Usage Reports'.
-    ![]({{base_path}}/assets/img/how-tos/portal-left-menu.png){height="250"}
+
+    ![]({{base_path}}/assets/img/how-tos/portal-left-menu.png)
+    
 2.  Select a year and a month to generate the report for the respective month
-    ![]({{base_path}}/assets/img/how-tos/useage-reports.png){height="250"}
+
+    ![]({{base_path}}/assets/img/how-tos/useage-reports.png)
+    
 3.  Select 'Generate' button to generate a pdf with the usage information
-    ![]({{base_path}}/assets/img/how-tos/request-summary.png){height="250"}
+
+    ![]({{base_path}}/assets/img/how-tos/request-summary.png)
 
 

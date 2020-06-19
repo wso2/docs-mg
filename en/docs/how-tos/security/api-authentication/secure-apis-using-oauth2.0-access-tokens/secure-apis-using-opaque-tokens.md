@@ -14,13 +14,13 @@ Microgateway by default connects with [WSO2 API Manager](https://apim.docs.wso2.
 
 ``` java
 [keyManager]
-serverUrl = "https://localhost:9443"
-tokenContext = "oauth2"
-external = false
-[keymanager.security.basic]
-enabled = true
-username = "admin"
-password = "admin"
+    serverUrl = "https://localhost:9443"
+    tokenContext = "oauth2"
+    external = false
+    [keymanager.security.basic]
+        enabled = true
+        username = "admin"
+        password = "admin"
 ```
 
 !!! info
@@ -36,14 +36,14 @@ Microgateway can be configured with external key manager that does supports stan
 ``` yml
 # Key manager configurations
 [keyManager]
-# Connection URL of the Key Manager server
-serverUrl = "https://localhost:9443"
-# The token endpoint context of the Key Manager server
-tokenContext = "oauth2"
-# timestamp skew in seconds which added when checking the token validity period
-timestampSkew = 5000
-# External Key Manager
-external = true
+    # Connection URL of the Key Manager server
+    serverUrl = "https://localhost:9443"
+    # The token endpoint context of the Key Manager server
+    tokenContext = "oauth2"
+    # timestamp skew in seconds which added when checking the token validity period
+    timestampSkew = 5000
+    # External Key Manager
+    external = true
 ```
 
 ### Securing the Introspect Endpoint
@@ -59,9 +59,9 @@ external = true
 ``` yml
 # Basic security configurations
 [keymanager.security.basic]
-enabled = true
-username = "admin"
-password = "admin"
+    enabled = true
+    username = "admin"
+    password = "admin"
 ```
 
  These values can be set as environment variables as well.
@@ -73,12 +73,12 @@ password = "admin"
 ##### OAuth2 authentication
 
 ``` yml
-keymanager.security.oauth2]
-enabled = true
-# Authentication credentials should be sent via (AUTH_HEADER_BEARER/POST_BODY_BEARER/NO_BEARER)?
-credentialBearer = "AUTH_HEADER_BEARER"
-# Token URL for the authorization endpoint
-tokenUrl = ""
+[keymanager.security.oauth2]
+    enabled = true
+    # Authentication credentials should be sent via (AUTH_HEADER_BEARER/POST_BODY_BEARER/NO_BEARER)?
+    credentialBearer = "AUTH_HEADER_BEARER"
+    # Token URL for the authorization endpoint
+    tokenUrl = ""
 ```
 
  Microgateway supports different grants when introspect endpoint is secured with the OAuth2.
@@ -88,10 +88,10 @@ tokenUrl = ""
       ``` yml
         # Oauth2 security grants
         [keymanager.security.oauth2.clientCredential]
-        enabled = true
-        clientId = ""
-        clientSecret = ""
-        scopes = ""
+            enabled = true
+            clientId = ""
+            clientSecret = ""
+            scopes = ""
       ```
 
       This will use the client credential grant type to get a valid token in order to call the introspect endpoint. The gateway will reuse this token until its expiry time and renew the token only when token gets expired.
@@ -100,20 +100,20 @@ tokenUrl = ""
 
     ``` yml
     [keymanager.security.oauth2.password]
-    enabled = true
-    clientId = ""
-    clientSecret = ""
-    scopes = ""
-    username = ""
-    password = ""
+        enabled = true
+        clientId = ""
+        clientSecret = ""
+        scopes = ""
+        username = ""
+        password = ""
     ```
 
  - **Direct token**  - Direct Access Token Method
 
     ``` yml
     [keymanager.security.oauth2.directToken]
-    enabled = true
-    accessToken = ""
+        enabled = true
+        accessToken = ""
     ```
 
      In this method, the access token can be directly configured in the configuration, so that gateway will send that token when calling the secured introspection endpoint.
@@ -122,12 +122,12 @@ tokenUrl = ""
     
     ``` yml
     [keymanager.security.oauth2.refresh]
-    enabled = true
-    refreshUrl = ""
-    scopes = ""
-    refreshToken = ""
-    clientId = ""
-    clientSecret = ""
+        enabled = true
+        refreshUrl = ""
+        scopes = ""
+        refreshToken = ""
+        clientId = ""
+        clientSecret = ""
     ```
 
       The refresh grant can be used with "Password Grant" or "Direct Token" method in order to renew the token in case the access token expires. When refresh config is enabled, if password grant is used then gateway will automatically renews the access token if the existing token expires. And also it will renew the token when the direct token method is used.
@@ -143,16 +143,16 @@ tokenUrl = ""
 ``` yml
 # Key manager configurations
 [keyManager]
-# Connection URL of the Key Manager server
-serverUrl = "https://localhost:9443"
-# The token endpoint context of the Key Manager server
-tokenContext = "oauth2"
-# timestamp skew in seconds which added when checking the token validity period
-timestampSkew = 5000
-# Internal Key Manager
-external = false
+    # Connection URL of the Key Manager server
+    serverUrl = "https://localhost:9443"
+    # The token endpoint context of the Key Manager server
+    tokenContext = "oauth2"
+    # timestamp skew in seconds which added when checking the token validity period
+    timestampSkew = 5000
+    # Internal Key Manager
+    external = false
 [keymanager.security.basic]
-enabled = true
-username = "admin"    
-password = "admin"
+    enabled = true
+    username = "admin"    
+    password = "admin"
 ```

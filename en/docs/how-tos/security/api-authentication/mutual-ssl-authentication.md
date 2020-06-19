@@ -23,10 +23,10 @@ Add the client's public certificate to the WSO2 Microgateway's trustStorePath in
 
 ``` yml tab="micro-gw.conf"
 [listenerConfig]
-keyStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaKeystore.p12"
-keyStorePassword = "ballerina"
-trustStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaTruststore.p12"
-trustStorePassword = "ballerina"
+    keyStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaKeystore.p12"
+    keyStorePassword = "ballerina"
+    trustStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaTruststore.p12"
+    trustStorePassword = "ballerina"
 ```
 
 !!! note
@@ -34,7 +34,7 @@ trustStorePassword = "ballerina"
     configuration should be added to the micro-gw.conf file.
     ```yml
     [http2]
-    enable = false
+        enable = false
     ```
 
 ### Invoking an API using certificate-based authentication

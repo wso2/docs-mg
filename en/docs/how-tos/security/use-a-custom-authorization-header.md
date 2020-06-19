@@ -15,6 +15,6 @@ x-wso2-auth-header: "XAuth"
 This configuration should be done in the micro-gw.conf file. Configuration is global for all API in a specific runtime.
 
 ``` java tab="Adding configuration"
-    [authConfig]
+[authConfig]
     authorizationHeader = "XAuth"
 ```

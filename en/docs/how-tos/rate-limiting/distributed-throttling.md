@@ -10,17 +10,17 @@ The API Microgateway upon recieving a request, checks against the local counter 
 
 1.  Lets create a microgateway project/
 
-    1.  Navigate to a preferred workspace folder using the command line. (This location is used to run the Microgateway commands and to generate Microgateway artifacts.)
-    2.  Create a project using the command given below,
+    1. Navigate to a preferred workspace folder using the command line. (This location is used to run the Microgateway commands and to generate Microgateway artifacts.)
+    2. Create a project using the command given below,
+  
+           ``` java tab="Format"
+           micro-gw init <project_name> 
+           ```
 
-        ``` java tab="Format
-        micro-gw init <project_name> 
-        ```
-
-        ``` java tab="Example"
-        micro-gw init petstore  
-        Project 'petstore' is initialized successfully.
-        ```
+           ``` java tab="Example"
+           micro-gw init petstore  
+           Project 'petstore' is initialized successfully.
+           ```
 
 2.  Now lets add the API(open API definition) to the project. Navigate to the `           /petstore/api_definitions          ` directory. Add the API definition(s) to th `           is          ` directory. A sample open API definition can be found [here](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml) .
 
@@ -35,7 +35,7 @@ The API Microgateway upon recieving a request, checks against the local counter 
       Build successful  for the project - petstore
     ```
 
-        Once the above command is executed, An executable file ( `/petstore/target/petstore.jar` ) is created to expose the API via WSO2 API Microgateway
+    Once the above command is executed, An executable file ( `/petstore/target/petstore.jar` ) is created to expose the API via WSO2 API Microgateway
 
 4.  Navigate to the `<MGW-RUNTIME-HOME>/conf/` directory and open the “micro-gw.conf" file.
 5.  Enable the `enabledGlobalTMEventPublishing` property found inside the `throttlingConfig` tag. This will allow the API Microgateway to connect with the central traffic manager.

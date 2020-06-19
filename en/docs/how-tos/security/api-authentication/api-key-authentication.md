@@ -73,10 +73,10 @@ The following table explains the runtime configurations for API Key authenticati
 
 ``` yml tab="Format"
 [apikey.tokenConfigs]
-issuer="https://localhost:9095/apikey"
-audience="http://org.wso2.apimgt/gateway"
-certificateAlias="ballerina"
-validateAllowedAPIs=false
+    issuer="https://localhost:9095/apikey"
+    audience="http://org.wso2.apimgt/gateway"
+    certificateAlias="ballerina"
+    validateAllowedAPIs=false
 ```
 
 

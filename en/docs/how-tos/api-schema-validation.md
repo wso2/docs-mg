@@ -32,7 +32,7 @@ Copy following configuration from **default-micro-gw.conf.template** to **micro-
 
 ``` java
 [validationConfig]
-enableRequestValidation = true
+    enableRequestValidation = true
 ```
 
 -   **To enable the response validation:**
@@ -41,7 +41,7 @@ enableRequestValidation = true
 
 ``` java
 [validationConfig]
-enableResponseValidation = true
+    enableResponseValidation = true
 ```
 
    Both request and response validation can be enabled by adding the both of the configurations to **micro-gw.conf** file.
@@ -57,60 +57,60 @@ enableResponseValidation = true
 
 ``` yml tab="Example"
 paths:
-/pet:
-post:
-tags:
-    - pet
-summary: Add a new pet to the store
-description: Add a new pet to the store
-operationId: addPet
-requestBody:
-description: Create a new pet in the store
-content:
-application/json:
-schema:
-$ref: '#/components/schemas/Pet'
-required: true
-responses:
-'200':
-description: Successful operation
-content:
-application/json:
-schema:
-$ref: '#/components/schemas/Pet'
-'405':
-description: Invalid input
+  /pet:
+     post:
+       tags:
+          - pet
+       summary: Add a new pet to the store
+       description: Add a new pet to the store
+       operationId: addPet
+       requestBody:
+         description: Create a new pet in the store
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/Pet'
+       required: true
+     responses:
+       '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+       '405':
+          description: Invalid input
 
 components:
-schemas:
-Pet:
-required:
-    - name
-    - photoUrls
-type: object
-properties:
-id:
-type: integer
-format: int64
-example: 10
-name:
-type: string
-example: doggie
-photoUrls:
-type: array
-xml:
-wrapped: true
-items:
-type: string
-xml:
-name: photoUrl
-status:
-type: string
-description: pet status in the store
-enum:
-    - available
-    - pending
-    - sold
+  schemas:
+    Pet:
+      required:
+         - name
+         - photoUrls
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: doggie
+        photoUrls:
+          type: array
+          xml:
+            wrapped: true
+          items:
+            type: string
+            xml:
+              name: photoUrl
+      status:
+        type: string
+        description: pet status in the store
+        enum:
+          - available
+          - pending
+          - sold
 ```
 
 ``` java tab="Request Curl"

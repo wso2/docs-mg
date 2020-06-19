@@ -66,41 +66,41 @@ To generate the microgateway for gRPC services, there is a set of extensions int
 ```
 
 #### Service Extensions
-    <table>
-    <thead>
-    <tr class="header">
-    <th>Extension</th>
-    <th>Description</th>
-    <th>Sample</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td>wso2.production_endpoints</td>
-    <td>This field holds the backend grpc server endpoint for the production environment. <strong>Required</strong> if any sandbox_endpoints are not included.</td>
-    <td>option (wso2.production_endpoints) = {<br />
-    url : &quot;&lt;backend-server-url&gt;&quot;;<br />
-    };</td>
-    </tr>
-    <tr class="even">
-    <td>wso2.sandbox_endpoints</td>
-    <td>This field holds the backend grpc server endpoint for the sandbox environment. <strong>Required</strong> if any production_endpoints are not included.</td>
-    <td>option (wso2.sandbox_endpoints) = {<br />
-    url : &quot;&lt;backend-server-url&gt;&quot;;<br />
-    };</td>
-    </tr>
-    <tr class="odd">
-    <td>wso2.security</td>
-    <td>This field defines the security scheme used to authenticate the gRPC client. If this field is not declared inside the service .proto file, no authentication will happen from the microgateway as the default value is <strong>NONE</strong> . The user can pick one or many of the following values for this extension; “ <strong>NONE</strong> ”, “ <strong>BASIC</strong> ”, “ <strong>OAUTH2</strong> ”, “ <strong>JWT</strong> ” and “ <strong>APIKEY</strong> ”.</td>
-    <td>option (wso2.security) = BASIC;</td>
-    </tr>
-    <tr class="even">
-    <td>wso2.throttling_tier</td>
-    <td>This field defines the throttling tier for the entire service. If the throttling tier exceeds, gRPC client will receive a response with the grpc-status &quot;8&quot; which indicated that there has been &quot; <em>too many function calls</em> &quot;. It is required to make sure that the throttling policy value should be inside the <strong>policies.yaml</strong> under <em>resourcePolicies</em> .(&lt;microgateway-project&gt;/policies.yaml).</td>
-    <td>option (wso2.throttling_tier) = 20kPerMin;</td>
-    </tr>
-    </tbody>
-    </table>
+<table>
+<thead>
+<tr class="header">
+<th>Extension</th>
+<th>Description</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>wso2.production_endpoints</td>
+<td>This field holds the backend grpc server endpoint for the production environment. <strong>Required</strong> if any sandbox_endpoints are not included.</td>
+<td>option (wso2.production_endpoints) = {<br />
+url : &quot;&lt;backend-server-url&gt;&quot;;<br />
+};</td>
+</tr>
+<tr class="even">
+<td>wso2.sandbox_endpoints</td>
+<td>This field holds the backend grpc server endpoint for the sandbox environment. <strong>Required</strong> if any production_endpoints are not included.</td>
+<td>option (wso2.sandbox_endpoints) = {<br />
+url : &quot;&lt;backend-server-url&gt;&quot;;<br />
+};</td>
+</tr>
+<tr class="odd">
+<td>wso2.security</td>
+<td>This field defines the security scheme used to authenticate the gRPC client. If this field is not declared inside the service .proto file, no authentication will happen from the microgateway as the default value is <strong>NONE</strong> . The user can pick one or many of the following values for this extension; “ <strong>NONE</strong> ”, “ <strong>BASIC</strong> ”, “ <strong>OAUTH2</strong> ”, “ <strong>JWT</strong> ” and “ <strong>APIKEY</strong> ”.</td>
+<td>option (wso2.security) = BASIC;</td>
+</tr>
+<tr class="even">
+<td>wso2.throttling_tier</td>
+<td>This field defines the throttling tier for the entire service. If the throttling tier exceeds, gRPC client will receive a response with the grpc-status &quot;8&quot; which indicated that there has been &quot; <em>too many function calls</em> &quot;. It is required to make sure that the throttling policy value should be inside the <strong>policies.yaml</strong> under <em>resourcePolicies</em> .(&lt;microgateway-project&gt;/policies.yaml).</td>
+<td>option (wso2.throttling_tier) = 20kPerMin;</td>
+</tr>
+</tbody>
+</table>
 
 #### Method Extensions
 

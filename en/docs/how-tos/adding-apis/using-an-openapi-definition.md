@@ -22,7 +22,7 @@ Let's use a developer-first approach and host your API, which uses an OpenAPI de
 #### Step 1.2 - Build the project
 
 1.  Add the OpenAPI definition to the project.
-    Navigate to the `/petstore/api_definitions` directory. Add the API definition(s) to th `is` directory. Let's use the [Petstore sample open API definition](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml) .
+    Navigate to the `/petstore/api_definitions` directory. Add the API definition(s) to this directory. Let's use the [Petstore sample open API definition](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml) .
 
     !!! info
         If you open the Open API Specification (OAS) document of the Petstore API using a text editor, you will notice the resource (path) definitions of the API following the standard Open API Specification. You will also see the target server (back-end) URL of the API under the "x-wso2-production-endpoints" OAS vendor extension. WSO2 Microgateway uses this interface definition and the target server URL to generate a gateway proxy for the Petstore API.

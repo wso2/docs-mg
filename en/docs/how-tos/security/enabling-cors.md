@@ -29,9 +29,9 @@ You can enable CORs for /authorize, /revoke, /token, /apikey, /userinfo and /hea
 
 ``` yml
 [corsConfiguration]
-corsConfigurationEnabled = true
-accessControlAllowCredentials = false
-accessControlAllowOrigins = ["*"]
-accessControlAllowHeaders = ["authorization", "Access-Control-Allow-Origin", "Content-Type", "SOAPAction"]
-accessControlAllowMethods = ["GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS"]
+    corsConfigurationEnabled = true
+    accessControlAllowCredentials = false
+    accessControlAllowOrigins = ["*"]
+    accessControlAllowHeaders = ["authorization", "Access-Control-Allow-Origin", "Content-Type", "SOAPAction"]
+    accessControlAllowMethods = ["GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS"]
 ```
