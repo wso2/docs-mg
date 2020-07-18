@@ -108,6 +108,7 @@ nav:
         - Configure Caching: how-tos/configure-caching.md
         - Manage Microgateway APIs with WSO2 API Manager: how-tos/manage-microgateway-apis-with-wso2-api-manager.md
         - Adding Extension Points: how-tos/adding-extension-points.md
+        - support-custom-claims-mapping: how-tos/support-custom-claims-mapping.md
     - Install and Setup:
         - Install on VM: install-and-setup/install-on-vm.md
         - Install on Docker: install-and-setup/install-on-docker.md
