@@ -126,6 +126,8 @@ nav:
             - deployment.toml for Docker: reference/configurations/deployment.toml-for-docker.md
             - deployment.toml for Kubernetes: reference/configurations/deployment.toml-for-kubernetes.md
         - Default Ports: reference/default-ports.md
+        - Commandline options:
+              - Toolkit commands: reference/commandline-options/toolkit-commands.md
 # Extensions
 markdown_extensions:
     - markdown.extensions.admonition
