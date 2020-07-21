@@ -81,13 +81,13 @@ micro-gw import accounts-project -l accounts
 Name of the label which indicates a group of APIs.
 
 2. -u / --username
-The username of the user
+The username of the user.
 
 3. -p / --password
-The password of the user
+The password of the user.
 
 4. -s / --server-url
-API-M base URL assuming all the portals are running in the same node. By default, the base URL is https://localhost:9443/
+API-M base URL assuming all the portals are running in the same node. By default, the base URL is https://localhost:9443/.
 
 5. -t / --truststore
 Path to the trustStore file. By default the `<MGW-TK_HOME>`/lib/platform/bre/security/ballerinaTruststore.p12 will be used.
@@ -141,16 +141,16 @@ Target: /Users/mgw/wso2am-micro-gw-toolkit-macos-3.1.0/bin/petstore/target/petst
 #### Optional options
 
 1.  -d / --deployment-config
-To override the default deployment configuration file for docker/kubernetes environments. The default is `<project_home>`/conf/deployment-config.toml
+To override the default deployment configuration file for docker/kubernetes environments. The default is `<project_home>`/conf/deployment-config.toml.
 
 2. --docker
-Prompt for docker image and docker base image for docker configurations
+Prompt for docker image and docker base image for docker configurations.
 
 3. --docker-image
 Provide a docker image name and tag.
 
 4. --docker-base-image
-Provide the docker base image
+Provide the docker base image.
 
 ``` java tab="Example"
 micro-gw build petstore --docker-image petstore:v1 --docker-base-image wso2/micro-gw:latest
@@ -169,8 +169,15 @@ micro-gw reset
 #### optional options
 1. -c / --config
 
-To reset to an external config file
+To reset to an external config file.
 
 ``` java tab="Example"
 micro-gw reset -c /home/user/micro-gw/external-config.toml
+```
+
+## version
+It provides the micro-gw toolkit version.
+
+```
+micro-gw version
 ```
