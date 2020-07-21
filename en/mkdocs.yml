@@ -91,6 +91,7 @@ nav:
                 - Disabling Security: how-tos/security/api-authentication/disabling-security.md
             - Authorization:
                  - Scope Validation: how-tos/security/api-authorization/scope-validation.md
+                 - Subscription Validation: how-tos/security/api-authorization/subscription-validation.md
             - Transport Security: how-tos/security/transport-security.md
             - Enabling CORS: how-tos/security/enabling-cors.md
             - API Key Security Token Service: how-tos/security/api-key-security-token-service.md

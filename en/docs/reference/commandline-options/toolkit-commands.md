@@ -118,7 +118,7 @@ micro-gw build petstore
 
 You will see something similar to the following if it is successful.
 
-``` yaml
+``` yml
 Compiling source
 	wso2/petstore:3.1.0
 

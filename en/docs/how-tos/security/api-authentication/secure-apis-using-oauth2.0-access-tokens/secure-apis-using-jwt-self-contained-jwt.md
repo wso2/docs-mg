@@ -28,6 +28,9 @@ When a JWT is used as an access token, API Microgateway validates the following 
 
    If an external key manager is used which will not know about the subscription details then, subscription validation can be turned off for that particular JWT issuers.
 
+!!! note 
+    Refer to the document on Subscription Validation for more information.
+   
 ### Configure Multiple JWT issuers
 
  There can be use cases in certain organizations, where multiple JWT issuers or key managers are used. In that case, Microgateway can be configured to work with JWTs issued by all of them. Multiple JWT issuer feature allows to configure multiple JWT token configurations in the micro-gw.conf file. Configurations allows to specify array of **jwtTokenConfig** sections. In the case of multiple JWT issuers are provided Microgateway will sequentially check a JWT with all the available issuers. Valid JWT tokens will be cached and then expiry time only will be validated in the subsequent calls with the same token.
