@@ -1,5 +1,31 @@
 # FAQs
 
+-   [Using WSO2 Gateways](#FAQs-UsingWSO2Gateways)
+-   [When should I use WSO2 API Microgateway instead of WSO2 API Gateway?](#FAQs-WhenshouldIuseWSO2APIMicrogatewayinsteadofWSO2APIGateway?)
+-   [When should I use WSO2 API Gateway instead of WSO2 API Microgateway?](#FAQs-WhenshouldIuseWSO2APIGatewayinsteadofWSO2APIMicrogateway?)
+-   [Prerequisites](#FAQs-Prerequisites)
+-   [How can I run the toolkit command from any directory location?](#FAQs-HowcanIrunthetoolkitcommandfromanydirectorylocation?)
+-   [How can I run the Microgateway distribution command from any directory location?](#FAQs-HowcanIruntheMicrogatewaydistributioncommandfromanydirectorylocation?)
+-   [Compatibility](#FAQs-Compatibility)
+-   [What versions of WSO2 API-M are compatible with WSO2 API Microgateway?](#FAQs-WhatversionsofWSO2API-MarecompatiblewithWSO2APIMicrogateway?)
+-   [MGW commands](#FAQs-MGWcommands)
+-   [Can I run the Microgateway commands without appending the paths?](#FAQs-CanIruntheMicrogatewaycommandswithoutappendingthepaths?)
+-   [How can I reset the Microgateway CLI tool?](#FAQs-HowcanIresettheMicrogatewayCLItool?)
+-   [How can I run the Microgateway?](#FAQs-HowcanIruntheMicrogateway?)
+-   [Building a Microgateway project](#FAQs-BuildingaMicrogatewayproject)
+-   [What if I change the APIs or policies after I have built and deployed the project on WSO2 API Microgateway?](#FAQs-WhatifIchangetheAPIsorpoliciesafterIhavebuiltanddeployedtheprojectonWSO2APIMicrogateway?)
+-   [Deployment](#FAQs-Deployment)
+-   [How can I deploy a Docker image on a Kubernetes environment?](#FAQs-HowcanIdeployaDockerimageonaKubernetesenvironment?)
+-   [Testing the Microgateway](#FAQs-TestingtheMicrogateway)
+-   [How can I test the Microgateway?](#FAQs-HowcanItesttheMicrogateway?)
+-   [Working with Tokens](#FAQs-WorkingwithTokens)
+-   [What is a signed JWT token?](#FAQs-WhatisasignedJWTtoken?)
+-   [What are the ways in which I can obtain a JWT Token?](#FAQs-WhatarethewaysinwhichIcanobtainaJWTToken?)
+-   [Can I use a OAuth2 token instead of a JWT token?](#FAQs-CanIuseaOAuth2tokeninsteadofaJWTtoken?)
+-   [How should I configure the Key Manager when using an OAuth2 Token?](#FAQs-HowshouldIconfiguretheKeyManagerwhenusinganOAuth2Token?)
+-   [How can I use an OAuth2 token to invoke an API?](#FAQs-HowcanIuseanOAuth2tokentoinvokeanAPI?)
+
+
 ### Using WSO2 Gateways
 
 ##### When should I use WSO2 API Microgateway instead of WSO2 API Gateway?
@@ -151,29 +177,27 @@ You can invoke the API through the Microgateway using the following cURL command
     curl -v -k https://mg.knnect.com:9095/wolaa/1.1.1/getmeall -H "Authorization: Bearer 104cd62f-a8ab-3089-bc12-f7cc36e73e77"
 ```
 
-    ------------------------------------------------------------------------
+### Working with Tokens
 
-    ### Working with Tokens
+##### What is a signed JWT token?
 
-    ##### What is a signed JWT token?
+A signed JWT token is a self-contained access token that can be validated by the Microgateway itself without connecting to any external party Key Manager. In contrast, a typical OAuth2 token needs to be validated by connecting to the Key Manager. This is one of the key advantages of the Microgateway, if you need to run it in offline mode.
 
-    A signed JWT token is a self-contained access token that can be validated by the Microgateway itself without connecting to any external party Key Manager. In contrast, a typical OAuth2 token needs to be validated by connecting to the Key Manager. This is one of the key advantages of the Microgateway, if you need to run it in offline mode.
+##### What are the ways in which I can obtain a JWT Token?
 
-    ##### What are the ways in which I can obtain a JWT Token?
+A JWT token can be obtained via one of the following methods:
 
-    A JWT token can be obtained via one of the following methods:
+-   **From any third party secure token service** .
+The public certificate of the token service, which is used to sign the token, should be added to the trust store of WSO2 API Microgateway. The JWT should have the claims **sub, aud, exp** in order  for the API Microgateway to validate the JWT.
 
-    -   **From any third party secure token service** .
-    The public certificate of the token service, which is used to sign the token, should be added to the trust store of WSO2 API Microgateway. The JWT should have the claims **sub, aud, exp** in order  for the API Microgateway to validate the JWT.
+-   **From WSO2 API Manager** .
+For more information, see [Generating a JWT token from the API Store](https://docs.wso2.com/display/AM260/Generating+a+JWT+token+from+the+API+Store) .
 
-    -   **From WSO2 API Manager** .
-    For more information, see [Generating a JWT token from the API Store](https://docs.wso2.com/display/AM260/Generating+a+JWT+token+from+the+API+Store) .
+##### Can I use a **OAuth2 token i** nstead of a JWT token **?**
 
-    ##### Can I use a **OAuth2 token i** nstead of a JWT token **?**
+Yes, you can use an OAuth2 token instead of a JWT token. In the OAuth2 token flow you need a valid subscription for the API from WSO2 API Manager Store.
 
-    Yes, you can use an OAuth2 token instead of a JWT token. In the OAuth2 token flow you need a valid subscription for the API from WSO2 API Manager Store.
-
-    !!! note
+!!! note
     You can use a OAuth2 token instead of a JWT tokens only if the API that you are working with is also available in the WSO2 API Manager Publisher as well.
 
 ##### How should I configure the Key Manager when using an OAuth2 Token?
@@ -189,46 +213,17 @@ If you are using an OAuth2 access token, point the Microgateway to the Key Manag
     timestampSkew=5000
 ```
 
-    ##### 
-    How can I use an OAuth2 token to invoke an API?
+##### How can I use an OAuth2 token to invoke an API?
 
-    Invoking the API using an OAuth2 token is similar to a usual API invocation, which uses the standard WSO2 API Manager Gateway by generating an access token from the API Store.
+Invoking the API using an OAuth2 token is similar to a usual API invocation, which uses the standard WSO2 API Manager Gateway by generating an access token from the API Store.
 
-    **Format**
 
-``` java
+``` java tab="Format"
     curl -k -i -H "Authorization: Bearer <OAUTH_token>" <API_URL>
 ```
 
-    **Example**
-
-``` java
+``` java tab="Example"
     curl -k -i -H "Authorization: Bearer 20ac019e-16a7-3ba5-8940-7d42c7e56326" https://localhost:9095/petstore/v1/pet/1
 ```
-
-    -   [Using WSO2 Gateways](#FAQs-UsingWSO2Gateways)
-    -   [When should I use WSO2 API Microgateway instead of WSO2 API Gateway?](#FAQs-WhenshouldIuseWSO2APIMicrogatewayinsteadofWSO2APIGateway?)
-    -   [When should I use WSO2 API Gateway instead of WSO2 API Microgateway?](#FAQs-WhenshouldIuseWSO2APIGatewayinsteadofWSO2APIMicrogateway?)
-    -   [Prerequisites](#FAQs-Prerequisites)
-    -   [How can I run the toolkit command from any directory location?](#FAQs-HowcanIrunthetoolkitcommandfromanydirectorylocation?)
-    -   [How can I run the Microgateway distribution command from any directory location?](#FAQs-HowcanIruntheMicrogatewaydistributioncommandfromanydirectorylocation?)
-    -   [Compatibility](#FAQs-Compatibility)
-    -   [What versions of WSO2 API-M are compatible with WSO2 API Microgateway?](#FAQs-WhatversionsofWSO2API-MarecompatiblewithWSO2APIMicrogateway?)
-    -   [MGW commands](#FAQs-MGWcommands)
-    -   [Can I run the Microgateway commands without appending the paths?](#FAQs-CanIruntheMicrogatewaycommandswithoutappendingthepaths?)
-    -   [How can I reset the Microgateway CLI tool?](#FAQs-HowcanIresettheMicrogatewayCLItool?)
-    -   [How can I run the Microgateway?](#FAQs-HowcanIruntheMicrogateway?)
-    -   [Building a Microgateway project](#FAQs-BuildingaMicrogatewayproject)
-    -   [What if I change the APIs or policies after I have built and deployed the project on WSO2 API Microgateway?](#FAQs-WhatifIchangetheAPIsorpoliciesafterIhavebuiltanddeployedtheprojectonWSO2APIMicrogateway?)
-    -   [Deployment](#FAQs-Deployment)
-    -   [How can I deploy a Docker image on a Kubernetes environment?](#FAQs-HowcanIdeployaDockerimageonaKubernetesenvironment?)
-    -   [Testing the Microgateway](#FAQs-TestingtheMicrogateway)
-    -   [How can I test the Microgateway?](#FAQs-HowcanItesttheMicrogateway?)
-    -   [Working with Tokens](#FAQs-WorkingwithTokens)
-    -   [What is a signed JWT token?](#FAQs-WhatisasignedJWTtoken?)
-    -   [What are the ways in which I can obtain a JWT Token?](#FAQs-WhatarethewaysinwhichIcanobtainaJWTToken?)
-    -   [Can I use a OAuth2 token instead of a JWT token?](#FAQs-CanIuseaOAuth2tokeninsteadofaJWTtoken?)
-    -   [How should I configure the Key Manager when using an OAuth2 Token?](#FAQs-HowshouldIconfiguretheKeyManagerwhenusinganOAuth2Token?)
-    -   [How can I use an OAuth2 token to invoke an API?](#FAQs-HowcanIuseanOAuth2tokentoinvokeanAPI?)
 
 
