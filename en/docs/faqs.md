@@ -143,22 +143,22 @@ Instead of using the `                 micro-gw                ` command, naviga
 
     The gateway runtime is immutable. Therefore, if you change the APIs or policies after you have built and deployed the project on WSO2 API Microgateway, you need to rebuild the Microgateway project to capture the changes.
 
-    ------------------------------------------------------------------------
 
-    ### Deployment
 
-    ##### How can I deploy a Docker image on a Kubernetes environment?
+### Deployment
 
-    You can use one of the following options for this purpose.
+##### How can I deploy a Docker image on a Kubernetes environment?
 
-    -   Push the Docker image to the DockerHub or to a private Docker registry.
+You can use one of the following options for this purpose.
 
-    !!! note
+-   Push the Docker image to the DockerHub or to a private Docker registry.
+
+!!! note
     If you use this approach and if you decide to change your Docker image name, you need to change the image name in the `                <MGW-project>/conf/deployment-config.yaml               ` file as well.
 
 -   SCP the image to the Kubernetes nodes
 
-------------------------------------------------------------------------
+
 
 ### Testing the Microgateway
 
