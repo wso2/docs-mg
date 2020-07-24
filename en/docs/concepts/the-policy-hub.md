@@ -15,9 +15,9 @@ As per the below diagram, the developer will utilize the [Ballerina Central](htt
 As discussed earlier Microgateway is using [Ballerina Central](https://central.ballerina.io/) as the hub for sharing policies. Therefore to share a new policy, it has be ballerina module. Let's look at how to create a new ballerina module which is also a MGW policy.
 
 1.  Create ballerina interceptor
-    First of all you need to have functional and tested interceptor(s) created by following [Ballerina Message Transformation](https://docs.wso2.com/display/MG310/Message+Transformation#ballerina-interceptors) guide.
+    First of all you need to have functional and tested interceptor(s) created by following [Ballerina Message Transformation]({{base_path}}/how-tos/message-transformation/message-transformation-overview/#writing-an-interceptor_2) guide.
 2.  Setup the ballerina environment
-    This Microgateway version is released with the support for ballerina v1.1.4. Therefore first we need to download and configure that ballerina version first. Use [ballerina downloads](https://ballerina.io/downloads/archived/) to find respective ballerina 1.1.4 distribution for your operating system. Then follow [Getting Started guide](https://ballerina.io/v1-1/learn/) and install ballerina and preferred IDE extension.
+    This Microgateway version is released with the support for ballerina v1.2.6. Therefore first we need to download and configure that ballerina version first. Use [ballerina downloads](https://ballerina.io/downloads/archived/) to find respective ballerina 1.2.6 distribution for your operating system. Then follow [Getting Started guide](https://ballerina.io/learn/) and install ballerina and preferred IDE extension.
 3.  Initialize a new Ballerina Project and a Module
     To create a ballerina module, first we should have a ballerina project. Execute below commands to initialize a new balleina project and a module.
 
@@ -62,7 +62,7 @@ Follow below steps to share the created module with other Policy Hub users.
      ballerina push hello_policy
      ```
      
-3. Now you module will be published in [Ballerina Central](https://central.ballerina.io/) . For more information check, [Ballerina project structure](https://ballerina.io/v1-1/learn/how-to-structure-ballerina-code/) and [Publishing ballerina modules](https://ballerina.io/v1-1/learn/how-to-publish-modules/)
+3. Now you module will be published in [Ballerina Central](https://central.ballerina.io/) . For more information check, [Ballerina project structure](https://ballerina.io/learn/how-to-structure-ballerina-code/) and [Publishing ballerina modules](https://ballerina.io/learn/how-to-publish-modules/)
 
 ## Using Policy Hub
 
