@@ -1,13 +1,13 @@
 # Generating Backend JWT 
 
-You can use JWT Generation in API Microgateway to send a customized JWT to the backend with user preferred claims. You have three possible options when selecting a method to send a JWT to the backend.
+You can use JWT Generation in API Microgateway to send a customized JWT to the backend with user preferred claims. You have 2 possible options when selecting a method to send a JWT to the backend.
 
-- [Passing a token to the backend](#passing-a-token-to-the-backend)
-- [Generating a JWT inside Microgateway](#generating-a-jwt-inside-microgateway)
+- [Passing the Backed token in the JWT](#passing-the-backed-token-in-the-jwt)
+- [Generating a JWT in Microgateway](#generating-a-jwt-in-microgateway)
 
-### Passing a token to the backend
+### Passing the Backed token in the JWT
 
-When you are using JWT authentication, you can pass an already generated JWT token in the 'backendJwt' claim in the authentication JWT token. Therefore, if the authentication token consist the 'backendJwt' claim in the payload, the token will be set on to the desired header when sending to the backend without a generation process.
+When you are using JWT authentication, you can pass an already generated JWT token in the 'backendJwt' claim in the authentication JWT token. Therefore, if the authentication token consist the 'backendJwt' claim in the payload, the token will be set on to the [desired header](#setting-the-header-of-the-backend-request) when sending to the backend without a generation process.
 
 ####Sample payload
 
@@ -26,29 +26,30 @@ When you are using JWT authentication, you can pass an already generated JWT tok
 }
 ```
 
-After altering the configuration, you can run API Microgateway. When you are invoking a resource with a JWT token, you will be able to obtain the generated backend JWT.
+### Generating a JWT in Microgateway
 
-### Generating a JWT inside Microgateway
-
-Microgateway defines an [AbstractMGWJWTGenerator abstract class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/AbstractMGWJWTGenerator.java) to write a custom JWT generator class and developers can extend this abstract class to implement their logic to generate the JWT. There are two abstract methods named populateStandardClaims and populateCustomClaims where you can write your logic to populate claims in the JWT. Furthermore, you have the capability to write your own logic overriding any of the current methods in the abstract class. 
+Microgateway defines an [AbstractMGWJWTGenerator class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/AbstractMGWJWTGenerator.java) to support developers to write custom JWT generator classes whereas they can extend this abstract class to implement their logic to generate the JWT. There are two abstract methods named populateStandardClaims and populateCustomClaims where you can write your logic to populate claims in the JWT. Furthermore, you have the capability to write your own logic overriding any of the current methods in the abstract class. 
 
 #### Writing a JWT generator
 
-You can find a sample implementation of a JWT generator from [here](https://github.com/wso2/product-microgateway/tree/master/samples/sample-jwt-generator) where the populateCustomClaims method is used to add a new claim to the token. Developers can import the mgw-jwt-generator depenedency as a jar to their local maven repository (The jar for the corresponding dependency is at `<MGW-TOOLKIT_HOOME>/lib/dependencies` directory). 
+You can find a sample implementation of a JWT generator from [here](https://github.com/wso2/product-microgateway/tree/master/samples/sample-jwt-generator) where the populateCustomClaims method is used to add a new claim `"custom": "claim"` to the token apart from the claims which were already available in the authentication token. Developers can import the mgw-jwt-generator depenedency as a jar to their local maven repository (The jar for the corresponding dependency is at `<MGW-TOOLKIT_HOOME>/lib/dependencies` directory). 
 
-Apart from writing a JWT generator, developers have the capability use the default [MGWJWTGeneratorImpl class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/MGWJWTGeneratorImpl.java) without implementing a custom class for JWT generation and manipulate the token, tweaking the properties of the token using [JWT generator configurations](#jwt-generator-configurations).
+Apart from writing a JWT generator, developers have the capability use the default [MGWJWTGeneratorImpl class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/MGWJWTGeneratorImpl.java) without implementing a custom class for JWT generation and manipulate the token, only tweaking the properties of the token using [JWT generator configurations](#jwt-generator-configurations).
 
 #### Adding a custom JWT generator to the project
 
 Once the custom JWT generator is written, the project should be built and the output jar should be placed in the `<MGW-project>/lib` directory. If third-party libraries are used when writing the JWT generator, these custom jars should also be placed in the same directory.
 
-You can provide the classpath of the custom JWT generator in the **generatorImpl** configuration in the `<MICRO-GW-RUNTIME_HOME>/conf/micro-gw.conf` file. Rest of the configurations explained in the previous section are applied when writing a custom JWT generator as well. Since, there are getters and setters for all the configuration properties in the abstract class you can use any of the configurations to implement your logic in the custom JWT generator.
+You can provide the classpath of the custom JWT generator in the **generatorImpl** configuration in the `<MICRO-GW-RUNTIME_HOME>/conf/micro-gw.conf` file. 
     
 ```yml
 [jwtGeneratorConfig]
   jwtGeneratorEnabled=true
   generatorImpl="sample.jwt.generator.SampleJWTGenerator"
 ```
+Since, there are getters and setters for all the configuration properties in the abstract class you can use any of the configuration values to implement your logic in the custom JWT generator.
+
+After enabling JWT generation from the configuration setting `jwtGeneratorEnabled` to true, start the API Microgateway runtime. When invoking a resource with a JWT token, you will be able to obtain the generated backend JWT.
 
 ### JWT Generator Configurations
 
