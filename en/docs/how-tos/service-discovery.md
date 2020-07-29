@@ -43,190 +43,16 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
         ``` java
         2019-05-23 19:09:18.921356 I | embed: ready to serve client requests
         ```
-    3.  Setup the required authentication with the service as follows:
-
-        1.  Create a user.
-
-            ``` java tab="Format"
-            curl -L <etcd-client-URL>/<service>/user/add -X POST -d '{"name": "<username>", "password": "<password>"}'
-
-             - <etcd-client-URL> - You can find your client URL in the terminal that you used to start the etcd server.
-             - <service> - The service changes based on your etcd version. `/v3alpha/auth` is the service that corresponds to etcd v3.3.13.
-            ``` 
-
-            ``` java tab="Example"
-            curl -L http://localhost:2379/v3/auth/user/add -X POST -d '{"name": "root", "password": "pass"}'
-            ```
-
-            ``` java tab="Sample Response"
-            {"header":{"cluster_id":"14841639068965178418","member_id":"10276657743932975437","revision":"1","raft_term":"2"}}
-            ```
-
-        2.  Create a user role.
-
-            ``` java tab="Format"
-            curl -L <etcd-client-URL>/<service>/role/add -X POST -d '{"name": "<user-role>"}'
-
-            - <etcd-client-URL>  - You can find your client URL in the terminal that you used to start the etcd server.
-            - <service> - The service changes based on your etcd version. `/v3alpha/auth` is the service that corresponds to etcd v3.3.13.
-            ```    
-
-            ``` java tab="Example"
-            curl -L http://localhost:2379/v3/auth/role/add -X POST -d '{"name": "root"}'
-            ```
-
-            ``` java tab="Sample Response"
-            {"header":{"cluster_id":"14841639068965178418","member_id":"10276657743932975437","revision":"1","raft_term":"2"}}
-            ```
-
-        3.  Assign the user to the user role.
-
-            ``` java tab="Format"
-            curl -L <etcd-client-URL>/<service>/user/grant -X POST -d '{"user": "<username>", "role": "<user-role>"}'
-           
-            -  <etcd-client-URL> - You can find your client URL in the terminal that you used to start the etcd server.
-            -  <service>  - The service changes based on your etcd version. `/v3alpha/auth` is the service that corresponds to etcd v3.3.13.
-            ```
-
-            ``` java tab="Example"
-            curl -L http://localhost:2379/v3/auth/user/grant -X POST -d '{"user": "root", "role": "root"}'
-            ```
-
-            ``` java tab="Sample Response"
-            {"header":{"cluster_id":"14841639068965178418","member_id":"10276657743932975437","revision":"1","raft_term":"2"}}
-            ```
-
-        4.  Enable user authentication.
-
-            ``` java tab="Format"
-            curl -L <etcd-client-URL>/<service>/enable -X POST -d '{}'
-            - <etcd-client-URL> - You can find your client URL in the terminal that you used to start the etcd server.
-            - <service> - The service changes based on your etcd version. `/v3alpha/auth` is the service that corresponds to etcd v3.3.13.
-            ```
-
-            ``` java tab="Example"
-            curl -L http://localhost:2379/v3/auth/enable -X POST -d '{}'
-            ```
-
-            ``` java tab="Sample Response"
-            {"header":{"cluster_id":"14841639068965178418","member_id":"10276657743932975437","revision":"1","raft_term":"2"}}
-            ```
-
-        5.  Authenticate the user with etcd and obtain an authentication token.
-
-            ``` java tab="Format"
-            curl -L <etcd-client-URL>/<service>/authenticate -X POST -d '{"name": "<username>", "password": "<password>"}'
-             - <etcd-client-URL> - You can find your client URL in the terminal that you used to start the etcd server.
-             - <service> - The service changes based on your etcd version. `/v3alpha/auth` is the service that corresponds to etcd v3.3.13.
-            ```
-                      
-            ``` java tab="Example"
-            curl -L http://localhost:2379/v3/auth/authenticate -X POST -d '{"name": "root", "password": "pass"}'
-            ```
-
-            ``` java tab="Sample Response"
-             {"header":{"cluster_id":"14841639068965178418","member_id":"10276657743932975437","revision":"1","raft_term":"2"},"token":"hjdNkYCLWVBgNBbL.9"}
-            ```
-
-            !!! info
-                Troubleshooting
-                ``` java
-                {"error":"etcdserver: invalid auth token","code":16}
-                ```
-                If you get the above error, regenerate your Auth token by repeating this step.
-
-    4.  Store the key-value pair in the etcd server.
-
-        **Format**
         
-        ``` java 
-        curl -L <etcd-client-URL>/<etcd-cli-version>/kv/put -X POST -d '{"key": "<base64-encoded-key>", "value": "<base64-encoded-value>"}' -H 'Authorization : <auth-token>'
-
-        - <etcd-client-URL> - You can find your client URL in the terminal that you used to start the etcd server.
-        - <etcd-cli-version> - The CLI version that corresponds to your etcd version. For example, `/v3alpha` is the CLI version that corresponds to etcd v3.3.13.
-        - <base64-encoded-key> - Encode the key using a base64 encoder (e.g., <https://www.base64encode.org/> ) and enter the respective value.
-        - <base64-encoded-value> - Encode the endpoint URL using a base64 encoder and enter the respective value.
-        - <auth-token> - Enter the Auth token that you obtained in [step c](#auth-token) .
-        ```
+    4.  Again navigate to the ```<etcd_HOME>``` and put the enpoint URL to the etcd server using etcdctl tool, by executing the following command.
         
-        **Sample**    
-        Let's use the following values for this example.
-
-        <table>
-        <thead>
-        <tr class="header">
-        <th><br />
-        </th>
-        <th>Base64 Decoded Value</th>
-        <th>Base64 Encoded Value</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td>Key</td>
-        <td>petstore</td>
-        <td><code>                      cGV0c3RvcmU=                     </code></td>
-        </tr>
-        <tr class="even">
-        <td>Value</td>
-        <td><a href="http://petstore.swagger.io/v2/" class="uri">http://petstore.swagger.io/v2/</a></td>
-        <td><code>                      aHR0cDovL3BldHN0b3JlLnN3YWdnZXIuaW8vdjIv                     </code></td>
-        </tr>
-        </tbody>
-        </table>
-
-
+        ``` java tab="Format"
+        ./etcdctl put <Key> <Value>        
+        ``` 
+          
         ``` java tab="Example"
-        curl -L http://localhost:2379/v3/kv/put -X POST -d '{"key": "cGV0c3RvcmU=", "value": "aHR0cDovL3BldHN0b3JlLnN3YWdnZXIuaW8vdjIv"}' -H 'Authorization : UOkLazCNAoHnxiDz.11'
-        ```
-        
-        ``` java tab="Sample Response"
-        {"header":{"cluster_id":"14841639068965178418","member_id":"10276657743932975437","revision":"2","raft_term":"2"}}
-        ```
-        
-        !!! info
-            If you want to check whether you have stored your key-value pair correctly, run the following command.
-
-        **Format**
-        
-        ``` java 
-            curl -L <etcd-client-URL>/<etcd-cli-version>/kv/range -X POST -d '{"key": "<base64-encoded-key>"}' -H 'Authorization : <auth-token>'
-        
-            - <etcd-client-URL> - You can find your client URL in the terminal that you used to start the etcd server.
-            - <etcd-cli-version> - The CLI version that corresponds to your etcd version. For example, `/v3alpha` is the CLI version that corresponds to etcd v3.3.13.
-            - <base64-encoded-key> - Encode the key using a base64 encoder (e.g., <https://www.base64encode.org/> ) and enter the respective value.
-            - <base64-encoded-value> - Encode the endpoint URL using a base64 encoder and enter the respective value. 
-            - <auth-token> - Enter the Auth token that you obtained in [step c](#ServiceDiscovery-AuthToken) .
-        ```
-        **Sample**
-        
-        Let's use the following value for this example.
-        <table>
-        <thead>
-        <tr class="header">
-        <th><br />
-        </th>
-        <th>Base64 Decoded Value</th>
-        <th>Base64 Encoded Value</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td>Key</td>
-        <td>petstore</td>
-        <td><code>                      cGV0c3RvcmU=                     </code></td>
-        </tr>
-        </tbody>
-        </table>
-            
-            
-        ``` java tab="Example"
-        curl -L http://localhost:2379/v3/kv/range -X POST -d '{"key": "cGV0c3RvcmU="}' -H 'Authorization : UOkLazCNAoHnxiDz.11'
-        ```
-        
-        ``` java tab="Sample Response"
-        {"header":{"cluster_id":"14841639068965178418","member_id":"10276657743932975437","revision":"4","raft_term":"2"},"kvs":[{"key":"cGV0c3RvcmU=","create_revision":"4","mod_revision":"4","version":"1","value":"aHR0cDovL3BldHN0b3JlLnN3YWdnZXIuaW8vdjIv"}],"count":"1"}
-        ```
+        ./etcdctl put petstore http://petstore.swagger.io/v2/
+        ```             
 
 3.  Create an API Microgateway project (e.g., petstore-project).
     Navigate to a preferred folder where you want to create the Microgateway project, and then run the following command.
@@ -272,12 +98,16 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
     This creates an executable file ( `/petstore-project/target/petstore-project.balx` ) that you can use to expose the API via WSO2 API Microgateway.
 
 6.  Start WSO2 API Microgateway.
+    
 
-    **Format**
-
-    ``` java 
-    bash gateway <path-to-MGW-executable-jar-file> --etcdurl=<http-or-https-etcdurl> --etcdusername=<etcd-username> --etcdpassword=<etcd-password> --etcdtimer=<etcd-timer> 
+    ``` java tab="Format"
+    bash gateway <path-to-MGW-executable-jar-file> --etcdurl=<http-or-https-etcdurl> --etcdtimer=<etcd-timer> 
     ```
+    
+    ``` java tab="Example"
+    bash gateway /Users/kim/Downloads/TestProj/petstore-project/target/petstore-project.jar --etcdurl=http://127.0.0.1:2379 --etcdtimer=10000
+    ```
+    
     - <etcd-url> - Provide the etcd URL. If the etcd URL is secured (https), you need to add the etcd server certificate to the [Ballerina](https://ballerina.io/) truststore.
 
     - <etcd-timer> - This is the time period for the periodic timer task (in milliseconds). The default time period is 10 seconds. The `<etcd-timer>` parameter specifies the time interval for each periodic query to etcd; therefore, this value should be lower than the TTL of the token. etcd supports the following types of tokens.
@@ -290,12 +120,6 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
 
     -   **JWT tokens**
         This token does not have a TTL.
-
-    **Example**
-
-    ``` java
-    bash gateway /Users/kim/Downloads/TestProj/petstore-project/target/petstore-project.jar --etcdurl=http://127.0.0.1:2379 --etcdusername=root --etcdpassword=pass --etcdtimer=10000 
-    ```
 
     ``` java
     ballerina: HTTP access log enabled
@@ -315,67 +139,15 @@ If the periodic timer task value is 10 seconds, within 10 seconds the periodic t
 
 Follow the instructions below to update the etcd with your new API endpoint URL:
 
-   1.  If your Auth token has expired, obtain a new Auth token.
-
-       ``` java
-       curl -L <etcd-client-URL>/<service>/authenticate -X POST -d '{"name": "<username>", "password": "<password>"}'
-
-       - <etcd-client-URL> - You can find your client URL in the terminal that you used to start the etcd server.
-       - <service> - The service changes based on your etcd version. `/v3alpha/auth` is the service that corresponds to etcd v3.3.13.
-       ```    
-
-       ``` java
-       curl -L http://localhost:2379/v3alpha/auth/authenticate -X POST -d '{"name": "root", "password": "pass"}'
-       ```
-
-       ``` java
-       {"header":{"cluster_id":"14841639068965178418","member_id":"10276657743932975437","revision":"1","raft_term":"2"},"token":"EYLniBWxqJANrUEQ.17"}
-       ```
-
-   2.  Add the etcd value, which corresponds to the new endpoint URL, in the etcd server.
-
+   1.  Put the new endpoint URL for the corresponding key in the etcd server using the following command.
+   
        ``` java tab="Format"
-        curl -L <etcd-client-URL>/<etcd-cli-version>/kv/put -X POST -d '{"key": "<base64-encoded-key>", "value": "<base64-encoded-value>"}' -H 'Authorization : <auth-token>'
-
-       - <etcd-client-URL> - You can find your client URL in the terminal that you used to start the etcd server.
-       - <etcd-cli-version> - The CLI version that corresponds to your etcd version. For example, `/v3alpha` is the CLI version that corresponds to etcd v3.3.13.
-       - <base64-encoded-key> - Encode the key using a base64 encoder (e.g., <https://www.base64encode.org/> ) and enter the respective value.
-       - <base64-encoded-value> - Encode the value, which corresponds to the new endpoint URL, using a base64 encoder and enter the respective value. `               `
-       - <auth-token> - Enter the Auth token that you obtained in the previous step.
+       ./etcdctl put <Key> <Value>
        ```
-
-    Let's use the following values for this example.
-
-    <table>
-    <thead>
-    <tr class="header">
-    <th><br />
-    </th>
-    <th>Base64 Decoded Value</th>
-    <th>Base64 Encoded Value</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td>Key</td>
-    <td>petstore</td>
-    <td><code>                  cGV0c3RvcmU=                 </code></td>
-    </tr>
-    <tr class="even">
-    <td>Value</td>
-    <td><a href="http://petstore.swagger.io/v2/" class="uri">http://petstore.swagger.io/v2/</a></td>
-    <td><code>                  aHR0cDovL3BldHN0b3JlLnN3YWdnZXIuaW8vdjIv                 </code></td>
-    </tr>
-    </tbody>
-    </table>
-        
-
+       
        ``` java tab="Example"
-       curl -L http://localhost:2379/v3alpha/kv/put -X POST -d '{"key": "cGV0c3RvcmU=", "value": "aHR0cDovL3BldHN0b3JlLnN3YWdnZXIuaW8vdjIv"}' -H 'Authorization : UOkLazCNAoHnxiDz.11'
+       ./etcdctl put petstore http://petstore.swagger.io/v2/
        ```
 
-       ``` java tab="Sample Response"
-       {"header":{"cluster_id":"14841639068965178418","member_id":"10276657743932975437","revision":"2","raft_term":"2"}}
-       ```
-
-
+   2.  Invoke the API and requests will be directed to the new endpoint URL.
+       
