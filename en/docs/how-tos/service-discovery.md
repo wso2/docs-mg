@@ -22,9 +22,7 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
 
 1.  Make sure to install and set up all the [installation prerequisites]({{base_path}}/install-and-setup/install-on-vm/) .
 2.  Configure and start the etcd server.
-
-    Click here for instructions.
-
+    
     1.  Download the [etcd distribution](https://github.com/etcd-io/etcd/releases) based on your OS and unzip it.
         In this example, let's work with [etcd v3.4.5](https://github.com/etcd-io/etcd/releases/tag/v3.4.5) .
 
@@ -44,7 +42,7 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
         2019-05-23 19:09:18.921356 I | embed: ready to serve client requests
         ```
         
-    4.  Again navigate to the ```<etcd_HOME>``` and put the enpoint URL to the etcd server using etcdctl tool, by executing the following command.
+    3.  Again navigate to the ```<etcd_HOME>``` and put the enpoint URL to the etcd server using etcdctl tool, by executing the following command.
         
         ``` java tab="Format"
         ./etcdctl put <Key> <Value>        
@@ -120,6 +118,11 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
 
     -   **JWT tokens**
         This token does not have a TTL.
+    - **Example**    
+        
+    ``` java
+    bash gateway /Users/kim/Downloads/TestProj/petstore-project/target/petstore-project.jar --etcdurl=http://127.0.0.1:2379 --etcdtimer=10000 
+    ```
 
     ``` java
     ballerina: HTTP access log enabled
