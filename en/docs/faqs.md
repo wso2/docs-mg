@@ -191,7 +191,7 @@ A JWT token can be obtained via one of the following methods:
 The public certificate of the token service, which is used to sign the token, should be added to the trust store of WSO2 API Microgateway. The JWT should have the claims **sub, aud, exp** in order  for the API Microgateway to validate the JWT.
 
 -   **From WSO2 API Manager** .
-For more information, see [Generating a JWT token from the API Store](https://docs.wso2.com/display/AM260/Generating+a+JWT+token+from+the+API+Store) .
+For more information, see [Generating a JWT token from the API Store](https://apim.docs.wso2.com/en/latest/learn/api-security/oauth2/access-token-types/jwt-tokens/#using-jwt-access-tokens) .
 
 ##### Can I use a **OAuth2 token i** nstead of a JWT token **?**
 
