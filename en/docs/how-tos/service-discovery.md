@@ -23,17 +23,13 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
 1.  Make sure to install and set up all the [installation prerequisites]({{base_path}}/install-and-setup/install-on-vm/) .
 2.  Configure and start the etcd server.
     
-    1.  Download the [etcd distribution](https://github.com/etcd-io/etcd/releases) based on your OS and unzip it.
-        In this example, let's work with [etcd v3.4.5](https://github.com/etcd-io/etcd/releases/tag/v3.4.5) .
-
-        !!! tip
-            If you are using a Mac OS, download the Darwin files.
-
-    2.  Navigate to the unzipped etcd distribution and start the etcd server.
+    1.  Download the [etcd distribution](https://github.com/etcd-io/etcd/releases) based on your OS and install it.
+        
+    2.  Start the etcd server.
 
         ``` java
         cd <etcd_HOME>
-        ./etcd
+        etcd
         ```
 
         The following is a sample message that appears.
@@ -42,14 +38,14 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
         2019-05-23 19:09:18.921356 I | embed: ready to serve client requests
         ```
         
-    3.  Again navigate to the ```<etcd_HOME>``` and put the enpoint URL to the etcd server using etcdctl tool, by executing the following command.
+    3.  Navigate to the ```<etcd_HOME>``` and put the enpoint URL to the etcd server using etcdctl tool, by executing the following command.
         
         ``` java tab="Format"
-        ./etcdctl put <Key> <Value>        
+        etcdctl put <Key> <Value>        
         ``` 
           
         ``` java tab="Example"
-        ./etcdctl put petstore http://petstore.swagger.io/v2/
+        etcdctl put petstore http://petstore.swagger.io/v2/
         ```             
 
 3.  Create an API Microgateway project (e.g., petstore-project).
@@ -93,47 +89,32 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
     micro-gw build petstore-project
     ```
 
-    This creates an executable file ( `/petstore-project/target/petstore-project.balx` ) that you can use to expose the API via WSO2 API Microgateway.
+    This creates an executable file ( `/petstore-project/target/petstore-project.jar` ) that you can use to expose the API via WSO2 API Microgateway.
 
 6.  Start WSO2 API Microgateway.
     
 
     ``` java tab="Format"
-    bash gateway <path-to-MGW-executable-jar-file> --etcdurl=<http-or-https-etcdurl> --etcdtimer=<etcd-timer> 
+    gateway <path-to-MGW-executable-jar-file> --etcdurl=<http-or-https-etcdurl> --etcdtimer=<etcd-timer> 
     ```
     
     ``` java tab="Example"
-    bash gateway /Users/kim/Downloads/TestProj/petstore-project/target/petstore-project.jar --etcdurl=http://127.0.0.1:2379 --etcdtimer=10000
+    gateway /Users/kim/Downloads/TestProj/petstore-project/target/petstore-project.jar --etcdurl=http://127.0.0.1:2379 --etcdtimer=10000
     ```
     
-    - <etcd-url> - Provide the etcd URL. If the etcd URL is secured (https), you need to add the etcd server certificate to the [Ballerina](https://ballerina.io/) truststore.
+    - `<etcd-url>` - Provide the etcd URL. If the etcd URL is secured (https), you need to add the etcd server certificate to the [Ballerina](https://ballerina.io/) truststore.
 
-    - <etcd-timer> - This is the time period for the periodic timer task (in milliseconds). The default time period is 10 seconds. The `<etcd-timer>` parameter specifies the time interval for each periodic query to etcd; therefore, this value should be lower than the TTL of the token. etcd supports the following types of tokens.
+    - `<etcd-timer>` - This is the time period for the periodic timer task (in milliseconds). The default time period is 10 seconds. The `<etcd-timer>` parameter specifies the time interval for each periodic query to etcd; therefore, this value should be lower than the TTL of the token. etcd supports the following types of tokens.
 
-    -   **Simple tokens**
-        These tokens have a default time-to-live (TTL) of 5 minutes, but the TTL is configurable. In addition, the TTL refreshes each time a request goes to etcd.
+        - **Simple tokens**  
+            These tokens have a default time-to-live (TTL) of 5 minutes, but the TTL is configurable. In addition, the TTL refreshes each time a request goes to etcd.
 
-    Example:
+            Example:
         If etcd is configured to use simple tokens with a TTL of 5 minutes, the `etcdTimer` parameter value should contain a value less than 5 minutes. If the etcdTimer value is 24000 (24000 ms = 4 minutes). Every 4 minutes the timer task is triggered, the etcd is queried, and it refreshes the TTL of the token.
 
-    -   **JWT tokens**
+        -   **JWT tokens**  
         This token does not have a TTL.
-    - **Example**    
-        
-    ``` java
-    bash gateway /Users/kim/Downloads/TestProj/petstore-project/target/petstore-project.jar --etcdurl=http://127.0.0.1:2379 --etcdtimer=10000 
-    ```
-
-    ``` java
-    ballerina: HTTP access log enabled
-    [ballerina/http] started HTTPS/WSS endpoint 0.0.0.0:9096
-    2019-05-24 01:52:51,352 INFO  [wso2/gateway] - [EtcdUtil] [-] Etcd Authentication Successful 
-    2019-05-24 01:52:51,357 INFO  [wso2/gateway] - [EtcdUtil] [-] Etcd periodic timer task started with a periodic time of 10000ms 
-    [ballerina/http] started HTTPS/WSS endpoint 0.0.0.0:9095
-    [ballerina/http] started HTTP/WS endpoint 0.0.0.0:9090
-    2019-05-24 01:52:51,418 INFO  [wso2/gateway] - HTTPS listener is active on port 9095 
-    2019-05-24 01:52:51,418 INFO  [wso2/gateway] - HTTP listener is active on port 9090
-    ```
+    
 
 ### Changing the API endpoint URL via etcd
 
@@ -145,11 +126,11 @@ Follow the instructions below to update the etcd with your new API endpoint URL:
    1.  Put the new endpoint URL for the corresponding key in the etcd server using the following command.
    
        ``` java tab="Format"
-       ./etcdctl put <Key> <Value>
+       etcdctl put <Key> <Value>
        ```
        
        ``` java tab="Example"
-       ./etcdctl put petstore http://petstore.swagger.io/v2/
+       etcdctl put petstore http://petstore.swagger.io/v2/
        ```
 
    2.  Invoke the API and requests will be directed to the new endpoint URL.
