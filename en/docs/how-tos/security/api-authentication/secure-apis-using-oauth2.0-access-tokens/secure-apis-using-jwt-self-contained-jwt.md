@@ -29,7 +29,7 @@ When a JWT is used as an access token, API Microgateway validates the following 
    If an external key manager is used which will not know about the subscription details then, subscription validation can be turned off for that particular JWT issuers.
 
 !!! note 
-    Refer to the document on Subscription Validation for more information.
+    Refer to [the document on Subscription Validation]({{base_url}}/how-tos/security/api-authorization/subscription-validation/) for more information.
    
 ### Configure Multiple JWT issuers
 
