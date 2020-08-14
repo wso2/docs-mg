@@ -138,6 +138,11 @@ Microgateway can be configured with external key manager that does supports stan
 
  For subscription validation, WSO2 API Manager should be used as the key manager in **internal** mode. In this mode, the token is validated by calling the KeyValidation admin service in the kay manager in contrast to using the introspection API in external mode.
 
+!!! note
+    When the API is created using the dev-first approach, the API Name may contain spaces. But, in order to validate the subscriptions, the same API should be published in API Manager and it does not allow to create APIs with spaces in API Name. Therefore, when using subscription validation in Microgateway, use the API Name without spaces.
+
+    Ex: My API → My_API or MyAPI.
+
 **Enable external key manager**
 
 ``` yml
