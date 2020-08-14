@@ -94,7 +94,7 @@
       {% endif %}
     {% endblock %}
     {% block extrahead %}{% endblock %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
   </head>
   {% if palette.primary or palette.accent %}
     {% set primary = palette.primary | replace(" ", "-") | lower %}
@@ -221,13 +221,12 @@
       {% endfor %}
     {% endblock %}
   </body>
-  <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-  <script>docsearch(
-    {
-      apiKey:"31b0f8eb79778a2d238bc9600dc812af",
-      indexName:"wso2",
-      inputSelector:".md-search__input",
-      algoliaOptions: {"facetFilters":["language:en","version:3.2.0"]}
-      }
-  )</script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script type="text/javascript"> docsearch({
+         apiKey: '1c63886380ded014e77714ad5fbc27d2',
+         indexName: 'wso2_mg',
+         inputSelector:".md-search__input"
+         algoliaOptions: {"facetFilters":["language:en","version:3.2.0"]}
+         });
+</script>
 </html>
