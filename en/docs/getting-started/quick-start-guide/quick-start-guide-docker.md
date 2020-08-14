@@ -52,33 +52,33 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [instal
 !!! info
     More Information
     -   For more information on the MGW project directory that gets created, see [Project Directory]({{base_path}}/reference/project-directory/) .
-    -   Check out the troubleshooting guide if you run into an issue on [Microgateway project duplication]({{base_path}}/troubleshooting/troubleshooting/) .
+    -   Check out the [troubleshooting]({{base_path}}/troubleshooting/troubleshooting/) guide if you run into an issue..
 
 ##### Step 1.2 - Build the project and the docker image
 
 1.  Use the command-line tool to navigate to where the project directory ("petstore") was created. Execute    the following command to build the project and to create the docker image.
-    An executable file ( `/petstore/target/petstore.jar` ) is created to expose the API via WSO2 API Microgateway.
+    An executable file ( `petstore/target/petstore.jar` ) is created to expose the API via WSO2 API Microgateway.
 
     ``` java
-    micro-gw build petstore --docker --docker-image petstore:v1 --docker-base-image wso2/wso2micro-gw:3       .1.0
+    micro-gw build petstore --docker --docker-image petstore:v1 --docker-base-image wso2/wso2micro-gw:3.2.0
     ```
 
     !!! info
         More information
-        Here are FAQs on [Building a Microgateway project]({{base_path}}/references/faqs/#BuildingaMicrogatewayproject) .
+        Here are [FAQs]({{base_path}}/faqs/).
 
 ### Step 2 - Expose the sample API via WSO2 API Microgateway Docker image
 
 Run the docker image in order to expose the API via WSO2 API Microgateway. The following command exposes the API https endpoint on port 9095. The context of the API is "/petstore/v1".
 
-  `<project_target_path> -  The path of the target directory created inside the project directory.`
+  `<project_target_path>` -  The path of the target directory created inside the project directory.
 
 ``` java tab="Format"
-docker run -d -p <host-HTTPS-port>:<container-HTTPS-port> -p <host-HTTP-port>:<container-HTTP-port>      <MGW-Docker-image-name>
+docker run -d -p <host-HTTPS-port>:<container-HTTPS-port> -p <host-HTTP-port>:<container-HTTP-port> <MGW-Docker-image-name>
 ```
 
 ``` java tab="Example"
-docker run -d -p 9090:9090 -p 9095:9095 petstore:v1
+docker run -d -p 9095:9095 -p 9090:9090 petstore:v1
 ```
 
 ### Step 3 - Invoke the sample API
@@ -102,26 +102,34 @@ TOKEN=$(curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRt
 Execute the following command to Invoke the API using the API key: You can now invoke the API running on the WSO2 API Microgateway using the following cURL command.
 
 ``` java tab="Format"
-    curl -X GET "<Docker-hostname>:<Docker-port>/<API-context>/<API-resource>" -H "accept: application/xml" -H "api_key:$TOKEN" -k
+curl -X GET "<Docker-hostname>:<Docker-port>/<API-context>/<API-resource>" -H "accept: application/xml" -H "api_key:$TOKEN" -k
 ```
 
 ``` java tab="Example"
-    curl -X GET "https://localhost:9095/v2/pet/1" -H "accept: application/xml" -H "api_key:$TOKEN" -k
+curl -X GET "https://localhost:9095/v2/pet/1" -H "accept: application/xml" -H "api_key:$TOKEN" -k
 ```
 
 !!! note
-    You were able to invoke the API resource pet/{petId} using an API Key in api\_key header because the resource is secured with API Key in [h](https://petstore.swagger.io/v2/swagger.json) <ttps://petstore.swagger.io/v2/swagger.json> API definition as follows. For more information, please refer to the documentation on [API Key Authentication](https://docs.wso2.com/display/MG310/API+Key+Authentication) .
-``` java
-    paths:
-    '/pet/{petId}':
-    get:
-    security:
-    - api_key: []
-    securityDefinitions:
-    api_key:
-    type: apiKey
-    name: api_key
-    in: header
+    You were able to invoke the API resource `pet/{petId}` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication](https://docs.wso2.com/display/MG310/API+Key+Authentication) .
+```yml
+"paths": {
+  "/pet/{petId}": {
+    "get": {
+      "security": [
+        {
+          "api_key": []
+        }
+      ]
+    }
+  }
+},
+"securityDefinitions": {
+  "api_key": {
+    "type": "apiKey",
+    "name": "api_key",
+    "in": "header"
+  }
+}
 ```
 
 
