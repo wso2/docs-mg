@@ -1,11 +1,36 @@
-# Generating Backend JWT 
+# Passing Enduser Attributes to the Backend Using JWT 
 
 You can use JWT Generation in API Microgateway to send a customized JWT to the backend with user preferred claims. You have 2 possible options when selecting a method to send a JWT to the backend.
 
-- [Passing the Backed token in the JWT](#passing-the-backed-token-in-the-jwt)
 - [Generating a JWT in Microgateway](#generating-a-jwt-in-microgateway)
+- [Extract backed token from the jwt access token](#extract-backed-token-from-the-jwt-access-token)
 
-### Passing the Backed token in the JWT
+### Generating a JWT in Microgateway
+
+Microgateway defines an [AbstractMGWJWTGenerator class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/AbstractMGWJWTGenerator.java) to support developers to write custom JWT generator classes whereas they can extend this abstract class to implement their logic to generate the JWT. There are two abstract methods named populateStandardClaims and populateCustomClaims where you can write your logic to populate claims in the JWT. Furthermore, you have the capability to write your own logic overriding any of the current methods in the abstract class. 
+
+#### Writing a JWT generator
+
+You can find a sample implementation of a JWT generator from [here](https://github.com/wso2/product-microgateway/tree/master/samples/sample-jwt-generator) where the populateCustomClaims method is used to add a new claim `"custom": "claim"` to the token apart from the claims which were already available in the authentication token. Developers can import the mgw-jwt-generator depenedency as a jar to their local maven repository (The jar for the corresponding dependency is at `<MGW-TOOLKIT_HOOME>/lib/dependencies` directory). 
+
+Apart from writing a JWT generator, developers have the capability use the default [MGWJWTGeneratorImpl class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/MGWJWTGeneratorImpl.java) without implementing a custom class for JWT generation and manipulate the token, only tweaking the properties of the token using [JWT generator configurations](#jwt-generator-configurations).
+
+#### Adding a custom JWT generator to the project
+
+Once the custom JWT generator is written, the project should be built and the output jar should be placed in the `<MGW-project>/lib` directory. If third-party libraries are used when writing the JWT generator, these custom jars should also be placed in the same directory.
+
+You can provide the classpath of the custom JWT generator in the **generatorImpl** configuration in the `<MICRO-GW-RUNTIME_HOME>/conf/micro-gw.conf` file. 
+    
+```toml
+[jwtGeneratorConfig]
+  jwtGeneratorEnabled=true
+  generatorImpl="sample.jwt.generator.SampleJWTGenerator"
+```
+Since, there are getters and setters for all the configuration properties in the abstract class you can use any of the configuration values to implement your logic in the custom JWT generator.
+
+After enabling JWT generation from the configuration setting `jwtGeneratorEnabled` to true, start the API Microgateway runtime. When invoking a resource with a JWT token, you will be able to obtain the generated backend JWT.
+
+### Extract backed token from the jwt access token
 
 When you are using JWT authentication, you can pass an already generated JWT token in the 'backendJwt' claim in the authentication JWT token. Therefore, if the authentication token consist the 'backendJwt' claim in the payload, the token will be set on to the [desired header](#setting-the-header-of-the-backend-request) when sending to the backend without a generation process.
 
@@ -26,36 +51,11 @@ When you are using JWT authentication, you can pass an already generated JWT tok
 }
 ```
 
-### Generating a JWT in Microgateway
-
-Microgateway defines an [AbstractMGWJWTGenerator class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/AbstractMGWJWTGenerator.java) to support developers to write custom JWT generator classes whereas they can extend this abstract class to implement their logic to generate the JWT. There are two abstract methods named populateStandardClaims and populateCustomClaims where you can write your logic to populate claims in the JWT. Furthermore, you have the capability to write your own logic overriding any of the current methods in the abstract class. 
-
-#### Writing a JWT generator
-
-You can find a sample implementation of a JWT generator from [here](https://github.com/wso2/product-microgateway/tree/master/samples/sample-jwt-generator) where the populateCustomClaims method is used to add a new claim `"custom": "claim"` to the token apart from the claims which were already available in the authentication token. Developers can import the mgw-jwt-generator depenedency as a jar to their local maven repository (The jar for the corresponding dependency is at `<MGW-TOOLKIT_HOOME>/lib/dependencies` directory). 
-
-Apart from writing a JWT generator, developers have the capability use the default [MGWJWTGeneratorImpl class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/MGWJWTGeneratorImpl.java) without implementing a custom class for JWT generation and manipulate the token, only tweaking the properties of the token using [JWT generator configurations](#jwt-generator-configurations).
-
-#### Adding a custom JWT generator to the project
-
-Once the custom JWT generator is written, the project should be built and the output jar should be placed in the `<MGW-project>/lib` directory. If third-party libraries are used when writing the JWT generator, these custom jars should also be placed in the same directory.
-
-You can provide the classpath of the custom JWT generator in the **generatorImpl** configuration in the `<MICRO-GW-RUNTIME_HOME>/conf/micro-gw.conf` file. 
-    
-```yml
-[jwtGeneratorConfig]
-  jwtGeneratorEnabled=true
-  generatorImpl="sample.jwt.generator.SampleJWTGenerator"
-```
-Since, there are getters and setters for all the configuration properties in the abstract class you can use any of the configuration values to implement your logic in the custom JWT generator.
-
-After enabling JWT generation from the configuration setting `jwtGeneratorEnabled` to true, start the API Microgateway runtime. When invoking a resource with a JWT token, you will be able to obtain the generated backend JWT.
-
 ### JWT Generator Configurations
 
 You have the ability customize the token generation from the Microgateway runtime configuration in `<MICRO-GW-RUNTIME_HOME>/conf/micro-gw.conf`.
 
-```yml
+```toml
 # JWT Generator configurations
 [jwtGeneratorConfig]
   # Enable jwt generator
@@ -93,28 +93,93 @@ You have the ability customize the token generation from the Microgateway runtim
 
 Basically, outer `[jwtGeneratorConfig]` configuration contains the properties and the customizations of the generated JWT token whereas the inner `[jwtGeneratorConfig.jwtGeneratorCaching]` configuration handles the caching aspects of the generated JWT tokens.
 
-| Configuration | Description                         | Default |
-|---------------|-------------------------------------|---------|
-| jwtGeneratorEnabled  | Enable JWT Generation process. (Generation will be skipped even though it is enabled if 'backendJwt' claim is present in the authentication JWT token) | false |
-| claimDialect | Add a claim dialect to the standard claims. (By default it is used in the standard claims generated by an APIM instance) | http://wso2.org/claims |
-| signingAlgorithm | Signing algorithm used to sign the JWT. When algorithm is specified as NONE, the token will not be signed. (This configuration can only have two values 'SHA256withRSA' or 'NONE') | SHA256withRSA | 
-| certificateAlias | Alias of the certificate from keystore which is included on the JWT header section 'x5t'. | ballerina | 
-| privateKeyAlias | Alias of the key from the keystore which is used to sign the JWT. | ballerina | 
-| tokenExpiry | Validity period of the generated JWT token. (Valid only if the jwt generator caching is disabled, else cache expiry time will be set as the token validity period)  | 900000 | 
-| restrictedClaims | Array of custom claims that should be omitted in the generated JWT token. | [ ] | 
-| issuer | Issuer of the generated JWT. ('iss' standard claim) | wso2.org/products/am | 
-| audience | Audience array of the generated JWT. ('aud' standard claim) | ["http://org.wso2.apimgt/gateway"] | 
-| generatorImpl | JWT Generator implementation. (By default a JWT generator implementation is provided in Microgateway whereas you can add your custom implementation here) | org.wso2.micro.gateway.jwt.generator.MGWJWTGeneratorImpl | 
-| tokenCacheEnable | Enable JWT Generator caching which enables to cache generated JWT so that it is not generating separate JWTs for each invocation. | true | 
-| tokenCacheExpiryTime | Expiry time of the JWT Generator cache | 900000 | 
-| tokenCacheCapacity | Capacity of the JWT Generator cache | 10000 | 
-| tokenCacheEvictionFactor | Eviction factor of the JWT Generator cache | 0.25 | 
+<table>
+<thead>
+<tr class="header">
+<th style="width: 20% !important;">Configuration</th>
+<th style="width: 60% !important;">Description</th>
+<th style="width: 20% !important;">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>jwtGeneratorEnabled</td>
+<td>Enable JWT Generation process. (Generation will be skipped even though it is enabled if 'backendJwt' claim is present in the authentication JWT token)</td>
+<td>false</td>
+</tr>
+<tr class="even">
+<td>claimDialect</td>
+<td>Add a claim dialect to the standard claims. (By default it is used in the standard claims generated by an APIM instance)</td>
+<td>http://wso2.org/claims</td>
+</tr>
+<tr class="odd">
+<td>signingAlgorithm</td>
+<td>Signing algorithm used to sign the JWT. When algorithm is specified as NONE, the token will not be signed. (This configuration can only have two values 'SHA256withRSA' or 'NONE')</td>
+<td>SHA256withRSA</td>
+</tr>
+<tr class="even">
+<td>certificateAlias</td>
+<td>Alias of the certificate from keystore which is included on the JWT header section 'x5t'.</td>
+<td>ballerina</td>
+</tr>
+<tr class="odd">
+<td>privateKeyAlias</td>
+<td>Alias of the key from the keystore which is used to sign the JWT.</td>
+<td>ballerina</td>
+</tr>
+<tr class="even">
+<td>tokenExpiry</td>
+<td>Validity period of the generated JWT token. (Valid only if the jwt generator caching is disabled, else cache expiry time will be set as the token validity period)</td>
+<td>900000</td>
+</tr>
+<tr class="odd">
+<td>restrictedClaims</td>
+<td>Array of custom claims that should be omitted in the generated JWT token.</td>
+<td>[ ]</td>
+</tr>
+<tr class="even">
+<td>issuer</td>
+<td>Issuer of the generated JWT. ('iss' standard claim)</td>
+<td>wso2.org/products/am</td>
+</tr>
+<tr class="odd">
+<td>audience</td>
+<td>Audience array of the generated JWT. ('aud' standard claim)</td>
+<td>["http://org.wso2.apimgt/gateway"]</td>
+</tr>
+<tr class="even">
+<td>generatorImpl</td>
+<td>JWT Generator implementation. (By default a JWT generator implementation is provided in Microgateway whereas you can add your custom implementation here)</td>
+<td>org.wso2.micro.gateway.jwt.generator.MGWJWTGeneratorImpl</td>
+</tr>
+<tr class="odd">
+<td>tokenCacheEnable</td>
+<td>Enable JWT Generator caching which enables to cache generated JWT so that it is not generating separate JWTs for each invocation.</td>
+<td>true</td>
+</tr>
+<tr class="even">
+<td>tokenCacheExpiryTime</td>
+<td>Expiry time of the JWT Generator cache</td>
+<td>900000</td>
+</tr>
+<tr class="odd">
+<td>tokenCacheCapacity</td>
+<td>Capacity of the JWT Generator cache</td>
+<td>10000</td>
+</tr>
+<tr class="even">
+<td>tokenCacheEvictionFactor</td>
+<td>Eviction factor of the JWT Generator cache</td>
+<td>0.25</td>
+</tr>
+</tbody>
+</table>
 
 #### Setting the header of the backend request
 
 When you are passing a token to the backend or when you are generating a JWT inside Microgateway, you can configure the header in which the JWT token will be passed to the backend. The following configuration should be added to the Microgateway runtime configuration in `micro-gw.conf`. (By default the header is set to X-JWT-Assertion)
 
-``` yml
+```toml
 [jwtConfig]
     # JWT header when forwarding the request to the backend
     header = "X-JWT-Assertion"
