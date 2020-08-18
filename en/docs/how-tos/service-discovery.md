@@ -67,11 +67,10 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
     x-wso2-production-endpoints:
     urls:
     - etcd (<etcd_key>,<default_URL>)
-
-    - <etcd_key> - The value of the key that you store in the etcd server for the purpose of mapping the endpoint URL.
-
-    - <default_URL> - This is the URL that WSO2 API Microgateway redirects the requests to in the event it is unable to resolve the etcd key or/and is unable to find the etcd server.
     ```
+    
+    - `<etcd_key>` - The value of the key that you store in the etcd server for the purpose of mapping the endpoint URL.
+    - `<default_URL>` - This is the URL that WSO2 API Microgateway redirects the requests to in the event it is unable to resolve the etcd key or/and is unable to find the etcd server.
     
     ``` java tab="Example"
     x-wso2-production-endpoints:
