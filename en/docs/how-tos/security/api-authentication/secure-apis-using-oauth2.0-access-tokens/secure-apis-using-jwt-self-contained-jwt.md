@@ -28,50 +28,16 @@ When a JWT is used as an access token, API Microgateway validates the following 
  The JWT signature can be validated either by the certificate (which the alias is defined in certificateAlias) or using the JWKS endpoint of the issuer. When configured both properties, if the JWT contain the kid, the token will be validated through the JWKS endpoint.
 
 ### Subscription Validation
-
   The [subscription](https://apim.docs.wso2.com/en/3.2.0/learn/consume-api/manage-subscription/subscribe-to-an-api/) validation is configurable for JWT tokens.
 
 !!! note
     When using WSO2 API Manager 3.0.0 or 3.1.0 as the key manager, the JWTs contain the subscribed APIs as a list in the JWT under the **subscribedAPIs** claim. In order to mandate the subscriptions, subscription validation can be enabled. Microgateway will validate the list under the subscribedAPIs claim and check if the user is currently invoking one of the APIs in the list. If not it will send an error message with error code 900908.
 
-#### Subscription Validation Model
-   In WSO2 API Manager 3.2.0, the JWT token does not contain the Application and Subscribed API claims and the Subscription validation is done in gateway by using a set of maps. API Manager exposes the existing application and subscription details via a REST endpoint and the new API, Application for subscription creations are published via a jms topic as events. When the Microgateway configured to receive these data, it fetches the existing API, Application and Subscription data via the REST endpoint and also subscribes to the JMS topic during the startup. 
+In WSO2 API Manager 3.2.0, the JWT token does not contain the Application and Subscribed API claims and the Subscription validation is done in gateway by using a set of maps. API Manager exposes the existing application and subscription details via a REST endpoint and the new API, Application for subscription creations are published via a jms topic as events. When the Microgateway configured to receive these data, it fetches the existing API, Application and Subscription data via the REST endpoint and also subscribes to the JMS topic during the startup.
 
-   This can be configured as below in {MGW_RUNTIME_HOME/conf/mgw-conf.toml} file.
+If an external key manager is used directly with Microgateway, which will not know about the subscription details then, subscription validation can be turned off for that particular JWT issuers.
 
-```yml
-# Configurations for retrieving API and subscription data from API Manager.
-[apim.eventHub]
-  # Enable/ Disable the feature
-  enable = true
-  # The API Manager URL
-  serviceUrl = "https://localhost:9443"
-  # The internal data REST API context.
-  internalDataContext="/internal/data/v1/"
-  # User name and password of the internal data api.
-  username="admin"
-  password="admin"
-  # The message broker connection URL.
-  eventListeningEndpoints = "amqp://admin:admin@carbon/carbon?brokerlist='tcp://localhost:5672'"
-```
-   
-   To enable subscription validation for JWT tokens, set the following configuration under ``` [[jwtTokenConfig]]``` in {MGW_RUNTIME_HOME/conf/mgw-conf.toml} file.
-
-```yml
-    [[jwtTokenConfig]]
-        issuer = "https://localhost:9443/oauth2/token"
-        ...
-        # Validate subscribed APIs
-        validateSubscription = true
-```
-
-   If an external key manager is used directly with Microgateway, which will not know about the subscription details then, subscription validation can be turned off for that particular JWT issuers.
-
-!!! note
-    In order to successfully validate the subscriptions, both the above configurations must be done when using Microagateway 3.2.0 with API Manager 3.2.0 as key manager.
-
-!!! note 
-    Refer to [the document on Subscription Validation]({{base_url}}/how-tos/security/api-authorization/subscription-validation/) for more information.
+For information on the subscription model and configuration steps, please refer to [the document on Subscription Validation]({{base_url}}/how-tos/security/api-authorization/subscription-validation/).
    
 ### Configure Multiple JWT issuers
 
@@ -106,5 +72,3 @@ When a JWT is used as an access token, API Microgateway validates the following 
     # JWT header when forwarding the request to the backend
     header = "X-JWT-Assertion"
 ```
-
-

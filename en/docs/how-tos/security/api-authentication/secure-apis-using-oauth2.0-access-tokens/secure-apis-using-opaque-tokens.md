@@ -82,7 +82,7 @@ Microgateway by default connects with the key managers with the token introspect
         password = ""
     ```
 
- - **Direct token**  - Direct Access Token Method
+- **Direct token**  - Direct Access Token Method
 
     ``` yml
     [keymanager.security.oauth2.directToken]
@@ -92,8 +92,8 @@ Microgateway by default connects with the key managers with the token introspect
 
      In this method, the access token can be directly configured in the configuration, so that gateway will send that token when calling the secured introspection endpoint.
 
- - **Refresh Grant**
-    
+- **Refresh Grant**
+
     ``` yml
     [keymanager.security.oauth2.refresh]
         enabled = true
@@ -108,79 +108,13 @@ Microgateway by default connects with the key managers with the token introspect
 
 ### Subscription Validation
 
- WSO2 Microgateway can be configured to validate the API subscriptions when using opaque tokens. This can only be used for APIs which are published in API Manager.
+WSO2 Microgateway can be configured to validate the API subscriptions when using opaque tokens. This can only be used for APIs which are published in API Manager.
 
- For subscription validation, Microgateway uses the internal API, Application and subscription data maps. 
-
-#### Subscription Validation Steps.
-1. The Opaque token is first validated with the token introspection endpoint
-2. From the introspection response, the clientId of the application is retrieved. 
-3. Subscription information are retrieved from the internal data maps using the clientId.
-4. If no data is found, invoke the internal data api and fetch any subscriptoin details for the client id.
-5. Validate the subscription from the data.
-
-#### Configuration
-To validate the subscriptions for opaque tokens, following configurations must be done.
-
-```yml
-# Configurations for retrieving API and subscription data from API Manager.
-[apim.eventHub]
-  # Enable/ Disable the feature
-  enable = true
-  # The API Manager URL
-  serviceUrl = "https://localhost:9443"
-  # The internal data REST API context.
-  internalDataContext="/internal/data/v1/"
-  # User name and password of the internal data api.
-  username="admin"
-  password="admin"
-  # The message broker connection URL.
-  eventListeningEndpoints = "amqp://admin:admin@carbon/carbon?brokerlist='tcp://localhost:5672'"
-
-# Token validation configuration
-[security]
-  # Enable/ Disable subscription validation for opaque (reference) tokens.
-  validateSubscriptions = true
-```
-
-!!! note
-    In order to use older API Manager versions (2.x series or 3.0.0, 3.1.0) with Microgateway 3.2.0 with subscription validation, do the below configuration.
-
-    ```yml
-    # Key manager configurations
-    [keyManager]
-    # Connection URL of the Key Manager server
-    serverUrl = "https://localhost:9443"
-    # The token endpoint context of the Key Manager server
-    tokenContext = "oauth2"
-    # When Microgateway is used with older APIM versions for subscription validation by using KeyValidation service.
-    enableLegacyMode = true
-    ...
-    [apim.eventHub]
-    # Enable/ Disable the feature
-    enable = false
-    ```
+For information on the subscription model and configuration steps, please refer to [the document on Subscription Validation]({{base_url}}/how-tos/security/api-authorization/subscription-validation/).
 
 !!! note
     When the API is created using the dev-first approach, the API Name may contain spaces. But, in order to validate the subscriptions, the same API should be published in API Manager and it does not allow to create APIs with spaces in API Name. Therefore, when using subscription validation in Microgateway, use the API Name without spaces.
 
-    Ex: My API → My_API or MyAPI.
-
-**Enable external key manager**
-
-``` yml
-# Key manager configurations
-[keyManager]
-    # Connection URL of the Key Manager server
-    serverUrl = "https://localhost:9443"
-    # The token endpoint context of the Key Manager server
-    tokenContext = "oauth2"
-    # timestamp skew in seconds which added when checking the token validity period
-    timestampSkew = 5000
-    # Internal Key Manager
-    external = false
-[keymanager.security.basic]
-    enabled = true
-    username = "admin"    
-    password = "admin"
-```
+    ```
+        Ex: My API → My_API or MyAPI
+    ```
