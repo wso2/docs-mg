@@ -65,8 +65,8 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
 
     ``` java tab="Format"
     x-wso2-production-endpoints:
-    urls:
-    - etcd (<etcd_key>,<default_URL>)
+      urls:
+        - etcd (<etcd_key>,<default_URL>)
     ```
     
     - `<etcd_key>` - The value of the key that you store in the etcd server for the purpose of mapping the endpoint URL.
@@ -74,8 +74,8 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
     
     ``` java tab="Example"
     x-wso2-production-endpoints:
-    urls:
-      - etcd (petstore,https://www.example.com)
+      urls:
+        - etcd (petstore,https://www.example.com)
     ```
 
 5.  Build the WSO2 API Microgateway project (e.g., petstore-project).
@@ -103,7 +103,7 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
     
     - `<etcd-url>` - Provide the etcd URL. If the etcd URL is secured (https), you need to add the etcd server certificate to the [Ballerina](https://ballerina.io/) truststore.
 
-    - `<etcd-timer>` - This is the time period for the periodic timer task (in milliseconds). The default time period is 10 seconds. The `<etcd-timer>` parameter specifies the time interval for each periodic query to etcd; therefore, this value should be lower than the TTL of the token. etcd supports the following types of tokens.
+    - `<etcd-timer>` - This is the time period for the periodic timer task (in milliseconds). The default time period is 10 seconds. This parameter specifies the time interval for each periodic query to etcd; therefore, this value should be lower than the TTL of the token. etcd supports the following types of tokens.
 
         - **Simple tokens**  
             These tokens have a default time-to-live (TTL) of 5 minutes, but the TTL is configurable. In addition, the TTL refreshes each time a request goes to etcd.
