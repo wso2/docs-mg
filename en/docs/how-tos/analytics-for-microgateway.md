@@ -208,8 +208,8 @@ The configurations are described in the table below.
 ##### **Step 1 - Configuring the WSO2 API-M Analytics Server**
 
 1.  Open the &lt;APIM-ANALYTICS-HOME&gt;/ conf / worker / deployment .yaml file
-2.  Locate the `siddhi → refs → ref → name → grpcSource` parameter section. Change the IP and port of the receiver.url to point to the Microgateway. ![]({{base_path}}/assets/img/how-tos/siddhi-grpc-source.png/siddhi-grpc-source.png.png)
-3.  The SSL configurations for the connection can be defined under `siddhi → extensions → extension → grpc` as follows. ![SSL configuration for Siddhi]({{base_path}}/assets/img/how-tos/siddhi-grpc-source.png/ssl-config-for-siddhi.png)
+2.  Locate the `siddhi → refs → ref → name → grpcSource` parameter section. Change the IP and port of the receiver.url to point to the Microgateway. ![]({{base_path}}/assets/img/how-tos/siddhi-grpc-source.png)
+3.  The SSL configurations for the connection can be defined under `siddhi → extensions → extension → grpc` as follows. ![SSL configuration for Siddhi]({{base_path}}/assets/img/how-tos/ssl-config-for-siddhi.png)
 
 ##### **Step 2 - Configuring the Microgateway for Analytics**
 
@@ -217,7 +217,7 @@ The configurations are described in the table below.
 2.  Copy the `analytics.gRPCAnalytics` and paste it under the `analytics` section in the &lt;MICRO\_GW\_HOME&gt;/conf/micro-gw.conf file.
 3.  Configure the following parameters in the copied section.
 
-![Configure Microgateway for analytics({{base_path}}/assets/img/how-tos/configure-MGW-for-analytics.png)
+![Configure Microgateway for analytics]({{base_path}}/assets/img/how-tos/configure-MGW-for-analytics.png)
 
 <table>
 <thead>
@@ -255,16 +255,18 @@ A report containing the number of requests served by the Microgateway can be gen
     Before you begin...
     Configure API Manager Analytics using the **Quick setup** or **Standard Setup** . For instructions, see [Configuring APIM Analytics](https://apim.docs.wso2.com/en/latest/learn/analytics/configuring-apim-analytics/) .
 
-1.  Login to admin portal (https://&lt;host&gt;:&lt;port&gt;/admin/) and navigate to the Microgateway tab and click on 'Usage Reports'.
+1.  Start the analytics dashboard in the analytics setup.
 
-    ![]({{base_path}}/assets/img/how-tos/portal-left-menu.png)
+1.  Login to the analytics dashboard (https://localhost:9643/analytics-dashboard/) and navigate to the Reports dashboard.
+
+    ![]({{base_path}}/assets/img/how-tos/analytics-dashboard.png)
     
-2.  Select a year and a month to generate the report for the respective month
+2.  Select a year and a month to generate the report for the respective month.
 
-    ![]({{base_path}}/assets/img/how-tos/useage-reports.png)
+    ![]({{base_path}}/assets/img/how-tos/useage-reports-320.png)
     
-3.  Select 'Generate' button to generate a pdf with the usage information
+3.  Select 'Download' button to get the generated pdf with the usage information.
 
-    ![]({{base_path}}/assets/img/how-tos/request-summary.png)
+    ![]({{base_path}}/assets/img/how-tos/request-summary-320.png)
 
 
