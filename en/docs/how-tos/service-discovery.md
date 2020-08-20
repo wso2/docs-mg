@@ -38,7 +38,7 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
         2019-05-23 19:09:18.921356 I | embed: ready to serve client requests
         ```
         
-    3.  Navigate to the ```<etcd_HOME>``` and put the enpoint URL to the etcd server using etcdctl tool, by executing the following command.
+    3.  Navigate to the `<etcd_HOME>` and put the endpoint URL to the etcd server using etcdctl tool, by executing the following command.
         
         ``` java tab="Format"
         etcdctl put <Key> <Value>        
