@@ -28,7 +28,7 @@ You can provide the classpath of the custom JWT generator in the **generatorImpl
 ```
 Since, there are getters and setters for all the configuration properties in the abstract class you can use any of the configuration values to implement your logic in the custom JWT generator.
 
-After enabling JWT generation from the configuration setting `jwtGeneratorEnabled` to true, start the API Microgateway runtime. When invoking a resource with a JWT token, you will be able to obtain the generated backend JWT.
+After enabling JWT generation by setting `jwtGeneratorEnabled` configuration property to `true`, start the API Microgateway runtime. When invoking a resource with a JWT token, you will be able to obtain the generated backend JWT.
 
 ### Extract backed token from the jwt access token
 
