@@ -17,7 +17,7 @@ Apart from writing a JWT generator, developers have the capability use the defau
 
 #### Adding a custom JWT generator to the project
 
-Once the custom JWT generator is written, the project should be built and the output jar should be placed in the `<MGW-project>/lib` directory. If third-party libraries are used when writing the JWT generator, these custom jars should also be placed in the same directory.
+Once the custom JWT generator is written, the custom jwt generator project should be built and the output jar should be placed in the `<MGW-project>/lib` directory. If third-party libraries are used when writing the JWT generator, these custom jars should also be placed in the same directory.
 
 You can provide the classpath of the custom JWT generator in the **generatorImpl** configuration in the `<MICRO-GW-RUNTIME_HOME>/conf/micro-gw.conf` file. 
     
