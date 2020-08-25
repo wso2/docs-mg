@@ -6,44 +6,18 @@ WSO2 API Microgateway can be configured to connect to a key manager (external or
 
 WSO2 Microgateway can be configured to connect with an introspect endpoint (/introspect) of a key manager.  If the API Microgateway receives an opaque (non-JWT) token, then the external key manager's introspect endpoint will be invoked to validate the token. Upon validation of the token,  API  Microgateway will cache the token. A subsequent request with the same token will first check the cache before connecting with the key manager.
 
-### Configure API Microgateway to validate OAuth2 Opaque tokens with WSO2 API Manager
+### Configure API Microgateway to validate OAuth2 Opaque tokens
 
-Microgateway by default connects with [WSO2 API Manager](https://apim.docs.wso2.com/en/latest/) key validation service. This service is responsible to validate the tokens Issued by API Manager's key manager component.  WSO2 key manager component validates the token, scopes, subscription and generates the jwt to be sent to backend as well if configured. When use with WSO2 API manager the microgateway full features like subscription validation, application and subscription level throttling, complete anlytics are enabled.
-
-**WSO2 APIM as the key manager**
+Microgateway by default connects with the key managers with the token introspection enpoint.
 
 ``` java
 [keyManager]
     serverUrl = "https://localhost:9443"
     tokenContext = "oauth2"
-    external = false
     [keymanager.security.basic]
         enabled = true
         username = "admin"
         password = "admin"
-```
-
-!!! info
-    Authentication for key validation service of APIM
-    When using APIM key validations service, that service is secured using basic authentication. This is a soap service in APIM server and requires admin priviledges to access it. Hence one of  admin user's credentials, available on APIM server  are required
-
-### Configure API Microgateway to validate OAuth2 Opaque tokens with External key manager
-
-Microgateway can be configured with external key manager that does supports standard introspection capabilities. In order to enable introspection with an external key manager, " **external** " parameter should be set under the key manager configurations.
-
-**Enable external key manager**
-
-``` yml
-# Key manager configurations
-[keyManager]
-    # Connection URL of the Key Manager server
-    serverUrl = "https://localhost:9443"
-    # The token endpoint context of the Key Manager server
-    tokenContext = "oauth2"
-    # timestamp skew in seconds which added when checking the token validity period
-    timestampSkew = 5000
-    # External Key Manager
-    external = true
 ```
 
 ### Securing the Introspect Endpoint
@@ -108,7 +82,7 @@ Microgateway can be configured with external key manager that does supports stan
         password = ""
     ```
 
- - **Direct token**  - Direct Access Token Method
+- **Direct token**  - Direct Access Token Method
 
     ``` yml
     [keymanager.security.oauth2.directToken]
@@ -118,8 +92,8 @@ Microgateway can be configured with external key manager that does supports stan
 
      In this method, the access token can be directly configured in the configuration, so that gateway will send that token when calling the secured introspection endpoint.
 
- - **Refresh Grant**
-    
+- **Refresh Grant**
+
     ``` yml
     [keymanager.security.oauth2.refresh]
         enabled = true
@@ -134,25 +108,13 @@ Microgateway can be configured with external key manager that does supports stan
 
 ### Subscription Validation
 
- WSO2 Microgateway can be configured to validate the API subscriptions when using opaque tokens. This can only be used for APIs which are published in API Manager.
+WSO2 Microgateway can be configured to validate the API subscriptions when using opaque tokens. This can only be used for APIs which are published in API Manager.
 
- For subscription validation, WSO2 API Manager should be used as the key manager in **internal** mode. In this mode, the token is validated by calling the KeyValidation admin service in the kay manager in contrast to using the introspection API in external mode.
+For information on the subscription model and configuration steps, please refer to [the document on Subscription Validation]({{base_url}}/how-tos/security/api-authorization/subscription-validation/).
 
-**Enable external key manager**
+!!! note
+    When the API is created using the dev-first approach, the API Name may contain spaces. But, in order to validate the subscriptions, the same API should be published in API Manager and it does not allow to create APIs with spaces in API Name. Therefore, when using subscription validation in Microgateway, use the API Name without spaces.
 
-``` yml
-# Key manager configurations
-[keyManager]
-    # Connection URL of the Key Manager server
-    serverUrl = "https://localhost:9443"
-    # The token endpoint context of the Key Manager server
-    tokenContext = "oauth2"
-    # timestamp skew in seconds which added when checking the token validity period
-    timestampSkew = 5000
-    # Internal Key Manager
-    external = false
-[keymanager.security.basic]
-    enabled = true
-    username = "admin"    
-    password = "admin"
-```
+    ```
+        Ex: My API → My_API or MyAPI
+    ```

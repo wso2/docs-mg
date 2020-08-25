@@ -91,6 +91,7 @@ nav:
                 - Disabling Security: how-tos/security/api-authentication/disabling-security.md
             - Authorization:
                  - Scope Validation: how-tos/security/api-authorization/scope-validation.md
+                 - Subscription Validation: how-tos/security/api-authorization/subscription-validation.md
             - Transport Security: how-tos/security/transport-security.md
             - Enabling CORS: how-tos/security/enabling-cors.md
             - API Key Security Token Service: how-tos/security/api-key-security-token-service.md
@@ -108,6 +109,7 @@ nav:
         - Configure Caching: how-tos/configure-caching.md
         - Manage Microgateway APIs with WSO2 API Manager: how-tos/manage-microgateway-apis-with-wso2-api-manager.md
         - Adding Extension Points: how-tos/adding-extension-points.md
+        - support-custom-claims-mapping: how-tos/support-custom-claims-mapping.md
     - Install and Setup:
         - Install on VM: install-and-setup/install-on-vm.md
         - Install on Docker: install-and-setup/install-on-docker.md
@@ -126,6 +128,8 @@ nav:
             - deployment.toml for Docker: reference/configurations/deployment.toml-for-docker.md
             - deployment.toml for Kubernetes: reference/configurations/deployment.toml-for-kubernetes.md
         - Default Ports: reference/default-ports.md
+        - Commandline options:
+              - Toolkit commands: reference/commandline-options/toolkit-commands.md
 # Extensions
 markdown_extensions:
     - markdown.extensions.admonition

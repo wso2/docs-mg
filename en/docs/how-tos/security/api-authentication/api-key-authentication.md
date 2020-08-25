@@ -25,7 +25,7 @@ components:
     ApiKeyAuth:        # arbitrary name for the security scheme
       type: apiKey
       in: header       # can be "header" or "query" 
-      name: X-API-KEY  # name of the header, query parameter or cookie
+      name: X-API-KEY  # name of the header or query parameter
     appId:             # you can define several apikey security schemas
       type: apiKey
       in: header
