@@ -66,7 +66,16 @@ nav:
             - Importing a Group of APIs from WSO2 API Manager: how-tos/adding-apis/importing-a-group-of-apis-from-wso2-api-manager.md
             - Importing a Single API from WSO2 API Manager: how-tos/adding-apis/importing-a-single-api-from-wso2-api-manager.md
         - Add a gRPC API: how-tos/add-a-grpc-api.md
-        - Defining Endpoints in an OpenAPI Definition: how-tos/defining-endpoints-in-an-openapi-definition.md
+        - Endpoints:
+            - Endpoint Types : how-tos/endpoints/endpoint-types.md
+            - Defining Endpoints in an OpenAPI Definition: how-tos/endpoints/defining-endpoints-in-an-openapi-definition.md
+            - Overriding Endpoint Information:
+                  - Overriding Endpoints for Developer-first Approach APIs: how-tos/endpoints/overriding-endpoint-information/overriding-endpoints-for-developer-first-approach-apis.md
+                  - Overriding Endpoints for Imported APIs: how-tos/endpoints/overriding-endpoint-information/overriding-endpoints-for-imported-apis.md
+            - Resiliency:
+                  - Retry and Timeout: how-tos/endpoints/resiliency/retry-and-timeout-configs.md
+                  - Circuit Breaker: how-tos/endpoints/resiliency/circuit-breaker.md
+            - Defining a Backend Security Scheme: how-tos/endpoints/defining-a-backend-security-scheme.md
         - Message Transformation:
             - Message Transformation Overview: how-tos/message-transformation/message-transformation-overview.md
             - How to add interceptors from Policy Hub: how-tos/message-transformation/how-to-add-interceptors-from-policy-hub.md
@@ -101,10 +110,6 @@ nav:
             - Define Security using extension: how-tos/security/define-security-using-extension.md
         - Analytics for Microgateway: how-tos/analytics-for-microgateway.md
         - Observability: how-tos/observability.md
-        - Defining a Backend Security Scheme: how-tos/defining-a-backend-security-scheme.md
-        - Overriding Endpoint Information:
-            - Overriding Endpoints for Developer-first Approach APIs: how-tos/overriding-endpoint-information/overriding-endpoints-for-developer-first-approach-apis.md
-            - Overriding Endpoints for Imported APIs: how-tos/overriding-endpoint-information/overriding-endpoints-for-imported-apis.md
         - File Upload via Multipart Requests: how-tos/file-upload-via-multipart-requests.md
         - Configure Caching: how-tos/configure-caching.md
         - Manage Microgateway APIs with WSO2 API Manager: how-tos/manage-microgateway-apis-with-wso2-api-manager.md
