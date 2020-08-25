@@ -7,7 +7,7 @@ You can use JWT Generation in API Microgateway to send a customized JWT to the b
 
 ### Generating a JWT in Microgateway
 
-Microgateway defines an [AbstractMGWJWTGenerator class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/AbstractMGWJWTGenerator.java) to support developers to write custom JWT generator classes whereas they can extend this abstract class to implement their logic to generate the JWT. There are two abstract methods named populateStandardClaims and populateCustomClaims where you can write your logic to populate claims in the JWT. Furthermore, you have the capability to write your own logic overriding any of the current methods in the abstract class. 
+Microgateway defines an [AbstractMGWJWTGenerator class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/AbstractMGWJWTGenerator.java) to support developers to write custom JWT generator classes whereas they can extend this abstract class to implement their logic to generate the JWT. There are two abstract methods named `populateStandardClaims` and `populateCustomClaims` where you can write your logic to populate claims in the JWT. Furthermore, you have the capability to write your own logic overriding any of the current methods in the abstract class. 
 
 #### Writing a JWT generator
 
