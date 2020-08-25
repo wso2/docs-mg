@@ -17,6 +17,41 @@ x-wso2-mutual-ssl: "mandatory" # can be "mandatory" or "optional"
 |mandatory| Enable mutual SSL. The client should be verified and the mutual SSL handshake must be passed. the API request will be unauthorized if the handshake is failed.|
 |optional|Disable mutual SSL. Even if the mutual SSL handshake failed, the API request is not necessarily unauthenticated. If the mutual SSL handshake is passed, the request will be filtered by the mutual SSL handler.|
 
+
+### Support Mutual SSL Authentication for an API
+
+The Microgateway supports mutual SSL at the API level. It validates the certificate against per API by the name, version, and alias. There are two scenarios in Mutual SSL, the first one is Client directly connects with Microgateway and the second one is the load balancer in front of the Microgateway.
+![Mutual SSL overview]({{base_path}}/assets/img/mutualssl.png)
+
+1. <b> Mutual SSL configuration without Load Balancer.</b>
+   
+    Update the mutual SSL configuration in the micro-gw.conf file residing in the <MICROGW_HOME>/conf directory.  Here name is Swagger Petstore, version is 1.0.5, and aliasList is ballerina and wso2apim310.
+```
+    [mutualSSLConfig]
+      [[mutualSSLConfig.api.certificates]]
+        name = "Swagger Petstore"
+        version = "1.0.5"
+        aliasList = ["ballerina", "wso2apim310"]
+```
+
+2. <b> Mutual SSL configuration with Load Balancer. </b>
+    
+    If you are using a load balancer in front of Microgateway then you have to add additional configuration inside the mutualSSLConfig file. Here certificateHeadername is the header name which is appended by the load balancer to store the certificate. Here certificate header name is X-SSL-CERT.
+```
+    [mutualSSLConfig]
+      [[mutualSSLConfig.api.certificates]]
+        name = "Swagger Petstore"
+        version = "1.0.5"
+        aliasList = ["ballerina", "wso2apim310"]
+        certificateHeadername = "X-SSL-CERT"
+``` 
+   
+!!! note
+    If you do not need to validate the MTSL between the load balancer and the Micro gateway then you need to add an additional configuration other than the above. isClientCertificateValidationEnabled is set to true by default in the Microgateway which means it always validates the MTSL between the microgateway and Load balancer. 
+``` 
+    [mutualSSLConfig]
+     isClientCertificateValidationEnabled = false   
+```
 ### Configure Client and WSO2 Microgateway for Mutual SSL
 
 Add the client's public certificate to the WSO2 Microgateway's trustStorePath in listenerConfig configuration. Also, configure Microgateway's public certificate on the client-side. For more information [importing certificates to the WSO2 Microgateway Truststore]({{base_path}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/)
