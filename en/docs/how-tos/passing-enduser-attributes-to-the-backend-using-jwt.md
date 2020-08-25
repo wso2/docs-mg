@@ -91,7 +91,7 @@ You have the ability customize the token generation from the Microgateway runtim
     tokenCacheEvictionFactor=0.25
 ```
 
-Basically, outer `[jwtGeneratorConfig]` configuration contains the properties and the customizations of the generated JWT token whereas the inner `[jwtGeneratorConfig.jwtGeneratorCaching]` configuration handles the caching aspects of the generated JWT tokens.
+Outer `[jwtGeneratorConfig]` configuration contains the properties and the customizations of the generated JWT token whereas the inner `[jwtGeneratorConfig.jwtGeneratorCaching]` configuration handles the caching aspects of the generated JWT tokens.
 
 <table>
 <thead>
