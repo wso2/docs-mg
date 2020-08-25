@@ -19,29 +19,25 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [insta
 2.  Create a project.
     Let's create a project named "petstore" by running the following command. This will create the folder structure for the artifacts to be included.
 
-    **Format**
-
-    ``` java
+    ``` yaml tab="Format"
         micro-gw init <project_name> 
     ```
 
-        **Example**
-
-    ``` java
+    ``` yaml tab="Example"
         micro-gw init petstore  
         Project 'petstore' is initialized successfully.
     ```
 
-        ### Step 3 - Build the microgateway project
+### Step 3 - Build the microgateway project
 
-        1.  Add the API to the project.
+1.  Add the API to the project.
 
-        Navigate to the `           /petstore/api_definitions          ` directory and add the OpenAPI definition(s) to this  directory. Let's use the [Petstore sample OpenAPI definition](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml) in this scenario.
+    Navigate to the `           /petstore/api_definitions          ` directory and add the OpenAPI definition(s) to this  directory. Let's use the [Petstore sample OpenAPI definition](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml) in this scenario.
 
-        2.  Create the input for WSO2 API Microgateway Toolkit.
-        Create a file named `           deployment.toml          ` in a preferred location. This TOML file should contain the relevant deployment configurations (e.g., Docker image name, registry, tag, etc.) as shown below. For more information on each of the above parameters, see [deployment.toml for Docker](_deployment.toml_for_Docker_) . Note that you will have to use this TOML file as the input, by way of passing the file path, when creating the Microgateway project.
-
-    ``` java
+2.  Create the input for WSO2 API Microgateway Toolkit.
+    Create a file named `           deployment.toml          ` in a preferred location. This TOML file should contain the relevant deployment configurations (e.g., Docker image name, registry, tag, etc.) as shown below. For more information on each of the above parameters, see [deployment.toml for Docker]({{base_path}}/reference/configurations/deployment.toml-for-docker/) . Note that you will have to use this TOML file as the input, by way of passing the file path, when creating the Microgateway project.
+    
+    ``` toml tab="Example"
         [docker]
         [docker.dockerConfig]
         enable = true
@@ -63,47 +59,46 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [insta
         isBallerinaConf = true
     ```
 
-        !!! info
+    !!! info
         Specify docker credentials
-        If the docker image push is enabled to push the image to a docker registry , specifying of the username and password should be done using environment variables
+        If the docker image push is enabled to push the image to a docker registry, specifying of the username and password should be done using environment variables
         export DOCKER\_USERNAME=&lt;USER&gt;
-        export DOCKER\_PASSWORD  =&lt;PASSWORD&gt;
+        export DOCKER\_PASSWORD=&lt;PASSWORD&gt;
 
 3.  Build the microgateway project.
     Use your command line tool to navigate to where the project directory ("petstore") was created and execute the following command to build the project.
 
-    **Format**
-
-    ``` java
+    ``` yaml tab="Format"
         micro-gw build <project_name> --deployment-config <path-to-the-deployment.toml>
     ```
 
-        **Example**
-
-    ``` java
+    ``` yaml tab="Example"
         micro-gw build petstore --deployment-config /Users/kim/Downloads/deployment.toml
     ```
 
-        The Docker image is created in your local registry and you can use it to spawn a WSO2 API Microgateway Docker container.
+    The Docker image is created in your local registry and you can use it to spawn a WSO2 API Microgateway Docker container.
 
-        ### Step 4 - Run the Docker container
+### Step 4 - Run the Docker container
 
-        Run the Docker container using the following command.
+Run the Docker container using the following command.
 
-``` java
-    docker run -d -p 9090:9090 -p 9095:9095 docker.wso2.com/<docker_name>:<docker_tag>
+``` java tab="Example"
+    docker run -d -p 9090:9090 -p 9095:9095 docker.wso2.com/petstore:v1
 ```
 
-    !!! note
-    When following this Docker deployment guide, you will end up by creating a Docker image with APIs built into it; thereby, the `         .balx        ` file will already be inside the Docker image. Therefore, unlike in the Quick Start Guide for Docker you do not have to specify the project name when running the Docker container and mount the `         .balx        ` file in to the Docker image.
+!!! note
+    When following this Docker deployment guide, you will end up by creating a Docker image with APIs built into it; thereby, the `         .jar        ` file will already be inside the Docker image. Therefore, unlike in the Quick Start Guide for Docker you do not have to specify the project name when running the Docker container and mount the `         .jar        ` file in to the Docker image.
+
 !!! info
     If you are working in a Linux environment, you can **either use** the above command or the following command to start your Docker container. In the following command the Docker container uses the host network driver for your container.
-``` java
-    docker run --network host -d docker.wso2.com/<docker_name>:<docker_tag>
-```
-    For more information on working with Docker in different environments, see the relevant Docker documentation: [Docker for Mac](https://docs.docker.com/docker-for-mac/) , [Docker for Windows](https://docs.docker.com/docker-for-windows/) .
+    
+    ``` java
+        docker run --network host -d docker.wso2.com/<docker_name>:<docker_tag>
+    ```
+    
+    For more information on working with Docker in different environments, see the relevant Docker documentation: [Docker for Mac](https://docs.docker.com/docker-for-mac/) , [Docker for Windows](https://docs.docker.com/docker-for-windows/).
 
-Step 5 - Invoke the sample API
+### Step 5 - Invoke the sample API
 
 ##### Step 5.1 - Obtain token
 
@@ -117,11 +112,11 @@ Let's use the following **sample JWT token** that never expires, which was gener
     eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5UQXhabU14TkRNeVpEZzNNVFUxWkdNME16RXpPREpoWldJNE5ETmxaRFUxT0dGa05qRmlNUSJ9.eyJhdWQiOiJodHRwOlwvXC9vcmcud3NvMi5hcGltZ3RcL2dhdGV3YXkiLCJzdWIiOiJhZG1pbiIsImFwcGxpY2F0aW9uIjp7ImlkIjoyLCJuYW1lIjoiSldUX0FQUCIsInRpZXIiOiJVbmxpbWl0ZWQiLCJvd25lciI6ImFkbWluIn0sInNjb3BlIjoiYW1fYXBwbGljYXRpb25fc2NvcGUgZGVmYXVsdCIsImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0M1wvb2F1dGgyXC90b2tlbiIsImtleXR5cGUiOiJQUk9EVUNUSU9OIiwic3Vic2NyaWJlZEFQSXMiOltdLCJjb25zdW1lcktleSI6Ilg5TGJ1bm9oODNLcDhLUFAxbFNfcXF5QnRjY2EiLCJleHAiOjM3MDMzOTIzNTMsImlhdCI6MTU1NTkwODcwNjk2MSwianRpIjoiMjI0MTMxYzQtM2Q2MS00MjZkLTgyNzktOWYyYzg5MWI4MmEzIn0=.b_0E0ohoWpmX5C-M1fSYTkT9X4FN--_n7-bEdhC3YoEEk6v8So6gVsTe3gxC0VjdkwVyNPSFX6FFvJavsUvzTkq528mserS3ch-TFLYiquuzeaKAPrnsFMh0Hop6CFMOOiYGInWKSKPgI-VOBtKb1pJLEa3HvIxT-69X9CyAkwajJVssmo0rvn95IJLoiNiqzH8r7PRRgV_iu305WAT3cymtejVWH9dhaXqENwu879EVNFF9udMRlG4l57qa2AaeyrEguAyVtibAsO0Hd-DFy5MW14S6XSkZsis8aHHYBlcBhpy2RqcP51xRog12zOb-WcROy6uvhuCsv-hje_41WQ==
 ```
 
-    !!! info
+!!! info
     More information
     -   You can obtain a JWT token from any third-party secure token service or via the WSO2 API Manager.
     -   Alternatively, you can also use an OAuth2 token to invoke the API.
-    For more information, see the FAQs on [Working with Tokens](FAQs_141247125.html#FAQs-WorkingwithTokens) .
+    For more information, see the FAQs on [Working with Tokens]({{base_path}}/faqs/#working-with-tokens) .
 
 ##### Step 5.2 - Invoke the API
 
@@ -129,41 +124,35 @@ Invoke the API using the JWT token using the following command.
 
 1.  Retrieve the Docker container IP address.
 
-    ``` java
-        docker ps - This provides the container id
+    ``` toml
+        docker ps # This provides the container id
         docker inspect <Container_ID> | grep "IPAddress"
     ```
 
-        2.  Execute the command below to set a self-contained OAuth2.0 access token in the JWT format as a variable on your terminal session.
+2.  Execute the command below to set a self-contained OAuth2.0 access token in the JWT format as a variable on your terminal session.
 
-        **Format**
-
-    ``` java
+    ``` java tab="Format"
         TOKEN=<JWT-token>
     ```
 
-        **Example**
-
-    ``` java
+    ``` java tab="Example"
         TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5UQXhabU14TkRNeVpEZzNNVFUxWkdNME16RXpPREpoWldJNE5ETmxaRFUxT0dGa05qRmlNUSJ9.eyJhdWQiOiJodHRwOlwvXC9vcmcud3NvMi5hcGltZ3RcL2dhdGV3YXkiLCJzdWIiOiJhZG1pbiIsImFwcGxpY2F0aW9uIjp7ImlkIjoyLCJuYW1lIjoiSldUX0FQUCIsInRpZXIiOiJVbmxpbWl0ZWQiLCJvd25lciI6ImFkbWluIn0sInNjb3BlIjoiYW1fYXBwbGljYXRpb25fc2NvcGUgZGVmYXVsdCIsImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0M1wvb2F1dGgyXC90b2tlbiIsImtleXR5cGUiOiJQUk9EVUNUSU9OIiwic3Vic2NyaWJlZEFQSXMiOltdLCJjb25zdW1lcktleSI6Ilg5TGJ1bm9oODNLcDhLUFAxbFNfcXF5QnRjY2EiLCJleHAiOjM3MDMzOTIzNTMsImlhdCI6MTU1NTkwODcwNjk2MSwianRpIjoiMjI0MTMxYzQtM2Q2MS00MjZkLTgyNzktOWYyYzg5MWI4MmEzIn0=.b_0E0ohoWpmX5C-M1fSYTkT9X4FN--_n7-bEdhC3YoEEk6v8So6gVsTe3gxC0VjdkwVyNPSFX6FFvJavsUvzTkq528mserS3ch-TFLYiquuzeaKAPrnsFMh0Hop6CFMOOiYGInWKSKPgI-VOBtKb1pJLEa3HvIxT-69X9CyAkwajJVssmo0rvn95IJLoiNiqzH8r7PRRgV_iu305WAT3cymtejVWH9dhaXqENwu879EVNFF9udMRlG4l57qa2AaeyrEguAyVtibAsO0Hd-DFy5MW14S6XSkZsis8aHHYBlcBhpy2RqcP51xRog12zOb-WcROy6uvhuCsv-hje_41WQ==
     ```
 
-        !!! note
+    !!! note
         When you are deploying the Microgateway in production, make sure to change its default certificates.
 
 3.  You can now invoke the API running on the Microgateway using the following cURL command.
 
-    **Format**
-
-    ``` java
+    ``` java tab="Format"
         curl -X GET "<container_IP>:<MGW-runtime-port>/<API-context>/<API-resource>" -H "accept: application/xml" -H "Authorization:Bearer <JWT_TOKEN>" -k
     ```
 
-        **Examples**
-
-    ``` java
+    ``` java tab="Example 1"
         curl -X GET "https://localhost:9095/petstore/v1/pet/findByStatus?status=available" -H "accept: application/xml" -H "Authorization:Bearer $TOKEN" -k
-
+    ```
+    
+    ``` java tab="Example 2"
         curl -X GET "https://localhost:9095/petstore/v1/pet/1" -H "accept: application/xml" -H "Authorization:Bearer $TOKEN" -k
     ```
 

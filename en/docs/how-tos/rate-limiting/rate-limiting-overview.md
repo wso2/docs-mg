@@ -8,15 +8,15 @@ In case of a lock down environment or offline mode where there is no connection 
 
 ![rate limiting-overview]({{base_path}}/assets/img/how-tos/rate-limiting-overview.jpg)
 
-#### Different levels of throttling
+### Different levels of throttling
 
-##### Subscription-level throttling (API subscriber)
+#### Subscription-level throttling (API subscriber)
 
 After subscription-level throttling tiers are set and the API is published, at subscription time, the consumers of the API can sign in to the **API Store** and select the tier, out of the tiers enabled for that specific subscriber, that they are interested in as shown below:
 
 According to the selected tiers, the subscribers are granted a maximum number of requests to the API. For more information on how tiers are set, see [Subscription-level throttling (API Publisher)](https://docs.wso2.com/display/AM260/Setting+Throttling+Limits#SettingThrottlingLimits-Subscription-levelthrottling(APIpublisher)) .
 
-##### Application-level throttling (application developer)
+#### Application-level throttling (application developer)
 
 Application-level throttling tiers are defined at the time an application is created in the API Store as shown below. The limits are restricted per token for a specific application.
 
@@ -26,7 +26,7 @@ An application is available to a consumer at different levels of service. For ex
 
 For more information on application-level throttling tiers, see [Application-level Throttling tiers](https://docs.wso2.com/display/AM260/Setting+Throttling+Limits#SettingThrottlingLimits-Application-levelThrottlingtiers) .
 
-###### Defining a throttling policy
+### Defining a throttling policy
 
 You need to define the throttling policy (or policies) in the `         policies.yaml        ` file of the project. The following is a sample on how to you can define a throttling policy "10kPerMin" in the `         policies.yaml        ` file.
 
