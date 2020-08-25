@@ -11,7 +11,7 @@ Microgateway defines an [AbstractMGWJWTGenerator class](https://github.com/wso2/
 
 #### Writing a JWT generator
 
-You can find a sample implementation of a JWT generator from [here](https://github.com/wso2/product-microgateway/tree/master/samples/sample-jwt-generator) where the populateCustomClaims method is used to add a new claim `"custom": "claim"` to the token apart from the claims which were already available in the authentication token. Developers can import the mgw-jwt-generator depenedency as a jar to their local maven repository (The jar for the corresponding dependency is at `<MGW-TOOLKIT_HOOME>/lib/dependencies` directory). 
+You can find a sample implementation of a JWT generator from [here](https://github.com/wso2/product-microgateway/tree/master/samples/sample-jwt-generator) where the `populateCustomClaims` method is used to add a new claim `"custom": "claim"` to the token apart from the claims which were already available in the authentication token. Developers can import the mgw-jwt-generator depenedency as a jar to their local maven repository (The jar for the corresponding dependency is at `<MGW-TOOLKIT_HOOME>/lib/dependencies` directory). 
 
 Apart from writing a JWT generator, developers have the capability use the default [MGWJWTGeneratorImpl class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/MGWJWTGeneratorImpl.java) without implementing a custom class for JWT generation and manipulate the token, only tweaking the properties of the token using [JWT generator configurations](#jwt-generator-configurations).
 
