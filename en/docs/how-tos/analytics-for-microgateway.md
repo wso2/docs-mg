@@ -24,7 +24,7 @@ Periodical data publishing has the following advantages:
 
 The current architecture depicting the connection between the API Microgateway and the Analytics server is shown below.
 
-![ Connection between API Microgateway and Analytics server]({{base_path}}/assets/img/how-tos/connection-api-mg-and-analytics-server.png)
+![ Connection between API Microgateway and Analytics server]({{base_path}}/assets/img/how-tos/connection-api-mg-and-analytics-server.png){width="800"}
 
 #### How periodical publishing works
 
@@ -34,7 +34,7 @@ When an API is invoked through the Microgateway, the subsequent events related t
 
 ##### File rotating task
 
--   This task creates large files by rotating them at particular time intervals. The size of the files depends on the TPS (Transactions Per Second) of the environment in which the Microgateway is running. Once the file is rotated, it is compressed into a zipped file. The `rotatingPeriod` can be configured as described in [here](#using-periodical-data-publishing-file-based)) .
+-   This task creates large files by rotating them at particular time intervals. The size of the files depends on the TPS (Transactions Per Second) of the environment in which the Microgateway is running. Once the file is rotated, it is compressed into a zipped file. The `rotatingPeriod` can be configured as described [below](#using-periodical-data-publishing-file-based)) .
 
 ##### File uploading task
 
@@ -53,6 +53,14 @@ Real-Time data publishing has the following advantages:
 -   Lower communication payload for analytics data transferring.
 -   Server-fail detection and failure recovery mechanisms.
 -   Real-Time analytics data viewing capability.
+
+#### Architecture
+
+&lt;&lt;TO-DO&gt;&gt;
+
+#### How real-time publishing works
+
+&lt;&lt;TO-DO&gt;&gt;
 
 ### Configuring Analytics for the Microgateway
 
@@ -120,38 +128,23 @@ The following sections describe how to configure the WSO2 API-M Analytics Server
     </tr>
     </tbody>
     </table>
-    
     **Example**
-    ``` java
-        -Dusage.cleanup.frequency=48000  -Dusage.publishing.frequency=20000 -Dfile.retention.days=3
-    ```
+``` java
+    -Dusage.cleanup.frequency=48000  -Dusage.publishing.frequency=20000 -Dfile.retention.days=3
+```
 
 ##### Step 2 - Configuring the Microgateway for Analytics
 
 To do the configurations for Microgateway analytics, open the `<MICROGW_HOME>/conf/micro-gw.conf` file. The sample below shows the analytics-related configurations.
 
 ``` java
-# Analytics configurations
-[analytics]
-  # The configured API Manager analytics stream version
-  streamVersion = "3.2.0"
-  # Configurations for file upload analytics
-  [analytics.fileUpload]
-    enable = true
-    # Time interval in milliseconds for file uploading task 
-    uploadingTimeSpanInMillis = 600000
-    # Initial time delay in milliseconds for file upload analytics
-    initialDelayInMillis = 5000
-    # Endpoint configured to accept file upload analytics
-    uploadingEndpoint = "https://localhost:9444/analytics/v1.0/usage/upload-file"
-    # File rotating period in milliseconds
-    rotatingPeriod = 600000
-    # To enable file upload task
-    taskUploadFiles = true
-    # Username used in analytics server
-    username = "admin"
-    # Password used in in analytics server
-    password = "admin"
+enable=true
+uploadingTimeSpanInMillis=600000
+uploadingEndpoint="https://localhost:9444/analytics/v1.0/usage/upload-file"
+rotatingPeriod=60000
+task.uploadFiles=true
+username="admin"
+password="admin"
 ```
 
 The configurations are described in the table below.
@@ -180,25 +173,23 @@ The configurations are described in the table below.
 <td><pre><code>rotatingPeriod</code></pre></td>
 <td><div class="content-wrapper">
 <p>The time interval, after which the file is rotated and compressed. This depends on the TPS (Transactions Per Second) capacity of the environment.</p>
-<div class="admonition tip">
-<p class="admonition-title">Best Practice</p>
+!!! tip
+<p>Best Practice</p>
 <p>To avoid creating large files, we recommend setting a low <code>                  rotatingPeriod                 </code> if your environment has a higher TPS.</p>
-</div>
+
 </div></td>
 </tr>
 <tr class="odd">
-<td><pre><code>taskUploadFiles</code></pre></td>
+<td><pre><code>task.uploadFiles</code></pre></td>
 <td><div class="content-wrapper">
 <p>Set this to true to enable the file upload task.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+!!! note
     <p>If this property is disabled, the analytics files are not uploaded to the analytics server, although the files are persisted in the Microgateway system.</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Best Practice</p>
-    <p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, we recommend enabling the <code>                 taskUploadFiles                 </code> property in <strong>only one node</strong> . Make sure that you disable this in the rest of the Microgateway nodes.</p>
+!!! tip
+    <p>Best Practice</p>
+    <p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, we recommend enabling the <code>                  task.uploadFiles                 </code> property in <strong>only one node</strong> . Make sure that you disable this in the rest of the Microgateway nodes.</p>
     <p>You can also opt to have your own design as a workaround.</p>
-</div>
+
 </div></td>
 </tr>
 <tr class="even">
@@ -217,53 +208,23 @@ The configurations are described in the table below.
 ##### **Step 1 - Configuring the WSO2 API-M Analytics Server**
 
 1.  Open the &lt;APIM-ANALYTICS-HOME&gt;/ conf / worker / deployment .yaml file
-2.  Locate the `siddhi → refs → ref → name → grpcSource` parameter section. Change the IP and port of the receiver.url to point to the Microgateway. 
-
-    ```yaml
-    name: 'grpcSource'
-    type: 'grpc'
-    properties:
-      receiver.url : grpc://localhost:9806/org.wso2.analytics.mgw.grpc.service.AnalyticsSendService/sendAnalytics
-    ```
-
-3.  The SSL configurations for the connection can be defined under `siddhi → extensions → extension → grpc` as follows. 
-
-    ```yaml
-    extension:
-    name: 'grpc'
-    namespace: 'source'
-    properties:
-      keyStoreFile : ${sys:carbon.home}/resources/security/wso2carbon.jks
-      keyStorePassword : wso2carbon
-      keyStoreAlgorithm : SunX509
-      trustStoreFile : ${sys:carbon.home}/resources/security/client-truststore.jks
-      trustStorePassword : wso2carbon
-      trustStoreAlgorithm : SunX509
-    ```
+2.  Locate the `siddhi → refs → ref → name → grpcSource` parameter section. Change the IP and port of the receiver.url to point to the Microgateway. ![]({{base_path}}/assets/img/how-tos/siddhi-grpc-source.png)
+3.  The SSL configurations for the connection can be defined under `siddhi → extensions → extension → grpc` as follows. ![SSL configuration for Siddhi]({{base_path}}/assets/img/how-tos/ssl-config-for-siddhi.png)
 
 ##### **Step 2 - Configuring the Microgateway for Analytics**
 
-1.  Open the &lt;MICRO\_GW\_HOME&gt;/conf/default-micro-gw.conf.template. Locate `[analytics.gRPCAnalytics]` located under the `analytics` section.
+1.  Open the &lt;MICRO\_GW\_HOME&gt;/conf/default-micro-gw.conf.template. Locate `analytics.gRPCAnalytics` located under the `analytics` section.
 2.  Copy the `analytics.gRPCAnalytics` and paste it under the `analytics` section in the &lt;MICRO\_GW\_HOME&gt;/conf/micro-gw.conf file.
 3.  Configure the following parameters in the copied section.
 
-    ```yaml
-      # Analytics configurations
-      [analytics]
-        [analytics.gRPCAnalytics]
-        enable = false
-        # APIM Analytics endpoint configured to accept gRPC analytics
-        endpointURL = "https://localhost:9806"
-        # Time interval in milliseconds for gRPC connection recovery task
-        reconnectTimeInMillies = 6000
-    ```
-    
+![Configure Microgateway for analytics]({{base_path}}/assets/img/how-tos/configure-MGW-for-analytics.png)
+
 <table>
 <thead>
 <tr class="header">
 <th>Parameter</th>
 <th>Description</th>
-<th>Default Value</th>
+<th>Mandatory</th>
 <th>Acceptable Values</th>
 </tr>
 </thead>
@@ -271,22 +232,15 @@ The configurations are described in the table below.
 <tr class="odd">
 <td>enable</td>
 <td>Enables or disables gRPC based real-time data publishing in the API Microgateway</td>
-<td>false
+<td><br />
 </td>
 <td><p><strong>True</strong> - Enables gRPC based real-time analytics</p>
 <p><strong>False</strong> - Disables gRPC based real-time analytics</p></td>
 </tr>
 <tr class="even">
-<td>endpointURL</td>
-<td>APIM Analytics endpoint configured to accept gRPC analytics</td>
-<td>https://localhost:9806
-</td>
-<td>APIM analytics endpoint URL</td>
-</tr>
-<tr class="odd">
 <td>reconnectTimeInMillies</td>
 <td>Defines the time interval for the gRPC reconnect task. It will try to connect to the gRPC supported analytics server according to the time interval defined in milliseconds.</td>
-<td>6000
+<td><br />
 </td>
 <td>Integers between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807</td>
 </tr>
@@ -301,16 +255,18 @@ A report containing the number of requests served by the Microgateway can be gen
     Before you begin...
     Configure API Manager Analytics using the **Quick setup** or **Standard Setup** . For instructions, see [Configuring APIM Analytics](https://apim.docs.wso2.com/en/latest/learn/analytics/configuring-apim-analytics/) .
 
-1.  Login to admin portal (https://&lt;host&gt;:&lt;port&gt;/admin/) and navigate to the Microgateway tab and click on 'Usage Reports'.
+1.  Start the analytics dashboard in the analytics setup.
 
-    ![]({{base_path}}/assets/img/how-tos/portal-left-menu.png)
+1.  Login to the analytics dashboard (https://localhost:9643/analytics-dashboard/) and navigate to the Reports dashboard.
+
+    ![]({{base_path}}/assets/img/how-tos/analytics-dashboard.png)
     
-2.  Select a year and a month to generate the report for the respective month
+2.  Select a year and a month to generate the report for the respective month.
 
-    ![]({{base_path}}/assets/img/how-tos/useage-reports.png)
+    ![]({{base_path}}/assets/img/how-tos/useage-reports-320.png)
     
-3.  Select 'Generate' button to generate a pdf with the usage information
+3.  Select 'Download' button to get the generated pdf with the usage information.
 
-    ![]({{base_path}}/assets/img/how-tos/request-summary.png)
+    ![]({{base_path}}/assets/img/how-tos/request-summary-320.png)
 
 
