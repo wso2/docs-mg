@@ -109,6 +109,7 @@ nav:
         - Configure Caching: how-tos/configure-caching.md
         - Manage Microgateway APIs with WSO2 API Manager: how-tos/manage-microgateway-apis-with-wso2-api-manager.md
         - Adding Extension Points: how-tos/adding-extension-points.md
+        - Passing Enduser Attributes to the Backend Using JWT: how-tos/passing-enduser-attributes-to-the-backend-using-jwt.md
         - support-custom-claims-mapping: how-tos/support-custom-claims-mapping.md
     - Install and Setup:
         - Install on VM: install-and-setup/install-on-vm.md
