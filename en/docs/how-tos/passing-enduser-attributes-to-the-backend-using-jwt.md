@@ -32,7 +32,7 @@ After enabling JWT generation by setting `jwtGeneratorEnabled` configuration pro
 
 ### Extract backed token from the jwt access token
 
-When you are using JWT authentication, you can pass an already generated JWT token in the 'backendJwt' claim in the authentication JWT token. Therefore, if the authentication token consist the 'backendJwt' claim in the payload, the token will be set on to the [desired header](#setting-the-header-of-the-backend-request) when sending to the backend without a generation process.
+When you are using JWT authentication, you can pass an already generated JWT token in the 'backendJwt' claim in the authentication JWT token. Therefore, if the authentication token consist the `backendJwt` claim in the payload, value of the `backendJwt` claim will be set as the backend token in the [desired header](#setting-the-header-of-the-backend-request). This will avoid generating the JWT token within the gateway.
 
 ####Sample payload
 
