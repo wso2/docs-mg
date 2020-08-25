@@ -10,7 +10,7 @@ You need to define the throttling policy (or policies) in the `policies.yaml` fi
 
 **Defining a throttling policy**
 
-``` java
+``` yaml
 - 10kPerMin:
      count: 10000
      unitTime: 1
@@ -21,7 +21,7 @@ You need to define the throttling policy (or policies) in the `policies.yaml` fi
 
 **API level throttling policy**
 
-``` java
+``` yaml
 x-wso2-basePath: /petstore/v1
 x-wso2-throttling-tier: 10kPerMin
 x-wso2-production-endpoints:
@@ -33,7 +33,7 @@ x-wso2-production-endpoints:
 
 **Resource level throttling policy**
 
-``` java
+``` yaml
 paths:
   "/pet/findByStatus":
     get:
