@@ -1,7 +1,7 @@
 # Endpoint Types
 
 An Endpoint is a specific destination for a message such as an address, WSDL, a failover group, a load-balance group
- etc. WSO2 API Manager supports a range of different endpoint types, allowing the API Gateway to connect with
+ etc. WSO2 API Microgateway supports a range of different endpoint types, allowing the it to connect with
   advanced types of back-ends.
 
 |Type                     |Description                                                                                                                                                                                                                                                                                                                                                                                                       |
