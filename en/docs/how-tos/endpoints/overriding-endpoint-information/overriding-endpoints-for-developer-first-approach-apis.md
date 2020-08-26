@@ -2,7 +2,7 @@
 
 The following sections describe how you can override endpoint information for APIs that have been added to WSO2 API Microgateway using an OpenAPI definition.
 
-You need to define endpoints as endpoint objects in the OpenAPI definition in order to override endpoints at runtime. See [defining endpoint object]({{base_path}}/how-tos/defining-endpoints-in-an-openapi-definition/#endpoint-object).
+You need to define endpoints as endpoint objects in the OpenAPI definition in order to override endpoints at runtime. See [defining endpoint object]({{base_path}}/how-tos/endpoints/defining-endpoints-in-an-openapi-definition/#endpoint-object).
 
 ## Overriding a single endpoint
 
