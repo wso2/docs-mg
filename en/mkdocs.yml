@@ -58,6 +58,7 @@ nav:
           - Developer First APIs: concepts/developer-first-apis.md
           - Imported APIs: concepts/imported-apis.md
           - OpenAPI Extensions: concepts/openapi-extensions.md
+          - Event Hub and Subscription Validation Model: concepts/event-hub-and-subscription-validation.md
           - The Policy Hub: concepts/the-policy-hub.md
           - Caching: concepts/caching.md
     - How Tos:
