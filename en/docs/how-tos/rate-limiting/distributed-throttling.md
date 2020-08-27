@@ -1,7 +1,7 @@
 # Distributed Throttling
 
 WSO2 API Microgateway has an in-memory mechanism by default, to handle throttling
-([node-level throttling]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies)).  
+([node-level throttling](/how-tos/rate-limiting/adding-throttling-policies)).  
 In a deployment with multiple microgateways, throttling becomes a challenge with node local throttling as the throttling 
 decision is made based on the local counter within each node. If we proceed with the node local throttling in such 
 environment, the API user would be allowed to send multiples of the throttling limit.I.e. if the throttling limit is set to 10, 
@@ -11,6 +11,13 @@ supports distributed throttling where it is able to work with a central traffic 
 multiple microgateways can connect with WSO2 API Manager 
 ([WSO2 Traffic Manager](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/distributed-deployment/product-profiles/)) 
 and perform rate-limiting precisely.
+
+!!! note
+    The WSO2 Traffic Manager refers to the WSO2 API Manager running in 
+    [Traffic Manager Profile](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/distributed-deployment/product-profiles/). 
+    If you start the WSO2 API Manager without providing any profile, it runs as All in One Node (All the profiles 
+    are activated). For testing purposes, you can simply start the API Manager following quick start guide and test 
+    the distributed throttling feature using that.
 
 <!---TODO:@VirajSalaka Add concept page and mention it here--->
 <!---TODO:@VirajSalaka Update image (old) and add to concept page--->
@@ -33,14 +40,16 @@ and perform rate-limiting precisely.
 
 2.  Now let's add the API(open API definition) to the project. Navigate to the `/petstore/api_definitions` directory. 
     Add the API definition(s) to this directory. A sample open API definition can be found 
-    [here](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml) .
-
-    !!! note
-        If you need to add API level or resource level throttling policy, you have to [define the policy in the 
-        OpenAPI Definition]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies/#adding-an-api-level-throttling-policy). 
+    [here](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml). To provide an API 
+    Level throttling tier, add the following extension to the openAPI in root level.
     
-3.  The policies added in the OpenAPI definition should be deployed in the Traffic Manager. 
-The relevant documentation can be found [here](https://apim.docs.wso2.com/en/latest/learn/rate-limiting/adding-new-throttling-policies/#adding-a-new-advanced-throttling-policy).
+    ```text tab="Sample"
+    x-wso2-throttling-tier : "5PerMin"    
+    ```
+    
+3.  The policies added in the OpenAPI definition should be deployed in the Traffic Manager. (If you are adding the
+    tier "5PerMin" in openAPI definition, you need to create and deploy it in the Traffic Manager).
+    The relevant documentation can be found [here](https://apim.docs.wso2.com/en/3.2.0/learn/rate-limiting/adding-new-throttling-policies/#adding-a-new-advanced-throttling-policy).
 
 4.  Build the microgateway distribution for the project using the following command:
 
@@ -49,8 +58,8 @@ The relevant documentation can be found [here](https://apim.docs.wso2.com/en/lat
     ```
 
     ``` java tab="Example"
-    $ micro-gw build petstore
-      Build successful  for the project - petstore
+    micro-gw build petstore
+    Build successful  for the project - petstore
     ```
 
     Once the above command is executed, An executable file ( `/petstore/target/petstore.jar` ) is created to expose the API via WSO2 API Microgateway
@@ -126,7 +135,7 @@ The relevant documentation can be found [here](https://apim.docs.wso2.com/en/lat
         </tbody>
     </table>
     
-    The binary receiver URL/URLs need to be added as an Array using the key \[\[throttlingConfig.binary.URLGroup\]\]. 
+    The binary receiver URL(s) needs to be added as an Array using the key \[\[throttlingConfig.binary.URLGroup\]\]. 
     If multiple receivers are provided, the microgateway will publish events to all of them in parallel.
      
     <table>
