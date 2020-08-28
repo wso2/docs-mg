@@ -7,7 +7,7 @@ You can use JWT Generation in API Microgateway to send a customized JWT to the b
 
 ### Generating a JWT in Microgateway
 
-Microgateway defines an [AbstractMGWJWTGenerator class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/AbstractMGWJWTGenerator.java) to support developers to write custom JWT generator classes whereas they can extend this abstract class to implement their logic to generate the JWT. There are two abstract methods named `populateStandardClaims` and `populateCustomClaims` where you can write your logic to populate claims in the JWT. Furthermore, you have the capability to write your own logic overriding any of the current methods in the abstract class. 
+Microgateway defines an [AbstractMGWJWTGenerator class](https://github.com/wso2/product-microgateway/blob/master/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/AbstractMGWJWTGenerator.java) to support developers to write custom JWT generator classes whereas they can extend this abstract class to implement their logic to generate the JWT. There are two abstract methods named `populateStandardClaims` and `populateCustomClaims` where you can write your logic to populate claims in the JWT. Furthermore, you have the capability to write your own logic overriding any of the current methods in the abstract class.
 
 #### Writing a JWT generator
 
@@ -174,6 +174,69 @@ Outer `[jwtGeneratorConfig]` configuration contains the properties and the custo
 </tr>
 </tbody>
 </table>
+
+#### Adding Claims Retrieved from a remote endpoint
+
+If the user needs to retrieve user claims from a remote endpoint, the microgateway can be configured to support that 
+as well. The microgateway has an inbuilt implementation to get user claims from 
+`<WSO2 Key Manager URL>/keymanager-operations/user-info/claims/generate` endpoint. If you are willing to use the same 
+implementation, you can add the following configuration to the `micro-gw.conf` file.
+
+```toml
+[jwtGeneratorConfig.claimRetrieval]
+      retrieverImpl="org.wso2.micro.gateway.jwt.generator.MGWClaimRetrieverImpl"
+      [jwtGeneratorConfig.claimRetrieval.configuration]
+          # The User can provide any key-value pair here. These are the properties used by default.
+          # serverUrl = <Key Manager URL>
+          # username = <APIM Credentials Username>
+          # password = <APIM Credentials Password>
+```
+
+The `retrieveImpl` Key is used to provide the claim retriever Implementation. Since the value given here denotes an 
+inbuilt implementation, the user does not need to add any additional jar files to the project. Under the 
+`[jwtGeneratorConfig.claimRetrieval.configuration]`, the user can customize the properties as required. 
+
+In addition to that, it is required to enable claimRetrieval in `[[jwtTokenConfig]]` (per JWT issuer) and 
+`[keyManager]` Configurations based on user requirement. 
+
+``` toml tab="jwtTokenConfig"
+[[jwtTokenConfig]]
+    remoteUserClaimRetrievalEnabled = true
+```
+
+``` toml tab="keyManager"
+[keyManager]
+    remoteUserClaimRetrievalEnabled = true
+```
+
+!!! note
+    If you do not declare the `jwtGeneratorConfig.claimRetrieval.retrieverImpl` property in `micro-gw.conf`, 
+    the classloading operation will not happen within the microgateway. Hence, the claim retrieval process will 
+    not be executed.
+        
+
+There can be usecases where the user needs to come up with his/her own claim retrieval Implementation. In such 
+a scenario, the user needs to implement the specific class extended from 
+[AbstractMGWClaimRetriever](https://github.com/wso2/product-microgateway/blob/v3.2.0/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/AbstractMGWClaimRetriever.java) class.
+For that, the user can have the same maven dependency used for custom JWT Generation implementation. A sample 
+implementation is available [here](https://github.com/wso2/product-microgateway/tree/master/samples/sample-jwt-generator).
+In the end, you can add the corresponding jar file to the microgateway project's `/lib` directory prior to executing 
+`micro-gw build` command.
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.wso2.am.microgw</groupId>
+        <artifactId>mgw-jwt-generator</artifactId>
+        <version>3.2.0</version>
+    </dependency>
+</dependencies>
+```
+
+!!! note
+    Please note that if you have used any additional dependencies to the customized implementation, you may need to all
+    of them to the microgateway project's `/lib` directory. This is because If the microgateway could not find 
+    those dependencies within itself, the functionality will not be there.
 
 #### Setting the header of the backend request
 
