@@ -215,7 +215,7 @@ In addition to that, it is required to enable claimRetrieval in `[[jwtTokenConfi
     not be executed.
         
 
-There can be usecases where the user needs to come up with his/her own claim retrieval Implementation. In such 
+There can be usecases where the users need to come up with their own claim retrieval Implementation. In such 
 a scenario, the user needs to implement the specific class extended from 
 [AbstractMGWClaimRetriever](https://github.com/wso2/product-microgateway/blob/v3.2.0/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/AbstractMGWClaimRetriever.java) class.
 For that, the user can have the same maven dependency used for custom JWT Generation implementation. A sample 
