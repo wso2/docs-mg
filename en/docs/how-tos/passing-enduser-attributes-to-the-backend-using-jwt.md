@@ -234,7 +234,7 @@ In the end, you can add the corresponding jar file to the microgateway project's
 ```
 
 !!! note
-    Please note that if you have used any additional dependencies to the customized implementation, you may need to all
+    Please note that if you have used any additional dependencies to the customized implementation, you may need to add all
     of them to the microgateway project's `/lib` directory. This is because if the microgateway can't find 
     those dependencies within the project, the functionality will not be available.
 
