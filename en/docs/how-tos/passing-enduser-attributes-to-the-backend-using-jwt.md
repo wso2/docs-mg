@@ -235,7 +235,7 @@ In the end, you can add the corresponding jar file to the microgateway project's
 
 !!! note
     Please note that if you have used any additional dependencies to the customized implementation, you may need to all
-    of them to the microgateway project's `/lib` directory. This is because If the microgateway could not find 
+    of them to the microgateway project's `/lib` directory. This is because if the microgateway can't find 
     those dependencies within itself, the functionality will not be there.
 
 #### Setting the header of the backend request
