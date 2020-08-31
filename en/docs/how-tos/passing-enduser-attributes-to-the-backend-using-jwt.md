@@ -223,7 +223,7 @@ implementation is available [here](https://github.com/wso2/product-microgateway/
 In the end, you can add the corresponding jar file to the microgateway project's `/lib` directory prior to executing 
 `micro-gw build` command.
 
-```xml
+```xml tab="Maven dependency"
 <dependencies>
     <dependency>
         <groupId>org.wso2.am.microgw</groupId>
