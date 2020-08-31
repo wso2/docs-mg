@@ -103,7 +103,7 @@ and perform rate-limiting precisely.
         </tbody>
     </table>
     
-    The message broker connection URL. For e.g. a [WSO2 API instance can be used as the Traffic Manager](https://docs.wso2.com/display/AM260/Product+Profiles). 
+    The message broker connection URL. For e.g. a [WSO2 API instance can be used as the Traffic Manager](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/distributed-deployment/product-profiles/). 
     In such an instance, the URL will point to the message broker inside the API Traffic Manager instance.
     In the "micro-gw.conf" file under \[throttlingConfig.binary\], we should list down all the configurations related to
     event publishing.                   
