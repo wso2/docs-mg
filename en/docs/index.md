@@ -3,7 +3,7 @@ template: templates/single-column.html
 ---
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div>
-   <div class="md-main md-content leftContent">
+   <div class="md-main md-content leftContent" style="width:45%">
     <p>         
 
 **Welcome to WSO2 API Microgateway 3.2.0 Documentation!** [WSO2 API Microgateway](https://wso2.com/api-management/api-microgateway/) (WSO2 MGW) is an API Gateway for micro services, which is cloud-native, decentralized and developer centric.
@@ -14,7 +14,9 @@ To learn more, [get started with WSO2 API Microgateway]({{base_path}}/getting-st
 </p> 
    </div>
    <div class="md-main md-content rightImage">
-   [ ![](assets/img/api-mg-overview.png) ](assets/img/api-mg-overview.png)
+           <a href='assets/img/api-mg-overview.png'>
+               <img src='assets/img/api-mg-overview.png' height="370" width="750" alt="WSO2 API Microgateway Overview" />
+           </a>
 </a>
    </div>
 </div>
