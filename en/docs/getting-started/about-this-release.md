@@ -30,6 +30,14 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
 
 - **Integrate with multiple Key Managers**
    WSO2 API Microgateway 3.2.0,  is able to integrate with other key managers in addition to the WSO2 API Manager Key Manager.
+   
+- **Support reading open API definition in interceptors**
+   
+- **Support reading configurations from java interceptors**
+
+- **Mutual SSL support per API**
+
+- **Binary publisher to support publishing to multiple TMs** 
 
 
 ### Fixed issues
