@@ -70,7 +70,7 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
     For more information, visit [JWT Token Revocation](how-tos/security/jwt-token-revocation/#jwt-token-revocation).
     
     
-    [More in 3.2.0 Improvements](https://github.com/wso2/product-microgateway/issues?q=is%3Aissue+project%3Awso2%2Fproduct-microgateway%2F9+is%3Aclosed+label%3AType%2FImprovement)
+-   [More in 3.2.0 Improvements](https://github.com/wso2/product-microgateway/issues?q=is%3Aissue+project%3Awso2%2Fproduct-microgateway%2F9+is%3Aclosed+label%3AType%2FImprovement)
 
 ### Fixed issues
 
