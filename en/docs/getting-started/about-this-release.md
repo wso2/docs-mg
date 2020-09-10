@@ -74,8 +74,8 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
 
 ### Fixed issues
 
-[WSO2 API Microgateway 3.2.0 - Fixed Issues in the product-microgateway GitHub repository.](https://github.com/wso2/product-microgateway/issues?q=is%3Aissue+project%3Awso2%2Fproduct-microgateway%2F9+is%3Aclosed+label%3AType%2FBug+)
+WSO2 API Microgateway 3.2.0 - [Fixed Issues](https://github.com/wso2/product-microgateway/issues?q=is%3Aissue+project%3Awso2%2Fproduct-microgateway%2F9+is%3Aclosed+label%3AType%2FBug+)
 
 ### Known issues
 
-[WSO2 API Microgateway 3.2.0 - Known Issues in the product-microgateway GitHub repository](https://github.com/wso2/product-microgateway/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue)
+WSO2 API Microgateway 3.2.0 - [Known Issues](https://github.com/wso2/product-microgateway/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue)
