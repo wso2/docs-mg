@@ -64,6 +64,12 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
 
 -   **Integrate with Third Party Key Managers**
     WSO2 API Microgateway 3.2.0,  is able to integrate with other key manager including the WSO2 API Manager Key Manager.
+    
+-   **JWT Revocation with WSO2 API Manager**   
+    WSO2 API Microgateway has ability to persist revoked access tokens inside WSO2 API Manager (Traffic Manager). 
+    For more information, visit [JWT Token Revocation](how-tos/security/jwt-token-revocation/#jwt-token-revocation).
+    
+    [More in 3.2.0 Improvements](https://github.com/wso2/product-microgateway/issues?q=is%3Aissue+project%3Awso2%2Fproduct-microgateway%2F9+is%3Aclosed+label%3AType%2FImprovement)
 
 ### Fixed issues
 
