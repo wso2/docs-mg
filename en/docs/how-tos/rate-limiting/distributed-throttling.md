@@ -59,7 +59,6 @@ and perform rate-limiting precisely.
 
     ``` java tab="Example"
     micro-gw build petstore
-    Build successful  for the project - petstore
     ```
 
     Once the above command is executed, An executable file ( `/petstore/target/petstore.jar` ) is created to expose the API via WSO2 API Microgateway
