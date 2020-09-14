@@ -5,7 +5,7 @@ WSO2 API Microgateway has an in-memory mechanism by default, to handle throttlin
 In a deployment with multiple microgateways, throttling becomes a challenge with node local throttling as the throttling 
 decision is made based on the local counter within each node. If we proceed with the node local throttling in such 
 environment, the API user would be allowed to send multiples of the throttling limit.I.e. if the throttling limit is set to 10, 
-if we have 3 gateways in a cluster, it will allow 30 requests to pass to the backend, before all three gateways 
+if we have 3 gateways in a cluster, it will allow 30 requests to pass to the backend before all three gateways 
 throttle out requests. This will put an unexpected load on the backend. To address this requirement, the API Microgateway 
 supports distributed throttling where it is able to work with a central traffic management solution. In this case, 
 multiple microgateways can connect with WSO2 API Manager 
