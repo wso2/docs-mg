@@ -41,7 +41,7 @@ and perform rate-limiting precisely.
 2.  Now let's add the API(open API definition) to the project. Navigate to the `/petstore/api_definitions` directory. 
     Add the API definition(s) to this directory. A sample open API definition can be found 
     [here](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml). To provide an API 
-    Level throttling tier, add the following extension to the openAPI in root level.
+    Level throttling tier, add the following extension to the openAPI at the root level.
     
     ```text tab="Sample"
     x-wso2-throttling-tier : "5PerMin"    
