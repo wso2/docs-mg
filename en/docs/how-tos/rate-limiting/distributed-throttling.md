@@ -24,7 +24,7 @@ and perform rate-limiting precisely.
 
 ### Enabling distributed throttling
 
-1.  Lets create a microgateway project.
+1.  Let's create a microgateway project.
 
     1. Navigate to a preferred workspace folder using the command line. (This location is used to run the Microgateway commands and to generate Microgateway artifacts.)
     2. Create a project using the command given below,
