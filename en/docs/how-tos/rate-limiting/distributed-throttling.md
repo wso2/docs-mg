@@ -68,7 +68,7 @@ and perform rate-limiting precisely.
 
 6.  Enable the `enabledGlobalTMEventPublishing` property found inside the `throttlingConfig` tag. This will allow the API Microgateway to connect with the central traffic manager.
 
-    ``` java
+    ``` toml
     [throttlingConfig]
     enabledGlobalTMEventPublishing=true
     ```
