@@ -9,15 +9,13 @@ if we have 3 gateways in a cluster, it will allow 30 requests to pass to the bac
 throttle out requests. This will put an unexpected load on the backend. To address this requirement, the API Microgateway 
 supports distributed throttling where it is able to work with a central traffic management solution. In this case, 
 multiple microgateways can connect with WSO2 API Manager 
-([WSO2 Traffic Manager](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/distributed-deployment/product-profiles/)) 
+([WSO2 Traffic Manager](https://apim.docs.wso2.com/en/3.2.0/install-and-setup/setup/distributed-deployment/product-profiles/)) 
 and perform rate-limiting precisely.
 
 !!! note
-    The WSO2 Traffic Manager refers to the WSO2 API Manager running in 
-    [Traffic Manager Profile](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/distributed-deployment/product-profiles/). 
     If you start the WSO2 API Manager without providing any profile, it runs as All in One Node (All the profiles 
-    are activated). For testing purposes, you can simply start the API Manager following quick start guide and test 
-    the distributed throttling feature using that.
+    are activated). For testing purposes, you can simply start the API Manager following the 
+    [quick start guide](https://apim.docs.wso2.com/en/3.2.0/getting-started/quick-start-guide/) and test.
 
 <!---TODO:@VirajSalaka Add concept page and mention it here--->
 <!---TODO:@VirajSalaka Update image (old) and add to concept page--->
