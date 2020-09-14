@@ -166,7 +166,7 @@ and perform rate-limiting precisely.
     
 9.  Finally the added configurations in `microgw.conf` would look like this. 
     
-    ``` text tab="Sample Configuration"
+    ``` toml tab="Sample Configuration"
     [throttlingConfig]
         enabledGlobalTMEventPublishing=true
         jmsConnectionProviderUrl = "amqp://admin:admin@carbon/carbon?brokerlist='tcp://localhost:5672'"
