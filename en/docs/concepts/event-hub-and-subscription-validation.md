@@ -19,7 +19,7 @@ The following are the data stores that are being used.
 
 1. Validate the token and get the consumer key (using the aud claim of JWT or introspection response).
 2. Check in the Application Key Mapping Data store and get the Application Id for the consumer key.
-3. If the Application Key Mapping is not found, invkoe the internal data Api and retrieve the application key mapping information.
+3. If the Application Key Mapping is not found, invoke the internal data API and retrieve the application key mapping information.
 4. If An entry is not found for the consumer key, the subscription validation is considered failed.
 5. Get the API information from the API data store. (API id)
 6. Get subscription information for API id and application id from the subscription data store.
