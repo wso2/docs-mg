@@ -36,7 +36,7 @@ Microgateway uses the below methods to fetch API and subscription-related data f
 - Internal Data REST API
 - JMS Topic
 
-The Internal Data API (```https://<APIM_HOST>:<PORT>/internal/data/v1```) is a REST API exposed in WSO2 API Manager to retrieve data related to APIs, Applications and subscriptions etc. During the startup, Microgateway invokes this API to fetch the already published API and subscription data of the configured tenant.
+The Internal Data API (```https://<APIM_HOST>:<PORT>/internal/data/v1```) is a REST API exposed in WSO2 API Manager to retrieve data related to APIs, Applications, subscriptions, etc. During the startup, Microgateway invokes this API to fetch the already published API and subscription data of the configured tenant.
 
 For new API Creations and Subscription creations, API Manager publishes an event through a JMS topic. Microgateways, which are subscribed to the topic, update the in-memory data stores when the event is received.
 
