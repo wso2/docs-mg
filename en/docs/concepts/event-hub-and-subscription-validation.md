@@ -12,7 +12,7 @@ The following are the data stores that are being used.
 |----------|-----------|
 |Application Key Mapping Data Store|Holds the consumer key and the corresponding applicatioId of Oauth applications created in API Manager|
 |Application Data Store|Stores information about the Applications (id, application throttling policy, etc)|
-|API Data Store|Stores API information (API Name, Version, Owner etc)|
+|API Data Store|Stores API information (API Name, Version, Owner, etc)|
 |Subscription Data Store|Stores API Subscription data. (API id, subscribed app id, subscription status, subscription policy)|
 
 ### Subscription Validation Process
