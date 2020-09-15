@@ -1,6 +1,6 @@
 # Adding Throttling Policies
 
-A rate limiting policy can be specified for a resource or for an API using the `x-wso2-throttling-tier` OpenAPI extension. You need to define the policy (or policies) in the `policies.yaml` file, which is in the `<MGW-project>` directory. A set of policies are available by default. However, you can add custom policies to the file and refer to them by name via the OpenAPI definition. If you simultaneously define a throttling policy at the API level **and** at the resource level, the resource level policy will be applied as the resource level policy will override the API level policy.
+A rate limiting policy can be specified for a resource or for an API using the `x-wso2-throttling-tier` OpenAPI extension. You need to define the policy (or policies) in the `policies.yaml` file, which is in the `<MGW-project>` directory. A set of policies are available by default. However, you can add custom policies to the file and refer to them by name via the OpenAPI definition. If you simultaneously define a throttling policy at the API level and at the resource level, the API level policy will be applied as the API level policy will override the resource level policy.
 
 The following sub sections explain as to how you can work with OpenAPI extensions to add custom API level and/or resource level throttling policies.
 
@@ -10,7 +10,7 @@ You need to define the throttling policy (or policies) in the `policies.yaml` fi
 
 **Defining a throttling policy**
 
-``` java
+``` yaml
 - 10kPerMin:
     count: 10000
     unitTime: 1
@@ -21,7 +21,7 @@ You need to define the throttling policy (or policies) in the `policies.yaml` fi
 
 **API level throttling policy**
 
-``` java
+``` yaml
 x-wso2-basePath: /petstore/v1
 x-wso2-throttling-tier: 10kPerMin
 x-wso2-production-endpoints:
@@ -33,7 +33,7 @@ x-wso2-production-endpoints:
 
 **Resource level throttling policy**
 
-``` java
+``` yaml
 paths:
   "/pet/findByStatus":
     get:
