@@ -25,7 +25,7 @@ The following are the data stores that are being used.
 6. Get subscription information for API id and application id from the subscription data store.
 7. If the subscription data is not found, invoke the internal data api and fetch any subscription data available.
 8. If subscription data is not found (in data stores and api manager) then, the subscription is considered failed.
-9. If subscription is found, then the relevent data is populated into the internal context for other functions (analytics data, throttling etc)
+9. If a valid subscription is found, then the relevant data is populated into the internal context for other functions (analytics data, throttling, etc)
 
 ## The Event Hub
 
