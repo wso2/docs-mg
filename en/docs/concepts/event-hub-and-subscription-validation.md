@@ -6,7 +6,7 @@ When using WSO2 API Manager as the key manager with Microgateway, it can be conf
 
 Subscriptions are validated in the Microgateway itself using a set of internal data stores. These data stores contain APIs, Applications, and Subscription related information.
 
-Following are the data stores that are being used.
+The following are the data stores that are being used.
 
 |Data Store|Description|
 |----------|-----------|
