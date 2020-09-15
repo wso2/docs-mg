@@ -42,7 +42,7 @@ For new API Creations and Subscription creations, API Manager publishes an event
 
 ### Event Hub Configuration
 
-``` yml
+``` toml
 [apim.eventHub]
   enable = true
   service_url = "https://localhost:9443"
