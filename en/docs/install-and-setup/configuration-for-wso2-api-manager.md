@@ -68,7 +68,7 @@ Follow the instructions below to configure the WSO2 Microgateway Toolkit and th
     For example, to configure the JWT authentication for API Manager JWTs, add the following JWT issuer configuration to the `micro-gw.conf` .
 
 
-    ```tab="Example"
+    ```yaml tab="Format"
         [[jwtTokenConfig]]
             issuer="https://localhost:9443/oauth2/token"
             audience="http://org.wso2.apimgt/gateway"
@@ -84,7 +84,7 @@ When you use Microgateway 3.2.0 runtime with older versions of WSO2 API Manager 
 
 #### Enable Legacy Key Manager
 
-```tab="Example"
+```yaml tab="Example"
     [keyManager]
     enableLegacyMode = true
 ```
@@ -93,7 +93,7 @@ This enables using the API Manager key validation service for opaque token valid
 
 #### Disable Event Hub Configuration
 
-```tab="Example"
+```yaml tab="Example"
     [apim.eventHub]
     enable = false
 ```
@@ -102,21 +102,21 @@ Apim Event hub is used for retrieving API, Application and subscription created 
 
 #### Change the Throttling Server URL
 
-```tab="Example"
+```yaml tab="Format"
     [throttlingConfig.dataRetriever]
-    serverUrl = "https://{API-M_HOST}:{API-M_PORT}/throttle/data/v1"
+    serverUrl = "https://<API-M_HOST>:<API-M_PORT>/throttle/data/v1"
 ```
 
 #### Change the Token Revocation Endpoint URL
 
-```tab="Example"
+```yaml tab="Format"
     [tokenRevocationConfig.persistent]
-    endpointURL = "https://{API-M_HOST}:{API-M_PORT}/throttle/data/v1"
+    endpointURL = "https://<API-M_HOST>:<API-M_PORT>/throttle/data/v1"
 ```
 
 #### Set the Analytics Stream Version
 
-```tab="Example"
+```yaml tab="Example"
     [analytics]
     streamVersion = "3.0.0"`
 ```
