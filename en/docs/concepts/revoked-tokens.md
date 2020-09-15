@@ -1,18 +1,18 @@
 # Revoked Tokens
 
-There are two usecase where API Microgateway needs to know when a token is revoked by the Security Token Service (STS).
+The API Microgateway is required to be notified when a token is revoked by the Security Token Service (STS) in the following two instances.
 
 1. When the API Microgateway is working with JWT formatted self-contained access tokens, it does not communicate with the STS for checking the validity of the token. It considers any token with a trusted signature as valid as long as the token is not expired. However, this model becomes a problem when the respective token is revoked by the STS. As a result, there needs to be a mechanism where the API Microgateway gets notified when a token is revoked before its expiry.
 2. When the API Microgateway is authenticating requests using opaque (reference) tokens, it communicates with STS to validate the tokens. However if a token is revoked in the STS, API Microgateway doesn't get to know that token is revoked until token cache is expired. In other words, API Microgateway will allow to use revoked token until the token cache is expired. To avoid this, API Microgateway needs to get notified when a token is revoked by the STS.
 
-WSO2 API Microgateway uses Real-time and Persistent Notifications to identify tokens that are revoked before their expiry. Real-time Notifications help you identify such revoked tokens in real-time after a the WSO2 API Microgateway server has spun up. In contrast, when using Persistent notifications, the persistent storage maintains a current list of the revoked tokens, so this will help new WSO2 API Microgateway servers that spin up to obtain information with regard to revoke tokens that were revoked previously, which still have not expired. You can configure WSO2 API Microgateway to use both Real-time and Persistent Notifications together or separately. However, WSO2 recommends that you enable both Real-time and Persistent Notifications so that WSO2 API Microgateway can have a holist view of all the tokens that have been revoked before their expiry period.
+WSO2 API Microgateway uses Real-time and Persistent Notifications to identify tokens that are revoked before their expiry. Real-time Notifications help you identify such revoked tokens in real-time after the WSO2 API Microgateway server has spun up. In contrast, when using Persistent notifications, the persistent storage maintains a current list of the revoked tokens. This will help new WSO2 API Microgateway servers that spin up to obtain information about the previously revoked tokens, which still have not expired. You can configure WSO2 API Microgateway to use both Real-time and Persistent Notifications together or separately. However, WSO2 recommends that you enable both Real-time and Persistent Notifications so that WSO2 API Microgateway can have a holist view of all the tokens that have been revoked before their expiry period.
 
 ### Methods to detect JWT token revocation
 
 - [Real-time Notifier](#real-time-notifier)
 - [Persistent Notifier](#persistent-notifier)
 
-![JWT revocation]({{base_path}}/assets/img/how-tos/jwt-revocation.png)
+[![JWT revocation]({{base_path}}/assets/img/how-tos/jwt-revocation.png)]({{base_path}}/assets/img/how-tos/jwt-revocation.png)
 
 #### Real-time Notifier
 
