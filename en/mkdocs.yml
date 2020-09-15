@@ -58,6 +58,7 @@ nav:
           - Developer First APIs: concepts/developer-first-apis.md
           - Imported APIs: concepts/imported-apis.md
           - OpenAPI Extensions: concepts/openapi-extensions.md
+          - Event Hub and Subscription Validation Model: concepts/event-hub-and-subscription-validation.md
           - The Policy Hub: concepts/the-policy-hub.md
           - Caching: concepts/caching.md
           - Revoked Tokens: concepts/revoked-tokens.md
@@ -125,6 +126,7 @@ nav:
         - Install on Docker: install-and-setup/install-on-docker.md
         - Install on Kubernetes: install-and-setup/install-on-kubernetes.md
         - Configuration for WSO2 API Manager: install-and-setup/configuration-for-wso2-api-manager.md
+        - Migrating from Previous Versions : install-and-setup/migrating-from-previous-versions.md
     - Troubleshooting:
         - Troubleshooting the Microgateway: troubleshooting/troubleshooting.md
         - Adding Debug Logs: troubleshooting/adding-debug-logs.md
