@@ -33,7 +33,6 @@ and perform rate-limiting precisely.
 
            ``` java tab="Example"
            micro-gw init petstore  
-           Project 'petstore' is initialized successfully.
            ```
 
 2.  Now let's add the API(open API definition) to the project. Navigate to the `/petstore/api_definitions` directory. 
