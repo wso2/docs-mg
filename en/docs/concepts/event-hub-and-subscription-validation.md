@@ -31,7 +31,7 @@ The following are the data stores that are being used.
 
 Event Hub is the endpoint configuration which is used to fetch API, Application and Subscription data from WSO2 API Manager.
 
-Microgateway uses below methods to fetch API and subscription-related data from API Manager.
+Microgateway uses the below methods to fetch API and subscription-related data from API Manager.
 
 - Internal Data REST API
 - JMS Topic
