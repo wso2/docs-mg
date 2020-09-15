@@ -3,7 +3,7 @@
 Microgateway consists of main two distributions.
 
 - Microgateway Toolkit : Used to build the Microgateway project and generate the Microgateway executable.
-- Microgateway Runtime : Run the Microgateway executable built with the toolkit applying the requried configurations.
+- Microgateway Runtime : Run the Microgateway executable built with the toolkit applying the required configurations.
 
 Each Microgateway version has it's own toolkit and runtime. And the Migrogateway executable which is built from specific toolkit version is specific only to that Microgateway version.
 
