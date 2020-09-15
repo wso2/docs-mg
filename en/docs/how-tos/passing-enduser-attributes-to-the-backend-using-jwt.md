@@ -216,7 +216,7 @@ In addition to that, it is required to enable claimRetrieval in `[[jwtTokenConfi
     not be executed.
         
 
-There can be usecases where the user needs to come up with his/her own claim retrieval Implementation. In such 
+There can be usecases where the users need to come up with their own claim retrieval Implementation. In such 
 a scenario, the user needs to implement the specific class extended from 
 [AbstractMGWClaimRetriever](https://github.com/wso2/product-microgateway/blob/v3.2.0/components/micro-gateway-jwt-generator/src/main/java/org/wso2/micro/gateway/jwt/generator/AbstractMGWClaimRetriever.java) class.
 For that, the user can have the same maven dependency used for custom JWT Generation implementation. A sample 
@@ -224,7 +224,7 @@ implementation is available [here](https://github.com/wso2/product-microgateway/
 In the end, you can add the corresponding jar file to the microgateway project's `/lib` directory prior to executing 
 `micro-gw build` command.
 
-```xml
+```xml tab="Maven dependency"
 <dependencies>
     <dependency>
         <groupId>org.wso2.am.microgw</groupId>
@@ -235,9 +235,9 @@ In the end, you can add the corresponding jar file to the microgateway project's
 ```
 
 !!! note
-    Please note that if you have used any additional dependencies to the customized implementation, you may need to all
-    of them to the microgateway project's `/lib` directory. This is because If the microgateway could not find 
-    those dependencies within itself, the functionality will not be there.
+    Please note that if you have used any additional dependencies to the customized implementation, you may need to add all
+    of them to the microgateway project's `/lib` directory. This is because if the microgateway can't find 
+    those dependencies within the project, the functionality will not be available.
 
 ### Setting the authentication header of the backend request
 
