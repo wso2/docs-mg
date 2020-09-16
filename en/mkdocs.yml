@@ -61,6 +61,7 @@ nav:
           - Event Hub and Subscription Validation Model: concepts/event-hub-and-subscription-validation.md
           - The Policy Hub: concepts/the-policy-hub.md
           - Caching: concepts/caching.md
+          - Revoked Tokens: concepts/revoked-tokens.md
     - How Tos:
         - Adding APIs:
             - Using an OpenAPI Definition: how-tos/adding-apis/using-an-openapi-definition.md
@@ -110,7 +111,7 @@ nav:
             - Enabling CORS: how-tos/security/enabling-cors.md
             - API Key Security Token Service: how-tos/security/api-key-security-token-service.md
             - Use a Custom Authorization Header: how-tos/security/use-a-custom-authorization-header.md
-            - JWT Token Revocation: how-tos/security/jwt-token-revocation.md
+            - Rejecting revoked tokens: how-tos/security/rejecting-revoked-tokens.md
             - Importing Certificates to the API Microgateway Truststore: how-tos/security/importing-certificates-to-the-api-microgateway-truststore.md
             - Define Security using extension: how-tos/security/define-security-using-extension.md
         - Analytics for Microgateway: how-tos/analytics-for-microgateway.md
