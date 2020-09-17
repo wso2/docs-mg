@@ -11,16 +11,17 @@ Follow the instructions below to install the WSO2 API Microgateway related binar
 
 2.  Extract the archive file to a dedicated directory for the WSO2 API Microgateway Toolkit, which will hereafter be referred to as `<MGW-TK_HOME>`.
     
-3.  Append the full path of the `/bin` folder of the extracted WSO2 API Microgateway toolkit distribution to the PATH environment variable.
+3.  Append the full path of the `/bin` directory of the extracted WSO2 API Microgateway toolkit distribution to the PATH environment variable.
     This allows you to run the WSO2 API Microgateway toolkit related commands from any directory location.
-    
-    #### Setup toolkit path in Linux/MacOS
-    
+    <details>
+    <summary>Click here for more instructions on configure path variable in your OS.</summary>  
+    **Setup toolkit path in Linux/MacOS**
+    1. Execute the following in your terminal.
     ``` java tab="Format"
         export PATH=$PATH:<extracted_toolkit_location>/bin
     ```
     
-    #### Setup toolkit path in Windows
+    **Setup toolkit path in Windows**
 
     Use one of the following approaches to define the paths.
     
@@ -35,7 +36,7 @@ Follow the instructions below to install the WSO2 API Microgateway related binar
         !!! note
             The steps involved in setting the environment variables may vary based on the version of your Windows OS.
     
-        1.  Copy the path to the Microgateway Toolkit `bin` folder (`<path-to-wso2am-micro-gw-toolkit>\bin`).
+        1.  Copy the path to the Microgateway Toolkit `bin` directory (`<path-to-wso2am-micro-gw-toolkit>\bin`).
         
         2.  Click **Edit the system preferences**.
         
@@ -49,10 +50,10 @@ Follow the instructions below to install the WSO2 API Microgateway related binar
         
             ![]({{base_path}}/assets/img/install-and-setup/select-path-system-var.png)    
         
-        5.  Click **New,** add the path of the Microgateway Toolkit `bin` folder that you copied previously and click **OK** three times to save the newly added system variable.
+        5.  Click **New,** add the path of the Microgateway Toolkit `bin` directory that you copied previously and click **OK** three times to save the newly added system variable.
     
             ![]({{base_path}}/assets/img/install-and-setup/add-new-variable.png)
-            
+    </details>    
 4.  Optionally, [configure WSO2 API Microgateway Toolkit with WSO2 API Manager 3.2.0]({{base_path}}/install-and-setup/configuration-for-wso2-api-manager/#configuring-the-microgateway-32x-toolkit) .
 
     !!! note
@@ -72,16 +73,17 @@ Follow the instructions below to install the WSO2 API Microgateway related binar
 
 3.  Extract the archive file to a dedicated directory for the WSO2 API Microgateway **Runtime**, which will hereafter be referred to as `<MGW_HOME>`.
 
-4.  Append the full path of the `/bin` folder of the extracted WSO2 API Microgateway distribution to the PATH environment variable.
+4.  Append the full path of the `/bin` directory of the extracted WSO2 API Microgateway distribution to the PATH environment variable.
     This allows you to run the WSO2 API Microgateway distribution-related commands from any directory location.
-
-    #### Setup runtime path in Linux/MacOS
+    <details>
+    <summary>Click here for more instructions on configure path variable in your OS.</summary>  
+    **Setup runtime path in Linux/MacOS**
     
     ``` java tab="Format"
     export PATH=$PATH:<extracted_distribution_location>/bin
     ```
         
-    #### Setup runtime path in Windows
+    **Setup runtime path in Windows**
     
     Use one of the following approaches to define the paths.
 
@@ -92,7 +94,7 @@ Follow the instructions below to install the WSO2 API Microgateway related binar
         ```
 
     2.  Set the Microgateway runtime distribution path using the UI in Windows.
-
+    </details>
 5.  Optionally, [configure WSO2 API Microgateway Runtime with WSO2 API Manager 3.2.0]({{base_path}}/install-and-setup/configuration-for-wso2-api-manager/#configuring-the-microgateway-32x-runtime) .
 
 !!! note
