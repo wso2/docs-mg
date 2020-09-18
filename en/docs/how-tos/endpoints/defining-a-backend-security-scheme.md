@@ -2,7 +2,7 @@
 
 ### Defining a security scheme
 
-The security scheme used for the API must be defined via the `securityConfig` section in the API definition. By default, WSO2 API Microgateway supports OAuth2. The following is an example of how you can define the security scheme as "basic". Multiple security schemes can be defined. For more information on security schemes see [Defining securitySchemes](https://swagger.io/docs/specification/authentication/) .
+The security scheme used for the API must be defined in the `securityConfig` section in the API definition. By default, WSO2 API Microgateway supports OAuth2. The following is an example of how you can define the security scheme as "basic". Multiple security schemes can be defined. For more information on security schemes see [Defining securitySchemes](https://swagger.io/docs/specification/authentication/) .
 
 **Define security scheme**
 
@@ -14,7 +14,7 @@ securityConfig:
 
 #### Specifying basic authentication for API / resource level backend endpoints
 
-When an actual backend service of the API is protected using basic authentication, the basic authentication parameters (username and password) must be sent to the backend. Due to the latter mentioned reason, you need to define the endpoint security parameter in the OpenAPI using extensions. After you have defined the endpoint(s) using the `x-wso2-endpoints` extension, an API level or resource level endpoint will be able to refer to the defined endpoint. You need to define a name for the extension when defining an endpoint using the `x-wso2-endpoints` extension. The extension name that you specify will be used to pass the password when running WSO2 API Microgateway. The following is a sample on how to define and use endpoints by reference.
+When an actual backend service of the API is protected using basic authentication, the basic authentication parameters (username and password) must be sent to the backend. Hence, you need to define the endpoint security parameter in the OpenAPI using extensions. After you have defined the endpoint(s) using the `x-wso2-endpoints` extension, an API level or resource level endpoint will be able to refer to the defined endpoint. You need to define a name for the extension when defining an endpoint using the `x-wso2-endpoints` extension. The extension name that you specify will be used to pass the password when running WSO2 API Microgateway. The following is a sample on how to define and use endpoints by reference.
 
 **Define and refer endpoints**
 
@@ -67,6 +67,5 @@ bash gateway petstore.jar --myEndpoint3_prod_basic_username=admin --myEndpoint3_
 ```
 
 !!! note 
-    If you do not specify a username, the username that you defined in the API definition, which you specified during the API implementation, is used.
-
+    If a username is not specified, the username defined in the API Definition section while implementing the API, will be used.
 

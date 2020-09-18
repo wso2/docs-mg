@@ -2,9 +2,6 @@
 
 Follow the instructions below to install the WSO2 API Microgateway related binary distributions, namely WSO2 Microgateway Toolkit and WSO2 Microgateway Runtime.
 
--   [Microgateway Toolkit](#InstallonVM-MicrogatewayToolkit)
--   [Microgateway Runtime](#InstallonVM-MicrogatewayRuntime)
-
 ### Microgateway Toolkit
 
 1.  Download the [WSO2 API Microgateway toolkit distribution](https://wso2.com/api-management/api-microgateway/).
@@ -17,6 +14,7 @@ Follow the instructions below to install the WSO2 API Microgateway related binar
     <summary>Click here for more instructions on configure path variable in your OS.</summary>  
     **Setup toolkit path in Linux/MacOS**
     1. Execute the following in your terminal.
+    
     ``` java tab="Format"
         export PATH=$PATH:<extracted_toolkit_location>/bin
     ```
@@ -54,10 +52,7 @@ Follow the instructions below to install the WSO2 API Microgateway related binar
     
             ![]({{base_path}}/assets/img/install-and-setup/add-new-variable.png)
     </details>    
-4.  Optionally, [configure WSO2 API Microgateway Toolkit with WSO2 API Manager 3.2.0]({{base_path}}/install-and-setup/configuration-for-wso2-api-manager/#configuring-the-microgateway-32x-toolkit) .
-
-    !!! note
-        This is only applicable if you are working with WSO2 API Manager 3.2.0.
+4.  Optionally, [configure WSO2 API Microgateway Toolkit with WSO2 API Manager 3.2.0]({{base_path}}/install-and-setup/configuration-for-wso2-api-manager/#configuring-the-microgateway-32x-toolkit).
 
 ### Microgateway Runtime
 
@@ -96,8 +91,3 @@ Follow the instructions below to install the WSO2 API Microgateway related binar
     2.  Set the Microgateway runtime distribution path using the UI in Windows.
     </details>
 5.  Optionally, [configure WSO2 API Microgateway Runtime with WSO2 API Manager 3.2.0]({{base_path}}/install-and-setup/configuration-for-wso2-api-manager/#configuring-the-microgateway-32x-runtime) .
-
-!!! note
-    This is only applicable if you are working with WSO2 API Manager 3.2.0.
-
-
