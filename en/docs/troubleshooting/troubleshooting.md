@@ -1,6 +1,6 @@
 # Troubleshooting
 
-When errors/exceptions occur in the system, the API Microgateway throws error responses to the client by default. The following sections explain about the different ways of troubleshooting common problems that might occur while you use the Microgateway.
+When errors/exceptions occur in the system, the API Microgateway throws error responses to the client by default. The following sections explain the different ways of troubleshooting common problems that might occur while you use the Microgateway.
 
 ### Common exceptions and solutions
 
@@ -17,17 +17,17 @@ The table below shows the common exceptions that might occur when you are trying
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>                  micro-gw: Error occurred while trying to connect with server. Is the server running at                                     https://localhost:9443?                                   </code></td>
 <td><p>The API Manager node (Publisher) is down when running the setup command in the Microgateway.</p></td>
 <td>Verify the connectivity between the Microgateway and the API manager node.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>                  Micro-gw: ERROR [src:0.0.0] - Error in client response : {message:&quot;Connection refused: localhost/127.0.0.1:8080&quot;, cause:null}                 </code></td>
 <td>Connection to the backend is refused.</td>
 <td>Check the connection to the backend.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>                  error [docker plugin]: Unable to build docker image: {&quot;message&quot;:&quot;invalid reference format: repository name must be lowercase&quot;}                 </code></td>
 <td><p>The name of the docker images should be in lower case.</p>
 <p>When building the project with docker annotations, the docker image name is retrieved from the API name and version. If the API name contains a capital letter, then the docker image n ame would reflect that, resuling in this error.</p>
@@ -57,7 +57,7 @@ When building the API microgateway project, provide a simple letter name for the
 </p>
 </div></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><code>                   ERROR [wso2/gateway:0.0.0] - Error occurred while reading the key validation response : {message:&quot;Connection refused: localhost/127.0.0.1:9443&quot;, cause:null}                  </code><br />
 <code>                   ERROR [wso2/gateway:0.0.0] - Error occurred while converting the authorized value from the key validation response to a                  </code><br />
 <code>                   string value : {message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}                  </code></p>
@@ -65,7 +65,7 @@ When building the API microgateway project, provide a simple letter name for the
 <td>The Microgateway could not connect to the Key Manager for OAuth2 key validation.</td>
 <td>Check the connection between the Microgateway and the Key Manager.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>                  ERROR [wso2/gateway:0.0.0] - Error occurred while reading the key validation response : {message:&quot;General SSLEngine problem/192.168.8.101:9443&quot;, cause:null}                 </code><br />
 <code>                  ERROR [wso2/gateway:0.0.0] - Error occurred while converting the authorized value from the key validation response to a                 </code><br />
 <code>                  string value : {message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}                 </code></td>
@@ -77,7 +77,7 @@ The <code>                   localhost                  </code> hostname is supp
 You need to add the public certificate of the Key Manager to the Microgateway truststore. Also, make sure that you change the <code>                   certificateAlias                  </code> accordingly.
 </div></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>                  ERROR [ballerina/http] - Error while validating JWT token : {message:&quot;Invalid signature&quot;, cause:null}                 </code></td>
 <td>JWT signature verification has failed.</td>
 <td><div>
@@ -91,24 +91,23 @@ Verify the following:
 </tbody>
 </table>
 
-#### 
-Toolkit errors
+#### Toolkit errors
 
 <table>
 <thead>
 <tr class="header">
 <th>Error log</th>
 <th>Possible cause</th>
-<th>Resolution</th>
+<th>Possible reasons</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>                  micro-gw: Error in client response : {message:&quot;Network is unreachable: www.mocky.io/54.194.152.6:80&quot;, cause:null}                 </code></td>
 <td><p>A connection to the backend could not be established because the network is unavailable.</p></td>
 <td>Verify the network stability.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>                  ERROR {org.wso2.apimgt.gateway.cli.cmd.Main} - Internal error occurred while executing command.                 </code><br />
 <code>                  com.github.jknack.handlebars.HandlebarsException: /home/kim/Downloads/wso2am-micro-gw-toolkit-x.x.x/resources/templates/service.mustache:36:87: java.lang.IllegalStateException: Can't resolve: 'doc'                 </code></td>
 <td>This is due to an issue in the Service template.</td>
@@ -118,7 +117,7 @@ Toolkit errors
 <li>Re-run the setup command.</li>
 </ul></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><div class="content-wrapper">
 <p><code>                                                            micro-gw: Project name `petstore` already exist.                   </code></p>
 </div></td>
@@ -146,118 +145,131 @@ If you need to override the current Microgateway project, run the <code>        
 </tbody>
 </table>
 
-------------------------------------------------------------------------
-
 ### Runtime error responses
 
-| Error code                                  | Error response                                               | Possible reasons                                                                   |
-|---------------------------------------------|--------------------------------------------------------------|------------------------------------------------------------------------------------|
-| `                  101503                 ` | ``` java                                                     
-    {                                                             
+<table>
+<thead>
+<tr class="header">
+<th style="width: 5%">Error code</th>
+<th style="width: 45%">Error response</th>
+<th style="width: 450%">Possible reasons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>101503</code></td>
+<td><code>
+{                                                             
     "fault": {                                                
     "code": "101503",                                     
     "message": "Runtime Error",                           
     "description": "Error connecting to the back end"     
-    }                                                         
-    }                                                             
-  ```                                                           | -   The network is not reachable by the backend.                                   
-      -   The connection from the backend has been refused.                               |
-| `                  101504                 ` | ``` java                                                     
-    {                                                             
+}
+</code></td>
+<td>
+<li> The network is not reachable by the backend. </li>
+<li> The connection from the backend has been refused </li>
+</td>
+</tr>
+<tr>
+<td><code>101504</code> </td>
+<td><code>
+{                                                             
     "fault": {                                                
     "code": "101504",                                     
     "message": "Runtime Error",                           
     "description": "Connection timed out"                 
     }                                                         
-    }                                                             
-  ```                                                           | -   The connection has timed out.                                                  
-      -   The connection has timed out from the Microgateway end.                         
-      -   Response is getting delayed and hence timeout occurs in the Microgateway side.  |
-| 900900                                      | ``` java                                                     
-    {                                                             
+} 
+</code>
+</td>
+<td>
+<li>The connection has timed out.</li>                                                     
+<li>The connection has timed out from the Microgateway end. </li>                       
+<li>Response is getting delayed and hence timeout occurs in the Microgateway side. </li>
+</td>
+</tr>
+<tr>
+<td><code>900900</code></td>
+<td>
+<code>
+{                                                             
     "fault": {                                                
     "code": 900900,                                       
     "message": "Unclassified Authentication Failure",     
     "description": "Unclassified Authentication Failure"  
     }                                                         
-    }                                                             
-  ```                                                           | -   The Key Manager is down.                                                       |
+}
+</code>
+</td>
+<td>
+<li>The Key Manager is down. </li>
+</td>
+</tr>
+</tbody>
+</table>
 
-      ------------------------------------------------------------------------
+### Runtime error codes
 
-      ### Runtime error codes
+Given below are some WSO2 API Microgateway specific error codes and their meanings.
 
-      Given below are some WSO2 API Microgateway specific error codes and their meanings.
+| Error code                                  | Possible reason                                                                                                                                                                                                    |
+|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `                  900901                 ` | The production/sandbox key offered by the requested endpoint is not specified.                                                                                                                                     |
+| `                  900900                 ` | API-M authentication related error.                                                                                                                                                                                |
+| `                  900901                 ` | Invalid access token.                                                                                                                                                                                              |
+| `                  900902                 ` | Missing credentials.                                                                                                                                                                                               |
+| `                  900903                 ` | Access token expired.                                                                                                                                                                                              |
+| `                  900904                 ` | Access token inactive.                                                                                                                                                                                             |
+| `                  900905                 ` | Incorrect access token type provided.                                                                                                                                                                              |
+| `                  900906                 ` | No matching resource found in the API for the given request.                                                                                                                                                       |
+| `                  900907                 ` | The requested API is temporarily blocked.                                                                                                                                                                          |
+| `                  900908                 ` | Resource forbidden.                                                                                                                                                                                                |
+| `                  900909                 ` | The subscription to the API is inactive.                                                                                                                                                                           |
+| `                  900910                 ` | The access token does not allow you to access the requested resource.                                                                                                                                              |
+| `                  900803                 ` | Application level throttled out.                                                                                                                                                                                   |
+| `                  900804                 ` | Subscription level throttled out.                                                                                                                                                                                  |
+| `                  900808                 ` | An internal error occurred in the Microgateway.                                                                                                                                                                    |
+| `                  900809                 ` | An internal error occurred in the Microgateway, since a subscription or application throttle policy is not deployed. This might be due to adding a throttle policy to API-M and not regenerating the Microgateway. |
 
-      | Error code                                  | Possible reason                                                                                                                                                                                                    |
-      |---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-      | `                  900901                 ` | The production/sandbox key offered by the requested endpoint is not specified.                                                                                                                                     |
-      | `                  900900                 ` | API-M authentication related error.                                                                                                                                                                                |
-      | `                  900901                 ` | Invalid access token.                                                                                                                                                                                              |
-      | `                  900902                 ` | Missing credentials.                                                                                                                                                                                               |
-      | `                  900903                 ` | Access token expired.                                                                                                                                                                                              |
-      | `                  900904                 ` | Access token inactive.                                                                                                                                                                                             |
-      | `                  900905                 ` | Incorrect access token type provided.                                                                                                                                                                              |
-      | `                  900906                 ` | No matching resource found in the API for the given request.                                                                                                                                                       |
-      | `                  900907                 ` | The requested API is temporarily blocked.                                                                                                                                                                          |
-      | `                  900908                 ` | Resource forbidden.                                                                                                                                                                                                |
-      | `                  900909                 ` | The subscription to the API is inactive.                                                                                                                                                                           |
-      | `                  900910                 ` | The access token does not allow you to access the requested resource.                                                                                                                                              |
-      | `                  900803                 ` | Application level throttled out.                                                                                                                                                                                   |
-      | `                  900804                 ` | Subscription level throttled out.                                                                                                                                                                                  |
-      | `                  900808                 ` | An internal error occurred in the Microgateway.                                                                                                                                                                    |
-      | `                  900809                 ` | An internal error occurred in the Microgateway, since a subscription or application throttle policy is not deployed. This might be due to adding a throttle policy to API-M and not regenerating the Microgateway. |
+### Adding Debug Logs
 
-      ### Adding Debug Logs
+Micro gateway uses two types of logs to track realtime internal and external activities. Separate log files are created for each of those log types in the &lt;MGW\_RUNTIME\_HOME&gt; `             /repository/logs            ` directory. The following illustrates the log types supported by the MGW and how those logs can be configured.
 
-      Micro gateway uses two types of logs to track realtime internal and external activities. Separate log files are created for each of those log types in the &lt;MGW\_RUNTIME\_HOME&gt; `             /repository/logs            ` directory. Following illustrates the log types supported by the MGW and how those logs can be configured.
+##### How to enable debug log
 
-      ##### How to enable debug log
+If we want to log any information that helps us identify what went wrong we can get information by enable DEBUG level. Ther are two ways to enable debug log.
 
-      If we want to log any information that helps us identify what went wrong we can get information by enable DEBUG level. Ther are two ways to enable debug log.
-
-      Method 1. We can set in the request command.
-
-      **Response caching**
-
-``` java
-    sh gateway <path-to-MGW-executable-jar-file> --b7a.log.level=DEBUG
-```
-
-    Method 2. We can set in the micro-gw.conf file which is located in the `             <MGW-RUNTIME-HOME>/conf            ` directory.
-
-    **Response caching**
+Method 1. We can set in the request command.
 
 ``` java
-    [b7a.log]
-      level = "DEBUG"
+sh gateway <path-to-MGW-executable-jar-file> --b7a.log.level=DEBUG
 ```
 
-    ##### How to enable HTTP trace log
-
-    If we want to monitor the HTTP message flow through API Gateway and track the request headers, request payloads, response headers, response payloads etc of incoming and outgoing http traffic we can get information by enable HTTP trace log .
-
-    Method 1. We can set in the request command.
+Method 2. We can set in the micro-gw.conf file which is located in the `             <MGW-RUNTIME-HOME>/conf            ` directory.
 
 ``` java
-    sh gateway <path-to-MGW-executable-jar-file> --b7a.http.tracelog.console=true
+[b7a.log]
+  level = "DEBUG"
 ```
 
-    Method 2. We can set in the micro-gw.conf file which is located in the `             <MGW-RUNTIME-HOME>/conf            ` directory.
+##### How to enable HTTP trace log
 
-``` java
-    [b7a.http]
-    [b7a.http.tracelog]
-    console = true
+If we want to monitor the HTTP message flow through API Gateway and track the request headers, request payloads, response headers, response payloads etc of incoming and outgoing http traffic we can get information by enable HTTP trace log .
+
+Method 1. We can set in the request command.
+
+``` 
+sh gateway <path-to-MGW-executable-jar-file> --b7a.http.tracelog.console=true
 ```
 
-    -   [Common exceptions and solutions](#Troubleshooting-Commonexceptionsandsolutions)
-    -   [Runtime errors](#Troubleshooting-Runtimeerrors)
-    -   [Toolkit errors](#Troubleshooting-Toolkiterrors)
-    -   [Runtime error responses](#Troubleshooting-Runtimeerrorresponses)
-    -   [Runtime error codes](#Troubleshooting-Runtimeerrorcodes)
-    -   [Adding Debug Logs](#Troubleshooting-AddingDebugLogs)
-    -   [How to enable debug log](#Troubleshooting-Howtoenabledebuglog)
-    -   [How to enable HTTP trace log](#Troubleshooting-HowtoenableHTTPtracelog)
+Method 2. We can set in the micro-gw.conf file which is located in the `             <MGW-RUNTIME-HOME>/conf            ` directory.
+
+``` toml
+[b7a.http]
+[b7a.http.tracelog]
+console = true
+```
+
 
 
