@@ -1,6 +1,6 @@
 # Analytics for Microgateway
 
-WSO2 API Microgateway provides the capability to publish events to a configured analytics server, in order to generate analytics. The Microgateway is also capable of generating a usage report to gain insights into the analytics generated. This page describes the feature and explains how the feature could be used to generate useful analytics in order to gain important insights into the APIs deployed on the Microgateway.
+WSO2 API Microgateway provides the capability to publish events to a configured analytics server, in order to generate analytics. The Microgateway is also capable of generating a usage report to gain insights of the analytics generated. This page describes the feature and explains how the feature could be used to generate useful analytics in order to gain important insights into the APIs deployed on the Microgateway.
 
 ### Overview
 
