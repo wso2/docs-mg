@@ -7,7 +7,7 @@ You need to create a `deployment-config.toml` file and use it as the input to th
 ``` toml
 [kubernetes]
   [kubernetes.kubernetesDeployment]
-    enable = false
+    enable = true
     #name = ''
     #labels = '{"": ""}'
     #replicas = ''
@@ -45,10 +45,10 @@ You need to create a `deployment-config.toml` file and use it as the input to th
     #baseImage = ''
     #singleYAML = ''
   [kubernetes.kubernetesService]
-    enable = false
+    enable = true
     #name = ''
     #labels = '{"": ""}'
-    #serviceType = ''
+    serviceType = 'NodePort'
     #port = ''
   #[kubernetes.kubernetesServiceHttps]
       #enable = false
@@ -104,7 +104,7 @@ You need to create a `deployment-config.toml` file and use it as the input to th
       #data = ['']
   [kubernetes.kubernetesConfigMap]
     enable = false
-    ballerinaConf = 'path/to/micro-gw.conf'
+    #ballerinaConf = '<MICROGW_TOOLKIT_HOME>/resources/conf/micro-gw.conf'
     #[[kubernetes.kubernetesConfigMap.configMaps]]
       #name = ''
       #mountPath = ''
