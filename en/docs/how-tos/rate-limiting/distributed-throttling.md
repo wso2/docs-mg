@@ -1,14 +1,14 @@
 # Distributed Throttling
 
-WSO2 API Microgateway has an in-memory mechanism by default to handle throttling(node-level throttling). In a distributed Microgateway deployement, throttling becomes a challenge with the current implementation. This is because, throttling decisions are taken by evaluating the local counter maintained within each node. Hence, scaling the microgateway will multiply the allowed limits. I.e. for e.g if the throttling limit is set to 10, if we have 3 gateways in a cluster, it will allow 30 requests to pass to the backend, before all three gateways throttle out requests. This will put an unexpected load on the backend. In order to address this, the API Microgateway supports distributed throttling where it is able to work with a central traffic management solution.
+WSO2 API Microgateway has an in-memory mechanism by default to handle throttling(node-level throttling). In a distributed Microgateway deployment, throttling becomes a challenge with the current implementation. This is because throttling decisions are taken by evaluating the local counter maintained within each node. Hence, scaling the microgateway will multiply the allowed limits. I.e. for e.g if the throttling limit is set to 10, if we have 3 gateways in a cluster, it will allow a total of 30 requests to pass to the backend before all three gateways throttle out requests. This will put an unexpected load on the backend. In order to address this, the API Microgateway supports distributed throttling where it is able to work with a central traffic management solution.
 
-The API Microgateway upon recieving a request, checks against the local counter and if throttling limit  has not exceeded it publishes the events via a stream to a central traffic management solution. This is done over HTTP. The  central traffic management solution then  executes throttle policies against the events streams. When a particular request is throttled, the  central traffic management solution sends the details of the throttled out event to a JMS topic. Each API Microgateway node is subscribed to this JMS topic, and updates the local counter when the JMS topic is updated. Hence the API Microgateway nodes gets notified of the throttle decisions through JMS messages.
+The API Microgateway upon receiving a request checks against the local counter and if the throttling limit has not exceeded it publishes the events via a stream to a central traffic management solution. This is done over HTTP. The central traffic management solution then executes throttle policies against the events streams. When a particular request is throttled, the central traffic management solution sends the details of the throttled out event to a JMS topic. Each API Microgateway node is subscribed to this JMS topic and updates the local counter when the JMS topic is updated. Hence the API Microgateway nodes get notified of the throttle decisions through JMS messages.
 
 ![distributed throttling](/assets/img/how-tos/distributed-throttling.png)
 
 ### Enabling distributed throttling
 
-1.  Lets create a microgateway project
+1.  Let's create a microgateway project
 
     Create a project using the command given below,
   
@@ -24,7 +24,7 @@ The API Microgateway upon recieving a request, checks against the local counter 
     Project 'petstore' is initialized successfully.
     ```
 
-2.  Add the API definition(s) to `petstore/api_definitions` directory. A sample open API definition can be found [here](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml). Then provide the API throttling tier using following extension at the API level.
+2.  Add the API definition(s) to `petstore/api_definitions` directory. A sample open API definition can be found [here](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml). Then provide the API throttling tier using the following extension at the API level.
     
     ```yaml tab="Sample"
     x-wso2-throttling-tier : "5PerMin"    
@@ -150,7 +150,7 @@ The API Microgateway upon recieving a request, checks against the local counter 
     not required if you need to do only the resource level throttling or API level throttling.
     <!---TODO:@VirajSalaka Add the Event hub configuration guide URL--->
     
-9.  Finally the added configurations in `microgw.conf` would look like this. 
+9.  Finally, the added configurations in `micro-gw.conf` would look like this. 
     
     ``` toml tab="Sample"
     [throttlingConfig]
@@ -186,7 +186,7 @@ The API Microgateway upon recieving a request, checks against the local counter 
 
 ### Conditional throttling
 
-There can be situations where a certain APIs require more granular level of throttling. Assume you want to provide limited access to a certain IP range or a type of client applications (identified by User-Agent header). For these scenarios, a simple throttle policy with API/resource level limits is not sufficient. To address complex throttling requirements as above, microgateway is capable of throttling request based on several conditions. Following types of conditions are supported.
+There can be situations where certain APIs require more granular level of throttling. Assume you want to provide limited access to a certain IP range or a type of client application (identified by User-Agent header). For these scenarios, a simple throttle policy with API/resource level limits is not sufficient. To address complex throttling requirements as above, microgateway is capable of throttling requests based on several conditions. The following types of conditions are supported.
 
 1.  Specific IP or IP range conditions.     
     This condition can be used to provide specific limits to a certain IP address or a range of IP addresses.
@@ -198,12 +198,12 @@ There can be situations where a certain APIs require more granular level of thro
     Same as the header conditions, this allows applying a specific limit to a certain query parameter value.
 
 1.  JWT claim conditions.       
-    This type of conditions will evaluate the [backend jwt](/how-tos/passing-enduser-attributes-to-the-backend-using-jwt) and check if it has a specific claim value in it to set the throttle limit.
+    This type of condition will evaluate the [backend jwt](/how-tos/passing-enduser-attributes-to-the-backend-using-jwt) and check if it has a specific claim value in it to set the throttle limit.
 
 #### Configure and enable conditional throttling
 
 1.  Open `micro-gw.conf` file in `<MGW_HOME>/conf` directory.
-1.  Add/Enable below configurations to enable each of the required condition type.
+1.  Add/Enable below configurations to enable the required condition type.
 
     ```toml
     [throttlingConfig]
@@ -214,7 +214,7 @@ There can be situations where a certain APIs require more granular level of thro
     ```    
 
 1.  Define the Advance Throttle Policy containing the required conditions in WSO2 API Manager. To do this follow [Adding a new advanced throttling policy](https://apim.docs.wso2.com/en/latest/learn/rate-limiting/adding-new-throttling-policies/#adding-a-new-advanced-throttling-policy)
-1.  Conditional throttle policies are an advance set of API and Resource level policies. Thefore you need to define the required policy to apply in the OpenAPI definition. To do that, define `x-wso2-throttling-tier` extension with the Advance Throttle Policy name you defined in API Manager in above step. This extension can be defined in both API and Resource levels.
+1.  Conditional throttle policies are an advanced set of API and Resource level policies. Therefore you need to define the required policy to apply in the OpenAPI definition. To do that, define `x-wso2-throttling-tier` extension with the Advance Throttle Policy name you defined in API Manager in the above step. This extension can be defined in both API and Resource levels.
 
     ```yaml tab="API level sample"
     x-wso2-basePath: /petstore/v1
