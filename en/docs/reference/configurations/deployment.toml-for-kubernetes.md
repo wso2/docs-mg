@@ -103,8 +103,8 @@ You need to create a `deployment-config.toml` file and use it as the input to th
       #readOnly = false
       #data = ['']
   [kubernetes.kubernetesConfigMap]
-    enable = false
-    #ballerinaConf = '<MICROGW_TOOLKIT_HOME>/resources/conf/micro-gw.conf'
+    enable = true
+    ballerinaConf = '<MICROGW_TOOLKIT_HOME>/resources/conf/micro-gw.conf'
     #[[kubernetes.kubernetesConfigMap.configMaps]]
       #name = ''
       #mountPath = ''
