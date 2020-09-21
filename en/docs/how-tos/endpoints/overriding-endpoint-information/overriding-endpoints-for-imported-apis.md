@@ -3,13 +3,13 @@
 !!! note
     This information is only applicable for APIs imported from WSO2 API Manager.
 
-In the event of adding a new backend or changing the existing backend service connection URL, you will need to override your backend connection URL that you provided in the respective open API definition. The following section describes how you can override your endpoint information for APIs that are imported from the WSO2 API Manager.
+In the event, a backend service connection URL is added or edited, the backend connection URL provided in the respective OpenAPI definition needs to be overriden. The following section describes how this can be overriden on the APIs that are imported from the WSO2 API Manager.
 
 #### Overriding endpoints at runtime
 
-Use the following command to provide the overriding information at server start-up to override endpoints of an API, which was imported from the WSO2 API Manager.
+Use the following command to override the endpoints of an API imported from the WSO2 API Manager at server start-up.
 
-Follow the instructions below to override a single endpoint or multiple endpoints, which are either production or sandbox endpoints:
+Follow the instructions below to override the production or sandbox endpoint(s).
 
 1.  Use the following command to start WSO2 Microgateway. Here the system variables are provided at server start-up to override the endpoint of the API, which has been added to WSO2 API Microgateway using an OpenAPI definition.
 
@@ -52,8 +52,8 @@ Follow the instructions below to override a single endpoint or multiple endpoint
     gateway <path-to-MGW-jar> --<API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint-URL-1>" --<API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint_URL_2>" --<API-ID>_<endpoint-type>_basic_username="<basic-auth-username>" --<API-ID>_basic_password="<basic-auth-password>
     ```
    
-    - `<basic-auth-username>` - Provide your username                            
-    - `<basic-auth-password>` - Provide your password                               
+    - `<basic-auth-username>` - Provide the username                            
+    - `<basic-auth-password>` - Provide the password                               
    
     ``` text tab="Example 1 - single endpoint"
     gateway /home/user/petstore-project/target/petstore-project.jar  
@@ -71,14 +71,13 @@ Follow the instructions below to override a single endpoint or multiple endpoint
     ```
  
     !!! Note
-        If you do not specify a username, the username that you defined in the API definition, which you specified during the API implementation, is used.
-
+        If you do not specify a username, the username defined in the API definition during the API implementation will be used.
 
 #### Overriding endpoints using system properties
 
 Use the following command to provide the system variables as system properties to override more than one endpoint (e.g., load balance endpoint) that corresponds to an API, which was imported from WSO2 API Manager.
 
-Follow the instructions below to override single endpoint or multiple endpoints, which are either production or sandbox endpoints.
+Follow the instructions below to override the production or sandbox endpoint(s).
 
 1. Set the endpoint using system properties. 
 
@@ -107,11 +106,10 @@ Follow the instructions below to override single endpoint or multiple endpoints,
     export <API-ID>_<endpoint-type>_basic_password="<basic-auth-password>"
     ```
     
-    - `<basic-auth-username>` - Provide your username                            
-    - `<basic-auth-password>` - Provide your password 
+    - `<basic-auth-username>` - Provide the username                            
+    - `<basic-auth-password>` - Provide the password 
     
     ``` java tab="Example"
     export 60f7111f-fdc5-4cc7-b497-1cea64c6a97f_prod_basic_username="admin"
     export 60f7111f-fdc5-4cc7-b497-1cea64c6a97f_prod_basic_password="admin"
     ```
-
