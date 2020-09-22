@@ -30,6 +30,7 @@ The default truststore of WSO2 Microgateway ballerinaTruststore.p12 already cont
 | WSO2 API Manager 2.6.0      | wso2apim      |
 | WSO2 API Manager 3.0.0      | wso2carbonnew |
 | WSO2 API Manager 3.1.0      | wso2apim310   |
+| WSO2 API Manager 3.2.0      | wso2apim310   |
 | WSO2 Analytics 3.0.0        | wso2sp        |
 
 

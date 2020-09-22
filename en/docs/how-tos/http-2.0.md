@@ -8,72 +8,28 @@ WSO2 API Microgateway, when configured to communicate on HTTP2, is able to switc
 
 A HTTP/2 request contains three special headers “ Connection ”, “ Upgrade ” and “ HTTP2-Settings ”.
 
-``` java tab="Example : HTTP2 Request Headers"
-    upgrade: h2c
-    HTTP2-Settings: AAEAABAAAAIAAAABAAN_____AAQAAP__AAUAAEAAAAYAACAA
-    connection: HTTP2-Settings,upgrade  
+``` text tab="Example : HTTP2 Request Headers"
+upgrade: h2c
+HTTP2-Settings: AAEAABAAAAIAAAABAAN_____AAQAAP__AAUAAEAAAAYAACAA
+connection: HTTP2-Settings,upgrade  
 ```
 
  A HTTP/2 response contains 3 special headers “ Connection ”, “ Upgrade ” and  "HTTP/1.1 101 Switching Protocols"
 
-``` java tab="Example : HTTP2 Response Headers"
-    HTTP/1.1 101 Switching Protocols
-    connection: upgrade
-    upgrade: h2c
+``` text tab="Example : HTTP2 Response Headers"
+HTTP/1.1 101 Switching Protocols
+connection: upgrade
+upgrade: h2c
 ```
 
 #### Enabling HTTP 2.0 on API Microgateway
 
-1.  Create a Microgateway project.
+Locate the `[http2]` tag in `micro-gw.conf` file and change the enabled value to true.
 
-    1.  Navigate to a preferred workspace folder using the command line.
-    This location is used to run the Microgateway commands and to generate Microgateway artifacts.
-    2.  Create a project using the command given below.
-
-        ``` java tab="Format"
-        micro-gw init <project_name> 
-        ```
-
-        ``` java tab="Example"
-        micro-gw init petstore  
-        Project 'petstore' is initialized successfully.
-        ```
-
-2.  Add the API (open API definition) to the project.
-            Navigate to the `           /petstore/api_definitions          ` directory and add the API definition(s) to this directory. A sample open API definition can be found [here](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml) .
-
-3.  Build the Microgateway distribution for the project using the following command:
-
-    ``` java tab="Format"
-    micro-gw build <project_name>
-    ```
-
-    ``` java tab="Example"
-    micro-gw build petstore
-    Build successful  for the project - petstore
-    ```
-
-    After the above command is executed, an executable file ( `/petstore/target/petstore.balx`) is created to expose the API via WSO2 API Microgateway.
-
-4.  Navigate to the `<MGW-RUNTIME-HOME>/conf` folder and open the `micro-gw.conf` file.
-5.  Locate the **\[http2\]** tag in the file and change the **enabled** value to **true** .
-
-    ``` java
-    [http2]
-    enable=true
-    ```
-
-6.  Execute the following command to start WSO2 API Microgateway with new configurations.
-
-    ``` java tab="Format"
-    gateway <path-to-executable-file>
-    ```
-
-    ``` java tab="Example"
-    gateway /Users/kim/petstore/target/petstore.balx
-    ```
-
-7.  Invoke the petstore API using a valid JWT token.
+``` toml
+[http2]
+enable=true
+```
 
 #### How it works
 

@@ -1,16 +1,10 @@
 # Quick Start Guide - Docker
 
-Let's get started. See the video tutorial here or a separate step-by-step tutorial.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ebm_k6VkwAY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-****
-
-**Let's host your first API on WSO2 API Microgateway using Docker....**
-
+Let's host your first API on WSO2 API Microgateway using Docker....
 
 ### Before you begin..
 
-Make sure to install and set up [Docker](https://www.docker.com) and the [installation prerequisites for the Microgateway Toolkit]({{base_path}}/install-and-setup/install-on-vm/#microgateway-toolkit)) .
+Make sure to install and set up [Docker](https://www.docker.com) and the [installation prerequisites for the Microgateway Toolkit](/install-and-setup/install-on-vm/#microgateway-toolkit).
 
 ### Step 1 - Generate an executable using WSO2 API Microgateway Toolkit
 
@@ -34,25 +28,24 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [instal
     !!! note
         The folder structure is similar to the following.
     ``` java
-        petstore
-        ├── api_definitions
-        └── swagger.json
-        ├── conf
-        │   └── deployment-config.toml
-        ├── extensions
-        │   ├── extension_filter.bal
-        │   ├── startup_extension.bal
-        │   └── token_revocation_extension.bal
-        ├── grpc_definitions
-        ├── interceptors
-        ├── lib
-        ├── policies.yaml
+    petstore
+    ├── api_definitions
+    └── swagger.json
+    ├── conf
+    │   └── deployment-config.toml
+    ├── extensions
+    │   ├── extension_filter.bal
+    │   ├── startup_extension.bal
+    │   └── token_revocation_extension.bal
+    ├── grpc_definitions
+    ├── interceptors
+    ├── lib
+    ├── policies.yaml
     ```
 
 !!! info
-    More Information
-    -   For more information on the MGW project directory that gets created, see [Project Directory]({{base_path}}/reference/project-directory/) .
-    -   Check out the [troubleshooting]({{base_path}}/troubleshooting/troubleshooting/) guide if you run into an issue..
+    -   For more information on the MGW project directory that gets created, see [Project Directory](/reference/project-directory/).
+    -   Check out the [troubleshooting](/troubleshooting/troubleshooting/) guide if you run into an issue.
 
 ##### Step 1.2 - Build the project and the docker image
 
@@ -65,7 +58,7 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [instal
 
     !!! info
         More information
-        Here are [FAQs]({{base_path}}/faqs/).
+        Here are [FAQs](/faqs/).
 
 ### Step 2 - Expose the sample API via WSO2 API Microgateway Docker image
 
@@ -93,9 +86,9 @@ TOKEN=$(curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRt
 !!! info
     More information
     -   You can obtain a JWT token from any third-party secure token service or via the WSO2 API Manager.
-    -   You can obtain an API Key easily from WSO2 API Microgateway. Follow the documentation to [Obtain an API Key]({{base_path}}/how-tos/security/api-key-security-token-service/) .
+    -   You can obtain an API Key easily from WSO2 API Microgateway. Follow the documentation to [Obtain an API Key](/how-tos/security/api-key-security-token-service/) .
     -   Alternatively, you can also use an opaque token to invoke the API.
-    For more information, see the FAQs on [Working with Tokens]({{base_path}}/references/faqs/#WorkingwithTokens) .
+    For more information, see the FAQs on [Working with Tokens](/references/faqs/#WorkingwithTokens) .
 
 ##### Step 3.2 - Invoke the API
 
@@ -110,26 +103,26 @@ curl -X GET "https://localhost:9095/v2/pet/1" -H "accept: application/xml" -H "a
 ```
 
 !!! note
-    You were able to invoke the API resource `pet/{petId}` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication](https://docs.wso2.com/display/MG310/API+Key+Authentication) .
-```yml
-"paths": {
-  "/pet/{petId}": {
-    "get": {
-      "security": [
-        {
-          "api_key": []
+    You were able to invoke the API resource `pet/{petId}` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication](/how-tos/security/api-authentication/api-key-authentication/).
+    ```yml
+    "paths": {
+      "/pet/{petId}": {
+        "get": {
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
         }
-      ]
+      }
+    },
+    "securityDefinitions": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
     }
-  }
-},
-"securityDefinitions": {
-  "api_key": {
-    "type": "apiKey",
-    "name": "api_key",
-    "in": "header"
-  }
-}
-```
+    ```
 
 
