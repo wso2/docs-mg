@@ -33,12 +33,12 @@ enable=true
 
 #### How it works
 
-The following user stories explains how the API Microgateway works when HTTP/2 is enabled.
+The following user stories explain how the API Microgateway works when HTTP/2 is enabled.
 
 !!! note
     -   The backend service in the following scenarios communicate on HTTP/2 **without** SSL.
     -   The WSO2 API Microgateway server in the following scenarios communicate on HTTP/2 **with** SSL.
-    -   "h2" in the following images refers to HTTP/2 .
+    -   "h2" in the following images refers to HTTP/2.
 
 ##### User story 1 - Both client and backend supports HTTP 2.0
 
@@ -46,7 +46,7 @@ The following user stories explains how the API Microgateway works when HTTP/2 i
 
 -   The user sends an HTTP/2 request to WSO2 API Microgateway.
 
--   WSO2 API Microgateway forwards the received HTTP/2 request to the backend  as an HTTP/1.1 request after including the HTTP/2 headers to determine the protocol of the connection between WSO2 API Microgateway and the backend.
+-   WSO2 API Microgateway forwards the received HTTP/2 request to the backend as an HTTP/1.1 request after including the HTTP/2 headers to determine the protocol of the connection between WSO2 API Microgateway and the backend.
 
 -   The backend accepts the request and sends a response back to WSO2 API Microgateway with the connection upgrade header as well as the "HTTP/1.1 101 Switching Protocols" header. This indicates that the backend supports HTTP/2. As a result, a HTTP/2 connection between WSO2 API Microgateway and the backend is established.
 
@@ -61,11 +61,11 @@ The following user stories explains how the API Microgateway works when HTTP/2 i
 
 -   The user sends an HTTP/2 request to WSO2 API Microgateway.
 
--   WSO2 API Microgateway forwards the received HTTP/2 request to the backend  as an HTTP/1.1 request after including the HTTP/2 headers to determine the protocol of the connection between the API Microgateway and the backend.
+-   WSO2 API Microgateway forwards the received HTTP/2 request to the backend as an HTTP/1.1 request after including the HTTP/2 headers to determine the protocol of the connection between the API Microgateway and the backend.
 
 -   Since the backend does not support the HTTP/2, it does not upgrade the connection into HTTP/2.
 
--   The backend sends an HTTP/1.1 response  with the payload to WSO2 API Microgateway.
+-   The backend sends an HTTP/1.1 response with the payload to WSO2 API Microgateway.
 
 -   WSO2 API Microgateway then upgrades it to an HTTP/2 response by adding HTTP/2 headers and sends it to the client.
 
@@ -77,7 +77,7 @@ The following user stories explains how the API Microgateway works when HTTP/2 i
 
 -   WSO2 API Microgateway sends the request as an HTTP/1.1 request after including the HTTP/2 headers to determine the protocol of the connection between WSO2 API Microgateway and the backend.
 
--   The backend accepts the request and sends an response back to the client with connection upgrade header as well as the "HTTP/1.1 101 Switching Protocols" header. This indicates that the backend supports HTTP/2. As a result, a HTTP/2 connection between WSO2 API Microgateway and the backend is established.
+-   The backend accepts the request and sends a response back to the client with connection upgrade header as well as the "HTTP/1.1 101 Switching Protocols" header. This indicates that the backend supports HTTP/2. As a result, a HTTP/2 connection between WSO2 API Microgateway and the backend is established.
 
 -   The backend sends an HTTP/2 response with the payload to the API Microgateway.
 

@@ -1,6 +1,6 @@
 # Quick Start Guide - Docker
 
-Let's host your first API on WSO2 API Microgateway using Docker....
+Let's host your first API on WSO2 API Microgateway using Docker.
 
 ### Before you begin..
 
@@ -49,7 +49,7 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [instal
 
 ##### Step 1.2 - Build the project and the docker image
 
-1.  Use the command-line tool to navigate to where the project directory ("petstore") was created. Execute    the following command to build the project and to create the docker image.
+1.  Use the command-line tool to navigate to where the project directory ("petstore") was created. Execute the following command to build the project and to create the docker image.
     An executable file ( `petstore/target/petstore.jar` ) is created to expose the API via WSO2 API Microgateway.
 
     ``` java

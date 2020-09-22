@@ -8,7 +8,7 @@ Make sure to carry out all the [installation prerequisites]({{base_path}}/instal
 
 ### Step 2 - Create a Microgateway project
 
-Let's initialize a API Microgateway project named marketing\_project. Navigate to a preferred folder where you want to create the Microgateway project. Thereafter, run the following command.
+Let's initialize an API Microgateway project named marketing\_project. Navigate to a preferred folder where you want to create the Microgateway project. Thereafter, run the following command.
 
 ``` text tab="Format"
 micro-gw init <project-name>
@@ -55,7 +55,7 @@ Project 'marketing_project' is initialized successfully.
 
     !!! info
         The Microgateway does not support APIs with synapse mediation extension.
-        If the API in the API manager has synapse mediations as custom mediations, then those mediations will not be supported by the microgateway. The logic in custom mediation will have to be reimplement using the [microgateway message transformation feature.](/how-tos/message-transformation/message-transformation-overview/)
+        If the API in the API manager has synapse mediations as custom mediations, then those mediations will not be supported by the microgateway. The logic in custom mediation will have to be reimplemented using the [microgateway message transformation feature.](/how-tos/message-transformation/message-transformation-overview/)
 
 2.  Build the WSO2 API Microgateway project (e.g.,marketing\_project).
     Navigate to the `<MGW_HOME>/bin` directory and run the following command.

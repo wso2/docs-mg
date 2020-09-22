@@ -17,7 +17,7 @@ Create and attach a Microgateway to an API. Follow the instructions in the [Grou
 
 ### Step 3 - Generate a Microgateway project
 
-Follow the instructions below to generate a Microgateway project for a group of APIs that correspond to a specific Microgateway label.
+Follow the instructions below to generate a Microgateway project for a group of APIs that corresponds to a specific Microgateway label.
 
 1.  Initialize an API Microgateway project (e.g., marketing\_project).
     Navigate to a preferred folder where you want to create the Microgateway project. Thereafter, run the following command.

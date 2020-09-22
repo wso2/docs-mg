@@ -65,7 +65,7 @@ Follow the instructions below to configure the WSO2 Microgateway Toolkit and th
 
 2.  Open the `<MGW_RUNTIME_HOME>/conf/micro-gw.conf` file. Add the alias (e.g. wso2carbon2) to the truststore to corresponding configurations.
     
-    For example, to configure the JWT authentication for API Manager JWTs, add the following JWT issuer configuration to the `micro-gw.conf` .
+    For example, to configure the JWT authentication for API Manager JWTs, add the following JWT issuer configuration to the `micro-gw.conf`.
 
 
     ```toml tab="Format"

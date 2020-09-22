@@ -18,7 +18,7 @@ Make sure to install and set up all the [installation prerequisites](/install-a
 #### Step 1.1 - Initialize a project
 
 1.  Navigate to a preferred workspace folder using the command line. This is the location that is used to store the Microgateway project.
-2.  Run the following command to create a project named "petstore" . This will create the folder structure for the artifacts to be included.  Use the -a option to include the API definition to the project as follows.
+2.  Run the following command to create a project named "petstore" . This will create the folder structure for the artifacts to be included.  Use the `-a` option to include the API definition to the project as follows.
 
       Let's use the [Petstore sample open API definition](https://petstore.swagger.io/v2/swagger.json)
         
@@ -104,7 +104,7 @@ Follow the steps below to expose the APIs via WSO2 API Microgateway.
 After the APIs are exposed via WSO2 API Microgateway, you can invoke an API with a valid token(JWT or opaque access token) or an API key.  Let's use WSO2 API Microgateway's API key endpoint to obtain an 
  API key in order to access the API.
    
-Below command will retrieve an APIKey token and set it to the shell variable `TOKEN`.
+The below command will retrieve an APIKey token and set it to the shell variable `TOKEN`.
         
 ``` text
 TOKEN=$(curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRtaW46YWRtaW4=" -k)
