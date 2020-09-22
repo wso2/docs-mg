@@ -22,11 +22,11 @@ Make sure to install and set up all the [installation prerequisites](/install-a
 
       Let's use the [Petstore sample open API definition](https://petstore.swagger.io/v2/swagger.json)
         
-      ```text tab="Format"
+      ``` bash tab="Format"
       micro-gw init petstore -a <api definition path>
       ```
       
-      ```text tab="Example"
+      ``` bash tab="Example"
       micro-gw init petstore -a https://petstore.swagger.io/v2/swagger.json
       ```
 
@@ -61,7 +61,7 @@ Make sure to install and set up all the [installation prerequisites](/install-a
     A jar file ( `petstore/target/petstore.jar` ) is created to expose the API via WSO2 API  
     Microgateway.
 
-      ```text
+      ``` bash
       micro-gw build petstore
       ```
 
@@ -70,27 +70,27 @@ Make sure to install and set up all the [installation prerequisites](/install-a
 
 ### Step 2 - Run the API Microgateway
 
-The executable jar file (`.jar`), which includes the API artifacts of the project, is used as input to the WSO2 API Microgateway runtime component in order to expose the APIs.
+The executable jar file, which includes the API artifacts of the project, is used as input to the WSO2 API Microgateway runtime component in order to expose the APIs.
 
 Follow the steps below to expose the APIs via WSO2 API Microgateway.
 
 1.  Navigate to the `<MGW_HOME>/bin` directory. `<MGW_HOME>` is the installation directory of the WSO2 API Microgateway runtime
 
-    ``` text
+    ``` bash
     cd <MGW_HOME>/bin
     ```
 
 2.  Execute the following command to start WSO2 API Microgateway.
 
-    ```text tab="Format"
+    ```bash tab="Format"
     gateway <path-to-MGW-jar-file>
     ```
 
-    ``` text tab="Example"
+    ``` bash tab="Example"
     gateway /Users/kim/petstore-project/target/petstore-.jar
     ```
 
-    ``` text tab="Response"
+    ``` bash tab="Response"
     [ballerina/http] started HTTPS/WSS listener 0.0.0.0:9096
     [ballerina/http] started HTTP/WS listener 0.0.0.0:9090
     2020-08-14 12:32:17,211 INFO  [wso2/gateway/src/gateway/utils] - [APIGatewayListener] [-] HTTP listener is active on port 9090
@@ -106,7 +106,7 @@ After the APIs are exposed via WSO2 API Microgateway, you can invoke an API with
    
 The below command will retrieve an APIKey token and set it to the shell variable `TOKEN`.
         
-``` text
+``` bash
 TOKEN=$(curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRtaW46YWRtaW4=" -k)
 ```
 
@@ -119,11 +119,11 @@ TOKEN=$(curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRt
 #### Step 3.2 - Invoke the API
 Execute the following command to Invoke the API using the API key. You can now invoke the API running on the Microgateway using cURL as below
 
- ``` text tab="Format"
+ ``` bash tab="Format"
  curl -X GET "https://<MGW-runtime-hostname>:<MGW-runtime-port>/<API-context>/<API-resource>" -H "accept:application/xml" -H "api_key:$TOKEN" -k
  ```
  
- ``` text tab="Example"
+ ``` bash tab="Example"
  curl -X GET "https://localhost:9095/v2/pet/1" -H "accept: application/xml" -H "api_key:$TOKEN" -k
  ```
  

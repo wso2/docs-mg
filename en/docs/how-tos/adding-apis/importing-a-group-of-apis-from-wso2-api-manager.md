@@ -22,29 +22,29 @@ Follow the instructions below to generate a Microgateway project for a group of 
 1.  Initialize an API Microgateway project (e.g., marketing\_project).
     Navigate to a preferred folder where you want to create the Microgateway project. Thereafter, run the following command.
 
-    ``` text tab="Format"
+    ``` bash tab="Format"
     micro-gw init <project-name>
     ```
 
-    ``` text tab="Example"
+    ``` bash tab="Example"
     micro-gw init marketing_project
     ```
 
-    ``` text tab="Response"
+    ``` bash tab="Response"
     Project 'marketing_project' is initialized successfully.
     ```
 
 2.  Import the APIs, which are published in WSO2 API Manager, that correspond to a specific Microgateway label.
 
-    ``` text tab="Format"
+    ``` bash tab="Format"
     micro-gw import -l <label> <project-name> 
     ```
 
-    ``` text tab="Example"
+    ``` bash tab="Example"
     micro-gw import -l MARKETING_STORE marketing_project
     ```
     
-    ``` text tab="Response"
+    ``` bash tab="Response"
     WSO2 API Microgateway Toolkit prompts for the following.
    
     Enter Username: 
@@ -61,7 +61,7 @@ Follow the instructions below to generate a Microgateway project for a group of 
     - Trust store location and password of WSO2 API Microgateway Toolkit - If you want to use the default value, click enter.
     ```
     
-    After the APIs are imported, you can find the auto-generated OpenAPI definitions in the `<MGW-project>/gen/<OpenAPI_definition-file-name>.json ` directory of the project (e.g., `           /marketing_project/gen/30e623704c5c5479b7c0d9ab78e965df02c1610401e37cbd557e6353e3191c76swagger.json` )
+    After the APIs are imported, you can find the auto-generated OpenAPI definitions in the `<MGW-project>/gen/<OpenAPI_definition-file-name>.json` directory of the project (e.g., `/marketing_project/gen/30e623704c5c5479b7c0d9ab78e965df02c1610401e37cbd557e6353e3191c76swagger.json`)
 
 ### Step 4 - Build the Microgateway
 
@@ -69,15 +69,15 @@ Build the WSO2 API Microgateway project (e.g.,marketing\_project).
 
 1.  Navigate to the `<MGW_HOME>/bin` directory and run the following command.
 
-    ``` text tab="Format"
+    ``` bash tab="Format"
     micro-gw build <project-name>
     ```
 
-    ``` text tab="Example"
+    ``` bash tab="Example"
     micro-gw build marketing_project
     ```
 
-    ``` text tab="Response"  
+    ``` bash tab="Response"  
     Compiling source
     	wso2/marketing_project:3.2.0
     
@@ -104,17 +104,17 @@ Build the WSO2 API Microgateway project (e.g.,marketing\_project).
 
 Start WSO2 API Microgateway.
 
-``` text tab="Format"
+``` bash tab="Format"
 gateway <path-to-MGW-jar-file>
 ```
 
-``` text tab="Example"
+``` bash tab="Example"
 gateway /Users/kim/Downloads/TestProj/marketing_project/target/marketing_project.jar
 ```
 
 WSO2 API Microgateway starts for the APIs, which are grouped with the `MARKETING_STORE` label.
 
-``` text
+``` bash
 ballerina: HTTP access log enabled
 [ballerina/http] started HTTPS/WSS endpoint 0.0.0.0:9096
 [ballerina/http] started HTTPS/WSS endpoint 0.0.0.0:9095

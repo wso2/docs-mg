@@ -50,7 +50,7 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [instal
 ##### Step 1.2 - Build the project and the docker image
 
 1.  Use the command-line tool to navigate to where the project directory ("petstore") was created. Execute the following command to build the project and to create the docker image.
-    An executable file ( `petstore/target/petstore.jar` ) is created to expose the API via WSO2 API Microgateway.
+    An executable jar file (`petstore/target/petstore.jar`) is created to expose the API via WSO2 API Microgateway.
 
     ``` java
     micro-gw build petstore --docker --docker-image petstore:v1 --docker-base-image wso2/wso2micro-gw:3.2.0

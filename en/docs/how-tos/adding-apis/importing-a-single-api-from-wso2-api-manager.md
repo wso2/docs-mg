@@ -10,15 +10,15 @@ Make sure to carry out all the [installation prerequisites]({{base_path}}/instal
 
 Let's initialize an API Microgateway project named marketing\_project. Navigate to a preferred folder where you want to create the Microgateway project. Thereafter, run the following command.
 
-``` text tab="Format"
+``` bash tab="Format"
 micro-gw init <project-name>
 ```
 
-``` text tab="Example"
+``` bash tab="Example"
 micro-gw init marketing_project
 ```
 
-``` text tab="Response"
+``` bash tab="Response"
 Project 'marketing_project' is initialized successfully.
 ```
 
@@ -26,15 +26,15 @@ Project 'marketing_project' is initialized successfully.
 
 1.  Import the API, which is published in WSO2 API Manager.
 
-    ``` text tab="Format"
+    ``` bash tab="Format"
     micro-gw import -a <API_name> -v <version> <project_name> 
     ```
 
-    ``` text tab="Example"
+    ``` bash tab="Example"
     micro-gw import -a PizzaShackAPI -v 1.0.0 marketing_project
     ```
 
-    ``` text tab="Response"
+    ``` bash tab="Response"
     WSO2 API Microgateway Toolkit prompts for the following.
     
     Enter Username: 
@@ -60,15 +60,15 @@ Project 'marketing_project' is initialized successfully.
 2.  Build the WSO2 API Microgateway project (e.g.,marketing\_project).
     Navigate to the `<MGW_HOME>/bin` directory and run the following command.
 
-    ``` text tab="Format"
+    ``` bash tab="Format"
     micro-gw build <project-name>
     ```
 
-    ``` text tab="Example"
+    ``` bash tab="Example"
     micro-gw build marketing_project
     ```
 
-    ``` text tab="Response"
+    ``` bash tab="Response"
     Compiling source
         wso2/marketing_project:3.2.0
 
@@ -93,17 +93,17 @@ Project 'marketing_project' is initialized successfully.
 
 Start WSO2 API Microgateway as follows:
 
- ``` text tab="Format"
+ ``` bash tab="Format"
  gateway <path-to-MGW-jar-file>
  ```
 
- ``` text tab="Example"
+ ``` bash tab="Example"
  gateway /Users/kim/Downloads/TestProj/marketing_project/target/marketing_project.jar 
  ```
 
 WSO2 API Microgateway starts for the API.
 
- ``` text
+ ``` bash
  ballerina: HTTP access log enabled
  [ballerina/http] started HTTPS/WSS endpoint 0.0.0.0:9096
  [ballerina/http] started HTTPS/WSS endpoint 0.0.0.0:9095
