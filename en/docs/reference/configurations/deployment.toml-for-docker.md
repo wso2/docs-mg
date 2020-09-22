@@ -9,14 +9,14 @@ The following is a sample `deployment-config.toml` file.
 ``` toml
 [docker]
   [docker.dockerConfig]
-    enable = false
-    #name = ""
-    #registry = ''
-    #tag = ''
+    enable = true
+    name = "petstore"
+    registry = 'docker.wso2.com'
+    tag = 'v1'
     #buildImage = ''
     #dockerHost = ''
     #dockerCertPath = ''
-    #baseImage = ''
+    baseImage = 'wso2/wso2micro-gw:3.2.0'
     #enableDebug = ''
     #debugPort = ''
     #push = ''
@@ -26,9 +26,9 @@ The following is a sample `deployment-config.toml` file.
   [docker.dockerCopyFiles]
     enable = false
     [[docker.dockerCopyFiles.files]]
-        source = ''
-        target = ''
-        isBallerinaConf = false
+        source = '<MICROGW_TOOLKIT_HOME>/resources/conf/micro-gw.conf'
+        target = '/home/ballerina/conf/micro-gw.conf'
+        isBallerinaConf = true
 ```
 
 ### Descriptions for the configurations
