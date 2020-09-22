@@ -6,7 +6,7 @@
 
 ##### When should I use WSO2 API Microgateway instead of WSO2 API Gateway?
 
--   When you need to run a Gateway in a lockdown environment or in an offline mode with zero connection to the API Management system.
+-   When you need to run a gateway in a lockdown environment or in an offline mode with no connection to the API Management system.
 
 -   When you need to run a specific subset of APIs in a controlled environment (e.g., in private jet gateway mode), when you are faced with unusual traffic patterns on an API and need to scale it.
 
@@ -33,7 +33,7 @@ You need to append the full path of the `/bin` folder of the extracted WSO2 API 
 
 ##### What versions of WSO2 API-M are compatible with WSO2 API Microgateway 3.2.0?
 
--   [WSO2 API Manager 3.2.0](https://apim.docs.wso2.com/en/latest/)
+-   [WSO2 API Manager 3.2.0](https://apim.docs.wso2.com/en/3.2.0/)
 -   [WSO2 API Manager 3.1.0](https://apim.docs.wso2.com/en/3.1.0/)
 -   [WSO2 API Manager 3.0.0](https://apim.docs.wso2.com/en/3.0.0/)
 -   [WSO2 API Manager 2.6.0](https://docs.wso2.com/display/AM260/WSO2+API+Manager+Documentation)
