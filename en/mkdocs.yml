@@ -58,8 +58,10 @@ nav:
           - Developer First APIs: concepts/developer-first-apis.md
           - Imported APIs: concepts/imported-apis.md
           - OpenAPI Extensions: concepts/openapi-extensions.md
+          - Event Hub and Subscription Validation Model: concepts/event-hub-and-subscription-validation.md
           - The Policy Hub: concepts/the-policy-hub.md
           - Caching: concepts/caching.md
+          - Revoked Tokens: concepts/revoked-tokens.md
     - How Tos:
         - Adding APIs:
             - Using an OpenAPI Definition: how-tos/adding-apis/using-an-openapi-definition.md
@@ -78,7 +80,7 @@ nav:
                   - Pool Configurations: how-tos/endpoints/resiliency/pool-configurations.md
             - Defining a Backend Security Scheme: how-tos/endpoints/defining-a-backend-security-scheme.md
         - Extensions:
-            - Adding Extension Points: how-tos/extensions/adding-extension-points.md
+            - Adding Extensions: how-tos/extensions/adding-extension-points.md
             - Add custom Filters: how-tos/extensions/custom-filters.md
         - Message Transformation:
             - Message Transformation Overview: how-tos/message-transformation/message-transformation-overview.md
@@ -109,7 +111,7 @@ nav:
             - Enabling CORS: how-tos/security/enabling-cors.md
             - API Key Security Token Service: how-tos/security/api-key-security-token-service.md
             - Use a Custom Authorization Header: how-tos/security/use-a-custom-authorization-header.md
-            - JWT Token Revocation: how-tos/security/jwt-token-revocation.md
+            - Rejecting revoked tokens: how-tos/security/rejecting-revoked-tokens.md
             - Importing Certificates to the API Microgateway Truststore: how-tos/security/importing-certificates-to-the-api-microgateway-truststore.md
             - Define Security using extension: how-tos/security/define-security-using-extension.md
         - Analytics for Microgateway: how-tos/analytics-for-microgateway.md
@@ -118,12 +120,13 @@ nav:
         - Configure Caching: how-tos/configure-caching.md
         - Manage Microgateway APIs with WSO2 API Manager: how-tos/manage-microgateway-apis-with-wso2-api-manager.md
         - Passing Enduser Attributes to the Backend Using JWT: how-tos/passing-enduser-attributes-to-the-backend-using-jwt.md
-        - support-custom-claims-mapping: how-tos/support-custom-claims-mapping.md
+        - Custom Claims Mapping: how-tos/support-custom-claims-mapping.md
     - Install and Setup:
         - Install on VM: install-and-setup/install-on-vm.md
         - Install on Docker: install-and-setup/install-on-docker.md
         - Install on Kubernetes: install-and-setup/install-on-kubernetes.md
         - Configuration for WSO2 API Manager: install-and-setup/configuration-for-wso2-api-manager.md
+        - Migrating from Previous Versions : install-and-setup/migrating-from-previous-versions.md
     - Troubleshooting:
         - Troubleshooting the Microgateway: troubleshooting/troubleshooting.md
         - Adding Debug Logs: troubleshooting/adding-debug-logs.md

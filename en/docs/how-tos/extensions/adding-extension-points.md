@@ -1,4 +1,4 @@
-# Adding Extension Points
+# Adding Extensions
 
 ### Startup extension
 

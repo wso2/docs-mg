@@ -4,10 +4,7 @@ Performance issues, errors, and exceptions are unfortunate events that may occur
 
 ### How to enable the Observability
 
-By default, the Observability feature is **disabled** .  The feature can be enabled in one of the following ways.
-
--   [**Updating Configurations**](#e19ed54e9a224173865e4a10a7cc45cc)
--   [**Add Environment Variables**](#6ad7728d0d51451abc3ea9c8f4ab9f09)
+By default, the Observability feature is **disabled**. The feature can be enabled in one of the following ways.
 
 Follow the steps below in order to enable the observability of API Microgateway by changing the configuration.
 
@@ -15,28 +12,30 @@ Follow the steps below in order to enable the observability of API Microgateway 
 
 2. Open the  &lt;MGW\_runtime&gt;/conf/micro-gw.conf add the below configuration. This enables metrics monitoring and distributed tracing on the server with default settings.
 
-``` java
+``` toml
 [b7a.observability.metrics]
 # Flag to enable Metrics
 enabled = true
 reporter = "prometheus"
-    [b7a.observability.metrics.prometheus]
+[b7a.observability.metrics.prometheus]
 port=9797
 jmx_port = 8080
 secure_port = 9000
-    [b7a.observability.tracing]
+
+[b7a.observability.tracing]
 # Flag to enable Tracing
 enabled = true
 name = "jaeger"
-
 [b7a.observability.tracing.jaeger.reporter]
 port=5775
 ```
 
-Observability can be enabled  by adding environment variables before starting the API Microgateway service.
+Observability can be enabled by adding environment variables before starting the API Microgateway service.
 
-    -   export b7a\_observability\_tracing\_enabled=true
-    -   export b7a\_observability\_metrics\_enabled=true
+```text
+export b7a\_observability\_tracing\_enabled=true
+export b7a\_observability\_metrics\_enabled=true
+```
 
 #### Configure Prometheus
 
@@ -47,9 +46,9 @@ Before you start you have to create a user according to your preference in the c
 
 Please find a sample configuration.
 
-You can find the micro gateways configuration file in the path /MGW\_runtime/conf/micro-gw.conf. Default configurations are as follows.
+You can find the micro gateways configuration file in the path /MGW\_runtime/conf/micro-gw.conf. The default configurations are as follows.
 
-``` java
+``` toml
 [b7a.users]
     [b7a.users.prometheus]
         password= "@sha256:{5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8}"
@@ -62,7 +61,7 @@ You can find the micro gateways configuration file in the path /MGW\_runtime/con
 
 2. Add the following content to /tmp/prometheus.yml.
 
-``` java
+``` yaml
 global:
   scrape_interval:  15s
   evaluation_interval: 15s
@@ -135,9 +134,9 @@ Let’s use [Grafana](https://grafana.com/) to visualize metrics in a dashboard.
 
 #### Configure **Jaeger**
 
-Jaeger is the default distributed tracing system that is supported. There are many possible ways to deploy Jaeger and you can find more information on this [link](https://www.jaegertracing.io/docs/deployment/) . Here we focus on all in one deployment with Docker.
+Jaeger is the default distributed tracing system that is supported. There are many possible ways to deploy Jaeger and you can find more information on this [link](https://www.jaegertracing.io/docs/deployment/). Here we focus on all in one deployment with Docker.
 
-1. Install Jaeger via Docker and start the Docker container by executing below command.
+1. Install Jaeger via Docker and start the Docker container by executing the below command.
 
 ``` java
 $ docker run -d -p5775:5775/udp -p6831:6831/udp -p6832:6832/udp -p5778:5778 -p16686:16686 -p14268:14268 jaegertracing/all-in-one:latest
@@ -206,7 +205,7 @@ This section focuses on the configurations that are available for metrics monito
 
 If you are using observability for several micro gateways, you only have to add different ports.
 
-``` java
+``` toml
 [b7a.observability.metrics.prometheus]
     port=9798
     jmx_port = 8081
@@ -217,7 +216,7 @@ If you are using observability for several micro gateways, you only have to add 
 
 The sample configuration that enables tracing, and uses Jaeger as the sample tracer as provided below.
 
-``` java
+``` toml
 [b7a.observability.tracing]
     enabled=true
     name="jaeger"
@@ -235,7 +234,7 @@ The below table provides the descriptions of each configuration option and possi
 
 Jaeger is the default tracer supported by Ballerina. Below is the sample configuration options that are available in the Jaeger.
 
-``` java
+``` toml
 [b7a.observability.tracing]
 enabled=true
 name="jaeger"
@@ -267,8 +266,8 @@ The below table provides the descriptions of each configuration option and possi
 
 The tracing of Ballerina service can be done via Zipkin as well, but the required dependencies are not included in default Ballerina distribution. Follow the below steps to add the required dependencies to the Ballerina distribution.
 
-1.  Go to [ballerina-observability](https://github.com/ballerina-platform/ballerina-observability) and clone the GitHub repository in any preferred location. Make sure you have installed [Apache Maven](http://maven.apache.org/) .
-2.  Open the command line and build the repository by using [Apache Maven](http://maven.apache.org/) with below command, while being in the root project directory ballerina-observability.
+1.  Go to [ballerina-observability](https://github.com/ballerina-platform/ballerina-observability) and clone the GitHub repository in any preferred location. Make sure you have installed [Apache Maven](http://maven.apache.org/).
+2.  Open the command line and build the repository by using [Apache Maven](http://maven.apache.org/) with the below command, while being in the root project directory ballerina-observability.
 
     ``` java
     mvn clean install
@@ -276,23 +275,23 @@ The tracing of Ballerina service can be done via Zipkin as well, but the require
 3.  Go to the path - ballerina-observability/tracing-extensions/modules/ballerina-zipkin-extension/target/ and extract the distribution.zip file.
 4.  Copy all the JAR files inside the distribution.zip to ‘&lt;project&gt;/lib directory.
 5.  Change the following configuration name to Zipkin. This ensures that all tracers are sent to Zipkin instead of the default Jaeger tracer.
-    ``` java
+    ``` toml
     [b7a.observability.tracing]
     enabled=true
     ```
 6.  The following configuration is a sample configuration option available for Zipkin tracer.
 
-        ``` java
-        [b7a.observability.tracing.zipkin.reporter]
-        hostname="localhost"
-        port=9411
-
-        [b7a.observability.tracing.zipkin.reporter.api]
-        context="/api/v2/spans"
-        version="v2"
-
-        [b7a.observability.tracing.zipkin.reporter.compression]
-        enabled=true
-        ```
+    ``` toml
+    [b7a.observability.tracing.zipkin.reporter]
+    hostname="localhost"
+    port=9411
+    
+    [b7a.observability.tracing.zipkin.reporter.api]
+    context="/api/v2/spans"
+    version="v2"
+    
+    [b7a.observability.tracing.zipkin.reporter.compression]
+    enabled=true
+    ```
 
 
