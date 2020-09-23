@@ -17,7 +17,7 @@ Let's use a developer-first approach and host your API, which uses an OpenAPI de
 
     !!! info
         More Information
-        -   For more information on the MGW project directory that gets created, see [Project Directory](/reference/project-directory/) .
+        -   For more information on the MGW project directory that gets created, see [Project Directory]({{base_path}}/reference/project-directory/) .
 
 #### Step 1.2 - Build the project
 

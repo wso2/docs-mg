@@ -4,11 +4,11 @@ Let's host your first API on WSO2 API Microgateway using the WSO2 Microgateway r
 
 ### Before you begin...
 
-Make sure to install and set up all the [installation prerequisites](/install-and-setup/install-on-vm/).
+Make sure to install and set up all the [installation prerequisites]({{base_path}}/install-and-setup/install-on-vm/).
 
 ### Objectives 
 
-- Generate an executable jar using WSO2 API Microgateway Toolkit
+- Generate an executable using WSO2 API Microgateway Toolkit
 - Run the API Microgateway
 - Invoke the sample API
 
@@ -51,8 +51,8 @@ Make sure to install and set up all the [installation prerequisites](/install-a
             ```
 
     !!! info
-        - For more information on the MGW project directory that gets created, see [Project Directory](/reference/project-directory/) .
-        - Check out the [troubleshooting](/troubleshooting/troubleshooting/) guide if you run into an issue.
+        - For more information on the MGW project directory that gets created, see [Project Directory]({{base_path}}/reference/project-directory/) .
+        - Check out the [troubleshooting]({{base_path}}/troubleshooting/troubleshooting/) guide if you run into an issue.
 
 #### Step 1.2 - Build the project
 
@@ -66,7 +66,7 @@ Make sure to install and set up all the [installation prerequisites](/install-a
       ```
 
     !!! info
-        Here are the [FAQs](/faqs/) .
+        Here are the [FAQs]({{base_path}}/faqs/) .
 
 ### Step 2 - Run the API Microgateway
 
@@ -112,9 +112,9 @@ TOKEN=$(curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRt
 
 !!! info
         - You can obtain a JWT token from any third-party secure token service or via the WSO2 API Manager.
-        - You can obtain an API Key easily from WSO2 API Microgateway. Follow the documentation to [Obtain an API Key](/how-tos/security/api-key-security-token-service/).
+        - You can obtain an API Key easily from WSO2 API Microgateway. Follow the documentation to [Obtain an API Key]({{base_path}}/how-tos/security/api-key-security-token-service/).
         - Alternatively, you can also use an opaque token to invoke the API. 
-     For more information, see the FAQs on [Working with Tokens](/faqs/#working-with-tokens) .
+     For more information, see the FAQs on [Working with Tokens]({{base_path}}/faqs/#working-with-tokens) .
 
 #### Step 3.2 - Invoke the API
 Execute the following command to Invoke the API using the API key. You can now invoke the API running on the Microgateway using cURL as below
@@ -128,7 +128,7 @@ Execute the following command to Invoke the API using the API key. You can now i
  ```
  
 !!! note
-    You were able to invoke the API resource `pet/{petId}` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication](/how-tos/security/api-authentication/api-key-authentication/) .
+    You were able to invoke the API resource `pet/{petId}` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication]({{base_path}}/how-tos/security/api-authentication/api-key-authentication/) .
     ```yml
     "paths": {
       "/pet/{petId}": {

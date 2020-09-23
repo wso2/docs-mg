@@ -1,6 +1,6 @@
 # Project Directory
 
-When you Initialize a WSO2 API Microgateway project, it creates a directory structure for the project in the location where you ran the command. An empty `api_definitions` folder is created inside the project directory. You, as an API developer, can add multiple open API definitions inside the `api_definitions` folder. You can modify the Open API definition using open API vendor specific extensions for the purpose of specifying the backend endpoint details, request and response interceptors, throttle policies, CORS configuration and more.
+When you initialize a WSO2 API Microgateway project, it creates a directory structure for the project in the location where you ran the command. An empty `api_definitions` folder is created inside the project directory. You, as an API developer, can add multiple open API definitions inside the `api_definitions` folder. You can modify the Open API definition using open API vendor specific extensions for the purpose of specifying the backend endpoint details, request and response interceptors, throttle policies, CORS configuration and more.
 
 After the project is initialized, you will notice that a directory based on the name of the MGW project (e.g., petstore) has been created within the directory where you executed the `init` command. The folder structure is similar to the following.
 

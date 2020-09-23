@@ -1,7 +1,7 @@
 # Distributed Throttling
 
 WSO2 API Microgateway has an in-memory mechanism by default, to handle throttling
-([node-level throttling](/how-tos/rate-limiting/adding-throttling-policies)).  
+([node-level throttling]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies)).  
 In a deployment with multiple microgateways, throttling becomes a challenge with node local throttling as the throttling 
 decision is made based on the local counter within each node. If we proceed with the node local throttling in such 
 environment, the API user would be allowed to send multiples of the throttling limit.I.e. if the throttling limit is set to 10, 

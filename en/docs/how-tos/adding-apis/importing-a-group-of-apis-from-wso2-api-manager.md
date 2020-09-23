@@ -9,7 +9,7 @@ Follow the instructions below to create a Microgateway distribution for a group
 
 ### Step 1 - Follow the installation prerequisites
 
-Make sure to carry out all the [installation prerequisites](/install-and-setup/install-on-vm/).
+Make sure to carry out all the [installation prerequisites]({{base_path}}/install-and-setup/install-on-vm/).
 
 ### Step 2 - Assign an API to an API Microgateway
 
