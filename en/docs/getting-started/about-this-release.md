@@ -74,6 +74,7 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
       
 -   **Support reading configurations from java interceptors**
     Provides access to microgateway runtime configurations from java interceptors.
+    Provides access to microgateway runtime configurations from java interceptors.
       
 -   **Mutual SSL support per API**    
     Provides the ability to specify which certificates should be trusted by each API. Prior to this improvement, any of the microgateway's trusted certificates could be used to invoke a mutual SSL protected API.
