@@ -71,6 +71,7 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
     
 -   **Support reading open API definition in interceptors**
     Enables developers to access the OpenApi definitions of the current runtime and implement custom behaviors.
+    Enables developers to access the OpenApi definitions of the current runtime and implement custom behaviors.
       
 -   **Support reading configurations from java interceptors**
     Provides access to microgateway runtime configurations from java interceptors.
