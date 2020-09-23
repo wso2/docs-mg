@@ -74,7 +74,7 @@ output <code>             .jar            </code> file name
 <tr>
 <td><code>             dockerHost            </code></td>
 <td>Docker host IP and Docker PORT. (e.g., minikube IP and Docker PORT)</td>
-<td><a href="unix://docs.wso2.com/var/run/docker.sock">unix:///var/run/docker.sock</a></td>
+<td>unix:///var/run/docker.sock</td>
 </tr>
 <tr>
 <td><code>             dockerCertPath            </code></td>

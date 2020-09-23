@@ -23,7 +23,7 @@
 
 ##### How can I run the toolkit command from any directory location?
 
-You need to append the full path of the `/bin` folder of the extracted WSO2 API Microgateway toolkit (WSO2 MGW-TK) distribution to the PATH environment variable as follows to be able to run the WSO2 API Microgateway toolkit command from any directory location. For more information, see [Install on VM](/install-and-setup/install-on-vm/).
+You need to append the full path of the `/bin` folder of the extracted WSO2 API Microgateway toolkit (WSO2 MGW-TK) distribution to the PATH environment variable as follows to be able to run the WSO2 API Microgateway toolkit command from any directory location. For more information, see [Install on VM]({{base_path}}/install-and-setup/install-on-vm/).
 
 ##### How can I run the Microgateway distribution command from any directory location?
 
@@ -139,7 +139,7 @@ For more information, see [Generating a JWT token from the API Store](https://ap
 ##### Can I use an OAuth2 token instead of a JWT token?
 
 Yes, you can use an OAuth2 token instead of a JWT token. WSO2 API Microgateway can be configured to connect to a key manager (external or to the WSO2 API Manager).
-For more information please refer documentation on [configuring key manager when using an OAuth2token](/how-tos/security/api-authentication/secure-apis-using-oauth2.0-access-tokens/secure-apis-using-opaque-tokens/#configure-api-microgateway-to-validate-oauth2-opaque-tokens).
+For more information please refer documentation on [configuring key manager when using an OAuth2token]({{base_path}}/how-tos/security/api-authentication/secure-apis-using-oauth2.0-access-tokens/secure-apis-using-opaque-tokens/#configure-api-microgateway-to-validate-oauth2-opaque-tokens).
 
 !!! note
     For the WSO2 API Manager, You can use an OAuth2 token instead of a JWT only if the API that you are working with is also available Publisher as well. You need a valid subscription for the API from the WSO2 API Manager Store as well.

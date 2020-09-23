@@ -14,12 +14,11 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
     the WSO2 API Microgateway can be configured with advanced endpoint configurations including circuit breakers, retries 
     and endpoint timeouts. For more information, visit 
     [Endpoint Retry and Timeouts]({{base_path}}/how-tos/endpoints/resiliency/retry-and-timeout-configs) and 
-    [Circuit Breaker]({base_path}}/how-tos/endpoints/resiliency/).
+    [Circuit Breaker]({{base_path}}/how-tos/endpoints/resiliency/circuit-breaker/).
     
 -   **Custom Claims Mapping for JWTs**      
     WSO2 API Microgateway 3.2.0 facilitates claim mapping for JWTs, particularly useful when the claims of the incoming JWT cannot be directly validated by the backend. Also, it brings in the flexibility to generate JWTs with preferred custom claims.
-    More information can be found from [support-custom-claims-mapping]({{base_path}}/how-tos/support-custom-claims-mapping).
-    <!---TODO: change the topic of this webpage--->
+    More information can be found from [Custom Claims Mapping]({{base_path}}/how-tos/support-custom-claims-mapping).
     
 -   **Custom Siddhi Policies and Deny Policies with WSO2 API Manager**      
     The WSO2 API Manager allows users to define and 
@@ -39,7 +38,7 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
 -   **Backend JWT Generation**      
     The WSO2 API Microgateway has ability to generate the backend JWT Token. In addition, the JWT generation logic can be 
     customized based on user preference as well. For more information, visit 
-    [Generating a JWT in Microgateway]({base_path}}/how-tos/passing-enduser-attributes-to-the-backend-using-jwt/).
+    [Generating a JWT in Microgateway]({{base_path}}/how-tos/passing-enduser-attributes-to-the-backend-using-jwt/).
     
 -   **Publish Events to Multiple Traffic Managers**     
     The WSO2 API Microgateway can publish events to multiple Traffic Managers to preserve high availability. 
@@ -67,7 +66,7 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
     
 -   **JWT Revocation with WSO2 API Manager**    
     WSO2 API Microgateway has ability to persist revoked access tokens inside WSO2 API Manager (Traffic Manager). 
-    For more information, visit [JWT Token Revocation](how-tos/security/jwt-token-revocation/#jwt-token-revocation).
+    For more information, visit [Rejecting Revoked tokens]({{base_path}}/how-tos/security/rejecting-revoked-tokens/).
     
     
 -   [More in 3.2.0 Improvements](https://github.com/wso2/product-microgateway/issues?q=is%3Aissue+project%3Awso2%2Fproduct-microgateway%2F9+is%3Aclosed+label%3AType%2FImprovement)
