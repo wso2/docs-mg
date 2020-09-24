@@ -32,6 +32,9 @@ Follow the instructions below to configure the WSO2 Microgateway Toolkit and th
     keytool -import -trustcacerts -alias wso2carbon2 -file wso2carbon.crt -keystore <MGW_TOOLKIT_HOME>/lib/platform/bre/security/ballerinaTruststore.p12
     ```
 
+    !!! note
+        Do not unzip the platform.zip in <MGW_TOOLKIT_HOME>/lib/ manually. After you use any toolkit command such as `micro-gw init petstore`, it will be automatically unzipped with necessary contents.
+
 2.  Change the REST API version and DCR version to be compatible with the WSO2 API Manager.
 
     | API Manager version | REST API version | DCR version |
@@ -127,3 +130,4 @@ Set the analytics stream version corresponding to the API-M Analytics version th
 |-----------------|--------------|
 |3.0.0|3.0.0|
 |3.1.0|3.1.0|
+|3.2.0|3.2.0|

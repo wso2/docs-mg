@@ -139,7 +139,7 @@ For more information, see [Generating a JWT token from the API Store](https://ap
 ##### Can I use an OAuth2 token instead of a JWT token?
 
 Yes, you can use an OAuth2 token instead of a JWT token. WSO2 API Microgateway can be configured to connect to a key manager (external or to the WSO2 API Manager).
-For more information please refer documentation on [configuring key manager when using an OAuth2token]({{base_path}}/how-tos/security/api-authentication/secure-apis-using-oauth2.0-access-tokens/secure-apis-using-opaque-tokens/#configure-api-microgateway-to-validate-oauth2-opaque-tokens).
+For more information please refer documentation on [configuring key manager when using an OAuth2token]({{base_path}}/how-tos/security/api-authentication/configuring-an-external-key-manager/).
 
 !!! note
     For the WSO2 API Manager, You can use an OAuth2 token instead of a JWT only if the API that you are working with is also available Publisher as well. You need a valid subscription for the API from the WSO2 API Manager Store as well.

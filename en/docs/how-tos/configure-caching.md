@@ -10,8 +10,8 @@ You need to enable response caching when adding an API using an OpenAPI definiti
 
 ``` java
 x-wso2-response-cache: 
-enabled: true
-cacheTimeoutInSeconds: 300
+    enabled: true
+    cacheTimeoutInSeconds: 300
 ```
 
 | Sub extension         | Description                                                                    |
@@ -21,7 +21,7 @@ cacheTimeoutInSeconds: 300
 
 ### Configuring OAuth Cache
 
-The OAuth token is enabled by default in the Microgateway. Adding the following section to the micro-gw.conf file which is located in the `         <MGW-RUNTIME-HOME>/conf        ` directory , you can change the configurations in the OAuth cache.
+The OAuth token is enabled by default in the Microgateway. Adding the following section to the `micro-gw.conf` file which is located in the `         <MGW-RUNTIME-HOME>/conf        ` directory , you can change the configurations in the OAuth cache.
 
 #### OAuth caching
 

@@ -55,8 +55,7 @@ public type CustomFilter object {
 2. Copy the implemented .bal file into the `<PROJECT_HOME>/extensions` folder.
 
 3. Define the custom filter in the `deployment-config.toml` as in below. Position starts from index 1.
-``` java
-
+``` toml
 [[filters]]
     name = "CustomFilter"
     position = 1

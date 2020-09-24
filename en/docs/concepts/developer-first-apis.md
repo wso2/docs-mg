@@ -21,15 +21,15 @@ In microgateway version 3.0.x series the open API definition required 2 mandator
 1.  x-wso2-basePath
 2.  x-wso2-production-endpoints
 
-The x-wso2-basePath is used to group the all http resources of the open API under a single context so, it will be exposed as a sub resources of a singel API using microgateway. This is how microgateway logically seperat one API from the other. The x-wso2-production-endpoints refers to the actual backend service implementation of the API. So these two details were mandatory to expose an API using microgateway.
+The x-wso2-basePath is used to group the all http resources of the open API under a single context so, it will be exposed as a sub resources of a singel API using microgateway. This is how microgateway logically separate one API from the other. The x-wso2-production-endpoints refers to the actual backend service implementation of the API. So these two details were mandatory to expose an API using microgateway.
 
 **But with 3.1.0 onwards none of the wso2 specific open API extensions are mandatory.** Microgateway resolves base path and back end url as below
 
 1.  **For swagger 2.0**
     The swagger 2.0 specification  defines a way of providing the [base path and the host](https://swagger.io/docs/specification/2-0/api-host-and-base-path/) of the service. If the swagger specifies the combination of **schemes, basePath and host** attributes, microgateway will drive the back end service url using host and schemes, and derive the base path using the base path attribute
-2.  **For Open API 3.0
-    ** The open API 3.0 specification defines a way of providing [server](https://swagger.io/docs/specification/api-host-and-base-path/) url of the API defines by the open API definition. Microgateway derive the base path and the back end service url using the **servers** object defined in the open API definition.
-    For if the server url is defined as ex: <http://test.com/v2> then microgateway will resolve backend service url as the given URL and it will also expose the API using the base path(context) /v2.
+2.  **For Open API 3.0**
+    The open API 3.0 specification defines a way of providing [server](https://swagger.io/docs/specification/api-host-and-base-path/) url of the API defines by the open API definition. Microgateway derive the base path and the back end service url using the **servers** object defined in the open API definition.
+    For if the server url is defined as ex: `http://test.com/v2` then microgateway will resolve backend service url as the given URL and it will also expose the API using the base path(context) /v2.
 
 ## Updating the API
 

@@ -17,52 +17,52 @@ One of the most important features in gRPC is that you can generate your client 
 4.  Single Source of Truth
     -   In gRPC, the .proto file containing the service definition acts as the single source of truth. Hence the configurations related to microgateway including endpoint configurations, authentication schemes, etc. need to be provided inside the gRPC service definition.
 
-Please refer to the " **Microgateway Extensions** " segment below for more information.
+Please refer to the [Microgateway Extensions](#microgateway-extensions) for more information.
 
 ### Microgateway Extensions
 
 To generate the microgateway for gRPC services, there is a set of extensions introduced which need to be added to the existing service .proto files inside the microgateway project. Those extensions are defined in a separate .proto file called "wso2\_options.proto" which is defined by the microgateway.
 
 ``` text tab="wso2_options.proto"
-    syntax = "proto3";
-    package wso2;
+syntax = "proto3";
+package wso2;
 
-    option java_package = "org.wso2.apimgt.gateway.cli.protobuf";
-    option java_outer_classname = "ExtensionHolder";
+option java_package = "org.wso2.apimgt.gateway.cli.protobuf";
+option java_outer_classname = "ExtensionHolder";
 
-    import "google/protobuf/descriptor.proto";
+import "google/protobuf/descriptor.proto";
 
-    //service level extensions
-    extend google.protobuf.ServiceOptions {
-    Endpoints production_endpoints = 50001;
-    Endpoints sandbox_endpoints = 50002;
-    repeated Security security = 50003;
-    string throttling_tier = 50004;
-    }
+//service level extensions
+extend google.protobuf.ServiceOptions {
+Endpoints production_endpoints = 50001;
+Endpoints sandbox_endpoints = 50002;
+repeated Security security = 50003;
+string throttling_tier = 50004;
+}
 
-    //method level extensions
-    extend google.protobuf.MethodOptions {
-    string method_throttling_tier = 50006;
-    string method_scopes = 50007;
-    }
+//method level extensions
+extend google.protobuf.MethodOptions {
+string method_throttling_tier = 50006;
+string method_scopes = 50007;
+}
 
-    //to define endpoints
-    message Endpoints {
-    repeated string url = 1;
-    EndpointType type = 2;
-    }
+//to define endpoints
+message Endpoints {
+repeated string url = 1;
+EndpointType type = 2;
+}
 
-    enum EndpointType {
-    DEFAULT = 0;
-    }
+enum EndpointType {
+DEFAULT = 0;
+}
 
-    enum Security {
-    NONE = 0;
-    BASIC = 1;
-    OAUTH2 = 2;
-    JWT = 3;
-    APIKEY = 4;
-    }
+enum Security {
+NONE = 0;
+BASIC = 1;
+OAUTH2 = 2;
+JWT = 3;
+APIKEY = 4;
+}
 ```
 
 #### Service Extensions
@@ -104,10 +104,10 @@ url : &quot;&lt;backend-server-url&gt;&quot;;<br />
 
 #### Method Extensions
 
-    | Extension                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Sample                                      |
-    |-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
-    | wso2.method\_throttling\_tier | This field defines the throttling tier for the method. If there is a service level throttling tier, it will be overridden by this. If the throttling tier exceeds, gRPC client will receive a response with the grpc-status "8" which indicated that there has been " *too many functions calls* ". It is required to make sure that the throttling policy value should be inside the **policies.yaml** under *resourcePolicies* .(&lt;microgateway-project&gt;/policies.yaml). | option (wso2.throttling\_tier) = 10kPerMin; |
-    | wso2.scopes                   | This field accepts a string that denotes the scope. If there are multiple scopes, it should be provided as a comma separated string value. This extension can be used only if the selected security scheme is OAUTH2 or JWT.                                                                                                                                                                                                                                                    | option (wso2.scopes) = "scope1, scope2"     |
+| Extension                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Sample                                      |
+|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
+| wso2.method\_throttling\_tier | This field defines the throttling tier for the method. If there is a service level throttling tier, it will be overridden by this. If the throttling tier exceeds, gRPC client will receive a response with the grpc-status "8" which indicated that there has been " *too many functions calls* ". It is required to make sure that the throttling policy value should be inside the **policies.yaml** under *resourcePolicies* .(&lt;microgateway-project&gt;/policies.yaml). | option (wso2.throttling\_tier) = 10kPerMin; |
+| wso2.scopes                   | This field accepts a string that denotes the scope. If there are multiple scopes, it should be provided as a comma separated string value. This extension can be used only if the selected security scheme is OAUTH2 or JWT.                                                                                                                                                                                                                                                    | option (wso2.scopes) = "scope1, scope2"     |
 
 ### How to setup gRPC microgateway
 
