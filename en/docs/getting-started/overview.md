@@ -24,7 +24,7 @@ For details on how analytics works with API Microgateway and how to configure An
 
 API Microgateway and the "traditional" API Gateway can be compared in different aspects as below.  The decision to select either of the gateways is highly dependent on the architecture, design, and deployment. Both gateways mostly have similar features and functionalities, but works differently in order to cater for the purpose it was designed to serve.
 
-###### Design and deployment comparison
+#### Design and deployment comparison
 
 |Design/ Deployment       |API Microgateway                                         |API Gateway                        |
 |-------------------------|---------------------------------------------------------|-----------------------------------|
@@ -37,7 +37,7 @@ API Microgateway and the "traditional" API Gateway can be compared in different 
 |Automated API CI/CD flows| Supported with CLI tools                                |Supported with CLI tools           |
 |Update APIs              | Immutable gateways. Rebuild the gateway upon updating the API| Mutable gateway, updating APIs supported|
 
- ###### Security Comparison
+#### Security Comparison
 
 API Gateway and API Microgateway both support different security mechanisms.
 
@@ -49,8 +49,7 @@ API Gateway and API Microgateway both support different security mechanisms.
 | Basic Auth                   | Config based supported, can not plug user stores                      | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) |
 | API Keys                     | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) |
 
-###### 
-Feature Comparison
+#### Feature Comparison
 
 |   Feature                                                  | API Microgateway                                                                        |          API Gateway                                                                |
 |----------------------------------------------------|:-------------------------------------------------------------------------:|:-----------------------------------------------------------------------:|
@@ -61,7 +60,8 @@ Feature Comparison
 | GRPC Services                                      | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   | ![(error)]({{base_path}}/assets/img/getting-started/error.svg) |
 | Web socket APIs                                    | ![(error)]({{base_path}}/assets/img/getting-started/error.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
 | Custom mediation/transformation                    | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
-| Advance throttling(bandwidth, headers, IP address) | ![(error)]({{base_path}}/assets/img/getting-started/error.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
+| Advance throttling (header, IP, query param, jwt claims) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
+| Advance throttling (based on bandwidth) | ![(error)]({{base_path}}/assets/img/getting-started/error.svg) | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
 | Schema validation                                  | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
 | JWT revocation                                     | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   |
 | Per resource Endpoints                             | ![(tick)]({{base_path}}/assets/img/getting-started/check.svg)   | ![(error)]({{base_path}}/assets/img/getting-started/error.svg) |
