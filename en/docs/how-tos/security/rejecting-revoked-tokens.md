@@ -181,7 +181,7 @@ Let's use the following sample scenario.
     - **Use any third party secure token service (STS)**
         You need to add the public certificate of the token service that you used to sign the JWT token to the trust store of the WSO2 API Microgateway. The JWT should have the sub, aud, exp, and jti claims in order to be successfully validated with WSO2 API Microgateway.
     - **Use WSO2 API Manager**.
-      [Obtain a JWT token using the WSO2 API Manager](https://apim.docs.wso2.com/en/latest/learn/consume-api/manage-application/generate-keys/generate-api-keys/#generate-application-keys) .
+      [Obtain a JWT token using the WSO2 API Manager]({{apim_path}}/learn/consume-api/manage-application/generate-keys/generate-api-keys/#generate-application-keys) .
 
 3.  Extract the jti from the JWT token via the [https://jwt.io](https://jwt.io/) site.
 

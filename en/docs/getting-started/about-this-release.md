@@ -22,9 +22,9 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
     
 -   **Custom Siddhi Policies and Deny Policies with WSO2 API Manager**      
     The WSO2 API Manager allows users to define and 
-    [deploy custom Siddhi-based policies](https://apim.docs.wso2.com/en/3.2.0/learn/rate-limiting/advanced-topics/custom-throttling/) 
+    [deploy custom Siddhi-based policies]({{apim_path}}/learn/rate-limiting/advanced-topics/custom-throttling/) 
     and do the rate-limiting based on those queries. The API Manager has ability to block the requests when 
-    [Deny Policies](https://apim.docs.wso2.com/en/3.2.0/learn/rate-limiting/access-control/#denying-requests) are enabled.
+    [Deny Policies]({{apim_path}}/learn/rate-limiting/access-control/#denying-requests) are enabled.
     The WSO2 API Microgateway also has ability to enforce these policies when it is integrated with WS02 API Manager. 
     <!---TODO: add the documentation links for custom throttling and deny policies--->
 
@@ -45,7 +45,7 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
     For more information, see [Distributed Throttling]({{base_path}}/how-tos/rate-limiting/distributed-throttling/).
     
 -   **Improved Subscription Validation**    
-    The WSO2 API Microgateway supports real time [subscription blocking](https://apim.docs.wso2.com/en/3.2.0/learn/design-api/advanced-topics/block-subscription-to-an-api/#block-subscription-to-an-api) 
+    The WSO2 API Microgateway supports real time [subscription blocking]({{apim_path}}/learn/design-api/advanced-topics/block-subscription-to-an-api/#block-subscription-to-an-api) 
     feature, when it is integrated with WSO2 API Manager. 
     And the subscriptions, subscription tiers can be changed in the real time as well.
     <!---TODO: Link event hub documentation--->
@@ -56,7 +56,7 @@ WSO2 API Microgateway 3.2.0 is the successor of WSO2 API Microgateway version 3.
     
 -   **Improved Rate Limiting with WSO2 API MANAGER**    
     In WSO2 API Manager, the users can define throttle policies which perform 
-    [rate limiting based on various conditions](https://apim.docs.wso2.com/en/3.2.0/learn/rate-limiting/access-control/#creating-the-advanced-rate-limit-policy)
+    [rate limiting based on various conditions]({{apim_path}}/learn/rate-limiting/access-control/#creating-the-advanced-rate-limit-policy)
     including headers, JWT claims, query params and IP address. The same policies can be enforced within 
     WSO2 API Microgateway when it is integrated with WSO2 API Manager.   
     <!---TODO: add documentation and point from here--->

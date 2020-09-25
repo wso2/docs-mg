@@ -14,7 +14,7 @@ Make sure to carry out all the [installation prerequisites]({{base_path}}/instal
 
 ### Step 2 - Assign an API to an API Microgateway
 
-Create and attach a Microgateway to an API. Follow the instructions in the [Grouping APIs with Microgateway Labels](https://apim.docs.wso2.com/en/3.2.0/Learn/APIMicrogateway/grouping-apis-with-labels/) on the WSO2 API Manager documentation.
+Create and attach a Microgateway to an API. Follow the instructions in the [Grouping APIs with Microgateway Labels]({{apim_path}}/Learn/APIMicrogateway/grouping-apis-with-labels/) on the WSO2 API Manager documentation.
 
 ### Step 3 - Generate a Microgateway project
 

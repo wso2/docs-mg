@@ -68,7 +68,7 @@ The following sections describe how to configure the WSO2 API-M Analytics Server
 
 !!! note
     Before you begin...
-    Configure API Manager Analytics using the **Quick setup** or **Standard Setup** . For instructions, see [Configuring APIM Analytics](https://apim.docs.wso2.com/en/latest/learn/analytics/configuring-apim-analytics/) .
+    Configure API Manager Analytics using the **Quick setup** or **Standard Setup** . For instructions, see [Configuring APIM Analytics]({{apim_path}}/learn/analytics/configuring-apim-analytics/) .
 1.  Create the `              AM_USAGE_UPLOADED_FILES             ` table in the APIM\_ANALYTICS\_DB . A sample MySQL script to create the table is given below (This step is only required if you followed the **Standard setup** when configuring API Manager Analytics).
 
     ``` java
@@ -281,7 +281,7 @@ A report containing the number of requests served by the Microgateway can be gen
 
 !!! note
     Before you begin...
-    Configure API Manager Analytics using the **Quick setup** or **Standard Setup** . For instructions, see [Configuring APIM Analytics](https://apim.docs.wso2.com/en/latest/learn/analytics/configuring-apim-analytics/) .
+    Configure API Manager Analytics using the **Quick setup** or **Standard Setup** . For instructions, see [Configuring APIM Analytics]({{apim_path}}/learn/analytics/configuring-apim-analytics/) .
 
 1.  Start the analytics dashboard in the analytics setup.
 

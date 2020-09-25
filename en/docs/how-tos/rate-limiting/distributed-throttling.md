@@ -9,20 +9,20 @@ if we have 3 gateways in a cluster, it will allow 30 requests to pass to the bac
 throttle out requests. This will put an unexpected load on the backend. To address this requirement, the API Microgateway 
 supports distributed throttling where it is able to work with a central traffic management solution. In this case, 
 multiple microgateways can connect with WSO2 API Manager 
-([WSO2 Traffic Manager](https://apim.docs.wso2.com/en/3.2.0/install-and-setup/setup/distributed-deployment/product-profiles/)) 
+([WSO2 Traffic Manager]({{apim_path}}/install-and-setup/setup/distributed-deployment/product-profiles/)) 
 and perform rate-limiting precisely.
 
 !!! note
     If you start the WSO2 API Manager without providing any profile, it runs as All in One Node (All the profiles 
     are activated). For testing purposes, you can simply start the API Manager following the 
-    [quick start guide](https://apim.docs.wso2.com/en/3.2.0/getting-started/quick-start-guide/) and test.
+    [quick start guide]({{apim_path}}/getting-started/quick-start-guide/) and test.
 
 <!---TODO:@VirajSalaka Add concept page and mention it here--->
 <!---TODO:@VirajSalaka Update image (old) and add to concept page--->
 
 ### Enabling distributed throttling
 
-1.  Let's create a microgateway project
+1.  Let's create a microgateway project.
 
     Create a project using the command given below.
   
@@ -103,7 +103,7 @@ and perform rate-limiting precisely.
         </tbody>
     </table>
     
-    The message broker connection URL. For e.g. a [WSO2 API instance can be used as the Traffic Manager](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/distributed-deployment/product-profiles/). 
+    The message broker connection URL. For e.g. a [WSO2 API instance can be used as the Traffic Manager]({{apim_path}}/install-and-setup/setup/distributed-deployment/product-profiles/). 
     In such an instance, the URL will point to the message broker inside the API Traffic Manager instance.
     In the `micro-gw.conf` file under `[throttlingConfig.binary]`, we should list down all the configurations related to
     event publishing.                   

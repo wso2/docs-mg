@@ -1,6 +1,6 @@
 # Subscription Validation
 
-The [subscription](https://apim.docs.wso2.com/en/latest/learn/consume-api/manage-subscription/subscribe-to-an-api/) validation is configurable for JWT and reference tokens. In order to mandate the subscriptions, subscription validation can be enabled. Microgateway will validate the list under the subscribedAPIs claim and check if the user is currently invoking one of the APIs in the list. The validation If not it will send an error message with error code 900908.
+The [subscription]({{apim_path}}/learn/consume-api/manage-subscription/subscribe-to-an-api/) validation is configurable for JWT and reference tokens. In order to mandate the subscriptions, subscription validation can be enabled. Microgateway will validate the list under the subscribedAPIs claim and check if the user is currently invoking one of the APIs in the list. The validation If not it will send an error message with error code 900908.
 To authorize an API request with the JWT token under an issuer with subscription validation, the API name and version should be listed under subscribedAPIs claim of the JWT token.
 
 !!! note
