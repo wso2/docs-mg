@@ -40,8 +40,8 @@ paths:
      get:
        security:
          - OAuth2:
-             - read
-             - write
+           - read
+           - write
 ```
 
 !!! note
@@ -71,9 +71,9 @@ paths:
     get:
       security:
         - mybasic: []
-            - OAuth2:
-                - read
-                - write
+          - OAuth2:
+            - read
+            - write
         
 components:
   securitySchemes:

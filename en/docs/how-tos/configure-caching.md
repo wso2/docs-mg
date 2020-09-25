@@ -21,7 +21,7 @@ x-wso2-response-cache:
 
 ### Configuring OAuth Cache
 
-The OAuth token is enabled by default in the Microgateway. Adding the following section to the `micro-gw.conf` file which is located in the `         <MGW-RUNTIME-HOME>/conf        ` directory , you can change the configurations in the OAuth cache.
+The OAuth token is enabled by default in the Microgateway. Adding the following section to the `micro-gw.conf` file which is located in the `<MGW-RUNTIME-HOME>/conf ` directory , you can change the configurations in the OAuth cache.
 
 #### OAuth caching
 
