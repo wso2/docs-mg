@@ -1,16 +1,10 @@
 # Quick Start Guide - Docker
 
-Let's get started. See the video tutorial here or a separate step-by-step tutorial.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ebm_k6VkwAY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-****
-
-**Let's host your first API on WSO2 API Microgateway using Docker....**
-
+Let's host your first API on WSO2 API Microgateway using Docker.
 
 ### Before you begin..
 
-Make sure to install and set up [Docker](https://www.docker.com) and the [installation prerequisites for the Microgateway Toolkit]({{base_path}}/install-and-setup/install-on-vm/#microgateway-toolkit)) .
+Make sure to install and set up [Docker](https://www.docker.com) and the [installation prerequisites for the Microgateway Toolkit]({{base_path}}/install-and-setup/install-on-vm/#microgateway-toolkit).
 
 ### Step 1 - Generate an executable using WSO2 API Microgateway Toolkit
 
@@ -34,30 +28,29 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [instal
     !!! note
         The folder structure is similar to the following.
     ``` java
-        petstore
-        ├── api_definitions
-        └── swagger.json
-        ├── conf
-        │   └── deployment-config.toml
-        ├── extensions
-        │   ├── extension_filter.bal
-        │   ├── startup_extension.bal
-        │   └── token_revocation_extension.bal
-        ├── grpc_definitions
-        ├── interceptors
-        ├── lib
-        ├── policies.yaml
+    petstore
+    ├── api_definitions
+    └── swagger.json
+    ├── conf
+    │   └── deployment-config.toml
+    ├── extensions
+    │   ├── extension_filter.bal
+    │   ├── startup_extension.bal
+    │   └── token_revocation_extension.bal
+    ├── grpc_definitions
+    ├── interceptors
+    ├── lib
+    ├── policies.yaml
     ```
 
 !!! info
-    More Information
-    -   For more information on the MGW project directory that gets created, see [Project Directory]({{base_path}}/reference/project-directory/) .
-    -   Check out the [troubleshooting]({{base_path}}/troubleshooting/troubleshooting/) guide if you run into an issue..
+    -   For more information on the MGW project directory that gets created, see [Project Directory]({{base_path}}/reference/project-directory/).
+    -   Check out the [troubleshooting]({{base_path}}/troubleshooting/troubleshooting/) guide if you run into an issue.
 
 ##### Step 1.2 - Build the project and the docker image
 
-1.  Use the command-line tool to navigate to where the project directory ("petstore") was created. Execute    the following command to build the project and to create the docker image.
-    An executable file ( `petstore/target/petstore.jar` ) is created to expose the API via WSO2 API Microgateway.
+1.  Use the command-line tool to navigate to where the project directory ("petstore") was created. Execute the following command to build the project and to create the docker image.
+    An executable jar file (`petstore/target/petstore.jar`) is created to expose the API via WSO2 API Microgateway.
 
     ``` java
     micro-gw build petstore --docker --docker-image petstore:v1 --docker-base-image wso2/wso2micro-gw:3.2.0
@@ -110,26 +103,26 @@ curl -X GET "https://localhost:9095/v2/pet/1" -H "accept: application/xml" -H "a
 ```
 
 !!! note
-    You were able to invoke the API resource `pet/{petId}` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication](https://docs.wso2.com/display/MG310/API+Key+Authentication) .
-```yml
-"paths": {
-  "/pet/{petId}": {
-    "get": {
-      "security": [
-        {
-          "api_key": []
+    You were able to invoke the API resource `pet/{petId}` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication]({{base_path}}/how-tos/security/api-authentication/api-key-authentication/).
+    ```yml
+    "paths": {
+      "/pet/{petId}": {
+        "get": {
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
         }
-      ]
+      }
+    },
+    "securityDefinitions": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
     }
-  }
-},
-"securityDefinitions": {
-  "api_key": {
-    "type": "apiKey",
-    "name": "api_key",
-    "in": "header"
-  }
-}
-```
+    ```
 
 

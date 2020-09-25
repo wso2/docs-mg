@@ -1,6 +1,6 @@
 # Analytics for Microgateway
 
-WSO2 API Microgateway provides the capability to publish events to a configured analytics server, in order to generate analytics. The Microgateway is also capable of generating a usage report to gain insights into the analytics generated. This page describes the feature and explains how the feature could be used to generate useful analytics in order to gain important insights of the APIs deployed on the Microgateway.
+WSO2 API Microgateway provides the capability to publish events to a configured analytics server, in order to generate analytics. The Microgateway is also capable of generating a usage report to gain insights of the analytics generated. This page describes the feature and explains how the feature could be used to generate useful analytics in order to gain important insights into the APIs deployed on the Microgateway.
 
 ### Overview
 
@@ -24,7 +24,7 @@ Periodical data publishing has the following advantages:
 
 The current architecture depicting the connection between the API Microgateway and the Analytics server is shown below.
 
-![ Connection between API Microgateway and Analytics server]({{base_path}}/assets/img/how-tos/connection-api-mg-and-analytics-server.png){width="800"}
+![ Connection between API Microgateway and Analytics server]({{base_path}}/assets/img/how-tos/connection-api-mg-and-analytics-server.png)
 
 #### How periodical publishing works
 
@@ -54,13 +54,9 @@ Real-Time data publishing has the following advantages:
 -   Server-fail detection and failure recovery mechanisms.
 -   Real-Time analytics data viewing capability.
 
-#### Architecture
+<!--- TODO: #### Architecture --->
 
-&lt;&lt;TO-DO&gt;&gt;
-
-#### How real-time publishing works
-
-&lt;&lt;TO-DO&gt;&gt;
+<!--- TODO: #### How real-time publishing works --->
 
 ### Configuring Analytics for the Microgateway
 
@@ -208,8 +204,33 @@ The configurations are described in the table below.
 ##### **Step 1 - Configuring the WSO2 API-M Analytics Server**
 
 1.  Open the &lt;APIM-ANALYTICS-HOME&gt;/ conf / worker / deployment .yaml file
-2.  Locate the `siddhi → refs → ref → name → grpcSource` parameter section. Change the IP and port of the receiver.url to point to the Microgateway. ![]({{base_path}}/assets/img/how-tos/siddhi-grpc-source.png)
-3.  The SSL configurations for the connection can be defined under `siddhi → extensions → extension → grpc` as follows. ![SSL configuration for Siddhi]({{base_path}}/assets/img/how-tos/ssl-config-for-siddhi.png)
+2.  Locate the `siddhi → refs → ref → name → grpcSource` parameter section. Change the IP and port of the receiver.url to point to the Microgateway. 
+    
+    ```toml
+    siddhi:
+      refs:
+        - ref:
+            name: 'grpcSource'
+            type: 'grpc'
+            properties:
+              receiver.url : grpc://localhost:9806/org.wso2.analytics.mgw.grpc.service.AnalyticsSendService/sendAnalytics
+    ```
+    
+3.  The SSL configurations for the connection can be defined under `siddhi → extensions → extension → grpc` as follows. 
+    
+    ```toml
+    -
+      extension:
+        name: 'grpc'
+        namespace: 'source'
+        properties:
+          keyStoreFile : ${sys:carbon.home}/resources/security/wso2carbon.jks
+          keyStorePassword : wso2carbon
+          keyStoreAlgorithm : SunX509
+          trustStoreFile : ${sys:carbon.home}/resources/security/client-truststore.jks
+          trustStorePassword : wso2carbon
+          trustStoreAlgorithm : SunX509
+    ```
 
 ##### **Step 2 - Configuring the Microgateway for Analytics**
 
@@ -217,8 +238,15 @@ The configurations are described in the table below.
 2.  Copy the `analytics.gRPCAnalytics` and paste it under the `analytics` section in the &lt;MICRO\_GW\_HOME&gt;/conf/micro-gw.conf file.
 3.  Configure the following parameters in the copied section.
 
-![Configure Microgateway for analytics]({{base_path}}/assets/img/how-tos/configure-MGW-for-analytics.png)
-
+    ```toml
+      [analytics.gRPCAnalytics]
+        enable = false
+        # APIM Analytics endpoint configured to accept gRPC analytics
+        endpointURL = "https://localhost:9806"
+        # Time interval in milliseconds for gRPC connection recovery task
+        reconnectTimeInMillies = 6000
+    ```
+    
 <table>
 <thead>
 <tr class="header">

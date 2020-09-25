@@ -1,10 +1,24 @@
 # Distributed Throttling
 
-WSO2 API Microgateway has an in-memory mechanism by default to handle throttling(node-level throttling). In a distributed Microgateway deployment, throttling becomes a challenge with the current implementation. This is because throttling decisions are taken by evaluating the local counter maintained within each node. Hence, scaling the microgateway will multiply the allowed limits. I.e. for e.g if the throttling limit is set to 10, if we have 3 gateways in a cluster, it will allow a total of 30 requests to pass to the backend before all three gateways throttle out requests. This will put an unexpected load on the backend. In order to address this, the API Microgateway supports distributed throttling where it is able to work with a central traffic management solution.
+WSO2 API Microgateway has an in-memory mechanism by default, to handle throttling
+([node-level throttling]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies)).  
+In a deployment with multiple microgateways, throttling becomes a challenge with node local throttling as the throttling 
+decision is made based on the local counter within each node. If we proceed with the node local throttling in such 
+environment, the API user would be allowed to send multiples of the throttling limit.I.e. if the throttling limit is set to 10, 
+if we have 3 gateways in a cluster, it will allow 30 requests to pass to the backend before all three gateways 
+throttle out requests. This will put an unexpected load on the backend. To address this requirement, the API Microgateway 
+supports distributed throttling where it is able to work with a central traffic management solution. In this case, 
+multiple microgateways can connect with WSO2 API Manager 
+([WSO2 Traffic Manager](https://apim.docs.wso2.com/en/3.2.0/install-and-setup/setup/distributed-deployment/product-profiles/)) 
+and perform rate-limiting precisely.
 
-The API Microgateway upon receiving a request checks against the local counter and if the throttling limit has not exceeded it publishes the events via a stream to a central traffic management solution. This is done over HTTP. The central traffic management solution then executes throttle policies against the events streams. When a particular request is throttled, the central traffic management solution sends the details of the throttled out event to a JMS topic. Each API Microgateway node is subscribed to this JMS topic and updates the local counter when the JMS topic is updated. Hence the API Microgateway nodes get notified of the throttle decisions through JMS messages.
+!!! note
+    If you start the WSO2 API Manager without providing any profile, it runs as All in One Node (All the profiles 
+    are activated). For testing purposes, you can simply start the API Manager following the 
+    [quick start guide](https://apim.docs.wso2.com/en/3.2.0/getting-started/quick-start-guide/) and test.
 
-![distributed throttling](/assets/img/how-tos/distributed-throttling.png)
+<!---TODO:@VirajSalaka Add concept page and mention it here--->
+<!---TODO:@VirajSalaka Update image (old) and add to concept page--->
 
 ### Enabling distributed throttling
 

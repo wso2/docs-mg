@@ -1,6 +1,6 @@
 # Configuration for WSO2 API Manager
 
-Follow the instructions below to configure the WSO2 Microgateway Toolkit and the WSO2 Microgateway Runtime in order to use it with [WSO2 API Manager 3.2.0](https://apim.docs.wso2.com/en/latest/). The WSO2 Microgateway 3.2.0 supports WSO2 API Manager versions, 2.6.0 onwards (2.6.0, 3.0.0 and 3.1.0).
+Follow the instructions below to configure the WSO2 Microgateway Toolkit and the WSO2 Microgateway Runtime in order to use it with [WSO2 API Manager 3.2.0](https://apim.docs.wso2.com/en/3.2.0/). The WSO2 Microgateway 3.2.0 supports WSO2 API Manager versions, 2.6.0 onwards (2.6.0, 3.0.0, 3.1.0 and 3.2.0).
 
 - [Configuration for WSO2 API Manager](#configuration-for-wso2-api-manager)
     - [Configuring the Microgateway 3.2.x Toolkit](#configuring-the-microgateway-32x-toolkit)
@@ -65,7 +65,7 @@ Follow the instructions below to configure the WSO2 Microgateway Toolkit and th
 
 2.  Open the `<MGW_RUNTIME_HOME>/conf/micro-gw.conf` file. Add the alias (e.g. wso2carbon2) to the truststore to corresponding configurations.
     
-    For example, to configure the JWT authentication for API Manager JWTs, add the following JWT issuer configuration to the `micro-gw.conf` .
+    For example, to configure the JWT authentication for API Manager JWTs, add the following JWT issuer configuration to the `micro-gw.conf`.
 
 
     ```toml tab="Format"
