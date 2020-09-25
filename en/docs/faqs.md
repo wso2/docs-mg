@@ -134,7 +134,7 @@ A JWT token can be obtained via one of the following methods:
 The public certificate of the token service, which is used to sign the token, should be added to the trust store of WSO2 API Microgateway. The JWT should have the claims **iss, sub** in order for the API Microgateway to validate the JWT.
 
 -   From WSO2 API Manager
-For more information, see [Generating a JWT token from the API Store](https://apim.docs.wso2.com/en/latest/learn/api-security/oauth2/access-token-types/jwt-tokens/#using-jwt-access-tokens).
+For more information, see [Generating a JWT token from the API Developer Portal](https://apim.docs.wso2.com/en/latest/learn/api-security/oauth2/access-token-types/jwt-tokens/#using-jwt-access-tokens).
 
 ##### Can I use an OAuth2 token instead of a JWT token?
 
@@ -142,11 +142,11 @@ Yes, you can use an OAuth2 token instead of a JWT token. WSO2 API Microgateway c
 For more information please refer documentation on [configuring key manager when using an OAuth2token]({{base_path}}/how-tos/security/api-authentication/configuring-an-external-key-manager/).
 
 !!! note
-    For the WSO2 API Manager, You can use an OAuth2 token instead of a JWT only if the API that you are working with is also available Publisher as well. You need a valid subscription for the API from the WSO2 API Manager Store as well.
+    For the WSO2 API Manager, You can use an OAuth2 token instead of a JWT only if the API that you are working with is also available Publisher as well. You need a valid subscription for the API from the WSO2 API Manager Developer Portal as well.
 
 ##### How can I use an OAuth2 token to invoke an API?
 
-Invoking the API using an OAuth2 token is similar to a usual API invocation, which uses the standard WSO2 API Manager Gateway by generating an access token from the API Store.
+Invoking the API using an OAuth2 token is similar to a usual API invocation, which uses the standard WSO2 API Manager Gateway by generating an access token from the API Developer Portal.
 
 ``` text tab="Format"
 curl -k -i -H "Authorization: Bearer <OAUTH_token>" <API_URL>
