@@ -58,6 +58,7 @@ nav:
           - Developer First APIs: concepts/developer-first-apis.md
           - Imported APIs: concepts/imported-apis.md
           - OpenAPI Extensions: concepts/openapi-extensions.md
+          - Rate Limiting: concepts/rate-limiting.md
           - Event Hub and Subscription Validation Model: concepts/event-hub-and-subscription-validation.md
           - The Policy Hub: concepts/the-policy-hub.md
           - Caching: concepts/caching.md
@@ -88,7 +89,6 @@ nav:
         - API Schema Validation: how-tos/api-schema-validation.md
         - HTTP 2.0: how-tos/http-2.0.md
         - Rate Limiting:
-            - Rate Limiting Overview: how-tos/rate-limiting/rate-limiting-overview.md
             - Distributed Throttling: how-tos/rate-limiting/distributed-throttling.md
             - Adding Throttling Policies: how-tos/rate-limiting/adding-throttling-policies.md
         - Service Discovery: how-tos/service-discovery.md

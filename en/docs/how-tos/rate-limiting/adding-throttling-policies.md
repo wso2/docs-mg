@@ -6,15 +6,15 @@ The following sub sections explain as to how you can work with OpenAPI extension
 
 ### Defining a throttling policy
 
-You need to define the throttling policy (or policies) in the `policies.yaml` file, which is in the `<MGW-project>` directory. The following is a sample on how you can define a throttling policy named `10kPerMin` in the `policies.yaml` file. For more information a sample `policy.yaml` can be found [here](https://github.com/wso2/product-microgateway/blob/master/samples/policies_sample.yaml) .
+You need to define the throttling policy (or policies) in the `policies.yaml` file, which is in the `<MGW-project>` directory. The following is a sample on how you can define a throttling policy named `10kPerMin` in the `policies.yaml` file. For more information a sample `policies.yaml` can be found [here](https://github.com/wso2/product-microgateway/blob/master/samples/policies_sample.yaml) .
 
 **Defining a throttling policy**
 
 ``` yaml
 - 10kPerMin:
-     count: 10000
-     unitTime: 1
-     timeUnit: min
+    count: 10000
+    unitTime: 1
+    timeUnit: min
 ```
 
 ### Adding an API level throttling policy
