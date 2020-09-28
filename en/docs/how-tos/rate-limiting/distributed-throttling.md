@@ -24,7 +24,7 @@ and perform rate-limiting precisely.
 
 1.  Let's create a microgateway project
 
-    Create a project using the command given below,
+    Create a project using the command given below.
   
     ``` java tab="Format"
     micro-gw init <project_name>
