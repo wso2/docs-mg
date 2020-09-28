@@ -18,7 +18,7 @@ WSO2 API Microgateway supports the following OpenAPI Extensions. You can use the
 | `x-wso2-auth-header`     | Specify the authorization header for the API in which either bearer or basic token is sent               | Optional → API level only  |
 | `x-wso2-transports`                                                                    | Set transport types (http, https)                                                                                      | Optional → API level only      |
 | `x-wso2-mutual-ssl`                                                                    | Enable mutual SSL for an API (With optional and mandatory keywords as values)      | Optional → API level only      |
-| `x-wso2-owner`                                                                    | Specifies the owner of the API. It is used in Analytics. (This user should be apim publisher user.)     | Optional → API level only      |
+| `x-wso2-owner`                                                                    | Specifies the owner of the API. It is used to view analytics of dev first apis. (This user should be apim publisher user.)     | Optional → API level only      |
 
 !!! info
     Let's see how these OpenAPI extensions are used in [Open API definition](https://github.com/wso2/product-microgateway/blob/master/samples/endpoint_by_reference_sample.yaml) .
