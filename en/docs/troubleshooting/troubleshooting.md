@@ -18,7 +18,7 @@ The table below shows the common exceptions that might occur when you are trying
 </thead>
 <tbody>
 <tr>
-<td><code>micro-gw: Error occurred while trying to connect with server. Is the server running at                                     https://localhost:9443?                                   </code></td>
+<td><code>micro-gw: Error occurred while trying to connect with server. Is the server running at https://localhost:9443?</code></td>
 <td>The API Manager node (Publisher) is down when running the setup command in the Microgateway.
 </td>
 <td>Verify the connectivity between the Microgateway and the API manager node.
@@ -26,17 +26,17 @@ Follow <a href="{{base_path}}/install-and-setup/configuration-for-wso2-api-manag
 </td>
 </tr>
 <tr>
-<td><code>                  Micro-gw: ERROR [src:0.0.0] - Error in client response : {message:&quot;Connection refused: localhost/127.0.0.1:8080&quot;, cause:null}                 </code></td>
+<td><code> Micro-gw: ERROR [src:0.0.0] - Error in client response : {message:&quot;Connection refused: localhost/127.0.0.1:8080&quot;, cause:null} </code></td>
 <td>Connection to the backend is refused.</td>
 <td>Check the connection to the backend.</td>
 </tr>
 <tr>
-<td><code>                  error [docker plugin]: Unable to build docker image: {&quot;message&quot;:&quot;invalid reference format: repository name must be lowercase&quot;}                 </code></td>
+<td><code> error [docker plugin]: Unable to build docker image: {&quot;message&quot;:&quot;invalid reference format: repository name must be lowercase&quot;} </code></td>
 <td>The name of the docker images should be in lower case.
 <p>When building the project with docker annotations, the docker image name is retrieved from the API name and version. If the API name contains a capital letter, then the docker image n ame would reflect that, resuling in this error.</p>
 </td>
 <td>
-When building the API microgateway project, provide a simple letter name for the docker image in the <code>                    deployment.toml                   </code> file as shown below.
+When building the API microgateway project, provide a simple letter name for the docker image in the <code> deployment.toml </code> file as shown below.
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
 <pre class="java" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><code>[docker]
@@ -47,34 +47,34 @@ When building the API microgateway project, provide a simple letter name for the
 </div>
 </tr>
 <tr>
-<td><p><code>                   ERROR [wso2/gateway:0.0.0] - Error occurred while reading the key validation response : {message:&quot;Connection refused: localhost/127.0.0.1:9443&quot;, cause:null}                  </code><br />
-<code>                   ERROR [wso2/gateway:0.0.0] - Error occurred while converting the authorized value from the key validation response to a                  </code><br />
-<code>                   string value : {message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}                  </code></p>
-<p><code>                   ERROR [wso2/gateway:0.0.0] - Error occurred while getting key validation information for the access token : {message:&quot;call failed&quot;, cause:{message:&quot;call failed&quot;, cause:{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}, causes:[{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}]}, causes:[{message:&quot;call failed&quot;, cause:{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}, causes:[{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}]}]}                  </code></p></td>
+<td><p><code> ERROR [wso2/gateway:0.0.0] - Error occurred while reading the key validation response : {message:&quot;Connection refused: localhost/127.0.0.1:9443&quot;, cause:null} </code><br />
+<code> ERROR [wso2/gateway:0.0.0] - Error occurred while converting the authorized value from the key validation response to a </code><br />
+<code> string value : {message:&quot;'null' cannot be cast to 'string'&quot;, cause:null} </code></p>
+<p><code> ERROR [wso2/gateway:0.0.0] - Error occurred while getting key validation information for the access token : {message:&quot;call failed&quot;, cause:{message:&quot;call failed&quot;, cause:{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}, causes:[{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}]}, causes:[{message:&quot;call failed&quot;, cause:{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}, causes:[{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}]}]} </code></p></td>
 <td>The Microgateway could not connect to the Key Manager for OAuth2 key validation.</td>
 <td>Check the connection between the Microgateway and the Key Manager.</td>
 </tr>
 <tr>
-<td><code>                  ERROR [wso2/gateway:0.0.0] - Error occurred while reading the key validation response : {message:&quot;General SSLEngine problem/192.168.8.101:9443&quot;, cause:null}                 </code><br />
-<code>                  ERROR [wso2/gateway:0.0.0] - Error occurred while converting the authorized value from the key validation response to a                 </code><br />
-<code>                  string value : {message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}                 </code></td>
+<td><code> ERROR [wso2/gateway:0.0.0] - Error occurred while reading the key validation response : {message:&quot;General SSLEngine problem/192.168.8.101:9443&quot;, cause:null} </code><br />
+<code> ERROR [wso2/gateway:0.0.0] - Error occurred while converting the authorized value from the key validation response to a </code><br />
+<code> string value : {message:&quot;'null' cannot be cast to 'string'&quot;, cause:null} </code></td>
 <td>SSL hostname verification has failed in the key validation call.</td>
 <td><div>
-The <code>                   localhost                  </code> hostname is supported by default.
+The <code> localhost </code> hostname is supported by default.
 </div>
 <div>
-You need to add the public certificate of the Key Manager to the Microgateway truststore. Also, make sure that you change the <code>                   certificateAlias                  </code> accordingly.
+You need to add the public certificate of the Key Manager to the Microgateway truststore. Also, make sure that you change the <code> certificateAlias </code> accordingly.
 </div></td>
 </tr>
 <tr>
-<td><code>                  ERROR [ballerina/http] - Error while validating JWT token : {message:&quot;Invalid signature&quot;, cause:null}                 </code></td>
+<td><code> ERROR [ballerina/http] - Error while validating JWT token : {message:&quot;Invalid signature&quot;, cause:null} </code></td>
 <td>JWT signature verification has failed.</td>
 <td><div>
 Verify the following:
 </div>
 <ul>
 <li>JWT signer’s public cert should be available in the Microgateway’s truststore.</li>
-<li>The correct Certificate Alias should be given in the <code>                    &lt;MGW_HOME&gt;/conf/micro-gw.conf                   </code> file.</li>
+<li>The correct Certificate Alias should be given in the <code> &lt;MGW_HOME&gt;/conf/micro-gw.conf </code> file.</li>
 </ul></td>
 </tr>
 </tbody>
