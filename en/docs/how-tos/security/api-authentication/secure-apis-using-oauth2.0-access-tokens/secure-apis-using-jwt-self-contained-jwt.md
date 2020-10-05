@@ -37,7 +37,7 @@ In WSO2 API Manager 3.2.0, the JWT token does not contain the Application and Su
 
 If an external key manager is used directly with Microgateway, which will not know about the subscription details then, subscription validation can be turned off for that particular JWT issuers.
 
-For information on the subscription model and configuration steps, please refer to [the document on Subscription Validation]({{base_url}}/how-tos/security/api-authorization/subscription-validation/).
+For information on the subscription model and configuration steps, please refer to [the document on Subscription Validation]({{base_path}}/how-tos/security/api-authorization/subscription-validation/).
    
 ### Configure Multiple JWT issuers
 
