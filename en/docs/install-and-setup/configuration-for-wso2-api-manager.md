@@ -17,7 +17,7 @@ Follow the instructions below to configure the WSO2 Microgateway Toolkit and th
 1.  Add the public certificate of WSO2 API Manager to the trust store.
 
     !!! info
-        Refer the documentation on [Importing Certificates to the API Microgateway Truststore]({{base_url}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/) for more information.
+        Refer the documentation on [Importing Certificates to the API Microgateway Truststore]({{base_path}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/) for more information.
 
     - Export the public certificate of WSO2 API Manager.
     A sample command is given below.
@@ -47,7 +47,7 @@ Follow the instructions below to configure the WSO2 Microgateway Toolkit and th
 1.  Add the public certificate of WSO2 API Manager to the trust store.
 
     !!! info
-        Refer the documentation on [Importing Certificates to the API Microgateway]({{base_url}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/) for more information.
+        Refer the documentation on [Importing Certificates to the API Microgateway]({{base_path}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/) for more information.
 
     - Export public certificate of WSO2 API Manager.
 
