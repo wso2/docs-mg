@@ -6,7 +6,7 @@ When a JWT is used as an access token, API Microgateway validates the following 
 
 -   **Signature** - after validating the signature, API Microgateway checks whether the JWT is issued by a trusted key manager, and JWT has not tampered in the middle. This signature validation is done by using the public certificate of the key manager which issued the JWT. Importing the public certificate into the API Microgateway trust store and configuring the certificate alias in the JWT validation config section is explained in the [importng certificates to the microgateway truststore]({{base_path}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/)
 -   **Issuer(iss)** - The issuer claim is a mandatory claim when JWT is used as a security token. Microgateway validates the **iss** claim present in the JWT against the issuer provided in the **jwtTokenConfig** section of the configuration
--   **Audience (aud)** - The audience claim is also a mandatory claim for a JWT that is used as a security token. Microgateway validates the **aud** claim present in the JWT against the audience provided in the **jwtTokenConfig** section of the configuration.
+-   **Audience (aud)** - The audience claim is also a mandatory claim for a JWT that is used as a security token. Microgateway validates the **aud** claim present in the JWT against the audience provided in the **jwtTokenConfig** section of the configuration. But if the audience is not provided in the **jwtTokenConfig** then Microgateway will not mandate the validation of audience claim.
 -   **Expiry time(exp)** - "exp" claim is also a mandatory claim. Microgateway validates the validity period of the token using the **exp** claim
 
 **Jwt token validation config**
