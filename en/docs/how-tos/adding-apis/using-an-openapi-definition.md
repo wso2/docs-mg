@@ -2,6 +2,10 @@
 
 Let's use a developer-first approach and host your API, which uses an OpenAPI definition, on WSO2 API Microgateway using the WSO2 Microgateway runtime.
 
+### Before you begin...
+
+Make sure to install and set up all the [installation prerequisites]({{base_path}}/install-and-setup/install-on-vm/).
+
 ### Step 1 - Generate an executable using WSO2 API Microgateway Toolkit
 
 #### Step 1.1 - Initialize a project
@@ -58,5 +62,19 @@ The executable jar file (`.jar`), which includes the API artifacts of the projec
     2019-05-30 18:09:32,540 INFO  [wso2/gateway] - HTTPS listener is active on port 9095 
     2019-05-30 18:09:32,541 INFO  [wso2/gateway] - HTTP listener is active on port 9090 
     ```
+    
+### Step 3 - Invoke the sample API
+#### Step 3.1 - Obtain a token
+ --8<--
+ ./includes/obtain-jwt.md
+ 
+ --8<--
+ 
+#### Step 3.2 - Invoke the API
+
+ --8<--
+ ./includes/invoke-api-with-jwt.md
+ 
+ --8<--
 
 
