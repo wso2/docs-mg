@@ -1,5 +1,5 @@
 
-Execute the following command to Invoke the API using the API key. You can now invoke the API running on the Microgateway using cURL as below
+Execute the following cURL command to Invoke the API using the API key.
 
  ``` bash tab="Format"
  curl -X GET "https://<MGW-runtime-hostname>:<MGW-runtime-port>/<API-context>/<API-resource>" -H "accept:application/xml" -H "api_key:$TOKEN" -k
