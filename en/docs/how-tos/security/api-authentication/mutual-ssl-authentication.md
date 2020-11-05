@@ -14,18 +14,19 @@ x-wso2-mutual-ssl: "mandatory" # can be "mandatory" or "optional"
 
 |value| Description|
 |-----|------------|
-|mandatory| Enable mutual SSL. The client should be verified and the mutual SSL handshake must be passed. the API request will be unauthorized if the handshake is failed.|
-|optional|Disable mutual SSL. Even if the mutual SSL handshake failed, the API request is not necessarily unauthenticated. If the mutual SSL handshake is passed, the request will be filtered by the mutual SSL handler.|
+|mandatory| Enable mutual SSL and make **mutual SSL mandatory**. The client should be verified and the mutual SSL handshake must be passed. the API request will be unauthorized if the handshake is failed.|
+|optional| Enable mutual SSL but make **mutual SSL optional**. Even if the mutual SSL handshake failed, the API request is not necessarily unauthenticated. If the mutual SSL handshake is passed, the request will be filtered by the mutual SSL handler.|
 
 
 ### Support Mutual SSL Authentication for an API
 
 The Microgateway supports mutual SSL at the API level. It validates the certificate against per API by the name, version, and alias. There are two scenarios in Mutual SSL, the first one is Client directly connects with Microgateway and the second one is the load balancer in front of the Microgateway.
-![Mutual SSL overview]({{base_path}}/assets/img/mutualssl.png)
+
+![Mutual SSL overview]({{base_path}}/assets/img/how-tos/mutualssl.png)
 
 1. <b> Mutual SSL configuration without Load Balancer.</b>
    
-    Update the mutual SSL configuration in the micro-gw.conf file residing in the <MICROGW_HOME>/conf directory.  Here name is Swagger Petstore, version is 1.0.5, and aliasList is ballerina and wso2apim310.
+    Update the mutual SSL configuration in the micro-gw.conf file residing in the <MICROGW_HOME>/conf directory. Here name is Swagger Petstore, version is 1.0.5, and aliasList is ballerina and wso2apim310.
 ```
     [mutualSSLConfig]
       [[mutualSSLConfig.api.certificates]]

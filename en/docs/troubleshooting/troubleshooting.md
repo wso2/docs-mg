@@ -18,30 +18,25 @@ The table below shows the common exceptions that might occur when you are trying
 </thead>
 <tbody>
 <tr>
-<td><code>                  micro-gw: Error occurred while trying to connect with server. Is the server running at                                     https://localhost:9443?                                   </code></td>
-<td><p>The API Manager node (Publisher) is down when running the setup command in the Microgateway.</p></td>
-<td>Verify the connectivity between the Microgateway and the API manager node.</td>
+<td><code>micro-gw: Error occurred while trying to connect with server. Is the server running at https://localhost:9443?</code></td>
+<td>The API Manager node (Publisher) is down when running the setup command in the Microgateway.
+</td>
+<td>Verify the connectivity between the Microgateway and the API manager node.
+Follow <a href="{{base_path}}/install-and-setup/configuration-for-wso2-api-manager/">configuring API Manager</a> for more information 
+</td>
 </tr>
 <tr>
-<td><code>                  Micro-gw: ERROR [src:0.0.0] - Error in client response : {message:&quot;Connection refused: localhost/127.0.0.1:8080&quot;, cause:null}                 </code></td>
+<td><code> Micro-gw: ERROR [src:0.0.0] - Error in client response : {message:&quot;Connection refused: localhost/127.0.0.1:8080&quot;, cause:null} </code></td>
 <td>Connection to the backend is refused.</td>
 <td>Check the connection to the backend.</td>
 </tr>
 <tr>
-<td><code>                  error [docker plugin]: Unable to build docker image: {&quot;message&quot;:&quot;invalid reference format: repository name must be lowercase&quot;}                 </code></td>
-<td><p>The name of the docker images should be in lower case.</p>
+<td><code> error [docker plugin]: Unable to build docker image: {&quot;message&quot;:&quot;invalid reference format: repository name must be lowercase&quot;} </code></td>
+<td>The name of the docker images should be in lower case.
 <p>When building the project with docker annotations, the docker image name is retrieved from the API name and version. If the API name contains a capital letter, then the docker image n ame would reflect that, resuling in this error.</p>
-<p><br />
-</p></td>
-<td><div class="content-wrapper">
-<p><br />
-</p>
-<div>
-When building the API microgateway project, provide a simple letter name for the docker image in the <code>                    deployment.toml                   </code> file as shown below.
-</div>
-<div>
-<p><br />
-</p>
+</td>
+<td>
+When building the API microgateway project, provide a simple letter name for the docker image in the <code> deployment.toml </code> file as shown below.
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
 <pre class="java" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><code>[docker]
@@ -50,42 +45,36 @@ When building the API microgateway project, provide a simple letter name for the
     name = &quot;hello_world&quot;</code></pre>
 </div>
 </div>
-<p><br />
-</p>
-</div>
-<p><br />
-</p>
-</div></td>
 </tr>
 <tr>
-<td><p><code>                   ERROR [wso2/gateway:0.0.0] - Error occurred while reading the key validation response : {message:&quot;Connection refused: localhost/127.0.0.1:9443&quot;, cause:null}                  </code><br />
-<code>                   ERROR [wso2/gateway:0.0.0] - Error occurred while converting the authorized value from the key validation response to a                  </code><br />
-<code>                   string value : {message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}                  </code></p>
-<p><code>                   ERROR [wso2/gateway:0.0.0] - Error occurred while getting key validation information for the access token : {message:&quot;call failed&quot;, cause:{message:&quot;call failed&quot;, cause:{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}, causes:[{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}]}, causes:[{message:&quot;call failed&quot;, cause:{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}, causes:[{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}]}]}                  </code></p></td>
+<td><p><code> ERROR [wso2/gateway:0.0.0] - Error occurred while reading the key validation response : {message:&quot;Connection refused: localhost/127.0.0.1:9443&quot;, cause:null} </code><br />
+<code> ERROR [wso2/gateway:0.0.0] - Error occurred while converting the authorized value from the key validation response to a </code><br />
+<code> string value : {message:&quot;'null' cannot be cast to 'string'&quot;, cause:null} </code></p>
+<p><code> ERROR [wso2/gateway:0.0.0] - Error occurred while getting key validation information for the access token : {message:&quot;call failed&quot;, cause:{message:&quot;call failed&quot;, cause:{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}, causes:[{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}]}, causes:[{message:&quot;call failed&quot;, cause:{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}, causes:[{message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}]}]} </code></p></td>
 <td>The Microgateway could not connect to the Key Manager for OAuth2 key validation.</td>
 <td>Check the connection between the Microgateway and the Key Manager.</td>
 </tr>
 <tr>
-<td><code>                  ERROR [wso2/gateway:0.0.0] - Error occurred while reading the key validation response : {message:&quot;General SSLEngine problem/192.168.8.101:9443&quot;, cause:null}                 </code><br />
-<code>                  ERROR [wso2/gateway:0.0.0] - Error occurred while converting the authorized value from the key validation response to a                 </code><br />
-<code>                  string value : {message:&quot;'null' cannot be cast to 'string'&quot;, cause:null}                 </code></td>
+<td><code> ERROR [wso2/gateway:0.0.0] - Error occurred while reading the key validation response : {message:&quot;General SSLEngine problem/192.168.8.101:9443&quot;, cause:null} </code><br />
+<code> ERROR [wso2/gateway:0.0.0] - Error occurred while converting the authorized value from the key validation response to a </code><br />
+<code> string value : {message:&quot;'null' cannot be cast to 'string'&quot;, cause:null} </code></td>
 <td>SSL hostname verification has failed in the key validation call.</td>
 <td><div>
-The <code>                   localhost                  </code> hostname is supported by default.
+The <code> localhost </code> hostname is supported by default.
 </div>
 <div>
-You need to add the public certificate of the Key Manager to the Microgateway truststore. Also, make sure that you change the <code>                   certificateAlias                  </code> accordingly.
+You need to add the public certificate of the Key Manager to the Microgateway truststore. Also, make sure that you change the <code> certificateAlias </code> accordingly.
 </div></td>
 </tr>
 <tr>
-<td><code>                  ERROR [ballerina/http] - Error while validating JWT token : {message:&quot;Invalid signature&quot;, cause:null}                 </code></td>
+<td><code> ERROR [ballerina/http] - Error while validating JWT token : {message:&quot;Invalid signature&quot;, cause:null} </code></td>
 <td>JWT signature verification has failed.</td>
 <td><div>
 Verify the following:
 </div>
 <ul>
 <li>JWT signer’s public cert should be available in the Microgateway’s truststore.</li>
-<li>The correct Certificate Alias should be given in the <code>                    &lt;MGW_HOME&gt;/conf/micro-gw.conf                   </code> file.</li>
+<li>The correct Certificate Alias should be given in the <code> &lt;MGW_HOME&gt;/conf/micro-gw.conf </code> file.</li>
 </ul></td>
 </tr>
 </tbody>
@@ -104,7 +93,7 @@ Verify the following:
 <tbody>
 <tr>
 <td><code>                  micro-gw: Error in client response : {message:&quot;Network is unreachable: www.mocky.io/54.194.152.6:80&quot;, cause:null}                 </code></td>
-<td><p>A connection to the backend could not be established because the network is unavailable.</p></td>
+<td>A connection to the backend could not be established because the network is unavailable.</td>
 <td>Verify the network stability.</td>
 </tr>
 <tr>
@@ -231,45 +220,3 @@ Given below are some WSO2 API Microgateway specific error codes and their meanin
 | `                  900804                 ` | Subscription level throttled out.                                                                                                                                                                                  |
 | `                  900808                 ` | An internal error occurred in the Microgateway.                                                                                                                                                                    |
 | `                  900809                 ` | An internal error occurred in the Microgateway, since a subscription or application throttle policy is not deployed. This might be due to adding a throttle policy to API-M and not regenerating the Microgateway. |
-
-### Adding Debug Logs
-
-Micro gateway uses two types of logs to track realtime internal and external activities. Separate log files are created for each of those log types in the &lt;MGW\_RUNTIME\_HOME&gt; `             /repository/logs            ` directory. The following illustrates the log types supported by the MGW and how those logs can be configured.
-
-##### How to enable debug log
-
-If we want to log any information that helps us identify what went wrong we can get information by enable DEBUG level. Ther are two ways to enable debug log.
-
-Method 1. We can set in the request command.
-
-``` java
-sh gateway <path-to-MGW-executable-jar-file> --b7a.log.level=DEBUG
-```
-
-Method 2. We can set in the micro-gw.conf file which is located in the `             <MGW-RUNTIME-HOME>/conf            ` directory.
-
-``` java
-[b7a.log]
-  level = "DEBUG"
-```
-
-##### How to enable HTTP trace log
-
-If we want to monitor the HTTP message flow through API Gateway and track the request headers, request payloads, response headers, response payloads etc of incoming and outgoing http traffic we can get information by enable HTTP trace log .
-
-Method 1. We can set in the request command.
-
-``` 
-sh gateway <path-to-MGW-executable-jar-file> --b7a.http.tracelog.console=true
-```
-
-Method 2. We can set in the micro-gw.conf file which is located in the `             <MGW-RUNTIME-HOME>/conf            ` directory.
-
-``` toml
-[b7a.http]
-[b7a.http.tracelog]
-console = true
-```
-
-
-

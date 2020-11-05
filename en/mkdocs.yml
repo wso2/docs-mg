@@ -198,3 +198,4 @@ extra:
           link: https://www.linkedin.com/company/wso2
     site_version: 3.2.0
     base_path: https://mg.docs.wso2.com/en/latest
+    apim_path: https://apim.docs.wso2.com/en/3.2.0

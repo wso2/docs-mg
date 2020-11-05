@@ -6,7 +6,7 @@ You can generate an API Microgateway for your OpenAPI definition, using WSO2 API
 
 It is mandatory for you to define the API Level endpoint at the root level of your OpenAPI definition at the design time, because otherwise WSO2 Microgateway Toolkit shows an error. However, if you have defined endpoints for all the resources at design time, then you do not have to define an API Level endpoint as well. The inbound traffic for all the resources without any specific endpoint is automatically routed to the provided API Level endpoint.
 
-``` java tab="Format"
+``` yaml tab="Format"
 openapi: 
 servers:
 info:
@@ -30,7 +30,7 @@ urls:
 .
 ```
 
-``` java tab="Example"
+``` yaml tab="Example"
 x-wso2-basePath: 
 x-wso2-production-endpoints:
 urls: 
@@ -46,8 +46,8 @@ urls:
 
 In WSO2 API Microgateway, you can define different endpoint URLs for the different resources within the same OpenAPI definition. Therefore, in order to add resource level endpoints, you need to define the endpoint configuration under the respective resource in the OpenAPI definition. When the traffic comes in for a particular resource, it will be routed based on the endpoint configuration under the resource and not according to the API level endpoint configuration.
 
-``` java tab="Format"
-    openapi: 3.0.0
+``` yaml tab="Format"
+openapi: 3.0.0
 servers:
 .
 .
@@ -81,7 +81,7 @@ get:
 . 
 ```
 
-``` java tab="Example"
+``` yaml tab="Example"
 openapi: 3.0.0
 servers:
 .
@@ -133,7 +133,7 @@ An endpoint can either belong to a production environment or sandbox environment
 
 The following is the basic structure of an endpoint.
 
-``` java
+``` yaml
 x-wso2-production-endpoints:
 urls:
 - <endpoint_URL>
@@ -144,7 +144,7 @@ type: #optional
 
  If you have added resource level endpoints and you have repeated the same endpoint in multiple resources, it will cause data duplication in the OpenAPI definition. Therefore, in order to avoid the latter mentioned error, you need to provide the endpoints under the reference model. In addition, if you need to override endpoints or use Basic Auth protected backend services, you need to define the endpoints in the following manner.
 
-``` java tab="Format"
+``` yaml tab="Format"
 paths:
 "/pet/findByStatus":
 get:
@@ -167,7 +167,7 @@ type: basic
 Username: <username>
 ```
 
-``` java tab="Example"
+``` yaml tab="Example"
 paths:
 "/pet/findByStatus":
 get:
@@ -206,7 +206,7 @@ There are three types of endpoints supported in WSO2 API Microgateway.
    -   **`http`**
     In this case, there is only one backend service URL under the production or sandbox endpoint for the API or Resource.
 
-       ``` java tab="Format"
+       ``` yaml tab="Format"
         paths:
         "/pet/findByStatus":
         get:
@@ -215,7 +215,7 @@ There are three types of endpoints supported in WSO2 API Microgateway.
         - <endpoint-URL>
        ```
     
-       ``` java tab="Example"
+       ``` yaml tab="Example"
         paths:
         "/pet/findByStatus":
         get:
@@ -227,7 +227,7 @@ There are three types of endpoints supported in WSO2 API Microgateway.
    - **`LoadBalance`**
         The traffic that comes to the resource is routed to the mentioned endpoint addresses based on the round-robin algorithm. In this case you need to define more than one endpoint .
 
-       ``` java
+       ``` yaml
         x-wso2-basePath: <base-path>
         x-wso2-production-endpoints:
         urls:
@@ -235,7 +235,7 @@ There are three types of endpoints supported in WSO2 API Microgateway.
         - <endpoint-URL-2>
        ```
 
-       ``` java
+       ``` yaml
         x-wso2-basePath: /petstore/v2
         x-wso2-production-endpoints:
         urls:
@@ -246,7 +246,7 @@ There are three types of endpoints supported in WSO2 API Microgateway.
    -   **Failover**
         Similar to the load balance scenario, you need to define multiple endpoints to cater to a failover scenario. When failover is enabled, the traffic that comes to the relevant resource is always routed to the first endpoint. Thereafter, the traffic is routed to second endpoint only if the first endpoint is not available.
     
-       ``` java
+       ``` yaml
         x-wso2-basePath: /petstore/v3
         x-wso2-production-endpoints:
         urls:

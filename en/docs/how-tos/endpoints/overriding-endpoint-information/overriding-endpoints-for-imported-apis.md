@@ -45,11 +45,18 @@ Follow the instructions below to override the production or sandbox endpoint(s).
 2. If the backend is protected by basic authentication, provide username and password as follows.
     
     ``` text tab="Override single endpoint"
-    gateway <path-to-MGW-jar> --<API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint_URL>" --<API-ID>_<endpoint-type>_basic_username="<basic-auth-username>" --<API-ID>_basic_password="<basic-auth-password>
+    gateway <path-to-MGW-jar> 
+    --<API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint_URL>" 
+    --<API-ID>_<endpoint-type>_basic_username="<basic-auth-username>" 
+    --<API-ID>_basic_password="<basic-auth-password>
     ```
     
     ``` text tab="Override Multiple endpoints"
-    gateway <path-to-MGW-jar> --<API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint-URL-1>" --<API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint_URL_2>" --<API-ID>_<endpoint-type>_basic_username="<basic-auth-username>" --<API-ID>_basic_password="<basic-auth-password>
+    gateway <path-to-MGW-jar> 
+    --<API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint-URL-1>" 
+    --<API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint_URL_2>" 
+    --<API-ID>_<endpoint-type>_basic_username="<basic-auth-username>" 
+    --<API-ID>_basic_password="<basic-auth-password>
     ```
    
     - `<basic-auth-username>` - Provide the username                            

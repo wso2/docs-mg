@@ -27,8 +27,6 @@ Add the username and password to the WSO2 API Micrgateway configuration file. Na
 !!! note
     If you want to use a different hashing algorithm for the password such as SHA256 or SHA512, @ prefix should be added before the hashed value.
 
-****
-
 ``` java tab="Format"
 [b7a.users.<username>]
     password="@<HASH_ALGO>:{<HASH_ALGO(password)>}"

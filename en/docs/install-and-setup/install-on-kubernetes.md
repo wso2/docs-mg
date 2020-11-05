@@ -2,7 +2,7 @@
 
 **K8s API Operator**
 
-[The K8s API Operator](https://apim.docs.wso2.com/en/latest/learn/kubernetes-operators/k8s-api-operator/) is the recommended approach to deploy microgateway in kubernetes. API operator makes an API first class citizen in the kuberneters eco system and allows to deploy the microgateways in k8s cluster with a single command using open API definition.
+[The K8s API Operator]({{apim_path}}/latest/learn/kubernetes-operators/k8s-api-operator/) is the recommended approach to deploy microgateway in kubernetes. API operator makes an API first class citizen in the kuberneters eco system and allows to deploy the microgateways in k8s cluster with a single command using open API definition.
 
 Following content explains configuration based deployment of microgateway in k8s.
 

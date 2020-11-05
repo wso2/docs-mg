@@ -28,7 +28,7 @@ When a JWT is used as an access token, API Microgateway validates the following 
  The JWT signature can be validated either by the certificate (which the alias is defined in certificateAlias) or using the JWKS endpoint of the issuer. When configured both properties, if the JWT contain the kid, the token will be validated through the JWKS endpoint.
 
 ### Subscription Validation
-  The [subscription](https://apim.docs.wso2.com/en/3.2.0/learn/consume-api/manage-subscription/subscribe-to-an-api/) validation is configurable for JWT tokens.
+  The [subscription]({{apim_path}}/learn/consume-api/manage-subscription/subscribe-to-an-api/) validation is configurable for JWT tokens.
 
 !!! note
     When using WSO2 API Manager 3.0.0 or 3.1.0 as the key manager, the JWTs contain the subscribed APIs as a list in the JWT under the **subscribedAPIs** claim. In order to mandate the subscriptions, subscription validation can be enabled. Microgateway will validate the list under the subscribedAPIs claim and check if the user is currently invoking one of the APIs in the list. If not it will send an error message with error code 900908.

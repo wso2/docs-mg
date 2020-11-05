@@ -2,6 +2,7 @@
 
 !!! note
     This is only applicable if you wish to import your APIs from WSO2 API Manager.
+    Follow guidelines on [configuring the API Manager]({{base_path}}/install-and-setup/configuration-for-wso2-api-manager/) before following the below steps.
 
 It is possible to create a Microgateway distribution for a group of APIs that exist in WSO2 API Manager, by simply importing the group of APIs based on a preferred Microgateway label, which has been assigned to the group of APIs in WSO2 API Manager. Similarly, you can also use a Microgateway label to import a single published API from WSO2 API Manager as well if required.
 
@@ -13,7 +14,7 @@ Make sure to carry out all the [installation prerequisites]({{base_path}}/instal
 
 ### Step 2 - Assign an API to an API Microgateway
 
-Create and attach a Microgateway to an API. Follow the instructions in the [Grouping APIs with Microgateway Labels](https://apim.docs.wso2.com/en/3.2.0/Learn/APIMicrogateway/grouping-apis-with-labels/) on the WSO2 API Manager documentation.
+Create and attach a Microgateway to an API. Follow the instructions in the [Grouping APIs with Microgateway Labels]({{apim_path}}/Learn/APIMicrogateway/grouping-apis-with-labels/) on the WSO2 API Manager documentation.
 
 ### Step 3 - Generate a Microgateway project
 
