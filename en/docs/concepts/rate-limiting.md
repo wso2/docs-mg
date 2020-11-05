@@ -14,7 +14,7 @@ In a lockdown environment or in offline mode where there is no connection with t
 
 Subscription-level throttling tiers are set to an API during the API implementation. When a user subscribes to the API through the developer portal, the subscription-level throttling tiers selected for the API will be listed from which one can be selected.
 
-Based on the selected tier, a subscriber will be throttled out upon reaching the maximum number of requests specified in the tier, see [Subscription-level throttling (API Publisher)]({{apim_path}}/learn/rate-limiting/setting-throttling-limits/#subscription-level-throttling-api-publisher).
+Based on the selected tier, a subscriber will be throttled out upon reaching the maximum number of requests specified in the tier, see [subscription-level throttling (API Publisher)]({{apim_path}}/learn/rate-limiting/setting-throttling-limits/#subscription-level-throttling-api-publisher).
 
 #### Application-level throttling (application developer)
 
@@ -24,6 +24,6 @@ An application is a logical collection of one or more APIs. An API is subscribed
 
 An application can be used to support environment restrictions. For e.g., if there is an infrastructure limitation to serve a maximum number of requests at a given time, a throttling tier can be set to an application to avoid the system being overloaded.
 
-For more information on application-level throttling tiers, see [Application-level Throttling tiers]({{apim_path}}/learn/rate-limiting/setting-throttling-limits/#application-level-throttling-application-developer).
+For more information on application-level throttling tiers, see [application-level Throttling tiers]({{apim_path}}/learn/rate-limiting/setting-throttling-limits/#application-level-throttling-application-developer).
 
-Check [How to define API/Resource level rate limiting]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies) and [How to enabled distributed rate limiting](/how-tos/rate-limiting/distributed-throttling) for more information.
+Check [how to define API/Resource level rate limiting]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies) and [how to enabled distributed rate limiting](/how-tos/rate-limiting/distributed-throttling) for more information.
