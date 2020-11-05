@@ -3,7 +3,7 @@
 Follow the instructions below to import a single API from WSO2 API Manager and create a Microgateway distribution for it.
 
 !!! note
-    Please follow guidelines on [configuring the API Manager]({{base_path}}/install-and-setup/configuration-for-wso2-api-manager/) before following the below steps.
+    Follow guidelines on [configuring the API Manager]({{base_path}}/install-and-setup/configuration-for-wso2-api-manager/) before following the below steps.
 
 ### Step 1 - Follow the installation prerequisites
 
