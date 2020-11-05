@@ -44,8 +44,7 @@ and perform rate-limiting precisely.
     x-wso2-throttling-tier : "5PerMin"    
     ```
     
-3.  Create and deploy the throttling policy in the Traffic Manager. (For this example you should deploy "5PerMin" policy in Traffic Manager)
-    The relevant documentation can be found [here]({{apim_path}}/learn/rate-limiting/adding-new-throttling-policies/#adding-a-new-advanced-throttling-policy).
+3.  Create and deploy the throttling policy in the Traffic Manager. For this example you should deploy "5PerMin" policy in Traffic Manager. The relevant documentation can be found [here]({{apim_path}}/learn/rate-limiting/adding-new-throttling-policies/#adding-a-new-advanced-throttling-policy).
 
 4.  Build the microgateway distribution for the project using the following command:
 
