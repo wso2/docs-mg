@@ -13,7 +13,7 @@ The following sub sections explains how you can work with OpenAPI extensions to 
 
 ### Writing an interceptor
 
-Microgateway defines java interfaces to write the request and response interceptors. The interfaces for request and response interceptors are defined as below. Developers can implement these interfaces to achieve the custom transformation logic. The java docs for the supported java objects, methods and etc can be found [here](http://product-dist.wso2.com/javadocs/api-microgateway/3.1.0/) .
+Microgateway defines java interfaces to write the request and response interceptors. The interfaces for request and response interceptors are defined as below. Developers can implement these interfaces to achieve the custom transformation logic. The java docs for the supported java objects, methods and etc can be found [here](http://product-dist.wso2.com/javadocs/api-microgateway/3.1.0/).
 
 #### Interceptor Interface
 
@@ -97,7 +97,7 @@ public class SampleInterceptor implements Interceptor {
     <dependency>
       <groupId>org.wso2.am.microgw</groupId>
       <artifactId>mgw-interceptor</artifactId>
-      <version>3.1.0</version>
+      <version>3.2.0</version>
     </dependency>
     ```
 ### Adding interceptors to the project
@@ -146,9 +146,9 @@ You can add an interceptor so that it gets applied at the API level, which is 
 
 ``` java
 openapi: 3.0.0
-    version: 1.0.0
-    title: Swagger Petstore New
-    termsOfService: http://swagger.io/terms/
+version: 1.0.0
+title: Swagger Petstore New
+termsOfService: http://swagger.io/terms/
 x-wso2-basePath: /petstore/v1
 x-wso2-request-interceptor: java:org.mgw.interceptor.SampleInterceptor
 x-wso2-response-interceptor: java:org.mgw.interceptor.SampleInterceptor

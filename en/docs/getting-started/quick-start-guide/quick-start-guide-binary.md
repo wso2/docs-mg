@@ -99,17 +99,11 @@ Follow the steps below to expose the APIs via WSO2 API Microgateway.
     ```
 
 ### Step 3 - Invoke the sample API
-
 #### Step 3.1 - Obtain a token
-After the APIs are exposed via WSO2 API Microgateway, you can invoke an API with a valid token(JWT or opaque access token) or an API key.  Let's use WSO2 API Microgateway's API key endpoint to obtain an 
- API key in order to access the API.
-   
-The below command will retrieve an APIKey token and set it to the shell variable `TOKEN`.
-        
-``` bash
-TOKEN=$(curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRtaW46YWRtaW4=" -k)
-```
-
+ --8<--
+ ./includes/obtain-api-key.md
+ 
+ --8<--
 !!! info
         - You can obtain a JWT token from any third-party secure token service or via the WSO2 API Manager.
         - You can obtain an API Key easily from WSO2 API Microgateway. Follow the documentation to [Obtain an API Key]({{base_path}}/how-tos/security/api-key-security-token-service/).
@@ -117,16 +111,11 @@ TOKEN=$(curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRt
      For more information, see the FAQs on [Working with Tokens]({{base_path}}/faqs/#working-with-tokens) .
 
 #### Step 3.2 - Invoke the API
-Execute the following command to Invoke the API using the API key. You can now invoke the API running on the Microgateway using cURL as below
 
- ``` bash tab="Format"
- curl -X GET "https://<MGW-runtime-hostname>:<MGW-runtime-port>/<API-context>/<API-resource>" -H "accept:application/xml" -H "api_key:$TOKEN" -k
- ```
+ --8<--
+ ./includes/invoke-api-with-api-key.md
  
- ``` bash tab="Example"
- curl -X GET "https://localhost:9095/v2/pet/1" -H "accept: application/xml" -H "api_key:$TOKEN" -k
- ```
- 
+ --8<--
 !!! note
     You were able to invoke the API resource `pet/{petId}` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication]({{base_path}}/how-tos/security/api-authentication/api-key-authentication/) .
     ```yml

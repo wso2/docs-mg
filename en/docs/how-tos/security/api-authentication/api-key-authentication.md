@@ -79,9 +79,6 @@ The following table explains the runtime configurations for API Key authenticati
     validateAllowedAPIs=false
 ```
 
-
-
-
 <table>
 <tbody>
   <th> Key</th>
@@ -124,11 +121,11 @@ The following table explains the runtime configurations for API Key authenticati
 Use the cURL command below to invoke the API Key secured API in the Microgateway.
 
 
-``` java tab="Format"
+``` bash tab="Format"
 curl -k -X GET "<API_URL>" -H  "accept: application/json" -H  "<Header name>: <API Key>"
 ```
 
-``` erl tab="Example"
+``` bash tab="Example"
 curl -k -X GET "https://localhost:9095/petstore/v1/pet/3" -H  "accept: application/json" -H  "X-API-KEY: eyJhbGciOiJSUzI1NiIsICJ0eXAiOiJqd3QiLCAia2lkIjoiYmFsbGVyaW5hIn0=.eyJzdWIiOiJhZG1pbiIsICJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo5MDk1L2FwaWtleSIsICJpYXQiOjE1ODAxMDUzOTAsICJqdGkiOiI3OTFiNzAyMC1kN2U2LTRmYmEtYmMyMy1lMzk5YTVlNmYzYjciLCAiYXVkIjoiaHR0cDovL29yZy53c28yLmFwaW1ndC9nYXRld2F5IiwgImtleXR5cGUiOiJQUk9EVUNUSU9OIiwgImFsbG93ZWRBUElzIjpbXX0=.f-86LfD7lLq-0oM1V1u1dLW7fWcydH4MElWVxUfRTGGRiXHhh8VrS5q18LdCtH1E1jav5pPZpdDQgQUvhVYNXVqiipydfJFOMbDysA0Jdakmh_TVmeZRHhIYgzcVHQNnXMcYXg7Ns4QPBvJVONfbmDluuiU_uFnOPBiXj2N4HL2OTLgVXkEoVTEpL0mmaO2Ab4ZHqKW5xj32aeK8sEAtU5Nd3rQOGvfEwL7xvx4JAmza8ka0eYt7c4QCPVcDSVOkdas9njlsvEdtka5GRL9PAx3xg370phSD1cji6WSRlZhEGzuq6hjLbCqsf17KvZgK1zbrEbSypjgegEe-any3EQ=="
 ```
 
@@ -137,15 +134,11 @@ curl -k -X GET "https://localhost:9095/petstore/v1/pet/3" -H  "accept: applicati
 !!! tip
     API Keys are simple JWTs. To enable additional security for API Key, set " `validateAllowedAPIs` " to true to restrict API Key for the allowed APIs list contained inside of the JWT. Then it will check whether "allowedAPIs" or "subscribedAPIs" claim exists and only allow the API request if the API name and the version are listed.
 
-Example:
-API Key -
-
-``` java
+``` bash tab="Example API Key"
 eyJhbGciOiJSUzI1NiIsICJ0eXAiOiJqd3QiLCAia2lkIjoiYmFsbGVyaW5hIn0=.eyJzdWIiOiJhZG1pbiIsICJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo5MDk1L2FwaWtleSIsICJpYXQiOjE1ODAxMTE4ODgsICJqdGkiOiIxZjQxZTM3MC0zMTRiLTQ4MmEtYTBjYS04YmU0ZDE2MGIxOTUiLCAiYXVkIjoiaHR0cDovL29yZy53c28yLmFwaW1ndC9nYXRld2F5IiwgImtleXR5cGUiOiJQUk9EVUNUSU9OIiwgImFsbG93ZWRBUElzIjpbeyJuYW1lIjoiU3dhZ2dlciBQZXRzdG9yZSBOZXciLCAidmVyc2lvbiI6IjEuMC4wIn0sIHsibmFtZSI6IlN3YWdnZXIgUGV0c3RvcmUgTmV3IiwgInZlcnNpb24iOiJ2MSJ9LCB7Im5hbWUiOiJNeUFQSSIsICJ2ZXJzaW9uIjoiKiJ9XX0=.EUP5_H7AoXgPsxL2TkDlrlnHq2F3VFwfGxQaS2CSj8lE3lP2HgfMgY1osAODegK7t0mWNZqkfkfw5xLfqYjBXikszyGabHxB-FX3GKOYNw-fFLOhSSxVD4lDOBdFpmyhGjeE8RTyrMl-HY3Apjid92sO5VlW6M-y3QTYzrmm8Gs_C3Z5z2hxpAWHXo-uNF0iVm4sdz7j4rgOxGf6HJKgXeZ47c3CDNKaNA9pRZd_ULaMvUvcmXOGJ7Xh21Pqmh1qQkT4OJm1T-2dCx8fju9YHH1Sdc3UGDDu7mK2m1_8Z14CpZOOPQK_zCp2bmjonQgJ-CTJENjfNK37dNY1a2xomw==
 ```
-Decoded payload -
 
-``` yml
+``` yml tab="Decoded payload"
 {
   "sub": "admin",
   "iss": "https://localhost:9095/apikey",
@@ -168,6 +161,7 @@ Decoded payload -
     }]
 }
 ```
+
 Above API Key will allow accessing v1, v2 and 1.0.0 versions of Swagger Petstore New API and all versions of MyAPI API.
 
 

@@ -9,20 +9,20 @@ if we have 3 gateways in a cluster, it will allow 30 requests to pass to the bac
 throttle out requests. This will put an unexpected load on the backend. To address this requirement, the API Microgateway 
 supports distributed throttling where it is able to work with a central traffic management solution. In this case, 
 multiple microgateways can connect with WSO2 API Manager 
-([WSO2 Traffic Manager](https://apim.docs.wso2.com/en/3.2.0/install-and-setup/setup/distributed-deployment/product-profiles/)) 
+([WSO2 Traffic Manager]({{apim_path}}/install-and-setup/setup/distributed-deployment/product-profiles/)) 
 and perform rate-limiting precisely.
 
 !!! note
     If you start the WSO2 API Manager without providing any profile, it runs as All in One Node (All the profiles 
     are activated). For testing purposes, you can simply start the API Manager following the 
-    [quick start guide](https://apim.docs.wso2.com/en/3.2.0/getting-started/quick-start-guide/) and test.
+    [quick start guide]({{apim_path}}/getting-started/quick-start-guide/) and test.
 
 <!---TODO:@VirajSalaka Add concept page and mention it here--->
 <!---TODO:@VirajSalaka Update image (old) and add to concept page--->
 
 ### Enabling distributed throttling
 
-1.  Let's create a microgateway project
+1.  Let's create a microgateway project.
 
     Create a project using the command given below.
   
@@ -44,8 +44,7 @@ and perform rate-limiting precisely.
     x-wso2-throttling-tier : "5PerMin"    
     ```
     
-3.  Create and deploy the throttling policy in the Traffic Manager. (For this example you should deploy "5PerMin" policy in Traffic Manager)
-    The relevant documentation can be found [here](https://apim.docs.wso2.com/en/3.2.0/learn/rate-limiting/adding-new-throttling-policies/#adding-a-new-advanced-throttling-policy).
+3.  Create and deploy the throttling policy in the Traffic Manager. For this example you should deploy "5PerMin" policy in Traffic Manager. The relevant documentation can be found [here]({{apim_path}}/learn/rate-limiting/adding-new-throttling-policies/#adding-a-new-advanced-throttling-policy).
 
 4.  Build the microgateway distribution for the project using the following command:
 
@@ -103,7 +102,7 @@ and perform rate-limiting precisely.
         </tbody>
     </table>
     
-    The message broker connection URL. For e.g. a [WSO2 API instance can be used as the Traffic Manager](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/distributed-deployment/product-profiles/). 
+    The message broker connection URL. For e.g. a [WSO2 API instance can be used as the Traffic Manager]({{apim_path}}/install-and-setup/setup/distributed-deployment/product-profiles/). 
     In such an instance, the URL will point to the message broker inside the API Traffic Manager instance.
     In the `micro-gw.conf` file under `[throttlingConfig.binary]`, we should list down all the configurations related to
     event publishing.                   
@@ -212,7 +211,7 @@ There can be situations where certain APIs require more granular level of thrott
     Same as the header conditions, this allows applying a specific limit to a certain query parameter value.
 
 1.  JWT claim conditions.       
-    This type of condition will evaluate the [backend jwt](/how-tos/passing-enduser-attributes-to-the-backend-using-jwt) and check if it has a specific claim value in it to set the throttle limit.
+    This type of condition will evaluate the [backend jwt]({{base_path}}/how-tos/passing-enduser-attributes-to-the-backend-using-jwt) and check if it has a specific claim value in it to set the throttle limit.
 
 #### Configure and enable conditional throttling
 
@@ -227,7 +226,7 @@ There can be situations where certain APIs require more granular level of thrott
       enableJwtClaimConditions = true
     ```    
 
-1.  Define the Advance Throttle Policy containing the required conditions in WSO2 API Manager. To do this follow [Adding a new advanced throttling policy](https://apim.docs.wso2.com/en/latest/learn/rate-limiting/adding-new-throttling-policies/#adding-a-new-advanced-throttling-policy)
+1.  Define the Advance Throttle Policy containing the required conditions in WSO2 API Manager. To do this follow [Adding a new advanced throttling policy]({{apim_path}}/learn/rate-limiting/adding-new-throttling-policies/#adding-a-new-advanced-throttling-policy)
 1.  Conditional throttle policies are an advanced set of API and Resource level policies. Therefore you need to define the required policy to apply in the OpenAPI definition. To do that, define `x-wso2-throttling-tier` extension with the Advance Throttle Policy name you defined in API Manager in the above step. This extension can be defined in both API and Resource levels.
 
     ```yaml tab="API level sample"

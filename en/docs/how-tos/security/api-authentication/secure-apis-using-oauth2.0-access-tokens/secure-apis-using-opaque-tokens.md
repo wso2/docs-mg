@@ -110,7 +110,7 @@ Microgateway by default connects with the key managers with the token introspect
 
 WSO2 Microgateway can be configured to validate the API subscriptions when using opaque tokens. This can only be used for APIs which are published in API Manager.
 
-For information on the subscription model and configuration steps, please refer to [the document on Subscription Validation]({{base_url}}/how-tos/security/api-authorization/subscription-validation/).
+For information on the subscription model and configuration steps, please refer to [the document on Subscription Validation]({{base_path}}/how-tos/security/api-authorization/subscription-validation/).
 
 !!! note
     When the API is created using the dev-first approach, the API Name may contain spaces. But, in order to validate the subscriptions, the same API should be published in API Manager and it does not allow to create APIs with spaces in API Name. Therefore, when using subscription validation in Microgateway, use the API Name without spaces.

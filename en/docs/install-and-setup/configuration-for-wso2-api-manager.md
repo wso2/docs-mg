@@ -1,6 +1,6 @@
 # Configuration for WSO2 API Manager
 
-Follow the instructions below to configure the WSO2 Microgateway Toolkit and the WSO2 Microgateway Runtime in order to use it with [WSO2 API Manager 3.2.0](https://apim.docs.wso2.com/en/3.2.0/). The WSO2 Microgateway 3.2.0 supports WSO2 API Manager versions, 2.6.0 onwards (2.6.0, 3.0.0, 3.1.0 and 3.2.0).
+Follow the instructions below to configure the WSO2 Microgateway Toolkit and the WSO2 Microgateway Runtime in order to use it with [WSO2 API Manager 3.2.0]({{apim_path}}). The WSO2 Microgateway 3.2.0 supports WSO2 API Manager versions, 2.6.0 onwards (2.6.0, 3.0.0, 3.1.0 and 3.2.0).
 
 - [Configuration for WSO2 API Manager](#configuration-for-wso2-api-manager)
     - [Configuring the Microgateway 3.2.x Toolkit](#configuring-the-microgateway-32x-toolkit)
@@ -17,7 +17,7 @@ Follow the instructions below to configure the WSO2 Microgateway Toolkit and th
 1.  Add the public certificate of WSO2 API Manager to the trust store.
 
     !!! info
-        Refer the documentation on [Importing Certificates to the API Microgateway Truststore]({{base_url}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/) for more information.
+        Refer the documentation on [Importing Certificates to the API Microgateway Truststore]({{base_path}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/) for more information.
 
     - Export the public certificate of WSO2 API Manager.
     A sample command is given below.
@@ -31,6 +31,9 @@ Follow the instructions below to configure the WSO2 Microgateway Toolkit and th
     ```tab="Example"
     keytool -import -trustcacerts -alias wso2carbon2 -file wso2carbon.crt -keystore <MGW_TOOLKIT_HOME>/lib/platform/bre/security/ballerinaTruststore.p12
     ```
+
+    !!! note
+        Do not unzip the platform.zip in <MGW_TOOLKIT_HOME>/lib/ manually. After you use any toolkit command such as `micro-gw init petstore`, it will be automatically unzipped with necessary contents.
 
 2.  Change the REST API version and DCR version to be compatible with the WSO2 API Manager.
 
@@ -47,7 +50,7 @@ Follow the instructions below to configure the WSO2 Microgateway Toolkit and th
 1.  Add the public certificate of WSO2 API Manager to the trust store.
 
     !!! info
-        Refer the documentation on [Importing Certificates to the API Microgateway]({{base_url}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/) for more information.
+        Refer the documentation on [Importing Certificates to the API Microgateway]({{base_path}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/) for more information.
 
     - Export public certificate of WSO2 API Manager.
 
@@ -127,3 +130,4 @@ Set the analytics stream version corresponding to the API-M Analytics version th
 |-----------------|--------------|
 |3.0.0|3.0.0|
 |3.1.0|3.1.0|
+|3.2.0|3.2.0|

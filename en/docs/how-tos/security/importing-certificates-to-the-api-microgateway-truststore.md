@@ -13,6 +13,9 @@ For signature validation of JWTs, you need to add the public certificate of the 
     ``` java
     keytool -import -keystore <MGW_TOOLKIT_HOME>/lib/platform/bre/security/ballerinaTruststore.p12 -alias wso2carbonjwt -file certificate.pem
     ```
+    
+    !!! note
+        Do not unzip the platform.zip in <MGW_TOOLKIT_HOME>/lib/ manually. After you use any toolkit command such as `micro-gw init petstore`, it will be automatically unzipped with necessary contents.
 
     ``` java
     keytool -import -keystore <MGW_RUNTIME_HOME>/runtime/bre/security/ballerinaTruststore.p12 -alias wso2carbonjwt -file certificate.pem
@@ -21,7 +24,7 @@ For signature validation of JWTs, you need to add the public certificate of the 
     !!! note
         Use the keytool that comes in JDK 8u60 or later.
 
-### Default Certificates and aliases in WSO2 Microgateway 3.1.0 Truststore
+### Default Certificates and aliases in WSO2 Microgateway 3.2.0 Truststore
 
 The default truststore of WSO2 Microgateway ballerinaTruststore.p12 already contains default public certificates of the following products under the following aliases.
 

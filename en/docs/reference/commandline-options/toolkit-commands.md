@@ -110,7 +110,7 @@ Allow insecure server connections when using SSL.
 ## build
 This will create executables for your project. After adding API definitions, configuring toolkit-config.toml and deployment-config.toml and other interceptors and extensions, run the below command.
 
-Please refer to [the Configurations documentation]({{base_url}}/reference/configurations/configurations-overview) for more information on configuring the project.
+Please refer to [the Configurations documentation]({{base_path}}/reference/configurations/configurations-overview/) for more information on configuring the project.
 
 ``` java tab="Example"
 micro-gw build petstore
