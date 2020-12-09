@@ -27,7 +27,7 @@ Make sure to install and set up all the [installation prerequisites]({{base_pat
       ```
       
       ``` bash tab="Example"
-      micro-gw init petstore -a https://petstore.swagger.io/v2/swagger.json
+      micro-gw init petstore -a https://raw.githubusercontent.com/wso2/product-microgateway/master/samples/petstore_v3.yaml
       ```
 
 3.  The project is now initialized. A directory by the name "petstore" has been created within the directory where you executed the init command.
@@ -117,10 +117,10 @@ Follow the steps below to expose the APIs via WSO2 API Microgateway.
  
  --8<--
 !!! note
-    You were able to invoke the API resource `pet/{petId}` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication]({{base_path}}/how-tos/security/api-authentication/api-key-authentication/) .
+    You were able to invoke the API resource `pet/findByStatus` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication]({{base_path}}/how-tos/security/api-authentication/api-key-authentication/) .
     ```yml
     "paths": {
-      "/pet/{petId}": {
+      "/pet/findByStatus": {
         "get": {
           "security": [
             {

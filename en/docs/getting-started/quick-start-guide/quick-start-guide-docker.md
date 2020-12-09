@@ -20,7 +20,7 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [instal
     Let's use the [Petstore sample open API definition](https://petstore.swagger.io/)
 
     ``` java
-    micro-gw init petstore -a https://petstore.swagger.io/v2/swagger.json
+    micro-gw init petstore -a https://raw.githubusercontent.com/wso2/product-microgateway/master/samples/petstore_v3.yaml
     ```
 
     The project is now initialized. A directory with the name "petstore" has been created.
@@ -99,14 +99,14 @@ curl -X GET "<Docker-hostname>:<Docker-port>/<API-context>/<API-resource>" -H "a
 ```
 
 ``` java tab="Example"
-curl -X GET "https://localhost:9095/v2/pet/1" -H "accept: application/xml" -H "api_key:$TOKEN" -k
+curl -X GET "https://localhost:9095/api/v3/pet/findByStatus?status=available" -H "accept: application/json" -H "api_key:$TOKEN" -k
 ```
 
 !!! note
-    You were able to invoke the API resource `pet/{petId}` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication]({{base_path}}/how-tos/security/api-authentication/api-key-authentication/).
+    You were able to invoke the API resource `pet/findByStatus` using an API Key in `api_key` header because the resource is secured with API Key in API definition as follows. For more information, please refer to the documentation on [API Key Authentication]({{base_path}}/how-tos/security/api-authentication/api-key-authentication/).
     ```yml
     "paths": {
-      "/pet/{petId}": {
+      "/pet/findByStatus": {
         "get": {
           "security": [
             {
