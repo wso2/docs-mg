@@ -24,7 +24,7 @@ When a JWT is used as an access token, API Microgateway validates the following 
     validateSubscription = false
 ```
 
- The `certificateAlias`, `issuer`, `audience` of the above configuration will be used to validate the signature, iss claim and aud claim of the JWT respectively. This configuration should be added to the `micro-gw.conf` file located in `<MICRO-GW-RUNTIME_HOME/conf/`.
+ The `certificateAlias`, `issuer`, `audience` of the above configuration will be used to validate the signature, iss claim and aud claim of the JWT respectively. This configuration should be added to the `micro-gw.conf` file located in `<MICRO-GW-RUNTIME_HOME>/conf/`.
 
  The JWT signature can be validated either by the certificate (which the alias is defined in certificateAlias) or using the JWKS endpoint of the issuer. When configured both properties, if the JWT contain the kid, the token will be validated through the JWKS endpoint.
 
