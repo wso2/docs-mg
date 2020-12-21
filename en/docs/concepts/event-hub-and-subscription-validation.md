@@ -2,6 +2,9 @@
 
 When using WSO2 API Manager as the key manager with Microgateway, it can be configured to validate the API Subscriptions. For this, the same API should be published in both API Manager and Microgateway, and a valid access token (JWT or Reference token) should be obtained by subscribing to the API via an Application. Microgateway is capable of validating subscriptions only for the configured tenant (One tenant per Microgateway basis).
 
+When an older version of WSO2 API Manager (3.1.* and below) is used as the key manager it sends the subscribed APIs as a list in the JWT under the `subscribedAPIs` claim. Therefore it is required to have the corresponding API name and version listed under `subscribedAPIs` claim to authorize the API request when JWT tokens issued by older API Manager versions are used. 
+The latest versions of API manager do not include the `subscribedAPIs` claim in the JWT, instead, subscription validation is done using the `[eventhub]`. See [below](#subscription-validation-model) for more information. 
+
 ## Subscription Validation Model
 
 Subscriptions are validated in the Microgateway itself using a set of internal data stores. These data stores contain APIs, Applications, and Subscription related information.
