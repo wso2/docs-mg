@@ -7,7 +7,7 @@ When a JWT is used as an access token, API Microgateway validates the following 
 -   **Signature** - after validating the signature, API Microgateway checks whether the JWT is issued by a trusted key manager, and JWT has not tampered in the middle. This signature validation is done by using the public certificate of the key manager which issued the JWT. Importing the public certificate into the API Microgateway trust store and configuring the certificate alias in the JWT validation config section is explained in the [importng certificates to the microgateway truststore]({{base_path}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/)
 -   **Issuer(iss)** - The issuer claim is a mandatory claim when JWT is used as a security token. Microgateway validates the **iss** claim present in the JWT against the issuer provided in the **jwtTokenConfig** section of the configuration.
 -   **Subject(sub)** - The subject claim is also a mandatory claim in a token. Microgateway uses the value of the **sub** claim as the user of the secured API.
--   **Audience(aud)** - The audience claim is also a mandatory claim for a JWT that is used as a security token. Microgateway validates the **aud** claim present in the JWT against the audience provided in the **jwtTokenConfig** section of the configuration. But if the audience is not provided in the **jwtTokenConfig** then Microgateway will not mandate the validation of audience claim.
+-   **Audience(aud)** - The audience claim is not a mandatory claim. However, Microgateway validates the **aud** claim present in the JWT against the audience provided in the **jwtTokenConfig** section of the configuration. But if the audience is not provided in the **jwtTokenConfig** then Microgateway will not mandate the validation of audience claim.
 -   **Expiry time(exp)** - "exp" claim is also a mandatory claim. Microgateway validates the validity period of the token using the **exp** claim
 
 **Jwt token validation config**
@@ -66,7 +66,9 @@ For information on the subscription model and configuration steps, please refer 
 
 ### Passing a token to the backend.
 
- When you are using the JWT authentication, you can provide a token to be passed to the backend using a JWT claim "backendJWT". i.e. If your JWT token has **"backendJwt" claim** , then Its value is passed to the backend. To configure which header it is used for passing the backend JWT, the following should be added to the Microgateway runtime configuration in `<MICRO-GW-RUNTIME_HOME>/conf/micro-gw.conf`.
+ When you are using the JWT authentication, you can provide a token to be passed to the backend using a JWT claim "backendJWT". i.e. If your JWT token has **"backendJwt" claim** , then Its value is passed to the backend. Moreover, you can generate a JWT token inside Microgateway to be sent to the backend instead of passing it from the authentication token. Please refer [Passing Enduser Attributes to the Backend Using JWT documentation]({{base_path}}/how-tos/passing-enduser-attributes-to-the-backend-using-jwt/) for more details.
+ 
+ To configure which header is used for passing the backend JWT, the following should be added to the Microgateway runtime configuration in `<MICRO-GW-RUNTIME_HOME>/conf/micro-gw.conf`.
 
 ``` toml
 [jwtConfig]

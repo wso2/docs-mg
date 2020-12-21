@@ -1,10 +1,10 @@
 # Support Custom Claims Mapping
 
-Microgateway provides the capability to map any claims in an incoming JWT token to user specified claims using custom claims mapping. 
+Microgateway provides the capability to map any claims in an incoming authentication JWT token to, claims expected by the backend upstream service using the custom claim mapping feature.
 
-When JWT tokens are retrieved from multiple identity providers, Microgateway can map the relevant claims to supported claims in order to validate the JWT. The claims of the incoming authentication JWT can differ based on the Authorization server that issued the JWT token. This feature maps the incoming JWT remote claims to the local claims of the Microgateway as well as the claims expected by the back end service. You can use custom claims mapping transformation in Microgateway when you have different keys or values of claims in your JWT token to make it into a Microgateway supported one.
+When JWT tokens are retrieved from multiple identity providers, Microgateway can map the relevant claims to supported claims in order to validate the JWT. The claims of the incoming authentication JWT can differ based on the Authorization server that issued the JWT token. This feature maps the incoming JWT remote claims to the local claims of the Microgateway, and the transformed local claims will be sent to the back-end service as well. You can use custom claims mapping transformation in Microgateway when you have different keys or values of claims in your JWT token to make it compatible with microgateway as well as your back-end service.
 
-For example, if you generate a JWT token with the claim `"scp": [“write”, “read”]` to represent the scope of the token, since Microgateway validates scopes only when they are attached to the token with the claim key 'scope' and when the scopes are separated by spaces as a string. Therefore, a custom claim mapping can be used to transform the remote claim to a local claim.
+For example, if you generate a JWT token with the claim `"scp": [“write”, “read”]` to represent the scope of the token, since Microgateway validates scopes only when they are available in the token with the claim key 'scope' and when the scopes are separated by spaces as a string. Therefore, a custom claim mapping can be used to transform the remote claim to a local claim.
 
 You can either change the claim key only using the configuration or change the claim values using a custom JWT transformer. 
 
