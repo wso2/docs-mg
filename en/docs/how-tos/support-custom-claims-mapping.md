@@ -1,14 +1,20 @@
 # Support Custom Claims Mapping
 
-When JWT retrieved from Multiple Identity providers, Microgateway can map the relevant claims as a supported one to validate the JWT.  The claims of the incoming authentication JWT can differ based on the Authorization server that issued the JWT token. This feature maps the incoming JWT remote claims to the local claims of the Microgateway as well as the claims expected by the back end service.  You can use custom claims mapping transformation in micro gateway when you have different keys or values of claims in your JWT token to make it as a Microgateway supported one.
+Microgateway provides the capability to map any claims in an incoming JWT token to user specified claims using custom claims mapping. 
 
-In a detailed view for an example if you generate JWT with claims with a different key like claim key is ‘scp’ and value is ‘[“write”, “read”]’. But in Microgateway it only validates correctly if the key is scope and values of scope separated by space as a string. Hence through the custom claims mapping feature, you can map the remote claims to local claims to support the Microgateway.  Here remote claims come from an external provider thus local claims need to be mapped.
- 
-1. If the key of the remote claims is different from the custom claims, then you need to change the configuration as below.  You can define the multiple keys of the remote claim and local claim.
+When JWT tokens are retrieved from multiple identity providers, Microgateway can map the relevant claims to supported claims in order to validate the JWT. The claims of the incoming authentication JWT can differ based on the Authorization server that issued the JWT token. This feature maps the incoming JWT remote claims to the local claims of the Microgateway as well as the claims expected by the back end service. You can use custom claims mapping transformation in Microgateway when you have different keys or values of claims in your JWT token to make it into a Microgateway supported one.
 
-     Adding the following section to the micro-gw.conf file which is located in the <MGW-RUNTIME-HOME>/conf directory, you can change the configurations in the jwtTokenConfig. Here the remote claim is scp and the local claim is scope.
-#### Configuring claims key
-```
+For example, if you generate a JWT token with the claim `"scp": [“write”, “read”]` to represent the scope of the token, since Microgateway validates scopes only when they are attached to the token with the claim key 'scope' and when the scopes are separated by spaces as a string. Therefore, a custom claim mapping can be used to transform the remote claim to a local claim.
+
+You can either change the claim key only using the configuration or change the claim values using a custom JWT transformer. 
+
+### Configuring claim keys
+
+If the key of the remote claim is different from the custom claim, you can add the following configuration under `jwtTokenConfig` tag (claim mapping configurations should be added under the respective JWT issuer that the claim mapping should be applied) in `micro-gw.conf` file which is located in the `<MGW-RUNTIME-HOME>/conf` directory. (You can define multiple keys of the remote claims and local claims.)
+
+The following configuration is to change the key 'scp' in the remote claim to the key 'scope'.
+
+```toml
 [[jwtTokenConfig]]
      issuer = "https://localhost:9443/oauth2/token"
      audience = "http://org.wso2.apimgt/gateway"
@@ -20,12 +26,17 @@ In a detailed view for an example if you generate JWT with claims with a differe
        localClaim = "scope" 
 ```
          
-      
-2. If the format of the remote claim value differs from the custom claims then you should write a class to transform it into the correct format and define the claim mapping class name in the config file.
 
-     The following subsections explain how you can work with claims value transformation. Here the existing scope value is in an array and it shoud be changed to string with space.
-#### Writing JWT transformer for claims value
-Microgateway defines java interfaces to write the JWT value transformer. The interface for the transformer defined below. Developers can implement these interfaces to achieve custom transformation logic. 
+### Configuring claim values using a custom JWT transformer
+
+If the format of the remote claim value differs from the required format, you can write a class to transform the claim value into the correct format of your desire and add the claim mapping class name in the config file.
+
+The following subsections explain how you can work with claim value transformation. The following example is based on changing the 'scope' claim value to a space separated string from an array.
+
+#### Writing a JWT claim value transformer
+
+Microgateway provides a java interface to implement when writing a JWT value transformer. Developers can use the following interface to write a custom JWT transformer to achieve custom transformation logic. 
+
 ```` java
 package org.wso2.micro.gateway.jwt.transformer;
  
@@ -44,7 +55,9 @@ public interface JWTValueTransformer {
     Map<String, Object> transformJWT(Map<String, Object> jwtClaims);
 }
 ````
-####  Writing a JWT claims value transformer
+
+Following `CustomJwtTransformer` class is the implementation of the JWT transformer interface.
+
 ``` java
 package org.mgw.jwt.jwtvaluetransformer;
  
@@ -55,7 +68,7 @@ import java.util.Map;
 /**
  * This class is for default Jwt transformer.
  */
-public class customJwtTransformer implements JWTValueTransformer {
+public class CustomJwtTransformer implements JWTValueTransformer {
  
     @Override
     public Map<String, Object> transformJWT(Map<String, Object> jwtClaims) {
@@ -74,26 +87,29 @@ public class customJwtTransformer implements JWTValueTransformer {
 }
 ```
 
-    !!! info
-        Add the microgateway JWT transformer dependency.
-        The java JWT transformer project will require the following dependency
-        **JWT transformer dependency**
-        ``` java
+!!! info
+    Add the microgateway JWT transformer dependency.
+    The java JWT transformer project will require the following dependency.
+    ```xml
         <dependency>
             <groupId>org.wso2.am.microgw</groupId>
             <artifactId>mgw-jwt-transformer</artifactId>
             <version>3.2.0</version>
         </dependency>
-        ```
+    ```
+        
 #### Adding JWT transformer to the project 
-Once JWT claims value transformer is written, then the JWT  transformer project should be built and the output jar should be placed in the <MGW-project>/lib directory. If third-party libraries are used when writing JWT claims mapping transformer, these custom jars should also be placed in the same directory.
+
+Once the JWT claim value transformer is written, then the JWT transformer project should be built and the output jar should be placed in the `<MGW-project>/lib` directory. If any third-party libraries are used when writing the JWT claim value transformer, these custom jars should also be placed in the same directory.
+
 #### Configuring claims Mapper class Name
-```
+
+```toml
 [[jwtTokenConfig]]
   issuer = "https://host:port/issuer"
   audience = "http://org.wso2.apimgt/gateway"
   certificateAlias = "alias"
-  #class name of JWT claims value mapper transformer.
+  #class name of JWT claim value mapper transformer.
   claimMapperClassName = "org.mgw.jwt.jwtvaluetransformer.customJwtTransformer"
 ```
 
