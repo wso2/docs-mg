@@ -1,11 +1,13 @@
 # Subscription Validation
 
-The [subscription]({{apim_path}}/learn/consume-api/manage-subscription/subscribe-to-an-api/) validation is configurable for JWT and reference tokens. In order to mandate the subscriptions, subscription validation can be enabled. Microgateway will validate the API list allowed for the token and check if the user is currently invoking one of the APIs in the list. If validation has failed, it will send an error message with error code 900908.
+The [subscription]({{apim_path}}/learn/consume-api/manage-subscription/subscribe-to-an-api/) validation is configurable for JWT and Opaque/reference tokens. In order to mandate the subscriptions, subscription validation can be enabled. 
+Microgateway will validate the token's subscribed APIs list and check if the user is currently invoking one of the APIs in the list. If validation has failed, it will send an error message with error code 900908.
 
-Refer documentation on [Event Hub and Subscription Validation Model]({{base_path}}/concepts/event-hub-and-subscription-validation/) to understand how WSO2 Microgateway validates subscriptions.   
+When an older version of WSO2 API Manager (3.1.* and below) is used as the key manager it sends the subscribed APIs as a list in the JWT under the `subscribedAPIs` claim. Therefore it is required to have the corresponding API name and version listed under `subscribedAPIs` claim to authorize the API request when JWT tokens issued by older API Manager versions are used. 
+The latest versions of API manager do not include the `subscribedAPIs` claim in the JWT, instead, subscription validation is done using the `[eventhub]`. Refer documentation on [Event Hub and Subscription Validation Model]({{base_path}}/concepts/event-hub-and-subscription-validation/) to understand how WSO2 Microgateway validates subscriptions.   
 
 !!! note 
-    If an external key manager is used which do not support the subscription validation concept then, subscription validation can be turned off for that particular JWT issuers.
+    If the Event Hub is not used and an external key manager is required, subscription validation have to be turned off.
 
 ### Configure Subscription Validation
 You can enable or disable subscription validation using the following configuration and it is disabled by default. Add the following to the `<MGW-RUNTIME_HOME>`/conf/micro-gw.conf.
@@ -52,8 +54,16 @@ You can enable or disable subscription validation using the following configurat
         ```
         
 2. Enable subscription validation.
-
-    Enable Subscription Validation for JWT tokens by enabling `validateSubscription` under the corresponding JWT issuer configuration.
+   
+    - Enable Subscription Validation for JWT and Opaque/Reference tokens globally by enabling `validateSubscriptions` in security configuration.
+    
+    ```toml
+    [security]
+        # Enable/ Disable subscription validation for tokens.
+        validateSubscriptions = true
+    ```
+    
+    - Enable/disable Subscription Validation for JWT tokens by configuring `validateSubscription` under the corresponding JWT issuer configuration.
     
     ```toml 
     [[jwtTokenConfig]]
@@ -63,11 +73,8 @@ You can enable or disable subscription validation using the following configurat
         # Validate subscribed APIs
         validateSubscription = true
     ```
-        
-    Enable Subscription Validation for Opaque/ Reference tokens by enabling `validateSubscriptions` in security configuration.
-    
-    ```toml
-    [security]
-        # Enable/ Disable subscription validation for tokens.
-        validateSubscriptions = true
-    ```
+   
+    !!! note
+        If `validateSubscription` is configured(i.e. enabled/disabled) in `[[jwtTokenConfig]]`, regardless of the global validateSubscription configuration in `[security]`, 
+        `validateSubscription` configuration in `[[jwtTokenConfig]]` will be effective for the particular JWT issuer
+     
