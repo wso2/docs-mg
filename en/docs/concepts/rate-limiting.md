@@ -2,9 +2,16 @@
 
 The WSO2 API Microgateway by default has an inbuilt mechanism to handle rate limiting. When creating an API, users can define subscription-level throttling policies. When a Microgateway project gets initialized, an execution plan related to the subscription-level throttling policy gets created in memory. The API Microgateway monitors the incoming requests and publishes the events to a stream defined in the inbuilt stream processing engine. This stream is then read and fed into the relevant pre-defined execution plan. The execution plan detects the throttling point and publishes an event to a stream (globalThrottleStream). When the globalThrottleStream is updated, the API Microgateway updates its local counters in the background as the gateway is subscribed to the global throttle stream.
 
+The WSO2 API Microgateway provides two rate-limiting options. They are,
+
+-   Local rate limiting
+-   Distributed rate limiting
+
+If a user wants to rate limit requests within a microgateway, the [local rate limiting](https://mg.docs.wso2.com/en/latest/how-tos/rate-limiting/adding-throttling-policies/) option can be used. To rate limit requests globally, the [distributed rate limiting](https://mg.docs.wso2.com/en/latest/how-tos/rate-limiting/distributed-throttling/#distributed-throttling) option can be used.
+
 The WSO2 API Microgateway supports [resource level]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies/), [subscription level](#subscription-level-throttling-api-subscriber) and [application level throttling](#application-level-throttling-application-developer).
 
-In a lockdown environment or in offline mode where there is no connection with the central traffic management solution, the default node-level throttling can be used.
+In a lockdown environment or in offline mode where there is no connection with the central traffic management solution, the default node-level throttling(local throttling) can be used.
 
 ![rate limiting-overview]({{base_path}}/assets/img/how-tos/rate-limiting-overview.jpg)
 
