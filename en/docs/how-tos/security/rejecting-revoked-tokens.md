@@ -1,5 +1,9 @@
 # Rejecting Revoked Tokens
-Follow the below steps to enable Real-time and Persistent token revocation. This documentation explains the steps required to handle revoked JWTs. The same steps can be used for handling revoked opaque tokens. However, for opaque tokens, you only need to enable real-time notifications.
+Follow the below steps to enable Real-time and Persistent token revocation. 
+
+To understand how WSO2 Microgateway handles revoked tokens happens, refer the documentation on [Revoked Tokens]({{base_path}}/concepts/revoked-tokens/). 
+
+The following sections explains the steps required to configure to handle revoked JWTs. The same steps can be used for handling revoked opaque tokens. However, for opaque tokens, you only need to enable real-time notifications.
 
 ### Enabling revoked token notifications
 
@@ -9,7 +13,8 @@ Let's use the following sample scenario.
    - Default etcd based persistent notifier implementation will be used.
 
 !!! info
-    **Before you begin** make sure to configure your Security Token Service (STS) and start it. In addition, when working with real-time notifications, you need to define the JMS map message payload in the following format.
+    **Before you begin** make sure to configure your Security Token Service (STS)<sup>*</sup> and start it. In addition, when working with real-time notifications, you need to define the JMS map message payload in the following format.
+    
     ```json
     "payloadData": [
       {
@@ -22,6 +27,8 @@ Let's use the following sample scenario.
       }
     ]
     ```
+    
+    <sup>*</sup>Security Token Service (STS) - The WSO2 API Manager is the STS if you are using a JWT token generated from the WSO2 API Manager.
 
 1. Navigate to the `<MGW_HOME>/conf/micro-gw.conf` file and add the following configuration.
 
@@ -309,104 +316,25 @@ Let's use the following sample scenario.
         This is only required if you are working in a production environment.
 
     1.  Create a self-signed certificate for the persistent storage.
-    2.  Add the self-signed certificate to the Ballerina Trust Store ( `ballerinaTruststore.p12` ) in the WSO2 API Microgateway project and to the Client Trust Store ( `client-truststore.jks` ) in the STS (e.g., WSO2 API Manager).
+    2.  Add the self-signed certificate to the Ballerina Trust Store ( `ballerinaTruststore.p12` ) in the WSO2 API Microgateway project and to the Client Trust Store in the STS (e.g., add to `client-truststore.jks` in WSO2 API Manager).
 
-6.  Create and publish an API.
-
-    !!! note
-        This step is only required if you do not already have an existing API.
-
-    For this example, let's skip this step and use the [Petstore OpenAPI](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml).
-
-7.  Initialize an API Microgateway project (e.g., `petstore` ).
-
-    ```sh tab="Format"
-    micro-gw init <project-name>
-    ```
-
-    ```sh tab="Example"
-    micro-gw init petstore
-    ```
-
-    ```text tab="Sample Response"
-    Project 'petstore' is initialized successfully.
-    ```
-
-8.  Build the WSO2 API Microgateway project (e.g., petstore).
-
-    1.  Add an API or multiple APIs to the project.
-        Navigate to the `/petstore/api_definitions` directory. Add the API definition(s) to this directory. For this example, let's add the [petstore](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml) open API definition.
-    2.  Navigate to the `<MGW_HOME>/bin` directory and run the following command.
-
-        ```sh tab="Format"
-        micro-gw build <project-name>
-        ```
-
-        ```sh tab="Example"
-        micro-gw build petstore
-        ```
-
-        ```text tab="Sample Response"
-        Generating sources...[DONE]
-        Compiling source
-          wso2/petstore:3.2.0
-
-
-        Creating balos
-          target/balo/petstore-2020r1-java8-3.2.0.balo
-
-        Running Tests
-
-          wso2/petstore:3.2.0
-          No tests found
-
-
-        Generating executables
-          target/bin/petstore.jar
-
-        BUILD SUCCESSFUL
-        Target: <PROJECT_LOCATION>petstore/target/petstore.jar
-        ```
-
-        This creates an executable file (`/petstore/target/petstore.jar `) that you can use to expose the API via WSO2 API Microgateway.
-
-9.  Start WSO2 API Microgateway.
-
-    ```sh tab="Format"
-    gateway <path-to-MGW-executable-file>
-    ```
-
-    ```sh tab="Example"
-    gateway /Users/kim/Downloads/TestProj/petstore/target/petstore.jar
-    ```
-
-    ```text tab="Sample Response"
-    INFO  [wso2/gateway/src/gateway/utils] - [TokenRevocationJMS] [-] subscriber service for token revocation is started
-    [ballerina/http] started HTTPS/WSS listener 0.0.0.0:9096
-    [ballerina/http] started HTTP/WS listener 0.0.0.0:9090
-    INFO  [wso2/gateway/src/gateway/utils] - [APIGatewayListener] [-] HTTP listener is active on port 9090
-    [ballerina/http] started HTTPS/WSS listener 0.0.0.0:9095
-    INFO  [wso2/gateway/src/gateway/utils] - [APIGatewayListener] [-] HTTPS listener is active on port 9095
-    INFO  [wso2/gateway/src/gateway/utils] - [RevokedJwtRetrievalTask] [-] Revoked jwt retrieval successful. Stopping the timer task ...
-    INFO  [wso2/gateway/src/gateway/utils] - [RevokedJwtRetrievalTask] [-] Revoked jwt retrieval task stopped successfully
-    ```
-
-10. Test the synchronization process of token revocation.
+6. Test the synchronization process of token revocation.
 
     1. Send the revoke request using the extracted jti as the token.
 
         ```sh tab="Format"
         curl -k -v -d "token=<jti>" -H "Authorization: Basic <base64-encoded-string>" -H "Content-Type: application/x-www-form-urlencoded" https://localhost:8243/revoke 
+        - `<jti>` - Enter the JWT ID (jti) that corresponds to the JWT token, which you obtained in [step 3](#step-3) , that you want to revoke.
+        - `<base64-encoded-string>` - Use a base64 encoder (e.g., <https://www.base64encode.org/> ) to encode your client ID and client secret using the following format: `<clientId>:<clientSecret>` Thereafter, enter the encoded value for this parameter.
         ```
 
         ```sh tab="Example"
         curl -k -v -d "token=1e41eb69-b134-4158-ba16-9449ecaa2b3b" -H "Authorization: Basic U01OYVM0Tkg1UlJKSFJONDVoSzcxWElVbXdNYTo4ajRqTHFBUDZDNjNSTkFTVTdMZDEyeVUxbHNh" -H "Content-Type: application/x-www-form-urlencoded" https://localhost:8243/revoke 
-        ```
-
         - `<jti>` - Enter the JWT ID (jti) that corresponds to the JWT token, which you obtained in [step 3](#step-3) , that you want to revoke.
         - `<base64-encoded-string>` - Use a base64 encoder (e.g., <https://www.base64encode.org/> ) to encode your client ID and client secret using the following format: `<clientId>:<clientSecret>` Thereafter, enter the encoded value for this parameter.
+        ```
 
-        The following response can be seen via the WSO2 API Microgateway console.
+        The following response can be seen via the WSO2 API Microgateway console if you have [enabled debug logs]({{base_path}}/troubleshooting/adding-debug-logs/#how-to-enable-debug-log).
 
         ```text tab="Sample Response"
         2019-06-14 17:20:45,636 DEBUG [wso2/gateway] - [TokenRevocationJMS] [-] token revoked jms Message Received
@@ -423,7 +351,17 @@ Let's use the following sample scenario.
         curl -k -i -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5UQXhabU14TkRNeVpEZzNNVFUxWkdNME16RXpPREpoWldJNE5ETmxaRFUxT0dGa05qRmlNUT09In0=.eyJhdWQiOiJodHRwOlwvXC9vcmcud3NvMi5hcGltZ3RcL2dhdGV3YXkiLCJzdWIiOiJhZG1pbiIsImFwcGxpY2F0aW9uIjp7Im93bmVyIjoiYWRtaW4iLCJ0aWVyIjoiVW5saW1pdGVkIiwibmFtZSI6Ikp3dFRlc3QiLCJpZCI6Mn0sInNjb3BlIjoiYW1fYXBwbGljYXRpb25fc2NvcGUgZGVmYXVsdCIsImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0M1wvb2F1dGgyXC90b2tlbiIsImtleXR5cGUiOiJQUk9EVUNUSU9OIiwic3Vic2NyaWJlZEFQSXMiOltdLCJjb25zdW1lcktleSI6IkpGTjJiRkJyVzdJR2NBaVoydWVkUzM2UjdBY2EiLCJleHAiOjE1NjA1MTY1ODUsImlhdCI6MTU2MDUxMjk4NSwianRpIjoiM2FkNTY3MmEtYWZjYS00Mzg3LTllYzUtZmNmMjg3ODVmODAzIn0=.NVez5rLf2H05AeuAnelDSiDSqj0VwD8A-KtOKr3GxxnelpTM14iyk_k9uyGdsHQ50t9uemowwTCTR2FRo6aOVg3o-RBHzQx2BQEa0VH6JNN83KS0ySkIxjTbNVyCHbFMgFpK0xnhoJyZwnGYYbozwHv2MTJXKdMBose-PclIAgoqNFWDJfYD1YWkdKzeH7QSYnVl6cJWo562PER9a141ydL1jh0snz8QEGKA25PmuvkZ33ydnXSlV1PIBNiHSWL-gTlCmapcPpRqJ8gG8Ld_BGg5QHvqx8YQRTT9p_AHOrhXm-i02IKxYT0zBs6f6y9YDo3F6OeWdmDzItJu14xeqA==" https://localhost:9095/petstore/v1/pet/findByStatus?status=available
         ```
 
-        Response in the Microgateway Console.
+        ```text tab="Sample Response"
+        HTTP/1.1 401 Unauthorized
+        content-type: application/json
+        content-length: 146
+        server: ballerina/0.990.5
+        date: Fri, 14 Jun 2019 17:25:27 +0530
+
+        {"fault":{"code":900901, "message":"Invalid Credentials", "description":"Invalid Credentials. Make sure you have given the correct access token"}}
+        ```
+       
+        The following response can be seen via the WSO2 API Microgateway console if you have [enabled debug logs]({{base_path}}/troubleshooting/adding-debug-logs/#how-to-enable-debug-log).
 
         ```text tab="Sample Response"
         2019-06-14 17:25:27,711 DEBUG [wso2/gateway] - [AuthnFilter] [-] Non-OAuth token found. Calling the auth scheme : jwt
@@ -438,16 +376,4 @@ Let's use the following sample scenario.
         2019-06-14 17:25:27,783 DEBUG [wso2/gateway] - [JWTAuthProvider] [-] JWT Token is revoked
         2019-06-14 17:25:27,783 DEBUG [wso2/gateway] - [AuthnFilter] [-] Authentication handler chain returned with value : false
         2019-06-14 17:25:27,784 DEBUG [wso2/gateway] - [AuthnFilter] [-] Removed header : Authorization from the request
-        ```
-
-        Response in the STS (e.g., WSO2 API Manager).
-
-        ```text
-        HTTP/1.1 401 Unauthorized
-        content-type: application/json
-        content-length: 146
-        server: ballerina/0.990.5
-        date: Fri, 14 Jun 2019 17:25:27 +0530
-
-        {"fault":{"code":900901, "message":"Invalid Credentials", "description":"Invalid Credentials. Make sure you have given the correct access token"}}
         ```
