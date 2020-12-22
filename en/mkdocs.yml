@@ -80,6 +80,7 @@ nav:
                   - Circuit Breaker: how-tos/endpoints/resiliency/circuit-breaker.md
                   - Pool Configurations: how-tos/endpoints/resiliency/pool-configurations.md
             - Defining a Backend Security Scheme: how-tos/endpoints/defining-a-backend-security-scheme.md
+            - Connect to an Endpoint via a Proxy: how-tos/endpoints/connect-to-an-endpoint-via-a-proxy.md
         - Extensions:
             - Adding Extensions: how-tos/extensions/adding-extension-points.md
             - Add custom Filters: how-tos/extensions/custom-filters.md
