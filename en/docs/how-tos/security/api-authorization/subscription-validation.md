@@ -1,7 +1,7 @@
 # Subscription Validation
 
 The [subscription]({{apim_path}}/learn/consume-api/manage-subscription/subscribe-to-an-api/) validation is configurable for JWT and Opaque/reference tokens. In order to mandate the subscriptions, subscription validation can be enabled. 
-Microgateway will validate the token's subscribed APIs list and check if the user is currently invoking one of the APIs in the list. If validation has failed, it will send an error message with error code 900908.
+If validation has failed, it will send an error message with error code 900908.
 
 In WSO2 Microgateway subscription validation can be done in two ways.
 
