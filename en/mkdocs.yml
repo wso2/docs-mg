@@ -89,8 +89,8 @@ nav:
         - API Schema Validation: how-tos/api-schema-validation.md
         - HTTP 2.0: how-tos/http-2.0.md
         - Rate Limiting:
-            - Distributed Throttling: how-tos/rate-limiting/distributed-throttling.md
-            - Adding Throttling Policies: how-tos/rate-limiting/adding-throttling-policies.md
+            - Enabling distributed throttling: how-tos/rate-limiting/distributed-throttling.md
+            - Enabling local throttling: how-tos/rate-limiting/adding-throttling-policies.md
         - Service Discovery: how-tos/service-discovery.md
         - Security:
             - Authentication:
