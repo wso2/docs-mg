@@ -14,8 +14,6 @@ In a lockdown environment or in offline mode where there is no connection with t
 #### Local rate limiting
 If a user wants to rate limit requests within a microgateway, the local rate limiting option can be used. When local rate limiting is enabled, WSO2 API Microgateway maintains a local counter within the microgateway and check whether the request count exceeds the throttling limit. Find information on how to enable local rate limiting from [here](https://mg.docs.wso2.com/en/latest/how-tos/rate-limiting/adding-throttling-policies/).
 
-![rate limiting-overview]({{base_path}}/assets/img/how-tos/rate-limiting-overview.jpg)
-
 #### Distributed rate limiting
 In a deployment with multiple microgateways, throttling becomes a challenge with node local throttling as the throttling
 decision is made based on the local counter within each node. If we proceed with the node local throttling in such
