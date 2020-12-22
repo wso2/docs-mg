@@ -179,6 +179,22 @@ If you need to override the current Microgateway project, run the <code>        
 </td>
 </tr>
 <tr>
+<td><code>101505</code> </td>
+<td><code>
+{                                                             
+    "fault": {                                                
+    "code": "101505",                                     
+    "message": "Runtime Error",                           
+    "description": "Malformed URL"                 
+    }                                                         
+} 
+</code>
+</td>
+<td>
+<li>Malformed URL.</li>                                                     
+</td>
+</tr>
+<tr>
 <td><code>900900</code></td>
 <td>
 <code>
@@ -216,7 +232,18 @@ Given below are some WSO2 API Microgateway specific error codes and their meanin
 | `                  900908                 ` | Resource forbidden.                                                                                                                                                                                                |
 | `                  900909                 ` | The subscription to the API is inactive.                                                                                                                                                                           |
 | `                  900910                 ` | The access token does not allow you to access the requested resource.                                                                                                                                              |
+| `                  900911                 ` | Invalid credentials.                                                                                                                                                                                               |
+| `                  900912                 ` | Invalid format of the credentials.                                                                                                                                                                                 |
+| `                  900913                 ` | Invalid cookie is provided.                                                                                                                                                                                        |
+| `                  900914                 ` | No cookies are provided at server startup.                                                                                                                                                                         |
+| `                  900915                 ` | Unprocessable entity.                                                                                                                                                                                              |
+| `                  900916                 ` | Unprocessable entity.                                                                                                                                                                                              |
+| `                  900917                 ` | Invalid Authentication scheme.                                                                                                                                                                                     |
+| `                  900800                 ` | API level throttled out.                                                                                                                                                                                           |
+| `                  900802                 ` | Resource level throttled out.                                                                                                                                                                                      |
 | `                  900803                 ` | Application level throttled out.                                                                                                                                                                                   |
 | `                  900804                 ` | Subscription level throttled out.                                                                                                                                                                                  |
+| `                  900805                 ` | Resource blocked.                                                                                                                                                                                                  |
+| `                  900806                 ` | Custom policy level throttled out.                                                                                                                                                                                 |
 | `                  900808                 ` | An internal error occurred in the Microgateway.                                                                                                                                                                    |
 | `                  900809                 ` | An internal error occurred in the Microgateway, since a subscription or application throttle policy is not deployed. This might be due to adding a throttle policy to API-M and not regenerating the Microgateway. |
