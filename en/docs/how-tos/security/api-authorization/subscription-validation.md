@@ -3,13 +3,23 @@
 The [subscription]({{apim_path}}/learn/consume-api/manage-subscription/subscribe-to-an-api/) validation is configurable for JWT and Opaque/reference tokens. In order to mandate the subscriptions, subscription validation can be enabled. 
 Microgateway will validate the token's subscribed APIs list and check if the user is currently invoking one of the APIs in the list. If validation has failed, it will send an error message with error code 900908.
 
-When an older version of WSO2 API Manager (3.1.* and below) is used as the key manager it sends the subscribed APIs as a list in the JWT under the `subscribedAPIs` claim. Therefore it is required to have the corresponding API name and version listed under `subscribedAPIs` claim to authorize the API request when JWT tokens issued by older API Manager versions are used. 
-The latest versions of API manager do not include the `subscribedAPIs` claim in the JWT, instead, subscription validation is done using the `[eventhub]`. Refer documentation on [Event Hub and Subscription Validation Model]({{base_path}}/concepts/event-hub-and-subscription-validation/) to understand how WSO2 Microgateway validates subscriptions.   
+In WSO2 Microgateway subscription validation can be done in two ways.
 
-!!! note 
-    If the Event Hub is not used and an external key manager is required, subscription validation have to be turned off.
+1. Self-contained token with `subscribedAPIs` claim
+    
+    To authorize an API request with the self-contained JWT token under an issuer with subscription validation, the API name and version should be listed under `subscribedAPIs` claim of the JWT token.
+    
+    !!! note
+        When an older version of WSO2 API Manager (3.1.* and below) is used as the key manager it sends the subscribed APIs as a list in the JWT under the `subscribedAPIs` claim. Therefore it is required to have the corresponding API name and version listed under `subscribedAPIs` claim to authorize the API request when JWT tokens issued by older API Manager versions are used. 
+
+2. Event Hub based subscription validation
+
+    For opaque/reference tokens and JWTs issued by API Manager 3.2.0 onwards, to enable subscription validation it requires the Event Hub to fetch Application and Subscription data from WSO2 API Manager.
+    
+    The latest versions of API manager do not include the `subscribedAPIs` claim in the JWT, instead, subscription validation is done using the `[eventhub]`. Refer documentation on [Event Hub and Subscription Validation Model]({{base_path}}/concepts/event-hub-and-subscription-validation/) to understand how WSO2 Microgateway validates subscriptions using Event Hub.   
 
 ### Configure Subscription Validation
+
 You can enable or disable subscription validation using the following configuration and it is disabled by default. Add the following to the `<MGW-RUNTIME_HOME>`/conf/micro-gw.conf.
 
 1. Configure Event Hub and key managers for token authentication.
