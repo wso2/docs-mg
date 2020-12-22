@@ -129,7 +129,7 @@ nav:
         - Migrating from Previous Versions : install-and-setup/migrating-from-previous-versions.md
     - Troubleshooting:
         - Troubleshooting the Microgateway: troubleshooting/troubleshooting.md
-        - Adding Debug Logs: troubleshooting/adding-debug-logs.md
+        - Adding Debug/Trace Logs: troubleshooting/adding-debug-logs.md
     - Reference:
         - FAQs: faqs.md
         - Project Directory: reference/project-directory.md

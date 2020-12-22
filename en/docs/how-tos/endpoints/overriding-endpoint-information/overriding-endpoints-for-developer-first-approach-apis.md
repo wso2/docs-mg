@@ -10,7 +10,7 @@ You need to define endpoints as endpoint objects in the OpenAPI definition in or
 
 Use the following command to start WSO2 Microgateway. Here the system variables are provided at server start-up to override the endpoint of the API, which has been added to WSO2 API Microgateway using an OpenAPI definition.
 
-``` tab="Format"
+``` tab="Format - binary" 
 gateway <path-to-MGW-executable-file> --<endpoint-name>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint_URL>"
 
 - <path-to-MGW-executable-file> - Enter the path to the WSO2 API Microgateway project's executable file ( `.jar` ).
@@ -19,15 +19,15 @@ gateway <path-to-MGW-executable-file> --<endpoint-name>_<endpoint-type>_endpoint
     - prod - Use this for a production endpoint.
     - sand - Use this for a sandbox endpoint.
 - <endpoint-index>- The endpoint index starts from 0. Therefore, when overriding a single endpoint this value is 0.
-
-
 ```
 
-``` java tab="Example"
+``` java tab="Example - binary"
 gateway /home/user/petstore-project/target/petstore-project.jar --myEndpoint_prod_endpoint_0="http://wso2.com" 
 ```
 
-
+``` tab="Example - docker" 
+docker run -d -p 9090:9090 -p 9095:9095 -e myEndpoint_prod_endpoint_0="http://wso2.com" docker.wso2.com/petstore:v1
+```
 
 #### Overriding a single endpoint at runtime which is protected by basic authentication
 
@@ -50,8 +50,12 @@ note:
    `<endpoint-name>_<endpoint-type>_basic_password=<password>`
 ```
 
-``` java tab="Example"
+``` java tab="Example - binary"
 gateway /home/user/petstore-project/target/petstore-project.jar --myEndpoint_prod_endpoint_0="http://wso2.com" --myEndpoint_prod_basic_password=123456 
+```
+
+``` java tab="Example - docker"
+docker run -d -p 9090:9090 -p 9095:9095 -e myEndpoint_prod_endpoint_0="http://wso2.com" -e myEndpoint_prod_basic_password=123456 docker.wso2.com/petstore:v1
 ```
 
 
@@ -74,11 +78,13 @@ gateway <path-to-MGW-executable-file> --<endpoint-name>_<endpoint-type>_endpoint
 
 ```
 
-``` java tab="Example"
+``` java tab="Example - binary"
 gateway /home/user/petstore-project/target/petstore-project.jar --myEndpoint_prod_endpoint_0="http://wso2.com" --myEndpoint_prod_endpoint_1="http://wso2.support.com" 
 ```
 
-
+``` java tab="Example - docker"
+docker run -d -p 9090:9090 -p 9095:9095 -e myEndpoint_prod_endpoint_0="http://wso2.com" -e myEndpoint_prod_endpoint_1="http://wso2.support.com" docker.wso2.com/petstore:v1
+```
 
 #### Overriding multiple endpoints at runtime which are protected by basic authentication
 
@@ -103,6 +109,10 @@ gateway <path-to-MGW-executable-file> --<endpoint-name>_<endpoint-type>_endpoint
     - <endpoint-name>_<endpoint-type>_basic_password=<password>
 ```
 
-``` java tab="Example"
+``` java tab="Example - binary"
 gateway /home/user/petstore-project/target/petstore-project.jar --myEndpoint_prod_endpoint_0="http://wso2.com" --myEndpoint_prod_endpoint_1="http://wso2.support.com" --myEndpoint_prod_basic_password=123456 
+```
+
+``` java tab="Example - docker"
+docker run -d -p 9090:9090 -p 9095:9095 -e myEndpoint_prod_endpoint_0="http://wso2.com" -e myEndpoint_prod_endpoint_1="http://wso2.support.com" -e myEndpoint_prod_basic_password=123456 docker.wso2.com/petstore:v1
 ```

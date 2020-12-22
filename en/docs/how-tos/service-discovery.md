@@ -93,12 +93,16 @@ Enable service discovery using etcd on WSO2 API Microgateway as follows:
 6.  Start WSO2 API Microgateway.
     
 
-    ``` java tab="Format"
+    ``` bash tab="Format"
     gateway <path-to-MGW-executable-jar-file> --etcdurl=<http-or-https-etcdurl> --etcdtimer=<etcd-timer> 
     ```
     
-    ``` java tab="Example"
+    ``` bash tab="Example - binary"
     gateway /Users/kim/Downloads/TestProj/petstore-project/target/petstore-project.jar --etcdurl=http://127.0.0.1:2379 --etcdtimer=10000
+    ```
+    
+    ``` bash tab="Example - docker"
+        docker run -d -p 9090:9090 -p 9095:9095 -e etcdurl=http://127.0.0.1:2379 -e etcdtimer=10000 docker.wso2.com/petstore:v1
     ```
     
     - `<etcd-url>` - Provide the etcd URL. If the etcd URL is secured (https), you need to add the etcd server certificate to the [Ballerina](https://ballerina.io/) truststore.

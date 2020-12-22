@@ -62,8 +62,11 @@ bash gateway <path_to_the_jar_file> --<Endpoint Name>_<Endpoint Type>_basic_user
 - Endpoint Type: prod or sand.
 ```
 
-``` text tab="Example"
+``` text tab="Example - binary"
 bash gateway petstore.jar --myEndpoint3_prod_basic_username=admin --myEndpoint3_prod_basic_password=123456
+```
+``` text tab="Example - docker"
+docker run -d -p 9090:9090 -p 9095:9095 -e myEndpoint3_prod_basic_username=admin -e myEndpoint3_prod_basic_password=123456 docker.wso2.com/petstore:v1
 ```
 
 !!! note 

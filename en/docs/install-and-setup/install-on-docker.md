@@ -32,10 +32,10 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [insta
 
 1.  Add the API to the project.
 
-    Navigate to the `           /petstore/api_definitions          ` directory and add the OpenAPI definition(s) to this  directory. Let's use the [Petstore sample OpenAPI definition](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml) in this scenario.
+    Navigate to the `/petstore/api_definitions` directory and add the OpenAPI definition(s) to this  directory. Let's use the [Petstore sample OpenAPI definition](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml) in this scenario.
 
 2.  Create the input for WSO2 API Microgateway Toolkit.
-    Create a file named `           deployment.toml          ` in a preferred location. This TOML file should contain the relevant deployment configurations (e.g., Docker image name, registry, tag, etc.) as shown below. For more information on each of the above parameters, see [deployment.toml for Docker]({{base_path}}/reference/configurations/deployment.toml-for-docker/) . Note that you will have to use this TOML file as the input, by way of passing the file path, when creating the Microgateway project.
+    Create a file named `deployment.toml` in a preferred location. This TOML file should contain the relevant deployment configurations (e.g., Docker image name, registry, tag, etc.) as shown below. For more information on each of the above parameters, see [deployment.toml for Docker]({{base_path}}/reference/configurations/deployment.toml-for-docker/) . Note that you will have to use this TOML file as the input, by way of passing the file path, when creating the Microgateway project.
     
     ``` toml tab="Example"
         [docker]
@@ -47,7 +47,7 @@ Make sure to install and set up [Docker](https://www.docker.com) and the [insta
         #buildImage = ''
         #dockerHost = ''
         #dockerCertPath = ''
-        baseImage = 'wso2/wso2micro-gw:latest'
+        baseImage = 'wso2/wso2micro-gw:3.2.0'
         #enableDebug = ''
         #debugPort = ''
         #push = ''
@@ -87,7 +87,7 @@ Run the Docker container using the following command.
 ```
 
 !!! note
-    When following this Docker deployment guide, you will end up by creating a Docker image with APIs built into it; thereby, the `         .jar        ` file will already be inside the Docker image. Therefore, unlike in the Quick Start Guide for Docker you do not have to specify the project name when running the Docker container and mount the `         .jar        ` file in to the Docker image.
+    When following this Docker deployment guide, you will end up by creating a Docker image with APIs built into it; thereby, the `.jar` file will already be inside the Docker image. Therefore, unlike in the Quick Start Guide for Docker you do not have to specify the project name when running the Docker container and mount the `.jar ` file in to the Docker image.
 
 !!! info
     If you are working in a Linux environment, you can **either use** the above command or the following command to start your Docker container. In the following command the Docker container uses the host network driver for your container.
@@ -97,6 +97,13 @@ Run the Docker container using the following command.
     ```
     
     For more information on working with Docker in different environments, see the relevant Docker documentation: [Docker for Mac](https://docs.docker.com/docker-for-mac/) , [Docker for Windows](https://docs.docker.com/docker-for-windows/).
+
+!!! note
+    If you want to provide command options for the gateway when running the docker container, you can provide them as environmental variables.
+    
+    ```bash tab="Example - Enable debug logs"
+    docker run -d -p 9090:9090 -p 9095:9095 -e b7a.log.level=DEBUG docker.wso2.com/petstore:v1
+    ```
 
 ### Step 5 - Invoke the sample API
 
