@@ -6,7 +6,7 @@ The following sub sections explain as to how you can work with OpenAPI extension
 
 ### Defining a throttling policy
 
-You need to define the throttling policy (or policies) in the `policies.yaml` file, which is in the `<MGW-project>` directory. The following is a sample on how you can define a throttling policy named `10kPerMin` in the `policies.yaml` file. For more information a sample `policies.yaml` can be found [here](https://github.com/wso2/product-microgateway/blob/master/samples/policies_sample.yaml) .
+You need to define the throttling policy (or policies) in the `policies.yaml` file, which is in the `<MGW-project>` directory. The following is a sample on how you can define a throttling policy named `10kPerMin` in the `policies.yaml` file. 
 
 **Defining a throttling policy**
 
@@ -44,3 +44,5 @@ paths:
       operationId: findPetsByStatus
       x-wso2-throttling-tier: 10kPerMin
 ```
+
+For more information, you can find a sample OpenAPI definition with policies applied from [here](https://github.com/wso2/product-microgateway/blob/master/samples/policies_sample.yaml) .

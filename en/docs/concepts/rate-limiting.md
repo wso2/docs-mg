@@ -1,6 +1,6 @@
 # Rate Limiting
 
-The WSO2 API Microgateway by default has an inbuilt mechanism to handle rate limiting. When a Microgateway project is initialized, an execution plan related to the subscription-level throttling policy defined in the API is created in-memory. The API Microgateway monitors the incoming requests and publishes the events to a stream defined in the inbuilt stream processing engine. This stream is then read and fed into the relevant pre-defined execution plan. The execution plan detects the throttling point and publishes an event to a stream (globalThrottleStream). When the globalThrottleStream is updated, the API Microgateway updates its local counters in the background as the gateway is subscribed to the global throttle stream.
+The WSO2 API Microgateway by default has an inbuilt mechanism to handle rate limiting. When creating an API, users can define subscription-level throttling policies. When a Microgateway project gets initialized, an execution plan related to the subscription-level throttling policy gets created in memory. The API Microgateway monitors the incoming requests and publishes the events to a stream defined in the inbuilt stream processing engine. This stream is then read and fed into the relevant pre-defined execution plan. The execution plan detects the throttling point and publishes an event to a stream (globalThrottleStream). When the globalThrottleStream is updated, the API Microgateway updates its local counters in the background as the gateway is subscribed to the global throttle stream.
 
 The WSO2 API Microgateway supports [resource level]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies/), [subscription level](#subscription-level-throttling-api-subscriber) and [application level throttling](#application-level-throttling-application-developer).
 
@@ -18,7 +18,7 @@ Based on the selected tier, a subscriber will be throttled out upon reaching the
 
 #### Application-level throttling (application developer)
 
-Application-level throttling tiers are defined at the time an application is created in the API Developer Portal as shown below. The limits are restricted per token for a specific application.
+Application-level throttling tiers are defined at the time an application is created in the API Developer Portal. The limits are restricted per token for a specific application.
 
 An application is a logical collection of one or more APIs. An API is subscribed to an application. A single access token generated for an application can be used to invoke all the APIs subscribed to that application.
 
@@ -26,4 +26,4 @@ An application can be used to support environment restrictions. For e.g., if the
 
 For more information on application-level throttling tiers, see [application-level Throttling tiers]({{apim_path}}/learn/rate-limiting/setting-throttling-limits/#application-level-throttling-application-developer).
 
-Check [how to define API/Resource level rate limiting]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies) and [how to enabled distributed rate limiting](/how-tos/rate-limiting/distributed-throttling) for more information.
+Check [how to define API/Resource level rate limiting]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies) and [how to enabled distributed rate limiting](https://mg.docs.wso2.com/en/latest/how-tos/rate-limiting/distributed-throttling/#enabling-distributed-throttling) for more information.
