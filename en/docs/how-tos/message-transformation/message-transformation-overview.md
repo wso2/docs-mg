@@ -159,7 +159,7 @@ x-wso2-production-endpoints:
 
 ### Writing an interceptor
 
-This section explains writing interceptors in [Ballerina](https://ballerina.io/). For information on Ballerina 1.2.7 syntax, see [API docs](https://ballerina.io/learn/api-docs/ballerina/) in the Ballerina documentation. The following is a sample request interceptor written in Ballerina (`interceptor.bal`).
+This section explains writing interceptors in [Ballerina](https://ballerina.io/). For information on Ballerina 1.2.x syntax, see [API docs](https://ballerina.io/learn/api-docs/ballerina/) in the Ballerina documentation. The following is a sample request interceptor written in Ballerina (`interceptor.bal`).
 
 #### Writing an Interceptor
 

@@ -41,7 +41,7 @@ You need to append the full path of the `/bin` folder of the extracted WSO2 API 
 
 ##### What version of the Ballerina should be used to write extensions, interceptors, etc for WSO2 API Microgateway 3.2.0?
 
-Ballerina version 1.2.7. Follow API docs in [Ballerina documentation](https://ballerina.io/learn/api-docs/ballerina/).
+Ballerina version 1.2.x. Follow API docs in [Ballerina documentation](https://ballerina.io/learn/api-docs/ballerina/).
 
 ### MGW commands
 

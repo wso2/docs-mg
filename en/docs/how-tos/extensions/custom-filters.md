@@ -11,7 +11,7 @@ Filter has the following methods to intercept the request and the response. Filt
 `filterRequest` and `filterRequest` methods in the filter object.
 
 !!! info
-    It is written in Ballerina 1.2.7 so follow API docs in [Ballerina documentation](https://ballerina.io/learn/api-docs/ballerina/) for language guide.
+    It is written in Ballerina 1.2.x so follow API docs in [Ballerina documentation](https://ballerina.io/learn/api-docs/ballerina/) for language guide.
 
 ``` ballerina
 import ballerina/http;
