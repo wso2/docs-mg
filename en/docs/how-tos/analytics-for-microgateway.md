@@ -54,19 +54,21 @@ Real-Time data publishing has the following advantages:
 -   Server-fail detection and failure recovery mechanisms.
 -   Real-Time analytics data viewing capability.
 
-<!--- TODO: #### Architecture --->
+#### Architecture
 
-<!--- TODO: #### How real-time publishing works --->
+The current architecture depicting the connection between the API Microgateway and the Analytics server using gRPC for real-time data publishing is shown below.
+
+![ Connection between API Microgateway and Analytics server using gRPC]({{base_path}}/assets/img/how-tos/connection-api-mg-and-analytics-server-grpc.png)
+
+#### How real-time publishing works
+
+There's a streaming service established between the Analytics server and Microgateway. When an API is invoked through Microgateway, the corresponding events are streamed to the gRPC server stub in the Analytics server without persisting unlike in periodical publishing.
+
+Therefore, if the gRPC connection is broken between Microgateway and Analytics server the data will be lost. Microgateway will attempt to re-establish connection with the timeout that is provided in the configuration.
 
 ### Configuring Analytics for the Microgateway
 
-The following sections describe how to configure the WSO2 API-M Analytics Server for Microgateway. When adding the relevant analytics configurations to `<MICROGW_HOME>/conf/micro-gw.conf` file, make sure to add the version of the API-M Analytics you are using from the following config.
-
-```toml
-[analytics]
-  # The configured API Manager analytics stream version
-  streamVersion = "3.2.0"
-```
+The following sections describe how to configure the WSO2 API-M Analytics Server for Microgateway.
 
 #### Using periodical data publishing (file-based)
 
@@ -211,6 +213,15 @@ The configurations are described in the table below.
 </tbody>
 </table>
 
+!!! note
+    When adding the analytics configurations to `<MICROGW_HOME>/conf/micro-gw.conf` file for file-based analytics publishing, make sure to add the version of the API-M Analytics you are using from the following config.
+    
+    ```toml
+    [analytics]
+      # The configured API Manager analytics stream version
+      streamVersion = "3.2.0"
+    ```
+
 #### Using real-time data publishing (gRPC-based)
 
 ##### **Step 1 - Configuring the WSO2 API-M Analytics Server**
@@ -278,6 +289,13 @@ The configurations are described in the table below.
 <p><strong>False</strong> - Disables gRPC based real-time analytics</p></td>
 </tr>
 <tr class="even">
+<td>endpointURL</td>
+<td></td>
+<td><br />
+</td>
+<td>A valid URL</td>
+</tr>
+<tr class="odd">
 <td>reconnectTimeInMillies</td>
 <td>Defines the time interval for the gRPC reconnect task. It will try to connect to the gRPC supported analytics server according to the time interval defined in milliseconds.</td>
 <td><br />
@@ -286,6 +304,8 @@ The configurations are described in the table below.
 </tr>
 </tbody>
 </table>
+
+Please note that when adding configuring Microgateway for analytics you need to use only one of the configurations explained in [using periodical data publishing (file-based)](#using-periodical-data-publishing-file-based) and [using real-time data publishing (gRPC-based)](#using-real-time-data-publishing-grpc-based).
 
 ### Generating a Microgateway usage report
 
