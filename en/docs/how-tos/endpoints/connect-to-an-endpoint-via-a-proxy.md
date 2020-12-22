@@ -1,8 +1,8 @@
 # Connect to an Endpoint via a Proxy
 
-There can be certain scenarios where microgateway has to connect to the backend service via a proxy server. This can due to the reason that microgateway sits behind a firewall
-and the egress (outgoing) traffic from microgateway is only allowed a via proxy server.
-For those cases microgateway should be able to configure to connect to the backend service via the proxy server.
+There can be certain scenarios where Microgateway has to connect to the backend service via a proxy server. This can be due to the reason that Microgateway sits behind a firewall
+and the egress (outgoing) traffic from Microgateway is only allowed via a proxy server.
+For those cases, Microgateway should be able to configure to connect to the backend service via the proxy server.
 
 ##Configure the proxy server
 The common set of configurations that are used when connecting with upstream backend services can be found under the section
@@ -30,41 +30,44 @@ The configurations are described in the table below.
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>enabled</td>
 <td>Enables or disable via connecting a proxy server to the upstream endpoints.</td>
 </td>
 </tr>
-<tr class="even">
+<tr>
 <td>host</td>
 <td>Hostname or IP address of the proxy server.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>port</td>
 <td>Port of the proxy server</td>
 </tr>
-<tr class="even">
+<tr>
 <td>username</td>
 <td>Username of a valid user if the proxy server is secured using basic authentication.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>password</td>
 <td>Passwrod of the corresponding user.</td>
 </tr>
-<tr class="even">
-<td>enableInternalServices</td>
+<tr>
+<td>enableInternalServices
+</td>
 <td>Whether to enable the proxy server when communicating with analytics server, key manager, traffic manager and etc.
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p> This config is applicable for following scenarios.</p> 
 
+    1. The client used to communicate with key manager for token validation</br>
+    2. The client used to publish throttle events to the traffic manager component of WSO2 API Manager</br>
+    3. The client used to communicate with etcd server for service discovery</br>
+    4. The client used to communicate with WSO2 Analytics server to upload analytics event written files</br>
+    5. The client used to communicate with etcd server to get updates regarding revoked jwt tokens</br>
+    
+</div>
 </td>
 </tr>
 </tbody>
 </table>
-
-!!! note
-    <p> `enableInternalServices` config is applicable for following scenarios.</p> 
     
-    1. The client used to communicate with key manager for token validation
-    1. The client used to publish throttle events to the traffic manager component of WSO2 API Manager
-    1. The client used to communicate with etcd server for service discovery
-    1. The client used to communicate with WSO2 Analytics server to upload analytics event written files
-    1. The client used to communicate with etcd server to get updates regarding revoked jwt tokens
