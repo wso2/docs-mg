@@ -39,6 +39,10 @@ You need to append the full path of the `/bin` folder of the extracted WSO2 API 
 -   [WSO2 API Manager 2.6.0](https://docs.wso2.com/display/AM260/WSO2+API+Manager+Documentation)
 -   [WSO2 API Manager 2.5.0](https://docs.wso2.com/display/AM250/WSO2+API+Manager+Documentation)
 
+##### What version of the Ballerina should be used to write extensions, interceptors, etc for WSO2 API Microgateway 3.2.0?
+
+Ballerina version 1.2.x. Follow API docs in [Ballerina documentation](https://ballerina.io/learn/api-docs/ballerina/).
+
 ### MGW commands
 
 ##### Can I run the Microgateway commands without appending the paths?

@@ -101,9 +101,12 @@ class: "org.wso2.apimgt.gateway.cli.startup.StoreResponse"
 
 ### Extension filter
 
-I n WSO2 API Microgateway , the users can customize and extend the request and response handling process using the extension filter object. The extension filter object is defined in the `         extension_filter.bal        ` file, which is located in the `         <MGW-HOME>/extension        ` directory.
+In WSO2 API Microgateway, the users can customize and extend the request and response handling process using the extension filter object. The extension filter object is defined in the `extension_filter.bal` file, which is located in the `<MGW-HOME>/extension` directory.
 
-The following is an example of an extension filter to customize the throttled out responses (e.g., error code, error message, and error description).
+!!! info
+    It is written in Ballerina 1.2.x so follow API docs in [Ballerina documentation](https://ballerina.io/learn/api-docs/ballerina/) for language guide.
+
+The following is an example of an extension filter to customize the throttled out responses (e.g. error code, error message, and error description).
 
 **Writing a customized extension filter**
 
