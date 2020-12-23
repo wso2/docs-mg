@@ -99,35 +99,33 @@ Microgateway provides the capability to enable mutual SSL between Microgateway a
 #### Export certificates
 
 1. Generate the keys for the backend. A sample command is given below.
-```
+``` java
 keytool -keystore backend.jks -genkey -alias backend 
 ```
 The keystore will be generated in your target folder.
 
 2. Export the certificate from the keystore. A sample command is given below.
-```
+``` java
 keytool -export -keystore backend.jks -alias backend -file backend.crt 
 ```
 
 3. Convert the public certificate to a PEM format. For example,
-```
+``` java
 openssl x509 -inform der -in backend.crt -out certificate.pem
 ```
 
 4. Import the certificate to the truststore. The `ballerinaTruststore.p12` resides in the generated distribution of the API Microgateway runtime in the following locations.
-```
+``` java
 keytool -import -keystore <MGW_RUNTIME_HOME>/runtime/bre/security/ballerinaTruststore.p12 -alias backend -file certificate.pem
 ```   
 
 5. Export the public certificate from Microgateway's keystore. The `<MGW_RUNTIME_HOME>/runtime/bre/security/ballerinaKeystore.p12` file which is the default keystore shipped with Microgateway is used in this example. Use the command below to generate the certificate for the default keystore. Give the default password `ballerina` when prompted.
-```
+``` java
 keytool -export -keystore <MGW_RUNTIME_HOME>/runtime/bre/security/ballerinaKeystore.p12 -alias ballerina -file mgwPublicCert.crt
-
-keytool -exportcert -keystore <MGW_RUNTIME_HOME>/runtime/bre/security/ballerinaKeystore.p12 -storetype PKCS12 -storepass ballerina -alias ballerina -file mgwPublicCert.crt
 ```
 
 6. Import the generated certificate to your backend truststore.
-```
+``` java
 keytool -import -file mgwPublicCert.crt -alias ballerina -keystore backend.jks
 ```
 
@@ -149,3 +147,41 @@ You can add the following configurations to `micro-gw.conf` file under `httpClie
     trustStorePassword = "ballerina"
 ```
 
+<table>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>protocolName</code></td>
+<td>SSL protocol to be used between backend and Microgateway.<td>
+</tr>
+<tr class="even">
+<td><code>ciphers</code></td>
+<td>The list of ciphers to be used for the connection.</td>
+</tr>
+<tr class="odd">
+<td><code>protocolVersions</code></td>
+<td>SSL/TLS protocols to be enabled for the connection.</td>
+</tr>
+<tr class="even">
+<td><code>keyStorePath</code></td>
+<td>Path to Microgateway internal keystore.</td>
+</tr>
+<tr class="odd">
+<td><code>keyStorePassword</code></td>
+<td>Password to Microgateway internal keystore.</td>
+</tr>
+<tr class="even">
+<td><code>trustStorePath</code></td>
+<td>Path to Microgateway truststore where the certificates of the trusted entities are kept.</td>
+</tr>
+<tr class="odd">
+<td><code>trustStorePassword</code></td>
+<td>Password to Microgateway truststore.</td>
+</tr>
+</tbody>
+</table>
