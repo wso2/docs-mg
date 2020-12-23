@@ -62,9 +62,10 @@ The current architecture depicting the connection between the API Microgateway a
 
 #### How real-time publishing works
 
-There's a streaming service established between the Analytics server and Microgateway. When an API is invoked through Microgateway, the corresponding events are streamed to the gRPC server stub in the Analytics server without persisting unlike in periodical publishing.
+A streaming service is established between the Analytics server and Microgateway when Microgateway is initiated. When an API is invoked through Microgateway, the particular events related to the request are streamed to the gRPC server stub in the Analytics server without persisting, unlike in periodical publishing.
 
-Therefore, if the gRPC connection is broken between Microgateway and Analytics server the data will be lost. Microgateway will attempt to re-establish connection with the timeout that is provided in the configuration.
+!!!note
+    Since there is no persistent data, if the gRPC connection is broken between Microgateway and Analytics server the event data will be lost. Microgateway will attempt to re-establish connection with the timeout that is provided in the configuration under `reconnectTimeInMillies`.
 
 ### Configuring Analytics for the Microgateway
 
@@ -290,7 +291,7 @@ The configurations are described in the table below.
 </tr>
 <tr class="even">
 <td>endpointURL</td>
-<td></td>
+<td>APIM Analytics endpoint configured to accept gRPC analytics</td>
 <td><br />
 </td>
 <td>A valid URL</td>
