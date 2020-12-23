@@ -250,27 +250,27 @@ Given below are some WSO2 API Microgateway specific error codes and their meanin
 <tr>
 <td><code>900906</code></td>
 <td>No matching resource found in the API for the given request</td>
-<td>A resource with the name in the request cannot be found in the API.</td>
+<td>The requested path does not match any of the APIs.</td>
 </tr>
 <tr>
 <td><code>900907</code></td>
 <td>The requested API is temporarily blocked</td>
-<td>Happens when the API user is blocked from API-M.</td>
+<td>The lifecycle state of the API has changed to blocked state.</td>
 </tr>
 <tr>
 <td><code>900908</code></td>
 <td>Resource forbidden</td>
-<td>The user invoking the API has not been granted access to the required resource.</td>
+<td>The application which is used to get the authentication token does not have a valid subscription to the API.</td>
 </tr>
 <tr>
 <td><code>900909</code></td>
 <td>The subscription to the API is inactive</td>
-<td>The status of the API has changed to an inaccessible/unavailable state.</td>
+<td>The status of the subscription has made inactive.</td>
 </tr>
 <tr>
 <td><code>900910</code></td>
 <td>The access token does not allow you to access the requested resource</td>
-<td>Cannot access the required resource with the provided access token. Check the valid resources that can be accessed with this token. Possibly the API the token is missing the required scopes for the resource.</td>
+<td>Cannot access the required resource with the provided access token. Check the valid resources that can be accessed with this token. Possibly token is missing the required scopes for the requested resource.</td>
 </tr>
 <tr>
 <td><code>900911</code></td>
@@ -280,7 +280,7 @@ Given below are some WSO2 API Microgateway specific error codes and their meanin
 <tr>
 <td><code>900912</code></td>
 <td>Invalid format of the credentials</td>
-<td>Basic authentication credentials are not in the correct format with <username>:<password>.</td>
+<td>Basic authentication credentials are not in the correct format with <code>&lt;username&gt;:&lt;password&gt;</code>.</td>
 </tr>
 <tr>
 <td><code>900917</code></td>
@@ -325,7 +325,7 @@ Given below are some WSO2 API Microgateway specific error codes and their meanin
 <tr>
 <td><code>900809</code></td>
 <td>Internal server error occured</td>
-<td>An internal error occurred in the Microgateway, since a subscription or application throttle policy is not deployed. This might be due to adding a throttle policy to API-M and not regenerating the Microgateway.</td>
+<td>This error is thrown when local throttling is used and either the application, API or subscription level policy is missing in the policies.yaml file. We need to prior define all the API, application and subscription level policies in polcies.yaml file.</td>
 </tr>
 </tbody>
 </table>
