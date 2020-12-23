@@ -19,7 +19,7 @@ enable=true
 ```
 
 #### Upstream backend service HTTP2 configuration
-By default communication with upstream clients over http2 is enabled. You can find the default configurations as in below in the file `<MICROGW_HOME>/conf/default-micro-gw.conf.template`
+By default communication with upstream clients over http2 is enabled. You can find the default configurations in the file `<MICROGW_HOME>/conf/default-micro-gw.conf.template` as below.
 
 ``` toml
 [httpClients]
@@ -98,5 +98,4 @@ The following user stories explain how the API Microgateway works when HTTP/2 is
 -   The backend sends an HTTP/2 response with the payload to the API Microgateway.
 
 -   WSO2 API Microgateway upon receiving an HTTP/2 response, proceeds to downgrade the response to an HTTP/1.1 response removing the HTTP/2  headers and forwards it to the client.
-
 
