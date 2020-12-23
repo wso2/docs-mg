@@ -105,7 +105,7 @@ Follow the instructions below to override the production or sandbox endpoint(s).
     !!! Note
         If you do not specify a username, the username defined in the API definition during the API implementation will be used.
 
-#### Overriding endpoints using system properties
+#### Overriding endpoints using environment variables
 
 Use the following command to provide the system variables as system properties to override more than one endpoint (e.g., load balance endpoint) that corresponds to an API, which was imported from WSO2 API Manager.
 
@@ -114,7 +114,8 @@ Follow the instructions below to override the production or sandbox endpoint(s).
 1. Set the endpoint using environment variables. 
 
     ``` java tab="Format"
-    export <API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint-URL>" <API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint-URL-2>" <path-to-MGW-jar>
+    export <API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint-URL>" 
+    export <API-ID>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint-URL-2>"
     ```
     
     - `<API-ID>` - ID generated for the imported API. You can find it by checking the file name of imported API located in `<project>/gen/api_definitions/`
@@ -125,7 +126,8 @@ Follow the instructions below to override the production or sandbox endpoint(s).
     - `<path-to-MGW-jar>` - Enter the path to the WSO2 API Microgateway project's jar file ( `.jar` ).
     
     ``` java tab="Example"
-    export api_60f7111f-fdc5-4cc7-b497-1cea64c6a97f_prod_endpoint_0="http://wso2.com" 60f7111f-fdc5-4cc7-b497-1cea64c6a97f_prod_endpoint_1="http://support.wso2.com" /home/user/petstore-project/target/petstore-project.jar
+    export api_60f7111f-fdc5-4cc7-b497-1cea64c6a97f_prod_endpoint_0="http://wso2.com" 
+    export api_60f7111f-fdc5-4cc7-b497-1cea64c6a97f_prod_endpoint_1="http://support.wso2.com"
     ```
 
 2. Optionally, define the Basic Auth credentials using environment variables.

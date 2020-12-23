@@ -24,13 +24,7 @@ gateway <path-to-MGW-executable-file> --<endpoint-name>_<endpoint-type>_endpoint
 ```
 
 ``` java tab="Example - binary"
-gateway /home/user/petstore-project/target/petstore-project.jar --myEndpoint_prod_endpoint_0="http://wso2.com"
-
-note:
-    We can set these endpoint details as environment varaibles as well without providing them in the command line arguments at the startup  
-    
-   `export myEndpoint_prod_endpoint_0="http://wso2.com"` 
-   
+gateway /home/user/petstore-project/target/petstore-project.jar --myEndpoint_prod_endpoint_0="http://wso2.com"   
 ```
 
 ``` tab="Example - docker" 
@@ -124,3 +118,44 @@ gateway /home/user/petstore-project/target/petstore-project.jar --myEndpoint_pro
 ``` java tab="Example - docker"
 docker run -d -p 9090:9090 -p 9095:9095 -e myEndpoint_prod_endpoint_0="http://wso2.com" -e myEndpoint_prod_endpoint_1="http://wso2.support.com" -e myEndpoint_prod_basic_password=123456 docker.wso2.com/petstore:v1
 ```
+
+#### Overriding endpoints using environment variables
+
+Use the following command to provide the system variables as system properties to override more than one endpoint (e.g., load balance endpoint) that corresponds to an API, which was imported from WSO2 API Manager.
+
+Follow the instructions below to override the production or sandbox endpoint(s).
+
+1. Set the endpoint using environment variables. 
+
+    ``` java tab="Format"
+    export <endpoint-name>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint-URL>" <endpoint-name>_<endpoint-type>_endpoint_<endpoint-index>="<endpoint-URL-2>"
+    ```
+    
+    - `<endpoint-name>` - Name specified in the OpenAPI definition under the `x-wso2-endpoints` OpenAPI extension.
+    - `<endpoint-type>` - Use one of the following values based on the type of endpoint.
+       - `prod` - Use this for a production endpoint.
+       - `sand` - Use this for a sandbox endpoint.
+    - `<endpoint-index>` - The endpoint index starts from 0. Therefore, when overriding a single endpoint this value is 0. If there are many URLs (e.g., load-balanced or failover), you can override them using endpoint indexes (e.g., 1, 2, 3).
+    
+    ``` java tab="Example"
+    export myEndpoint_prod_endpoint_0="http://wso2.com" 
+    export myEndpoint_prod_endpoint_1="http://support.wso2.com"
+    ```
+
+2. Optionally, define the Basic Auth credentials using environment variables.
+
+    !!! note
+        This step is only applicable if your endpoint is protected by **Basic Auth credentials**.
+    
+    ``` java tab="Format"
+    export <endpoint-name>_<endpoint-type>_basic_username="<basic-auth-username>"
+    export <endpoint-name>_<endpoint-type>_basic_password="<basic-auth-password>"
+    ```
+    
+    - `<basic-auth-username>` - Provide the username                            
+    - `<basic-auth-password>` - Provide the password 
+    
+    ``` java tab="Example"
+    export myEndpoint_prod_basic_username="admin"
+    export myEndpoint_prod_basic_password="admin"
+    ```
