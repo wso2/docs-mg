@@ -20,10 +20,9 @@ WSO2 API Microgateway supports the following OpenAPI Extensions. You can use the
 | `x-wso2-transports`               | Set transport types (http, https)                                                                                      | Optional → API level only      |
 | `x-wso2-mutual-ssl`               | Enable mutual SSL for an API (With optional and mandatory keywords as values)                                          | Optional → API level only      |
 | `x-wso2-owner`                    | Specifies the owner of the API. It is used to view analytics of dev first apis. (This user should be apim publisher user.)     | Optional → API level only      |
-| `x-auth-type`                     | Specifies the authentication type of of the resource.                                                                  | Optional → Resource level only     |
 
 !!! note 
-    -   WSO2 API Microgateway supports only  the `"x-auth-type": "None"` option. Therefore, the following concepts of the auth types in WSO2 API Manager will not be work with the WSO2 API Microgateway.
+    -   WSO2 API Microgateway supports only  the `"x-auth-type": "None"` option to disable the security. Therefore, the following concepts of the auth types in WSO2 API Manager will not be work with the WSO2 API Microgateway.
         -   Application & Application User
         -   Application
         -   Application User
