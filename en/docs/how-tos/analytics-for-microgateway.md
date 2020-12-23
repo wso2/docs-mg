@@ -306,7 +306,7 @@ The configurations are described in the table below.
 </tbody>
 </table>
 
-Please note that when adding configuring Microgateway for analytics you need to use only one of the configurations explained in [using periodical data publishing (file-based)](#using-periodical-data-publishing-file-based) and [using real-time data publishing (gRPC-based)](#using-real-time-data-publishing-grpc-based).
+Please note that when configuring Microgateway for analytics you need to use only one of the configurations explained in [using periodical data publishing (file-based)](#using-periodical-data-publishing-file-based) and [using real-time data publishing (gRPC-based)](#using-real-time-data-publishing-grpc-based).
 
 ### Generating a Microgateway usage report
 
