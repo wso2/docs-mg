@@ -218,32 +218,114 @@ If you need to override the current Microgateway project, run the <code>        
 
 Given below are some WSO2 API Microgateway specific error codes and their meanings.
 
-| Error code                                  | Possible reason                                                                                                                                                                                                    |
-|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `                  900901                 ` | The production/sandbox key offered by the requested endpoint is not specified.                                                                                                                                     |
-| `                  900900                 ` | API-M authentication related error.                                                                                                                                                                                |
-| `                  900901                 ` | Invalid access token.                                                                                                                                                                                              |
-| `                  900902                 ` | Missing credentials.                                                                                                                                                                                               |
-| `                  900903                 ` | Access token expired.                                                                                                                                                                                              |
-| `                  900904                 ` | Access token inactive.                                                                                                                                                                                             |
-| `                  900905                 ` | Incorrect access token type provided.                                                                                                                                                                              |
-| `                  900906                 ` | No matching resource found in the API for the given request.                                                                                                                                                       |
-| `                  900907                 ` | The requested API is temporarily blocked.                                                                                                                                                                          |
-| `                  900908                 ` | Resource forbidden.                                                                                                                                                                                                |
-| `                  900909                 ` | The subscription to the API is inactive.                                                                                                                                                                           |
-| `                  900910                 ` | The access token does not allow you to access the requested resource.                                                                                                                                              |
-| `                  900911                 ` | Invalid credentials.                                                                                                                                                                                               |
-| `                  900912                 ` | Invalid format of the credentials.                                                                                                                                                                                 |
-| `                  900913                 ` | Invalid cookie is provided.                                                                                                                                                                                        |
-| `                  900914                 ` | No cookies are provided at server startup.                                                                                                                                                                         |
-| `                  900915                 ` | Unprocessable entity.                                                                                                                                                                                              |
-| `                  900916                 ` | Unprocessable entity.                                                                                                                                                                                              |
-| `                  900917                 ` | Invalid Authentication scheme.                                                                                                                                                                                     |
-| `                  900800                 ` | API level throttled out.                                                                                                                                                                                           |
-| `                  900802                 ` | Resource level throttled out.                                                                                                                                                                                      |
-| `                  900803                 ` | Application level throttled out.                                                                                                                                                                                   |
-| `                  900804                 ` | Subscription level throttled out.                                                                                                                                                                                  |
-| `                  900805                 ` | Resource blocked.                                                                                                                                                                                                  |
-| `                  900806                 ` | Custom policy level throttled out.                                                                                                                                                                                 |
-| `                  900808                 ` | An internal error occurred in the Microgateway.                                                                                                                                                                    |
-| `                  900809                 ` | An internal error occurred in the Microgateway, since a subscription or application throttle policy is not deployed. This might be due to adding a throttle policy to API-M and not regenerating the Microgateway. |
+<table>
+<thead>
+<tr class="header">
+<th style="width: 5%">Error code</th>
+<th style="width: 40%">Error message</th>
+<th style="width: 55%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>900901</code></td>
+<td>Sandbox key offered to the API with no sandbox endpoint</td>
+<td>The production/sandbox key offered by the requested endpoint is not specified.</td>
+</tr>
+<tr>
+<td><code>900900</code></td>
+<td>Unclassified authentication failure</td>
+<td>An unspecified API-M authentication related error.</td>
+</tr>
+<tr>
+<td><code>900901</code></td>
+<td>Invalid credentials</td>
+<td>Invalid authentication information provided.</td>
+</tr>
+<tr>
+<td><code>900902</code></td>
+<td>Missing credentials</td>
+<td>No authentication information provided.</td>
+</tr>
+<tr>
+<td><code>900906</code></td>
+<td>No matching resource found in the API for the given request</td>
+<td>A resource with the name in the request cannot be found in the API.</td>
+</tr>
+<tr>
+<td><code>900907</code></td>
+<td>The requested API is temporarily blocked</td>
+<td>Happens when the API user is blocked from API-M.</td>
+</tr>
+<tr>
+<td><code>900908</code></td>
+<td>Resource forbidden</td>
+<td>The user invoking the API has not been granted access to the required resource.</td>
+</tr>
+<tr>
+<td><code>900909</code></td>
+<td>The subscription to the API is inactive</td>
+<td>The status of the API has changed to an inaccessible/unavailable state.</td>
+</tr>
+<tr>
+<td><code>900910</code></td>
+<td>The access token does not allow you to access the requested resource</td>
+<td>Cannot access the required resource with the provided access token. Check the valid resources that can be accessed with this token. Possibly the API the token is missing the required scopes for the resource.</td>
+</tr>
+<tr>
+<td><code>900911</code></td>
+<td>Invalid credentials</td>
+<td>Invalid authentication information with Basic authentication.</td>
+</tr>
+<tr>
+<td><code>900912</code></td>
+<td>Invalid format of the credentials</td>
+<td>Basic authentication credentials are not in the correct format with <username>:<password>.</td>
+</tr>
+<tr>
+<td><code>900917</code></td>
+<td>Invalid Authentication scheme</td>
+<td>API cannot be accessed with the given authentication scheme.</td>
+</tr>
+<tr>
+<td><code>900800</code></td>
+<td>Message throttled out</td>
+<td>Message is throttled out because the API level limit is exceeded.</td>
+</tr>
+<tr>
+<td><code>900802</code></td>
+<td>Message throttled out</td>
+<td>Message is throttled out because the Resource level limit is exceeded.</td>
+</tr>
+<tr>
+<td><code>900803</code></td>
+<td>Message throttled out</td>
+<td>Message is throttled out because the Application level limit is exceeded.</td>
+</tr>
+<tr>
+<td><code>900804</code></td>
+<td>Message throttled out</td>
+<td>Message is throttled out because the Subscription level limit is exceeded.</td>
+</tr>
+<tr>
+<td><code>900805</code></td>
+<td>Message blocked</td>
+<td>Accessing an API which is blocked on user, IP, application, or API Context.</td>
+</tr>
+<tr>
+<td><code>900806</code></td>
+<td>Message throttled out</td>
+<td>Message is throttled out because the Custom policy level limit is exceeded.</td>
+</tr>
+<tr>
+<td><code>900808</code></td>
+<td>Internal server error occured</td>
+<td>An internal error occurred in the Microgateway.</td>
+</tr>
+<tr>
+<td><code>900809</code></td>
+<td>Internal server error occured</td>
+<td>An internal error occurred in the Microgateway, since a subscription or application throttle policy is not deployed. This might be due to adding a throttle policy to API-M and not regenerating the Microgateway.</td>
+</tr>
+</tbody>
+</table>
