@@ -2,7 +2,7 @@
 
 **K8s API Operator**
 
-[The K8s API Operator]({{apim_path}}/latest/learn/kubernetes-operators/k8s-api-operator/) is the recommended approach to deploy microgateway in kubernetes. API operator makes an API first class citizen in the kuberneters eco system and allows to deploy the microgateways in k8s cluster with a single command using open API definition.
+[The K8s API Operator](https://apim.docs.wso2.com/en/latest/learn/kubernetes-operators/k8s-api-operator/k8s-api-operator/) is the recommended approach to deploy microgateway in kubernetes. API operator makes an API first class citizen in the kuberneters eco system and allows to deploy the microgateways in k8s cluster with a single command using open API definition.
 
 Following content explains configuration based deployment of microgateway in k8s.
 
@@ -54,7 +54,7 @@ Make sure to do the following:
     Navigate to the `/petstore/api_definitions` directory and add the OpenAPI definition(s) to this  directory. Let's use the [Petstore sample OpenAPI definition](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml) in this scenario.
 
     !!! info
-        The latter mentioned instructions uses the developer first approach. However, if you wish to work with APIs that you have published in WSO2 API Manager, you can either [import a single API](_Importing_a_Single_API_from_WSO2_API_Manager_) or [you can import the APIs as a group](_Importing_a_Group_of_APIs_from_WSO2_API_Manager_) .
+        The latter mentioned instructions uses the developer first approach. However, if you wish to work with APIs that you have published in WSO2 API Manager, you can either [import a single API](https://mg.docs.wso2.com/en/latest/how-tos/adding-apis/importing-a-single-api-from-wso2-api-manager/#importing-a-single-api-from-wso2-api-manager) or [you can import the APIs as a group](https://mg.docs.wso2.com/en/latest/how-tos/adding-apis/importing-a-group-of-apis-from-wso2-api-manager/#importing-a-group-of-apis-from-wso2-api-manager) .
 
 2.  Create the input for WSO2 API Microgateway Toolkit.
     Create a `deployment.toml` file that you will use as the input when creating the microgateway project. This TOML file should contain the relevant deployment configurations as shown below. For more information on each of the above parameters, see [deployment.toml for Kubernetes]({{base_path}}/reference/configurations/deployment.toml-for-kubernetes/) .
@@ -114,6 +114,23 @@ Make sure to do the following:
         Make sure to specify the absolute path for the `ballerinaConf` , by replacing the `<MICROGW_TOOLKIT_HOME>` placeholder with the full path.
         Example:
         `/home/users/wso2am-micro-gw-toolkit-3.x.x/resources/conf/micro-gw.conf`
+    
+    -   Furthermore, you can add additional configurations using the env variable if needed. Following is an example of how to configure the timezone of the docker image.
+    
+    ``` java tab="Format"
+    [kubernetes]
+        [kubernetes.kubernetesDeployment]
+        .........
+        env = 'env = '{ "<env_key>":"<env_value>" }'
+    ```
+
+    ``` java tab="Example"
+    [kubernetes]
+        [kubernetes.kubernetesDeployment]
+        .........
+        env = '{ "TZ":"Australia/Brisbane" }'
+    ```
+
 
 3.  Build the microgateway project.
 
@@ -128,18 +145,56 @@ Make sure to do the following:
     ```
 
     This generates the following Kubernetes resources.
-
+    
     `├── k8s_project`
+    
+    `│    └── api_definitions`
+    
+    `│    └── conf`
 
-    `│   └── docker`
+    `│    └── extensions`
 
-    `│       └── Dockerfile`
+    `│    └── grpc_definitions`
 
-    `├── k8s_project_config_map.yaml`
+    `│    └── policies.yaml`
 
-    `├── k8s_project_deployment.yaml`
+    `│    └── target`
 
-    `└── k8s_project_svc.yaml`
+    `│    │     └── gen`
+
+    `│    │     │    └── gRPCSrc`
+
+    `│    │     │    └── src` 
+
+    `│    │     │    └── target`
+
+    `│    │     │    │    └── balo`
+
+    `│    │     │    │    └── bin`   
+
+    `│    │     │    │    └── caches`
+
+    `│    │     │    │    └── docker`
+
+    `│    │     │    │    │     └── k8s_project`
+
+    `│    │     │    │    │     │    └── Dockerfile`
+
+    `│    │     │    │    └── kubernetes`
+
+    `│    │     │    │    │     └── k8s_project`
+
+    `│    │     │    │    │     │      └── k8s`
+
+    `│    │     │    │    │     │      │    └── Chart.yaml`
+
+    `│    │     │    │    │     │      │    └── templates`
+
+    `│    │     │    │    │     │      │    │      └── k8s_project.yaml`
+
+    `│    │     │    │    │     │      └── k8s_project.yaml`
+
+    `│    └── k8s_project.jar`
 
     The Docker image to be deployed in Kubernetes is created in your local registry. You can find the image `k8s_project:latest` when you execute the Docker images command.
 
@@ -166,7 +221,7 @@ Let's SCP the image to the Kubernetes nodes to deploy the Docker image in a K8s
     scp -i <identity-file> image.tar username@<K8s_NODE_IP>:
     ```
 
-    -   `<identity-file` - This refers to the public key of the Kubernetes node. For example you can get a google\_compute\_engine.pub for GCE. You have to `               scp              ` the Docker image for each and every Kubernetes node.
+    -   `<identity-file>` - This refers to the public key of the Kubernetes node. For example you can get a google\_compute\_engine.pub for GCE. You have to `               scp              ` the Docker image for each and every Kubernetes node.
 
     !!! note
         When using minikube, the username is `docker` and you can find the IP address by using the `minikube ip` command.
