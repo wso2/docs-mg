@@ -26,7 +26,7 @@ The Microgateway supports mutual SSL at the API level. It validates the certific
 
 1. <b> Mutual SSL configuration without Load Balancer.</b>
    
-    Update the mutual SSL configuration in the micro-gw.conf file residing in the <MICROGW_HOME>/conf directory. Here name is Swagger Petstore, version is 1.0.5, and aliasList is ballerina and wso2apim310.
+    Update the mutual SSL configuration in the `micro-gw.conf` file residing in the `<MICROGW_HOME>/conf` directory. Here name is Swagger Petstore, version is 1.0.5, and aliasList is ballerina and wso2apim310.
 ```
     [mutualSSLConfig]
       [[mutualSSLConfig.api.certificates]]
@@ -48,11 +48,11 @@ The Microgateway supports mutual SSL at the API level. It validates the certific
 ``` 
    
 !!! note
-    If you do not need to validate the MTSL between the load balancer and the Micro gateway then you need to add an additional configuration other than the above. isClientCertificateValidationEnabled is set to true by default in the Microgateway which means it always validates the MTSL between the microgateway and Load balancer. 
-``` 
-    [mutualSSLConfig]
-     isClientCertificateValidationEnabled = false   
-```
+    If you do not need to validate the MTSL between the load balancer and the Micro gateway then you need to add an additional configuration other than the above. isClientCertificateValidationEnabled is set to true by default in the Microgateway which means it always validates the MTSL between the Microgateway and Load balancer. 
+    ``` 
+        [mutualSSLConfig]
+         isClientCertificateValidationEnabled = false   
+    ```
 ### Configure Client and WSO2 Microgateway for Mutual SSL
 
 Add the client's public certificate to the WSO2 Microgateway's trustStorePath in listenerConfig configuration. Also, configure Microgateway's public certificate on the client-side. For more information [importing certificates to the WSO2 Microgateway Truststore]({{base_path}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/)
@@ -67,7 +67,7 @@ Add the client's public certificate to the WSO2 Microgateway's trustStorePath in
 
 !!! note
     Mutual SSL authentication is currently supporting only HTTP 1.1 . Therefore the following
-    configuration should be added to the micro-gw.conf file.
+    configuration should be added to the `micro-gw.conf` file.
     ```yml
     [http2]
         enable = false
@@ -92,4 +92,60 @@ When invoking an API, you can pass the certificate to the API Microgateway as fo
 4.  The browser will present a user identification request, to select a certificate in order to use for the SSL connection. Select the certificate you added and click OK.
     ![user identification request]({{base_path}}/assets/img/how-tos/mutual-ssl-user-identification-request.png)
 
+### Support Mutual SSL protected backends
+
+Microgateway provides the capability to enable mutual SSL between Microgateway and your backend. In order to establish a secure connection with the backend service, Microgateway needs to have the public key of the backend service in the truststore. Similarly, the backend service should have the public key of Microgateway in its truststore.
+
+#### Export certificates
+
+1. Generate the keys for the backend. A sample command is given below.
+```
+keytool -keystore backend.jks -genkey -alias backend 
+```
+The keystore will be generated in your target folder.
+
+2. Export the certificate from the keystore. A sample command is given below.
+```
+keytool -export -keystore backend.jks -alias backend -file backend.crt 
+```
+
+3. Convert the public certificate to a PEM format. For example,
+```
+openssl x509 -inform der -in backend.crt -out certificate.pem
+```
+
+4. Import the certificate to the truststore. The `ballerinaTruststore.p12` resides in the generated distribution of the API Microgateway runtime in the following locations.
+```
+keytool -import -keystore <MGW_RUNTIME_HOME>/runtime/bre/security/ballerinaTruststore.p12 -alias backend -file certificate.pem
+```   
+
+5. Export the public certificate from Microgateway's keystore. The `<MGW_RUNTIME_HOME>/runtime/bre/security/ballerinaKeystore.p12` file which is the default keystore shipped with Microgateway is used in this example. Use the command below to generate the certificate for the default keystore. Give the default password `ballerina` when prompted.
+```
+keytool -export -keystore <MGW_RUNTIME_HOME>/runtime/bre/security/ballerinaKeystore.p12 -alias ballerina -file mgwPublicCert.crt
+
+keytool -exportcert -keystore <MGW_RUNTIME_HOME>/runtime/bre/security/ballerinaKeystore.p12 -storetype PKCS12 -storepass ballerina -alias ballerina -file mgwPublicCert.crt
+```
+
+6. Import the generated certificate to your backend truststore.
+```
+keytool -import -file mgwPublicCert.crt -alias ballerina -keystore backend.jks
+```
+
+!!! note
+    Use the keytool that comes in JDK 8u60 or later.
+
+#### Configure Microgateway to support mutual SSL protected backed
+
+You can add the following configurations to `micro-gw.conf` file under `httpClients`.
+
+```toml
+[httpClients.sslConfig]
+    protocolName = "TLS"
+    ciphers="TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDH_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256  ,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_DSS_WITH_AES_128_GCM_SHA256  ,TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA,TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA,SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA,TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA,SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA,TLS_EMPTY_RENEGOTIATION_INFO_SCSV"
+    protocolVersions = "TLSv1.2,TLSv1.1"
+    keyStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaKeystore.p12"
+    keyStorePassword = "ballerina"
+    trustStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaTruststore.p12"
+    trustStorePassword = "ballerina"
+```
 
