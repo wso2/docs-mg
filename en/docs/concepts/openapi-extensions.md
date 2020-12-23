@@ -22,12 +22,10 @@ WSO2 API Microgateway supports the following OpenAPI Extensions. You can use the
 | `x-wso2-owner`                    | Specifies the owner of the API. It is used to view analytics of dev first apis. (This user should be apim publisher user.)     | Optional → API level only      |
 
 !!! note 
-    -   WSO2 API Microgateway does not support the `x-auth-type` extension. Therefore, the following concepts of the auth types in WSO2 API Manager will not be work with the WSO2 API Microgateway.
+    -   WSO2 API Microgateway supports only  the `"x-auth-type": "None"` option to disable the security. Therefore, the following concepts of the auth types in WSO2 API Manager will not work with the WSO2 API Microgateway.
         -   Application & Application User
         -   Application
         -   Application User
-        -   None
-    -   However, if you want to expose API/resource without security, you can use the `x-wso2-disable-security` extension. Find more information about this extension from [here](https://mg.docs.wso2.com/en/latest/how-tos/security/api-authentication/disabling-security/#disabling-security).
+    -   However, if you want to expose API/resource without security, you can also use the `x-wso2-disable-security` extension. Find more information about this extension from [here](https://mg.docs.wso2.com/en/latest/how-tos/security/api-authentication/disabling-security/#disabling-security).
 
 You can find some samples on how these OpenAPI extensions are used in [Open API definitions](https://github.com/wso2/product-microgateway/blob/master/samples/).
-
