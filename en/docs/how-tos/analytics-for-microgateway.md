@@ -183,7 +183,7 @@ The configurations are described in the table below.
     <p>If this property is disabled, the analytics files are not uploaded to the analytics server, although the files are persisted in the Microgateway system.</p>
 !!! tip
     <p>Best Practice</p>
-    <p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, we recommend enabling the <code>                  task.uploadFiles                 </code> property in <strong>only one node</strong> . Make sure that you disable this in the rest of the Microgateway nodes.</p>
+    <p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, we recommend enabling the <code>                  taskuploadFiles                 </code> property in <strong>only one node</strong> . Make sure that you disable this in the rest of the Microgateway nodes.</p>
     <p>You can also opt to have your own design as a workaround.</p>
 
 </div></td>
