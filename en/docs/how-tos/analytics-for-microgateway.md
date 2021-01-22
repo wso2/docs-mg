@@ -176,7 +176,7 @@ The configurations are described in the table below.
 </div></td>
 </tr>
 <tr class="odd">
-<td><pre><code>task.uploadFiles</code></pre></td>
+<td><pre><code>taskUploadFiles</code></pre></td>
 <td><div class="content-wrapper">
 <p>Set this to true to enable the file upload task.</p>
 !!! note
