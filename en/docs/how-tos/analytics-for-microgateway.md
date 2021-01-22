@@ -138,7 +138,7 @@ enable=true
 uploadingTimeSpanInMillis=600000
 uploadingEndpoint="https://localhost:9444/analytics/v1.0/usage/upload-file"
 rotatingPeriod=60000
-task.uploadFiles=true
+taskUploadFiles=true
 username="admin"
 password="admin"
 ```
