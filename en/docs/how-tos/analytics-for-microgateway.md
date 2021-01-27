@@ -187,7 +187,7 @@ The configurations are described in the table below.
 <html><div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p><b>Best Practice</b></p>
-<p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, we recommend enabling the <code>                  taskUploadFiles                 </code> property in <strong>only one node</strong> . Make sure that you disable this in the rest of the Microgateway nodes.</p>
+<p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, WSO2 recommends enabling the <code>                  taskUploadFiles                 </code> property in <strong>only one node</strong>. Make sure that you disable this in the rest of the Microgateway nodes.</p>
 <p>You can also opt to have your own design as a workaround.</p>
 </div>
 </html>
