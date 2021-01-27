@@ -138,7 +138,7 @@ enable=true
 uploadingTimeSpanInMillis=600000
 uploadingEndpoint="https://localhost:9444/analytics/v1.0/usage/upload-file"
 rotatingPeriod=60000
-task.uploadFiles=true
+taskUploadFiles=true
 username="admin"
 password="admin"
 ```
@@ -176,16 +176,21 @@ The configurations are described in the table below.
 </div></td>
 </tr>
 <tr class="odd">
-<td><pre><code>task.uploadFiles</code></pre></td>
+<td><pre><code>taskUploadFiles</code></pre></td>
 <td><div class="content-wrapper">
 <p>Set this to true to enable the file upload task.</p>
-!!! note
-    <p>If this property is disabled, the analytics files are not uploaded to the analytics server, although the files are persisted in the Microgateway system.</p>
-!!! tip
-    <p>Best Practice</p>
-    <p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, we recommend enabling the <code>                  task.uploadFiles                 </code> property in <strong>only one node</strong> . Make sure that you disable this in the rest of the Microgateway nodes.</p>
-    <p>You can also opt to have your own design as a workaround.</p>
-
+<html><div class="admonition info">
+<p class="admonition-title">Note</p>
+<p>If this property is disabled, the analytics files are not uploaded to the analytics server, although the files are persisted in the Microgateway system.</p>
+</div>
+</html>
+<html><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><b>Best Practice</b></p>
+<p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, we recommend enabling the <code>                  taskUploadFiles                 </code> property in <strong>only one node</strong> . Make sure that you disable this in the rest of the Microgateway nodes.</p>
+<p>You can also opt to have your own design as a workaround.</p>
+</div>
+</html>
 </div></td>
 </tr>
 <tr class="even">
