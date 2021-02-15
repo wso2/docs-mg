@@ -7,7 +7,7 @@ If you have a requirement to preserve/override the request headers to be sent to
 - [Override Request and Response Headers](#override-request-and-response-headers)
 
 !!! note
-    This feature is available from WUM timestamp **1612370612556** of API Microgateway Toolkit 3.2.0.
+    This feature is available from WUM timestamp **1612370612556** (03/02/2021) of API Microgateway Toolkit 3.2.0.
 
 ### Preserve Request and Response Headers
 
