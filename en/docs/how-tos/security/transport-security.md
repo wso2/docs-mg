@@ -24,7 +24,11 @@ The following are the default configurations for a gateway instance. Add the fol
 |sslVerifyClient|The type of client certificate verification. ("require" or "optional")| "optional"|
 
 
-### Mutual SSL with Backend
+### Mutual SSL with Backend 
+
+!!! Note
+    This feature is only available with the WUM updates and is effective from 7th October 2020 (2020-10-07) for Microgateway Toolkit 3.2.0. 
+
 When the API Backend is secured with Mutual SSL, the Micro Gateway HTTP client should be configured to support mutual ssl. 
 
 To do this, add the following configuration to the [httpClients] section in micro-gw.conf file.
