@@ -24,3 +24,35 @@ The following are the default configurations for a gateway instance. Add the fol
 |sslVerifyClient|The type of client certificate verification. ("require" or "optional")| "optional"|
 
 
+### Mutual SSL with Backend
+
+!!! Note
+    This feature is only available with the WUM updates and is effective from 7th October 2020 (2020-10-07) for Microgateway Toolkit 3.2.0.
+
+To change the SSL configuration related to the backend connection, add the following configuration to the [httpClients] section in &lt;MGW\_RT-HOME&gt;/conf/micro-gw.conf file and do the necessary modifications.
+
+``` yaml tab="micro-gw.conf"
+  [httpClients.sslConfig]
+    # SSL Protocol to be used
+    protocolName = "TLS"
+    # List of ciphers to be used
+    ciphers="TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDH_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256  ,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_DSS_WITH_AES_128_GCM_SHA256  ,TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA,TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA,SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA,TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA,SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA,TLS_EMPTY_RENEGOTIATION_INFO_SCSV"
+    # SSL/TLS protocols to be enabled
+    protocolVersions = "TLSv1.2,TLSv1.1"
+    # Internal keystore
+    keyStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaKeystore.p12"
+    keyStorePassword = "ballerina"
+    # Truststore
+    trustStorePath = "${mgw-runtime.home}/runtime/bre/security/ballerinaTruststore.p12"
+    trustStorePassword = "ballerina"
+```
+
+| Sub Heading| Description                      | Default value|
+|------------|----------------------------------|--------------|
+|protocolName| SSL Protocol to be used| "TLS"|
+|protocolVersions | SSL/TLS protocols to be enabled |"TLSv1.2,TLSv1.1"|
+|ciphers |List of ciphers to be used|"TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA,TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_CBC\_SHA256, TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA256,TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA256,TLS\_ECDH\_ECDSA\_WITH\_AES\_128\_CBC\_SHA256, TLS\_ECDH\_RSA\_WITH\_AES\_128\_CBC\_SHA256,TLS\_DHE\_RSA\_WITH\_AES\_128\_CBC\_SHA256,TLS\_DHE\_DSS\_WITH\_AES\_128\_CBC\_SHA256, TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_CBC\_SHA,TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA,TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA, TLS\_ECDH\_ECDSA\_WITH\_AES\_128\_CBC\_SHA,TLS\_ECDH\_RSA\_WITH\_AES\_128\_CBC\_SHA,TLS\_DHE\_RSA\_WITH\_AES\_128\_CBC\_SHA, TLS\_DHE\_DSS\_WITH\_AES\_128\_CBC\_SHA,TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_GCM\_SHA256,TLS\_ECDHE\_RSA\_WITH\_AES\_128\_GCM\_SHA256 ,TLS\_RSA\_WITH\_AES\_128\_GCM\_SHA256,TLS\_ECDH\_ECDSA\_WITH\_AES\_128\_GCM\_SHA256,TLS\_ECDH\_RSA\_WITH\_AES\_128\_GCM\_SHA256, TLS\_DHE\_RSA\_WITH\_AES\_128\_GCM\_SHA256,TLS\_DHE\_RSA\_WITH\_AES\_128\_GCM\_SHA256,TLS\_DHE\_DSS\_WITH\_AES\_128\_GCM\_SHA256 ,TLS\_ECDHE\_ECDSA\_WITH\_3DES\_EDE\_CBC\_SHA,TLS\_ECDHE\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA,SSL\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA, TLS\_ECDH\_ECDSA\_WITH\_3DES\_EDE\_CBC\_SHA,TLS\_ECDH\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA,SSL\_DHE\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA, SSL\_DHE\_DSS\_WITH\_3DES\_EDE\_CBC\_SHA,TLS\_EMPTY\_RENEGOTIATION\_INFO\_SCSV"|
+|keyStorePath|The micro gateway key store path| "${mgw-runtime.home}/runtime/bre/security/ballerinaKeystore.p12"|
+|keyStorePassword|The Password of the key store|ballerina|
+|trustStorePath|The trust store that should be used for the TLS communication|${mgw-runtime.home}/runtime/bre/security/ballerinaTruststore.p12|
+|trustStorePassword|The Password of the trust store|ballerina|
