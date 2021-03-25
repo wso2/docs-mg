@@ -87,6 +87,8 @@ nav:
         - Message Transformation:
             - Message Transformation Overview: how-tos/message-transformation/message-transformation-overview.md
             - How to add interceptors from Policy Hub: how-tos/message-transformation/how-to-add-interceptors-from-policy-hub.md
+            - Writing an interceptor in Java: how-tos/message-transformation/write-java-interceptors.md
+            - Writing an interceptor in Ballerina: how-tos/message-transformation/write-ballerina-interceptors.md
         - API Schema Validation: how-tos/api-schema-validation.md
         - HTTP 2.0: how-tos/http-2.0.md
         - Rate Limiting:
