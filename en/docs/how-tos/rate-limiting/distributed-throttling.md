@@ -1,28 +1,9 @@
-# Distributed Throttling
-
-WSO2 API Microgateway has an in-memory mechanism by default, to handle throttling
-([node-level throttling]({{base_path}}/how-tos/rate-limiting/adding-throttling-policies)).  
-In a deployment with multiple microgateways, throttling becomes a challenge with node local throttling as the throttling 
-decision is made based on the local counter within each node. If we proceed with the node local throttling in such 
-environment, the API user would be allowed to send multiples of the throttling limit.I.e. if the throttling limit is set to 10, 
-if we have 3 gateways in a cluster, it will allow 30 requests to pass to the backend before all three gateways 
-throttle out requests. This will put an unexpected load on the backend. To address this requirement, the API Microgateway 
-supports distributed throttling where it is able to work with a central traffic management solution. In this case, 
-multiple microgateways can connect with WSO2 API Manager 
-([WSO2 Traffic Manager]({{apim_path}}/install-and-setup/setup/distributed-deployment/product-profiles/)) 
-and perform rate-limiting precisely.
-
-!!! note
-    If you start the WSO2 API Manager without providing any profile, it runs as All in One Node (All the profiles 
-    are activated). For testing purposes, you can simply start the API Manager following the 
-    [quick start guide]({{apim_path}}/getting-started/quick-start-guide/) and test.
+# Enabling distributed throttling
 
 <!---TODO:@VirajSalaka Add concept page and mention it here--->
 <!---TODO:@VirajSalaka Update image (old) and add to concept page--->
 
-### Enabling distributed throttling
-
-1.  Let's create a microgateway project.
+1.  Let's create a Microgateway project.
 
     Create a project using the command given below.
   
@@ -38,15 +19,21 @@ and perform rate-limiting precisely.
     Project 'petstore' is initialized successfully.
     ```
 
-2.  Add the API definition(s) to `petstore/api_definitions` directory. A sample open API definition can be found [here](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml). Then provide the API throttling tier using the following extension at the API level.
+2.  Add the API definition(s) to `petstore/api_definitions` directory. A sample open API definition can be found [here](https://github.com/wso2/product-microgateway/blob/master/samples/petstore_basic.yaml). Then provide the API throttling tier using the following extension at the API level or resource level.
     
     ```yaml tab="Sample"
     x-wso2-throttling-tier : "5PerMin"    
     ```
     
-3.  Create and deploy the throttling policy in the Traffic Manager. For this example you should deploy "5PerMin" policy in Traffic Manager. The relevant documentation can be found [here]({{apim_path}}/learn/rate-limiting/adding-new-throttling-policies/#adding-a-new-advanced-throttling-policy).
+3.  Create and deploy the throttling policy in the Traffic Manager. For this example you should deploy "5PerMin" policy in Traffic Manager.
+    You can define following throttling policies:
+    -   Advanced policies
+    -   Application policies
+    -   Subscription policies
+    
+    The relevant documentation can be found [here](https://apim.docs.wso2.com/en/latest/learn/rate-limiting/adding-new-throttling-policies/).
 
-4.  Build the microgateway distribution for the project using the following command:
+4.  Build the Microgateway distribution for the project using the following command:
 
     ``` java tab="Format"
     micro-gw build <project_name>
@@ -84,6 +71,11 @@ and perform rate-limiting precisely.
         </tr>
       </thead>
       <tbody>
+        <tr>
+        <td>`jmsConnectioninitialContextFactory`</td>
+        <td>`wso2mbInitialContextFactory`</td>
+        <td>The message broker context factory of WSO2 API/Traffic Manager</td>
+        </tr>
         <tr>
         <td>`jmsConnectionProviderUrl`</td>
         <td>`amqp://admin:admin@carbon/carbon?brokerlist='tcp://localhost:5672'`</td>
@@ -135,7 +127,7 @@ and perform rate-limiting precisely.
     </table>
     
     The binary receiver URL(s) needs to be added as an Array using the key `[[throttlingConfig.binary.URLGroup]]`. 
-    If multiple receivers are provided, the microgateway will publish events to all of them in parallel.
+    If multiple receivers are provided, the Microgateway will publish events to all of them in parallel.
      
     <table>
       <thead>
@@ -158,10 +150,11 @@ and perform rate-limiting precisely.
         </tr>
       </tbody>
     </table>
+    
+    !!! note
+        You can refer configurations under `throttlingConfig` in `<MGW_HOME>/conf/default-micro-gw.conf.template` to identify all the configurable components in distributed throttling. All the configurations are available in the `default-micro-gw.conf.template` file with their default values. If you need to change any configuration, you can add them to the `micro-gw.conf` file with the desired values.
 
-8.  If you are using API Manager 3.2.0 or later version, you need to configure the API Manager Eventhub. This step is 
-    not required if you need to do only the resource level throttling or API level throttling.
-    <!---TODO:@VirajSalaka Add the Event hub configuration guide URL--->
+8.  If you are using API Manager 3.2.0 or later version, you need to configure the API Manager Eventhub. This step is not required if you need to do only the resource level throttling or API level throttling. Refer [Eventhub configuration documentation]({{base_path}}/concepts/event-hub-and-subscription-validation/#the-event-hub) for more details.
     
 9.  Finally, the added configurations in `micro-gw.conf` would look like this. 
     
@@ -199,7 +192,7 @@ and perform rate-limiting precisely.
 
 ### Conditional throttling
 
-There can be situations where certain APIs require more granular level of throttling. Assume you want to provide limited access to a certain IP range or a type of client application (identified by User-Agent header). For these scenarios, a simple throttle policy with API/resource level limits is not sufficient. To address complex throttling requirements as above, microgateway is capable of throttling requests based on several conditions. The following types of conditions are supported.
+There can be situations where certain APIs require more granular level of throttling. Assume you want to provide limited access to a certain IP range or a type of client application (identified by User-Agent header). For these scenarios, a simple throttle policy with API/resource level limits is not sufficient. To address complex throttling requirements as above, Microgateway is capable of throttling requests based on several conditions. The following types of conditions are supported.
 
 1.  Specific IP or IP range conditions.     
     This condition can be used to provide specific limits to a certain IP address or a range of IP addresses.

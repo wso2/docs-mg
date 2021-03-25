@@ -1,8 +1,33 @@
 # HTTP 2.0
 
-WSO2 API Microgateway is upgraded to support HTTP 2.0 (HTTP/2) together with HTTP/1.1 as the incoming and outgoing transport protocol. WSO2 API Microgateway is able to process requests faster and simpler with HTTP/2 enabled. For more information on HTTP/2 and its benefits, refer to the [HTTP/2 homepage](https://http2.github.io/) .
+WSO2 API Microgateway by default support HTTP 2.0 (HTTP/2) together with HTTP/1.1 as the incoming and outgoing transport protocol. WSO2 API Microgateway is able to process requests faster and simpler with HTTP/2 enabled. For more information on HTTP/2 and its benefits, refer to the [HTTP/2 homepage](https://http2.github.io/) .
 
-WSO2 API Microgateway, when configured to communicate on HTTP2, is able to switch protocols from  HTTP/1.1 to HTTP/2 and vice versa.
+WSO2 API Microgateway, default configurations is to communicate using HTTP2, and also able to switch protocols from  HTTP/1.1 to HTTP/2 and vice versa.
+
+
+### HTTP 2.0 Configuration of API Microgateway
+
+HTTP2 can be configured in the listeners of the Microgateway to communicate with external clients(downstream) and as well as in http clients to 
+communicate with upstream back end services.
+
+#### Listener level HTTP2 configuration
+Locate the `[http2]` tag in `micro-gw.conf` file and you can notice by default it is enabled.
+
+``` toml
+[http2]
+enable=true
+```
+
+#### Upstream backend service HTTP2 configuration
+By default communication with upstream clients over http2 is enabled. You can find the default configurations in the file `<MICROGW_HOME>/conf/default-micro-gw.conf.template` as below.
+
+``` toml
+[httpClients]
+  # Enable http2 when connecting with upstream backend endpoints.
+  enableHttp2 = true
+```
+
+In order to change the default configuration we can copy above configuration section from `default-micro-gw.conf.template` and place it in the `<MICROGW_HOME>/conf/micro-gw.conf` file and edit it accordingly.
 
 ### Identifying a HTTP 2.0 connection
 
@@ -22,16 +47,7 @@ connection: upgrade
 upgrade: h2c
 ```
 
-#### Enabling HTTP 2.0 on API Microgateway
-
-Locate the `[http2]` tag in `micro-gw.conf` file and change the enabled value to true.
-
-``` toml
-[http2]
-enable=true
-```
-
-#### How it works
+### How it works
 
 The following user stories explain how the API Microgateway works when HTTP/2 is enabled.
 
@@ -82,5 +98,4 @@ The following user stories explain how the API Microgateway works when HTTP/2 is
 -   The backend sends an HTTP/2 response with the payload to the API Microgateway.
 
 -   WSO2 API Microgateway upon receiving an HTTP/2 response, proceeds to downgrade the response to an HTTP/1.1 response removing the HTTP/2  headers and forwards it to the client.
-
 

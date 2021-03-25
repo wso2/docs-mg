@@ -54,11 +54,7 @@ Real-Time data publishing has the following advantages:
 -   Server-fail detection and failure recovery mechanisms.
 -   Real-Time analytics data viewing capability.
 
-#### Architecture
-
-The current architecture depicting the connection between the API Microgateway and the Analytics server using gRPC for real-time data publishing is shown below.
-
-![ Connection between API Microgateway and Analytics server using gRPC]({{base_path}}/assets/img/how-tos/connection-api-mg-and-analytics-server-grpc.png)
+<!--- TODO: #### Architecture --->
 
 #### How real-time publishing works
 
@@ -198,7 +194,7 @@ The configurations are described in the table below.
 <div class="admonition tip">
     <p class="admonition-title">Tip</p>
     <p><b>Best Practice</b></p>
-    <p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, we recommend enabling the <code>                  task.uploadFiles                 </code> property in <strong>only one node</strong> . Make sure that you disable this in the rest of the Microgateway nodes.</p>
+    <p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, WSO2 recommends enabling the <code>                  taskUploadFiles                 </code> property in <strong>only one node</strong>. Make sure that you disable this in the rest of the Microgateway nodes.</p>
     <p>You can also opt to have your own design as a workaround.</p>
 </div>
 </div></td>

@@ -80,17 +80,20 @@ nav:
                   - Circuit Breaker: how-tos/endpoints/resiliency/circuit-breaker.md
                   - Pool Configurations: how-tos/endpoints/resiliency/pool-configurations.md
             - Defining a Backend Security Scheme: how-tos/endpoints/defining-a-backend-security-scheme.md
+            - Connect to an Endpoint via a Proxy: how-tos/endpoints/connect-to-an-endpoint-via-a-proxy.md
         - Extensions:
             - Adding Extensions: how-tos/extensions/adding-extension-points.md
             - Add custom Filters: how-tos/extensions/custom-filters.md
         - Message Transformation:
             - Message Transformation Overview: how-tos/message-transformation/message-transformation-overview.md
             - How to add interceptors from Policy Hub: how-tos/message-transformation/how-to-add-interceptors-from-policy-hub.md
+            - Writing an interceptor in Java: how-tos/message-transformation/write-java-interceptors.md
+            - Writing an interceptor in Ballerina: how-tos/message-transformation/write-ballerina-interceptors.md
         - API Schema Validation: how-tos/api-schema-validation.md
         - HTTP 2.0: how-tos/http-2.0.md
         - Rate Limiting:
-            - Distributed Throttling: how-tos/rate-limiting/distributed-throttling.md
-            - Adding Throttling Policies: how-tos/rate-limiting/adding-throttling-policies.md
+            - Enabling distributed throttling: how-tos/rate-limiting/distributed-throttling.md
+            - Enabling local throttling: how-tos/rate-limiting/adding-throttling-policies.md
         - Service Discovery: how-tos/service-discovery.md
         - Security:
             - Authentication:
@@ -121,15 +124,17 @@ nav:
         - Manage Microgateway APIs with WSO2 API Manager: how-tos/manage-microgateway-apis-with-wso2-api-manager.md
         - Passing Enduser Attributes to the Backend Using JWT: how-tos/passing-enduser-attributes-to-the-backend-using-jwt.md
         - Custom Claims Mapping: how-tos/support-custom-claims-mapping.md
+        - Preserve/Override Headers: how-tos/preserve-override-headers.md
     - Install and Setup:
         - Install on VM: install-and-setup/install-on-vm.md
         - Install on Docker: install-and-setup/install-on-docker.md
         - Install on Kubernetes: install-and-setup/install-on-kubernetes.md
         - Configuration for WSO2 API Manager: install-and-setup/configuration-for-wso2-api-manager.md
         - Migrating from Previous Versions : install-and-setup/migrating-from-previous-versions.md
+        - Health Check Endpoints: install-and-setup/health-check-endpoints.md
     - Troubleshooting:
         - Troubleshooting the Microgateway: troubleshooting/troubleshooting.md
-        - Adding Debug Logs: troubleshooting/adding-debug-logs.md
+        - Adding Debug/Trace Logs: troubleshooting/adding-debug-logs.md
     - Reference:
         - FAQs: faqs.md
         - Project Directory: reference/project-directory.md

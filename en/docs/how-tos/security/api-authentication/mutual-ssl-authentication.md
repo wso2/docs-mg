@@ -26,7 +26,7 @@ The Microgateway supports mutual SSL at the API level. It validates the certific
 
 1. <b> Mutual SSL configuration without Load Balancer.</b>
    
-    Update the mutual SSL configuration in the micro-gw.conf file residing in the <MICROGW_HOME>/conf directory. Here name is Swagger Petstore, version is 1.0.5, and aliasList is ballerina and wso2apim310.
+    Update the mutual SSL configuration in the `micro-gw.conf` file residing in the `<MICROGW_HOME>/conf` directory. Here name is Swagger Petstore, version is 1.0.5, and aliasList is ballerina and wso2apim310.
 ```
     [mutualSSLConfig]
       [[mutualSSLConfig.api.certificates]]
@@ -48,11 +48,11 @@ The Microgateway supports mutual SSL at the API level. It validates the certific
 ``` 
    
 !!! note
-    If you do not need to validate the MTSL between the load balancer and the Micro gateway then you need to add an additional configuration other than the above. isClientCertificateValidationEnabled is set to true by default in the Microgateway which means it always validates the MTSL between the microgateway and Load balancer. 
-``` 
-    [mutualSSLConfig]
-     isClientCertificateValidationEnabled = false   
-```
+    If you do not need to validate the MTSL between the load balancer and the Micro gateway then you need to add an additional configuration other than the above. isClientCertificateValidationEnabled is set to true by default in the Microgateway which means it always validates the MTSL between the Microgateway and Load balancer. 
+    ``` 
+        [mutualSSLConfig]
+         isClientCertificateValidationEnabled = false   
+    ```
 ### Configure Client and WSO2 Microgateway for Mutual SSL
 
 Add the client's public certificate to the WSO2 Microgateway's trustStorePath in listenerConfig configuration. Also, configure Microgateway's public certificate on the client-side. For more information [importing certificates to the WSO2 Microgateway Truststore]({{base_path}}/how-tos/security/importing-certificates-to-the-api-microgateway-truststore/)
@@ -67,7 +67,7 @@ Add the client's public certificate to the WSO2 Microgateway's trustStorePath in
 
 !!! note
     Mutual SSL authentication is currently supporting only HTTP 1.1 . Therefore the following
-    configuration should be added to the micro-gw.conf file.
+    configuration should be added to the `micro-gw.conf` file.
     ```yml
     [http2]
         enable = false
@@ -91,5 +91,3 @@ When invoking an API, you can pass the certificate to the API Microgateway as fo
     ![invoke rest API]({{base_path}}/assets/img/how-tos/invoke-rest-api.png)
 4.  The browser will present a user identification request, to select a certificate in order to use for the SSL connection. Select the certificate you added and click OK.
     ![user identification request]({{base_path}}/assets/img/how-tos/mutual-ssl-user-identification-request.png)
-
-
