@@ -56,7 +56,12 @@ Real-Time data publishing has the following advantages:
 
 <!--- TODO: #### Architecture --->
 
-<!--- TODO: #### How real-time publishing works --->
+#### How real-time publishing works
+
+A streaming service is established between the Analytics server and Microgateway when Microgateway is initiated. When an API is invoked through Microgateway, the particular events related to the request are streamed to the gRPC server stub in the Analytics server without persisting, unlike in periodical publishing.
+
+!!!note
+    Since there is no persistent data, if the gRPC connection is broken between Microgateway and Analytics server the event data will be lost. Microgateway will attempt to re-establish connection with the timeout that is provided in the configuration under `reconnectTimeInMillies`.
 
 ### Configuring Analytics for the Microgateway
 
@@ -69,20 +74,21 @@ The following sections describe how to configure the WSO2 API-M Analytics Server
 !!! note
     Before you begin...
     Configure API Manager Analytics using the **Quick setup** or **Standard Setup** . For instructions, see [Configuring APIM Analytics]({{apim_path}}/learn/analytics/configuring-apim-analytics/) .
-1.  Create the `              AM_USAGE_UPLOADED_FILES             ` table in the APIM\_ANALYTICS\_DB . A sample MySQL script to create the table is given below (This step is only required if you followed the **Standard setup** when configuring API Manager Analytics).
 
-    ``` java
-    CREATE TABLE IF NOT EXISTS AM_USAGE_UPLOADED_FILES (
+Create the `AM_USAGE_UPLOADED_FILES` table in the `APIM_ANALYTICS_DB`. A sample MySQL script to create the table is given below (This step is only required if you followed the **Standard setup** when configuring API Manager Analytics).
+
+```sql
+CREATE TABLE IF NOT EXISTS AM_USAGE_UPLOADED_FILES (
     FILE_NAME varchar(255) NOT NULL,
     FILE_TIMESTAMP TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FILE_PROCESSED tinyint(1) DEFAULT 0,
     FILE_CONTENT MEDIUMBLOB DEFAULT NULL,
     PRIMARY KEY (FILE_NAME, FILE_TIMESTAMP)
-    );
-    ```
+);
+```
 
-    !!! warning
-        Make sure that you correctly configured the APIM\_ANALYTICS\_DB between WSO2 API Manager and WSO2 API-M Analytics.
+!!! warning
+    Make sure that you correctly configured the APIM\_ANALYTICS\_DB between WSO2 API Manager and WSO2 API-M Analytics.
 
 !!! info
     Java system properties
@@ -125,22 +131,23 @@ The following sections describe how to configure the WSO2 API-M Analytics Server
     </tbody>
     </table>
     **Example**
-``` java
-    -Dusage.cleanup.frequency=48000  -Dusage.publishing.frequency=20000 -Dfile.retention.days=3
-```
+    ``` java
+        -Dusage.cleanup.frequency=48000  -Dusage.publishing.frequency=20000 -Dfile.retention.days=3
+    ```
 
 ##### Step 2 - Configuring the Microgateway for Analytics
 
 To do the configurations for Microgateway analytics, open the `<MICROGW_HOME>/conf/micro-gw.conf` file. The sample below shows the analytics-related configurations.
 
-``` java
-enable=true
-uploadingTimeSpanInMillis=600000
-uploadingEndpoint="https://localhost:9444/analytics/v1.0/usage/upload-file"
-rotatingPeriod=60000
-taskUploadFiles=true
-username="admin"
-password="admin"
+``` toml
+[analytics.fileUpload]
+    enable=true
+    uploadingTimeSpanInMillis=600000
+    uploadingEndpoint="https://localhost:9444/analytics/v1.0/usage/upload-file"
+    rotatingPeriod=60000
+    taskUploadFiles=true
+    username="admin"
+    password="admin"
 ```
 
 The configurations are described in the table below.
@@ -169,28 +176,27 @@ The configurations are described in the table below.
 <td><pre><code>rotatingPeriod</code></pre></td>
 <td><div class="content-wrapper">
 <p>The time interval, after which the file is rotated and compressed. This depends on the TPS (Transactions Per Second) capacity of the environment.</p>
-!!! tip
-<p>Best Practice</p>
-<p>To avoid creating large files, we recommend setting a low <code>                  rotatingPeriod                 </code> if your environment has a higher TPS.</p>
-
+<div class="admonition tip">
+    <p class="admonition-title">Tip</p>
+    <p><b>Best Practice</b></p>
+    <p>To avoid creating large files, we recommend setting a low <code>rotatingPeriod</code> if your environment has a higher TPS.</p>
+</div>
 </div></td>
 </tr>
 <tr class="odd">
 <td><pre><code>taskUploadFiles</code></pre></td>
 <td><div class="content-wrapper">
 <p>Set this to true to enable the file upload task.</p>
-<html><div class="admonition info">
-<p class="admonition-title">Note</p>
-<p>If this property is disabled, the analytics files are not uploaded to the analytics server, although the files are persisted in the Microgateway system.</p>
+<div class="admonition note">
+    <p class="admonition-title">Note</p>
+    <p>If this property is disabled, the analytics files are not uploaded to the analytics server, although the files are persisted in the Microgateway system.</p>
 </div>
-</html>
-<html><div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p><b>Best Practice</b></p>
-<p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, WSO2 recommends enabling the <code>                  taskUploadFiles                 </code> property in <strong>only one node</strong>. Make sure that you disable this in the rest of the Microgateway nodes.</p>
-<p>You can also opt to have your own design as a workaround.</p>
+<div class="admonition tip">
+    <p class="admonition-title">Tip</p>
+    <p><b>Best Practice</b></p>
+    <p>In a distributed setup, the analytics data is uploaded to a shared location from multiple Microgateway nodes. To avoid multiple nodes competing to upload the same file, WSO2 recommends enabling the <code>                  taskUploadFiles                 </code> property in <strong>only one node</strong>. Make sure that you disable this in the rest of the Microgateway nodes.</p>
+    <p>You can also opt to have your own design as a workaround.</p>
 </div>
-</html>
 </div></td>
 </tr>
 <tr class="even">
@@ -204,14 +210,23 @@ The configurations are described in the table below.
 </tbody>
 </table>
 
+!!! note
+    When adding the analytics configurations to `<MICROGW_HOME>/conf/micro-gw.conf` file for file-based analytics publishing, make sure to add the version of the API-M Analytics you are using from the following config.
+    
+    ```toml
+    [analytics]
+      # The configured API Manager analytics stream version
+      streamVersion = "3.2.0"
+    ```
+
 #### Using real-time data publishing (gRPC-based)
 
 ##### **Step 1 - Configuring the WSO2 API-M Analytics Server**
 
-1.  Open the &lt;APIM-ANALYTICS-HOME&gt;/ conf / worker / deployment .yaml file
+1.  Open the `<APIM-ANALYTICS-HOME>/conf/worker/deployment.yaml` file
 2.  Locate the `siddhi → refs → ref → name → grpcSource` parameter section. Change the IP and port of the receiver.url to point to the Microgateway. 
     
-    ```toml
+    ```yaml
     siddhi:
       refs:
         - ref:
@@ -223,7 +238,7 @@ The configurations are described in the table below.
     
 3.  The SSL configurations for the connection can be defined under `siddhi → extensions → extension → grpc` as follows. 
     
-    ```toml
+    ```yaml
     -
       extension:
         name: 'grpc'
@@ -239,13 +254,13 @@ The configurations are described in the table below.
 
 ##### **Step 2 - Configuring the Microgateway for Analytics**
 
-1.  Open the &lt;MICRO\_GW\_HOME&gt;/conf/default-micro-gw.conf.template. Locate `analytics.gRPCAnalytics` located under the `analytics` section.
-2.  Copy the `analytics.gRPCAnalytics` and paste it under the `analytics` section in the &lt;MICRO\_GW\_HOME&gt;/conf/micro-gw.conf file.
+1.  Open the `<MICRO-GW_HOME>/conf/default-micro-gw.conf.template`. Locate `analytics.gRPCAnalytics` located under the `analytics` section.
+2.  Copy the `analytics.gRPCAnalytics` and paste it under the `analytics` section in the `<MICRO-GW_HOME>/conf/micro-gw.conf` file.
 3.  Configure the following parameters in the copied section.
 
-    ```toml
+    ``` toml
       [analytics.gRPCAnalytics]
-        enable = false
+        enable = true
         # APIM Analytics endpoint configured to accept gRPC analytics
         endpointURL = "https://localhost:9806"
         # Time interval in milliseconds for gRPC connection recovery task
@@ -271,6 +286,13 @@ The configurations are described in the table below.
 <p><strong>False</strong> - Disables gRPC based real-time analytics</p></td>
 </tr>
 <tr class="even">
+<td>endpointURL</td>
+<td>APIM Analytics endpoint configured to accept gRPC analytics</td>
+<td><br />
+</td>
+<td>A valid URL</td>
+</tr>
+<tr class="odd">
 <td>reconnectTimeInMillies</td>
 <td>Defines the time interval for the gRPC reconnect task. It will try to connect to the gRPC supported analytics server according to the time interval defined in milliseconds.</td>
 <td><br />
@@ -280,9 +302,11 @@ The configurations are described in the table below.
 </tbody>
 </table>
 
+Please note that when configuring Microgateway for analytics you need to use only one of the configurations explained in [using periodical data publishing (file-based)](#using-periodical-data-publishing-file-based) and [using real-time data publishing (gRPC-based)](#using-real-time-data-publishing-grpc-based).
+
 ### Generating a Microgateway usage report
 
-A report containing the number of requests served by the Microgateway can be generated using the following steps
+A report containing the number of requests served by the Microgateway can be generated using the following steps.
 
 !!! note
     Before you begin...
