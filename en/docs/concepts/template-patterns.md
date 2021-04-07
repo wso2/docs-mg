@@ -1,9 +1,9 @@
-# Templete Patterns for Swagger Definitions 
+# Template Patterns for Swagger Definitions 
 
 Swagger allows you to define paths templated in segments. However Ballerina recommends using only the basic path template pattern - `/{code}` and the dot suffix improvement.
 
 
-The following is a list of sample patterns currently supported in WSO2 Microgateway.
+The following is a list of sample patterns currently supported in WSO2 Microgateway 3.2.0 and upwards.
 
 | Pattern                | Sample request path |
 |------------------------|---------------------|
@@ -12,7 +12,7 @@ The following is a list of sample patterns currently supported in WSO2 Microgate
 | /foo/{bar}.id          | /foo/baz.id         |
 | /foo/{bar}.id/qux      | /foo/quz.id/qux     |
 
-Note that you cannot define two resources in the same service with only a path template expression change. An example is shown below.
+Note that you **cannot** define two resources in the same service with only a path template expression change. An example is shown below.
 
 ```
     /echo/{abc}/bar
