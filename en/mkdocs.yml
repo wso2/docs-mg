@@ -63,6 +63,7 @@ nav:
           - The Policy Hub: concepts/the-policy-hub.md
           - Caching: concepts/caching.md
           - Revoked Tokens: concepts/revoked-tokens.md
+          - Template Patterns for Swagger Definitions: concepts/template-patterns.md
     - How Tos:
         - Adding APIs:
             - Using an OpenAPI Definition: how-tos/adding-apis/using-an-openapi-definition.md
