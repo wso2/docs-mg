@@ -17,7 +17,7 @@ sh gateway <path-to-MGW-executable-jar-file> --b7a.log.level=DEBUG
 Set as an environmental variable (for docker).
 
 ``` tab="Example"
-docker run -d -p 9090:9090 -p 9095:9095 -e b7a.log.level=DEBUG docker.wso2.com/petstore:v1
+docker run -d -p 9090:9090 -p 9095:9095 -e b7a_log_level=DEBUG docker.wso2.com/petstore:v1
 ```
 
 **Method 3** 
@@ -43,7 +43,7 @@ sh gateway <path-to-MGW-executable-jar-file> --b7a.http.tracelog.console=true
 Set as an environmental variable (for docker).
 
 ```bash tab="Example"
-docker run -d -p 9090:9090 -p 9095:9095 -e b7a.http.tracelog.console=true docker.wso2.com/petstore:v1
+docker run -d -p 9090:9090 -p 9095:9095 -e b7a_http_tracelog_console=true docker.wso2.com/petstore:v1
 ```
 
 **Method 3**
