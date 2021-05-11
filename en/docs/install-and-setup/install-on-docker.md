@@ -102,7 +102,7 @@ Run the Docker container using the following command.
     If you want to provide command options for the gateway when running the docker container, you can provide them as environmental variables.
     
     ```bash tab="Example - Enable debug logs"
-    docker run -d -p 9090:9090 -p 9095:9095 -e b7a.log.level=DEBUG docker.wso2.com/petstore:v1
+    docker run -d -p 9090:9090 -p 9095:9095 -e b7a_log_level=DEBUG docker.wso2.com/petstore:v1
     ```
 
 ### Step 5 - Invoke the sample API
