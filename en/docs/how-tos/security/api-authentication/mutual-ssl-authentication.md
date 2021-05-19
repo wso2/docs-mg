@@ -43,7 +43,7 @@ The Microgateway supports mutual SSL at the API level. It validates the certific
     isClientCertificateValidationEnabled = false
     certificateHeaderName = "X-SSL-CERT"
         [[mutualSSLConfig.api.certificates]]
-        name = "SwaggerPetstoreNew"
+        name = "Swagger Petstore"
         version = "1.0.0"
         aliasList = ["ballerina", "wso2apim320"]
 ``` 
