@@ -37,14 +37,15 @@ The Microgateway supports mutual SSL at the API level. It validates the certific
 
 2. <b> Mutual SSL configuration with Load Balancer. </b>
     
-    If you are using a load balancer in front of Microgateway then you have to add additional configuration inside the mutualSSLConfig file. Here certificateHeadername is the header name which is appended by the load balancer to store the certificate. Here certificate header name is X-SSL-CERT.
+    If you are using a load balancer in front of Microgateway then you have to add additional configuration inside the mutualSSLConfig file. Here certificateHeaderName is the header name which is appended by the load balancer to store the certificate. Here certificate header name is X-SSL-CERT.
 ```
     [mutualSSLConfig]
-      [[mutualSSLConfig.api.certificates]]
-        name = "Swagger Petstore"
-        version = "1.0.5"
-        aliasList = ["ballerina", "wso2apim310"]
-        certificateHeadername = "X-SSL-CERT"
+    isClientCertificateValidationEnabled = false
+    certificateHeaderName = "X-SSL-CERT"
+        [[mutualSSLConfig.api.certificates]]
+        name = "SwaggerPetstoreNew"
+        version = "1.0.0"
+        aliasList = ["ballerina", "wso2apim320"]
 ``` 
    
 !!! note
