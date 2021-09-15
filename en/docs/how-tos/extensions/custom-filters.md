@@ -1,6 +1,5 @@
 # Add Custom Filters
-Filters are set of execution points in the request and response flow which will intercept the request before going to the backend service and 
-intercept the response before forwarding to the client.
+Filters are set of execution points in the request and response flow which will intercept the request before going to the backend service and intercept the response before forwarding to the client.
 Filters are applied to all the APIs exposed via Microgateway. Custom filter can be engaged to Microgateway runtime using the Microgateway toolkit.
 If there is a common functionality required by all the APIs exposed via the Microgateway then custom filter written in [ballerina language](https://ballerina.io/) can be used for that
 
@@ -122,6 +121,9 @@ string SKIP_ALL_FILTERS = "skip_filters";
   name = "TestFilter"
   position = 2
 ```
+
+    !!! note
+    If the custom filter chain is prior to the `pre_authn_filter`, then the context will not have the `SKIP_ALL_FILTERS` value set. Therefore, set the custom filter `position` to 2 or greater.
 
 3.  A sample filter implementation is shown below.
 
