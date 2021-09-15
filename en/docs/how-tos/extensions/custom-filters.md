@@ -1,4 +1,4 @@
-#Add Custom Filters
+# Add Custom Filters
 Filters are set of execution points in the request and response flow which will intercept the request before going to the backend service and 
 intercept the response before forwarding to the client.
 Filters are applied to all the APIs exposed via Microgateway. Custom filter can be engaged to Microgateway runtime using the Microgateway toolkit.
@@ -102,3 +102,48 @@ public type CustomFilter object {
 </table> 
 
 4.Then build the project. Custom filter will be engaged in the runtime.
+
+##  Skip endpoints for custom filters
+
+To skip filters for health, token, and other similar APIs you can use the filter implementation given below.
+
+1.  Add the following inside the `filterRequest` and `filterResponse` methods.
+
+```
+string SKIP_ALL_FILTERS = "skip_filters";
+    if (context.attributes.hasKey(SKIP_ALL_FILTERS) && <boolean>context.attributes[SKIP_ALL_FILTERS]) {
+    return true;
+    }
+```
+2.  Go to the `deployment.toml` file and add the configuration given below, to set the filter position parameter.
+
+```
+[[filters]]
+  name = "TestFilter"
+  position = 2
+```
+
+3.  A sample filter implementation is shown below.
+
+```
+import ballerina/http;
+public type TestFilter object {
+public function filterRequest(http:Caller caller, http:Request request, http:FilterContext context) returns boolean {
+    string SKIP_ALL_FILTERS = "skip_filters";
+    if (context.attributes.hasKey(SKIP_ALL_FILTERS) && <boolean>context.attributes[SKIP_ALL_FILTERS]) {
+    return true;
+}
+request.setHeader("customRequestHeader1", "Value1");
+return true;
+}
+public function filterResponse(http:Response response, http:FilterContext context) returns boolean {
+    string SKIP_ALL_FILTERS = "skip_filters";
+    if (context.attributes.hasKey(SKIP_ALL_FILTERS) && <boolean>context.attributes[SKIP_ALL_FILTERS]) {
+    return true;
+    }
+response.setHeader("customResponseHeader1", "Value2");
+return true;
+}
+};
+```
+
