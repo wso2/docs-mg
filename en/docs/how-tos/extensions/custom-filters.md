@@ -1,5 +1,5 @@
 # Add Custom Filters
-Filters are set of execution points in the request and response flow which will intercept the request before going to the backend service and intercept the response before forwarding to the client.
+Filters are set of execution points in the request and response flow that intercept the request before it goes to the backend service and intercepts the response before forwarding to the client.
 Filters are applied to all the APIs exposed via Microgateway. Custom filter can be engaged to Microgateway runtime using the Microgateway toolkit.
 If there is a common functionality required by all the APIs exposed via the Microgateway then custom filter written in [ballerina language](https://ballerina.io/) can be used for that
 
@@ -114,7 +114,7 @@ string SKIP_ALL_FILTERS = "skip_filters";
     return true;
     }
 ```
-2.  Go to the `deployment.toml` file and add the configuration given below, to set the filter position parameter.
+2.  To set the filter position parameter, go to the `deployment.toml` file and add the configuration given below.
 
 ```
 [[filters]]
