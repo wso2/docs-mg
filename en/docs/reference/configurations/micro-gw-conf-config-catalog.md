@@ -1,4 +1,4 @@
-# micro-gw.conf
+# micro-gw.conf Configuration Catalog
 
 The following table explains the runtime configurations that are available in WSO2 API Mircogateway. The configuration file ( `         micro-gw.conf        ` ) for the Microgateway runtime is located in the `         <MGW-RUNTIME-HOME>/conf        ` directory. However, you can refer `         default-micro-gw.conf.template        ` located in `         <MGW-RUNTIME-HOME>/conf        ` on default configuration values in the Microgateway runtime. If you want to change any default configurations, you have to edit configurations in `         micro-gw.conf        ` after copying these configurations to `         micro-gw.conf.        `
 
