@@ -141,7 +141,7 @@ Let’s assume that you want to fetch the configuration of `httpPort`, which is 
             containers:
             - env:
               - name: "listenerConfig_httpPort"
-                value: 9090
+                value: 9091
               - name: "CONFIG_FILE"
                 value: "/home/ballerina/conf/ballerina.conf"
       ...
