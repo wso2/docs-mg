@@ -142,11 +142,15 @@ nav:
         - Configurations:
             - Configurations Overview: reference/configurations/configurations-overview.md
             - toolkit-config.toml: reference/configurations/toolkit-config.toml.md
-            - micro-gw.conf: reference/configurations/micro-gw.conf.md
-            - deployment.toml for Docker: reference/configurations/deployment.toml-for-docker.md
-            - deployment.toml for Kubernetes: reference/configurations/deployment.toml-for-kubernetes.md
+            - micro-gw.conf:
+                - Config Catalog: reference/configurations/micro-gw-conf-config-catalog.md
+                - Configuring in Docker: reference/configurations/configuring-micro-gw-conf-for-docker.md
+                - Configuring in Kubernetes: reference/configurations/configuring-micro-gw-conf-for-kubernetes.md
+            - deployment.toml:
+                - Config Catalog for Docker: reference/configurations/deployment.toml-for-docker.md
+                - Config Catalog for Kubernetes: reference/configurations/deployment.toml-for-kubernetes.md
         - Default Ports: reference/default-ports.md
-        - Commandline options:
+        - Command Line Options:
               - Toolkit commands: reference/commandline-options/toolkit-commands.md
 # Extensions
 markdown_extensions:
@@ -184,6 +188,10 @@ plugins:
           glob:
               - wip/*
               - customizations.md
+    - redirects:
+          redirect_maps:
+              'reference/configurations/micro-gw.conf.md': 'https://mg.docs.wso2.com/en/latest/reference/configurations/micro-gw-conf-config-catalog/'
+
 extra_css:
     - assets/lib/highlightjs/default.min.css
     - assets/css/theme.css
@@ -194,6 +202,7 @@ extra_javascript:
     - assets/js/theme.js
     - assets/lib/backtotop/js/util.js
     - assets/lib/backtotop/js/main.js
+
 extra:
     social:
         - type: github
