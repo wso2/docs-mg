@@ -7,7 +7,7 @@ You can use environment variables when running Docker to override the configurat
 
 ## Example 1 - Defining the Listener HTTPS port
 
-Let’s assume that you are going to fetch an environment variable for `httpsPort` under the `[listenerConfig]` configuration in the `micro-gw.conf` file. The following code snippet shows part of the configuration in the `micro-gw.conf` file.
+Let’s assume that you are going to override the assigned value for `httpsPort` under the `[listenerConfig]` configuration in the `micro-gw.conf` file. The following code snippet shows part of the configuration in the `micro-gw.conf` file.
 
 ```
 [listenerConfig]
@@ -55,8 +55,15 @@ docker run -e <environment-variable>='<value-for-environment-variable>' -d <api>
 ```
 
 ``` tab="Example"
-docker run -e keymanager_security_basic='false' -d petstore:v1
+docker run -e keymanager_security_basic_enabled='false' -d petstore:v1
 ```
 
-- As the `enabled` configuration is under the `keymanager_security_basic` configuration, the environment variable name is `keymanager_security_basic`.
+!!! tip
+    You can define multiple environment variables when you run Docker as follows:
+
+    ``` tab="Format"
+    docker run -e <environment-variable-1>='<value-for-environment-variable-1>' -e <environment-variable-2>='<value-for-environment-variable-2>' -d <api>:<api-version>
+    ```
+
+- As the `enabled` configuration is under the `keymanager_security_basic` configuration, the environment variable name is `keymanager_security_basic_enabled`.
 

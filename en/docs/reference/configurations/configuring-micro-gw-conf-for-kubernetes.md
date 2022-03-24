@@ -9,7 +9,7 @@ You can use environment variables when running Kubernetes to override the config
 !!! note
     It is mandatory to define secret references when working with sensitive data such as user credentials.
 
-Let’s assume that you want to fetch the configuration of `httpPort`, which is under `[listenerConfig]`.
+Let’s assume that you are going to override the assigned value for `httpPort`, which is under `[listenerConfig]`.
 
 ```
 [listenerConfig]
