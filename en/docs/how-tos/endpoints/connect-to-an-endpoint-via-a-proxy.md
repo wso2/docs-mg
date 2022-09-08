@@ -12,7 +12,7 @@ The common set of configurations that are used when connecting with upstream bac
 ```toml
 [httpClients]
   [httpClients.proxy]
-    enabled = true
+    enable = true
     host = "localhost"
     port = 3128
     username = ""
