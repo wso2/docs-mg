@@ -121,7 +121,7 @@ Make sure to do the following:
     [kubernetes]
         [kubernetes.kubernetesDeployment]
         .........
-        env = 'env = '{ "<env_key>":"<env_value>" }'
+        env = '{ "<env_key>":"<env_value>" }'
     ```
 
     ``` java tab="Example"
@@ -131,6 +131,38 @@ Make sure to do the following:
         env = '{ "TZ":"Australia/Brisbane" }'
     ```
 
+    -   Other types of environment variables can be set, such as `configMapKeyRef` or `secretKeyRef`, even more than one type can be defined and which value is interpreted as the ballerina map.
+
+
+    ``` java tab="Format"
+    [kubernetes]
+        [kubernetes.kubernetesDeployment]
+        .........
+        env = '"<ballerina_env_name>" : { configMapKeyRef : { name : "<configmap_name>, key : "<configmap_env_key>"}}'
+    ```
+
+    ``` java tab="Example"
+    [kubernetes]
+        [kubernetes.kubernetesDeployment]
+        .........
+        env = """
+            "TZ":"Australia/Brisbane"
+            "LIMIT": "1",
+            "COMPANY": {
+                configMapKeyRef: {
+                    name: "my-map",
+                    key: "Super Car's"
+                }
+            },
+            "PASS": {
+                secretKeyRef: {
+                    name: "my-secret",
+                    key: "s3c3t"
+                }
+            }
+        }
+        """
+    ```
 
 3.  Build the microgateway project.
 
