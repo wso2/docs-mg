@@ -66,9 +66,8 @@ global:
   scrape_interval:  15s
   evaluation_interval: 15s
 
-  scrape_configs:
-    - job_name: 'Ballerina_Metrics'
-
+scrape_configs:
+  - job_name: 'Ballerina_Metrics'
     basic_auth:
       username: prometheus
       password: 'password'
@@ -81,7 +80,7 @@ global:
     static_configs:
       - targets: ['<user_IP>:9000']
 
-    - job_name: 'JMX_Metrics'
+  - job_name: 'JMX_Metrics'
 
     basic_auth:
       username: prometheus
