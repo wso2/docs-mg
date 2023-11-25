@@ -1,5 +1,5 @@
 After the APIs are exposed via WSO2 API Microgateway, you can invoke an API with a valid token(JWT or opaque access token) or an API key.
-Lets use a sample JWT to access the API. Following JWT is a trusted  by the default micorgayeway client certificate trust store.
+Lets use a sample JWT to access the API. Following JWT is a trusted  by the default micorgateway client certificate trust store.
 
 The below command will set the sample JWT to the shell variable `TOKEN`.
 
