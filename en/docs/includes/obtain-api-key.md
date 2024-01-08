@@ -3,5 +3,5 @@ After the APIs are exposed via WSO2 API Microgateway, you can invoke an API with
 The below command will retrieve an APIKey token and set it to the shell variable `TOKEN`.
         
 ``` bash
-TOKEN=$(curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRtaW46YWRtaW4=" -k)
+TOKEN=$(curl -X GET "https://localhost:9095/apikey" -H "Authorization:Basic YWRtaW46YWRtaW4=" -k)
 ```

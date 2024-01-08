@@ -80,7 +80,7 @@ docker run -d -p 9095:9095 -p 9090:9090 petstore:v1
 Once the APIs are exposed via WSO2 API Microgateway, you can invoke an API with a valid token(JWT or opaque access token) or an API key.  Let's use WSO2 API Microgateway's API key endpoint to get an API key. The following command will retrieve a token and set it to the shell variable TOKEN.
 
 ``` java tab="Sample Token"
-TOKEN=$(curl -X get "https://localhost:9095/apikey" -H "Authorization:Basic YWRtaW46YWRtaW4=" -k)
+TOKEN=$(curl -X GET "https://localhost:9095/apikey" -H "Authorization:Basic YWRtaW46YWRtaW4=" -k)
 ```
 
 !!! info
