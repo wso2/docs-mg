@@ -19,6 +19,9 @@ x-wso2-response-cache:
 | enabled               | This defines whether the response cache is enabled or not in the Microgateway. |
 | cacheTimeoutInSeconds | Expiry time of the cache in seconds.                                           |
 
+!!! note
+    To enable response caching, the backend needs to be set up to send `Cache-Control` headers with its responses. Without these headers, Micro Gateway cannot determine if the backend allows caching.
+
 ### Configuring OAuth Cache
 
 The OAuth token is enabled by default in the Microgateway. Adding the following section to the `micro-gw.conf` file which is located in the `<MGW-RUNTIME-HOME>/conf ` directory , you can change the configurations in the OAuth cache.
