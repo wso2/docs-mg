@@ -10,7 +10,7 @@ Follow the steps below in order to enable the observability of API Microgateway 
 
 1. Stop the server if it is running.
 
-2. Open the  &lt;MGW\_runtime&gt;/conf/micro-gw.conf add the below configuration. This enables metrics monitoring and distributed tracing on the server with default settings.
+2. Open the  `<MGW\_runtime>/conf/micro-gw.conf` add the below configuration. This enables metrics monitoring and distributed tracing on the server with default settings.
 
 ``` toml
 [b7a.observability.metrics]
