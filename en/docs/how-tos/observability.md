@@ -121,7 +121,7 @@ Let’s use [Grafana](https://grafana.com/) to visualize metrics in a dashboard.
 
     For more information refer [Grafana in Docker Hub](https://hub.docker.com/r/grafana/grafana/) .
 
-2. Go to <http://localhost:3000/> to access the Grafana dashboard running on Docker.
+2. Go to `<http://localhost:3000/>` to access the Grafana dashboard running on Docker.
 
 3. Login to the dashboard with the default user, username: admin and password: admin
 
