@@ -37,6 +37,9 @@ Follow the instructions below to generate a Microgateway project for a group of 
 
 2.  Import the APIs, which are published in WSO2 API Manager, that correspond to a specific Microgateway label.
 
+    !!! note
+        For API Manager 4.x versions, the **-l** argument is required to specify the gateway environment when importing an API. The imported API will correspond to the latest deployed version of the specified gateway environment.
+    
     ``` bash tab="Format"
     micro-gw import -l <label> <project-name> 
     ```
