@@ -7,7 +7,7 @@ You can configure alerts for each environment within your organization separatel
 Alerts are subject to a suppression policy to ensure you are not overwhelmed with duplicate alert notifications. For each alert rule that you configure, there is a 10-minute suppression window applied by default. The suppression interval is currently not configurable. In addition, note that the suppression policy is applicable per alert rule.
 
 !!! Info
-    - Maximum number of alerts which can be configured is 20 for each organization, env, tenant combination.
+    - Maximum number of alerts which can be configured is 20 for each organization, environment, tenant combination.
     - Adding an email to an alert configuration is optional. The maximum number of emails per alert configuration is limited to 5.
 
 Please refer [Configure Alerts](https://wso2.com/choreo/docs/insights/configure-alerts/) for more information.

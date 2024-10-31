@@ -35,7 +35,7 @@ Open the &lt;MICRO\_GW\_HOME&gt;/conf/micro-gw.conf file and add the following c
 #### Step 1.2 - Enabling Logs
 
 !!! note
-    The LOG4J configuration file `log4j2.properties` is not available in the API Microgateway runtime by default since the logging is carried out by a in-built configuration factory. In order to configure API Microgateway runtime for ELK analytics, create a `log4j2.properties` configuration file in the location &lt;MICRO\_GW\_HOME&gt;/conf/.
+    The LOG4J configuration file `log4j2.properties` is not available in the API Microgateway runtime by default since the logging is carried out by an in-built configuration factory. In order to configure API Microgateway runtime for ELK analytics, create a `log4j2.properties` configuration file in the location &lt;MICRO\_GW\_HOME&gt;/conf/.
 
     In order to configure log level for the Java components the following configuration can be added to the `log4j2.properties` file.
 
@@ -103,12 +103,12 @@ Open the &lt;MICRO\_GW\_HOME&gt;/conf/ directory. To enable logging for a report
     ```
 
 !!! note
-    The `apim_metrics.log` file be rolled each day or when the log size reaches the limit of 1000 MB by default. Furthermore, only 10 revisions will be kept and older revisions will be deleted automatically. You can change these configurations by updating the configurations provided in step 2 given above this section.
+    The `apim_metrics.log` file will be rolled each day or when the log size reaches the limit of 1000 MB by default. Furthermore, only 10 revisions will be kept and older revisions will be deleted automatically. You can change these configurations by updating the configurations provided in step 2 above.
 
 !!! note
     Following are the details that are available on analytics log events:
 
-    `apim_event_response` -  This event will be triggered for each successful API invocation. When a API associated backend returns an error    response still it will be logged through this event.
+    `apim_event_response` -  This event will be triggered for each successful API invocation. When an API associated backend returns an error response, it will also be logged through this event.
 
     ```
     apim_event_response:
@@ -324,7 +324,7 @@ The Traffic page shows information related to the traffic that goes through your
 
 ##### API Analytics
 
-The API Analytics Dashboard provides business insights on APIs enabling users to take proactive actions to improve profitability and the quality of the service provided. This dashboard focuses on API developers who wish to see the analytics related to their APIs. This dashboard includes graphs to represent,  Overall API Usage,  Top 10 API and Application creators, API Usage by version, application, resource path and backend.
+The API Analytics Dashboard provides business insights on APIs enabling users to take proactive actions to improve profitability and the quality of the service provided. This dashboard focuses on API developers who wish to see the analytics related to their APIs. This dashboard includes graphs to represent, overall API usage, top 10 API and Application creators, API usage by version, application, resource path and backend.
 
 ![API analytics chart 1]({{base_path}}/assets/img/how-tos/analytics/elk-based-analytics/api-analytics-1.png)
 
@@ -332,7 +332,7 @@ The API Analytics Dashboard provides business insights on APIs enabling users to
 
 ##### User Analytics
 
-User Analytics dashboard provides insights of API Users, most API Users, No of success and fault requests by users for each API and application
+User Analytics dashboard provides insights of API Users, most API Users, number of success and fault requests by users for each API and application.
 
 ![User analytics chart]({{base_path}}/assets/img/how-tos/analytics/elk-based-analytics/user-analytics.png)
 
@@ -357,6 +357,6 @@ The Cache page shows statistics that indicate the efficiency with which response
 
 ##### Devices
 
-The Devices page displays information about operating systems and HTTP agents that end users use to invoke the APIs. You can use this page to get an idea of the distribution of your user base and improve your APIs to match the audience.
+The Devices page displays information about operating systems and HTTP agents that end-users use to invoke the APIs. You can use this page to get an idea of the distribution of your user base and improve your APIs to match the audience.
 
 ![Devices chart]({{base_path}}/assets/img/how-tos/analytics/elk-based-analytics/devices.png)

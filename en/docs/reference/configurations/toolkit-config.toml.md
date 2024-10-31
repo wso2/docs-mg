@@ -5,7 +5,7 @@ The following are the configurations with regard to WSO2 API Microgateway Toolki
 |Heading|Description|Sub Heading|Description|Default value|
 |-------|-----------|-----------|-----------|-------------|
 |`client`|The configurations of the Microgateway toolkit client when connecting with the WSO2 API Manager (WSO2 API-M) server to fetch API data.|`httpRequestTimeout`|The client request timeout in seconds|1000000|
-|`token`|The configuration required to get a valid token from WSO2 API-M in order to communicate with its secured REST APIs.|`apimVersion`|The version WSO2 API-M server. This parameter will be used to determine whether the WSO2 API-M version is a 4.x version or not.|`empty` (By defualt WSO2 API-M version will be considered as an 3.x version)
+|`token`|The configuration required to get a valid token from WSO2 API-M in order to communicate with its secured REST APIs.|`apimVersion`|The version WSO2 API-M server. This parameter will be used to determine whether the WSO2 API-M version is a 4.x version or not.|`empty` (By default WSO2 API-M version will be considered as an 3.x version)
 |||`baseURL`|The base REST API URL of the WSO2 API-M server. When you update this parameter, this will be applied as the baseURL in the subsequent REST API URLs.|`https://localhost:9443`|
 |||`restVersion`|The API Manager version and its respective REST version. When you update this parameter, this will be applied as the REST version in the subsequent REST API URLs.|`v1.2`|
 |||`dcrVersion`|The API Manager version and its respective DCR (Dynamic Client Registration) version. When you update this parameter, this will be applied as the DCR version in the subsequent Client Registration URL.|`v0.17`|

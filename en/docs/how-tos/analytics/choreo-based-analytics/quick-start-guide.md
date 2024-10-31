@@ -71,7 +71,7 @@ Follow the instructions below to publish analytics data to the analytics cloud v
 
     ```toml
     [analytics.choreoAnalytics]
-    enable = false
+    enable = true
     configEndpoint = "https://analytics-event-auth.choreo.dev/auth/v1"
     authToken = ""
     ```

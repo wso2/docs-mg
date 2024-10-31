@@ -44,7 +44,7 @@ You need to append the full path of the `/bin` folder of the extracted WSO2 API 
 -   [WSO2 API Manager 2.5.0](https://docs.wso2.com/display/AM250/WSO2+API+Manager+Documentation)
 
 !!! note
-    API Manager 4.x version support is introduced through U2 updates. Hence, API Microgateway support for API Manager 4.x versions will be available from the following update levels onwards (including the said version),
+    API Microgateway support for API Manager 4.x versions will be available from the following update levels onwards,
 
     Product | Update level
     -- | --

@@ -45,7 +45,7 @@ Follow the instructions below to generate a Microgateway project for a group of 
         apimVersion = "4.0.0"
         ```
 
-        For API Manager 4.x versions, the **-l** argument is required to specify the gateway environment when importing an API. The imported API will correspond to the latest deployed version of the specified gateway environment.
+        Note that the **-l** argument is required to specify the gateway environment when importing an API. The imported API will correspond to the latest deployed version of the specified gateway environment.
 
         Refer to the [compatibility documentation]({{base_path}}/faqs/#compatibility) to confirm the supported update level for this feature.
     
