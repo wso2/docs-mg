@@ -89,6 +89,8 @@ Project 'marketing_project' is initialized successfully.
         -  Trust store location and password of WSO2 API Microgateway Toolkit - If you want to use the default value, click enter.
         ```
 
+        Refer to the [compatibility documentation]({{base_path}}/faqs/#compatibility) to confirm the supported update level for this feature.
+
     After the API is imported, you can find the auto-generated Swagger definition in the `<MGW-project>/gen/api_definitions/<Swagger-file-name>.json` directory of the project (e.g., `/marketing_project/gen/api_definitions/api_30e623704c5c5479b7c0d9ab78e965df02c1610401e37cbd557e6353e3191c76.json` )
 
     !!! info

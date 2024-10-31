@@ -32,12 +32,30 @@ You need to append the full path of the `/bin` folder of the extracted WSO2 API 
 ### Compatibility
 
 ##### What versions of WSO2 API-M are compatible with WSO2 API Microgateway 3.2.0?
-
+-   [WSO2 API Manager 4.4.0](https://apim.docs.wso2.com/en/4.4.0/)
+-   [WSO2 API Manager 4.3.0](https://apim.docs.wso2.com/en/4.3.0/)
+-   [WSO2 API Manager 4.2.0](https://apim.docs.wso2.com/en/4.2.0/)
+-   [WSO2 API Manager 4.1.0](https://apim.docs.wso2.com/en/4.1.0/)
+-   [WSO2 API Manager 4.0.0](https://apim.docs.wso2.com/en/4.0.0/)
 -   [WSO2 API Manager 3.2.0](https://apim.docs.wso2.com/en/3.2.0/)
 -   [WSO2 API Manager 3.1.0](https://apim.docs.wso2.com/en/3.1.0/)
 -   [WSO2 API Manager 3.0.0](https://apim.docs.wso2.com/en/3.0.0/)
 -   [WSO2 API Manager 2.6.0](https://docs.wso2.com/display/AM260/WSO2+API+Manager+Documentation)
 -   [WSO2 API Manager 2.5.0](https://docs.wso2.com/display/AM250/WSO2+API+Manager+Documentation)
+
+!!! note
+    API Manager 4.x version support is introduced through U2 updates. Hence, API Microgateway support for API Manager 4.x versions will be available from the following update levels onwards (including the said version),
+
+    Product | Update level
+    -- | --
+    WSO2 API Microgateway Toolkit Linux 3.2.0 | 72
+    WSO2 API Microgateway Toolkit MacOS 3.2.0 | 72
+    WSO2 API Microgateway Toolkit Windows 3.2.0 | 74
+    WSO2 API Manager 4.0.0 | 316
+    WSO2 API Manager 4.1.0 | 178
+    WSO2 API Manager 4.2.0 | 116
+    WSO2 API Manager 4.3.0 | 27
+    WSO2 API Manager 4.4.0 | G/A
 
 ##### What version of the Ballerina should be used to write extensions, interceptors, etc for WSO2 API Microgateway 3.2.0?
 
