@@ -1,5 +1,8 @@
 # ELK Based Analytics
 
+!!! note
+    Refer to the [compatibility documentation]({{base_path}}/faqs/#compatibility) to confirm the supported update level for this feature.
+
 ![Deployment diagram]({{base_path}}/assets/img/how-tos/analytics/elk-based-analytics/architecture.png)
 
 ### Analytics Data flow
@@ -33,6 +36,28 @@ Open the &lt;MICRO\_GW\_HOME&gt;/conf/micro-gw.conf file and add the following c
 
 !!! note
     The LOG4J configuration file `log4j2.properties` is not available in the API Microgateway runtime by default since the logging is carried out by a in-built configuration factory. In order to configure API Microgateway runtime for ELK analytics, create a `log4j2.properties` configuration file in the location &lt;MICRO\_GW\_HOME&gt;/conf/.
+
+    In order to configure log level for the Java components the following configuration can be added to the `log4j2.properties` file.
+
+    ``` properties
+    # This sets the global logging level and specifies the appenders
+    status = error
+    monitorInterval = 30
+    rootLogger.level = error
+    rootLogger.appenderRef.stdout.ref = STDOUT
+
+    # settings for the console appender
+    appender.console.type = Console
+    appender.console.name = STDOUT
+    appender.console.layout.type = PatternLayout
+    appender.console.layout.pattern = %d %-5p [%c] - [%c{1}] %x %m%n
+
+    # To debug the native implementation
+    # logger.classLevelLogger.name = org.wso2.micro.gateway.core
+    # logger.classLevelLogger.level = debug
+
+    appenders = console
+    ```
 
 Open the &lt;MICRO\_GW\_HOME&gt;/conf/ directory. To enable logging for a reporter, edit the `log4j2.properties` file following the instructions given below.
 

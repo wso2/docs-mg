@@ -1,6 +1,9 @@
 # Choreo Based Analytics Getting Started Guide
 
-API Microgateway offers analytics as a cloud service. Therefore, you need to register with the analytics cloud in order to use API Manager Analytics. Follow the instructions below to get started with analytics:
+!!! note
+    Refer to the [compatibility documentation]({{base_path}}/faqs/#compatibility) to confirm the supported update level for this feature.
+
+API Microgateway offers analytics as a cloud service. Therefore, you need to register with the analytics cloud in order to use API Microgateway Analytics. Follow the instructions below to get started with analytics:
 
 ## Step 1 - Sign in to Choreo
 
@@ -48,7 +51,7 @@ Follow the instructions below to register your on-premise environment:
 
 ## Step 3 - Configure the Gateway
 
-API Analytics is delivered via the API Analytics Cloud. Therefore, the API Manager Gateway needs to be configured to publish analytics data into the cloud.
+API Analytics is delivered via the API Analytics Cloud. Therefore, the API Microgateway needs to be configured to publish analytics data into the cloud.
 
 The Gateway configuration process varies based on the Gateway that you are using.
 
