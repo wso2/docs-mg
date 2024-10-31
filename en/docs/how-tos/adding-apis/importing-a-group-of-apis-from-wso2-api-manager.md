@@ -38,6 +38,13 @@ Follow the instructions below to generate a Microgateway project for a group of 
 2.  Import the APIs, which are published in WSO2 API Manager, that correspond to a specific Microgateway label.
 
     !!! note
+        In order to import APIs from API Manager 4.x versions, add the specific API Manager version configuration to the <MICROGW_HOME>/conf/toolkit-config.toml file. (The following configuration is for API Manager 4.0.0)
+        
+        ``` toml
+        [token]
+        apimVersion = "4.0.0"
+        ```
+
         For API Manager 4.x versions, the **-l** argument is required to specify the gateway environment when importing an API. The imported API will correspond to the latest deployed version of the specified gateway environment.
     
     ``` bash tab="Format"
