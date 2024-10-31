@@ -42,6 +42,10 @@ The following table explains the runtime configurations that are available in WS
 |`analytics.gRPCAnalytics`|Analytics configurations for GRPC|`enable`|Enable GRPC Analytics|false|
 |||`endpointURL`|The APIM Analytics endpoint configured to accept gRPC analytics.|<https://localhost:9806>|
 |||`reconnectTimeInMillies`|The time interval in milliseconds for gRPC connection recovery task|6000|
+|`analytics.choreoAnalytics`|Configurations for Choreo based analytics|`enable`|Enable Choreo based analytics|false|
+|||`configEndpoint`|Choreo configuration endpoint|https://analytics-event-auth.choreo.dev/auth/v1|
+|||`authToken`|Choreo on-prem key for authentication||
+|`analytics.elkAnalytics`|Configurations for ELK based analytics|`enable`|Enable ELK based analytics|false|
 |`http2`|Http configurations|`enable`|Enable HTTP2|true|
 |`httpClients`|HTTP client configuration|`verifyHostname`|Hostname verification|true|
 |`validationConfig`|Request and response validation configurations|`enableRequestValidation`|Enable validating the request|false|
