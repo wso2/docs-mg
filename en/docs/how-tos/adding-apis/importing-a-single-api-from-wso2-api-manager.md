@@ -55,7 +55,7 @@ Project 'marketing_project' is initialized successfully.
     ```
 
     !!! note
-        **Importing APIs from APIM 4.x versions**        
+        **Importing APIs from WSO2 API Manager 4.x versions**        
 
         In order to import APIs from API Manager 4.x versions, add the specific API Manager version configuration to the <MICROGW_HOME>/conf/toolkit-config.toml file. (The following configuration is for API Manager 4.0.0)
 
