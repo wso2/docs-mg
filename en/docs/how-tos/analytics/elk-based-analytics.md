@@ -289,7 +289,7 @@ Open the &lt;MICRO\_GW\_HOME&gt;/conf/ directory. To enable logging for a report
 
 3. Log in to the Kibana dashboards.
 
-4. Navigate to Stack Management > index pattern. If you already have any index patterns created under the following names, delete them before importing the saved artifacts.
+4. Navigate to Stack Management > index pattern. If you already have index patterns created under the following names, delete them before importing the saved artifacts.
     ```
     apim_event*
     apim_event_faulty
