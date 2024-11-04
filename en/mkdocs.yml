@@ -118,7 +118,13 @@ nav:
             - Rejecting revoked tokens: how-tos/security/rejecting-revoked-tokens.md
             - Importing Certificates to the API Microgateway Truststore: how-tos/security/importing-certificates-to-the-api-microgateway-truststore.md
             - Define Security using extension: how-tos/security/define-security-using-extension.md
-        - Analytics for Microgateway: how-tos/analytics-for-microgateway.md
+        - Analytics for Microgateway:
+            - APIM 3.x Based Analytics: how-tos/analytics/apim-3x-based-analytics.md
+            - Choreo Based Analytics:
+                - Getting Started Guide: how-tos/analytics/choreo-based-analytics/quick-start-guide.md
+                - Role Based Access Control: how-tos/analytics/choreo-based-analytics/role-based-access-control.md
+                - Alerts: how-tos/analytics/choreo-based-analytics/configure-alerts.md
+            - ELK Based Analytics: how-tos/analytics/elk-based-analytics.md
         - Observability: how-tos/observability.md
         - File Upload via Multipart Requests: how-tos/file-upload-via-multipart-requests.md
         - Configure Caching: how-tos/configure-caching.md
