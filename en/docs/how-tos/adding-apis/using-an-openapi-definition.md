@@ -38,6 +38,12 @@ Make sure to install and set up all the [installation prerequisites]({{base_pat
     micro-gw build petstore
     ```
 
+!!! info
+    To allow the necessary dependencies to be downloaded, you will need to whitelist the following URLs:
+        - api.central.ballerina.io
+        - central.ballerina.io
+        - fileserver.central.ballerina.io
+
 ### Step 2 - Run the API Microgateway
 
 The executable jar file (`.jar`), which includes the API artifacts of the project, is used as input to the WSO2 API Microgateway runtime component for the purpose of exposing the APIs. Follow the steps below to expose the APIs via WSO2 API Microgateway.
