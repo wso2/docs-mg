@@ -1,6 +1,6 @@
 # Writing an interceptor in Ballerina
 
-This section explains writing interceptors in [Ballerina](https://ballerina.io/). For information on Ballerina 1.2.x syntax, see [API docs](https://ballerina.io/learn/api-docs/ballerina/) in the Ballerina documentation. The following is a sample request interceptor written in Ballerina (`interceptor.bal`).
+This section explains writing interceptors in [Ballerina](https://ballerina.io/). For information on Ballerina 1.2.x syntax, see [API docs](https://ballerina.io/1.2/learn/api-docs/ballerina/) in the Ballerina documentation. The following is a sample request interceptor written in Ballerina (`interceptor.bal`).
 
 #### Step 1 - Implement the interceptor object
 
