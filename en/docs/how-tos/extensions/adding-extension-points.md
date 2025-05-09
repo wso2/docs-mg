@@ -166,3 +166,19 @@ function setThrottleFailureResponse(http:Response response, http:FilterContext c
     response.setJsonPayload(payload);
 }
 ```
+
+**For development perspectives of writing customized extension filters, follow the steps mentioned below.**
+
+1. Create a new ballerina project using `bal new extension`.
+
+2. Under the project find the src directory. Create another directory which has the same name as the project name given in the step 1 command - `mkdir extension`.
+
+3. Then create or move the extension_filter.bal file to the `<HOME>/extension/src/extension directory`.
+
+4. Create a main.bal file if not exists.
+
+5. Update the dependencies of Ballerina.toml file with the path to the .balo file generated for the gateway. You can find it under the `wso2am-micro-gw-toolkit-macos-3.2.0/lib/gateway-balo` directory.
+
+6. If dependency is not resolved, set the Ballerina Home path in the VS Code settings. You can open it by `cmd+shift+p` then click Open User Settings. Search for Ballerina and update the HOME path. You can find the HOME by running bal home command in the terminal.
+
+7. Restart the IDE
