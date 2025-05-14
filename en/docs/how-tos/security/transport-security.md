@@ -23,6 +23,9 @@ The following are the default configurations for a gateway instance. Add the fol
 |ciphers |List of ciphers to be used|"TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA,TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_CBC\_SHA256, TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA256,TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA256,TLS\_ECDH\_ECDSA\_WITH\_AES\_128\_CBC\_SHA256, TLS\_ECDH\_RSA\_WITH\_AES\_128\_CBC\_SHA256,TLS\_DHE\_RSA\_WITH\_AES\_128\_CBC\_SHA256,TLS\_DHE\_DSS\_WITH\_AES\_128\_CBC\_SHA256, TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_CBC\_SHA,TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA,TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA, TLS\_ECDH\_ECDSA\_WITH\_AES\_128\_CBC\_SHA,TLS\_ECDH\_RSA\_WITH\_AES\_128\_CBC\_SHA,TLS\_DHE\_RSA\_WITH\_AES\_128\_CBC\_SHA, TLS\_DHE\_DSS\_WITH\_AES\_128\_CBC\_SHA,TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_GCM\_SHA256,TLS\_ECDHE\_RSA\_WITH\_AES\_128\_GCM\_SHA256 ,TLS\_RSA\_WITH\_AES\_128\_GCM\_SHA256,TLS\_ECDH\_ECDSA\_WITH\_AES\_128\_GCM\_SHA256,TLS\_ECDH\_RSA\_WITH\_AES\_128\_GCM\_SHA256, TLS\_DHE\_RSA\_WITH\_AES\_128\_GCM\_SHA256,TLS\_DHE\_RSA\_WITH\_AES\_128\_GCM\_SHA256,TLS\_DHE\_DSS\_WITH\_AES\_128\_GCM\_SHA256 ,TLS\_ECDHE\_ECDSA\_WITH\_3DES\_EDE\_CBC\_SHA,TLS\_ECDHE\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA,SSL\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA, TLS\_ECDH\_ECDSA\_WITH\_3DES\_EDE\_CBC\_SHA,TLS\_ECDH\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA,SSL\_DHE\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA, SSL\_DHE\_DSS\_WITH\_3DES\_EDE\_CBC\_SHA,TLS\_EMPTY\_RENEGOTIATION\_INFO\_SCSV"|
 |sslVerifyClient|The type of client certificate verification. ("require" or "optional")| "optional"|
 
+!!! note
+    WSO2 API Microgateway supports the TLSv1.3 protocol. To enable TLSv1.3, set the protocol version to "TLSv1.3" and configure the appropriate cipher suites. Additionally, ensure that you are using a Java runtime that supports TLSv1.3 (supported in later versions of Java 8, and in Java 11 and Java 17).
+
 
 ### Mutual SSL with Backend
 
@@ -56,3 +59,6 @@ To change the SSL configuration related to the backend connection, add the follo
 |keyStorePassword|The Password of the key store|ballerina|
 |trustStorePath|The trust store that should be used for the TLS communication|${mgw-runtime.home}/runtime/bre/security/ballerinaTruststore.p12|
 |trustStorePassword|The Password of the trust store|ballerina|
+
+!!! note
+    WSO2 API Microgateway supports the TLSv1.3 protocol. To enable TLSv1.3, set the protocol version to "TLSv1.3" and configure the appropriate cipher suites. Additionally, ensure that you are using a Java runtime that supports TLSv1.3 (supported in later versions of Java 8, and in Java 11 and Java 17).    
