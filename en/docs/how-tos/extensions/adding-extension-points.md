@@ -167,6 +167,14 @@ function setThrottleFailureResponse(http:Response response, http:FilterContext c
 }
 ```
 
+**Install Ballerina and VS Code extension**
+
+1. Install ballerina `1.2.57` using `brew` command or from the ballerina official document.
+2. Open the VSCode and install the extension `Ballerina`.
+3. After installing, go to the dropdown of the `Uninstall` button in the extension and hit the `Install Specific Version`.
+4. Select `2.1.1` version and install it.
+5. Restart the VS Code.
+
 **For development perspectives of writing customized extension filters, follow the steps mentioned below.**
 
 1. Create a new ballerina project using `bal new extension`.
