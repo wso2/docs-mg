@@ -31,6 +31,11 @@ You need to append the full path of the `/bin` folder of the extracted WSO2 API 
 
 ### Compatibility
 
+##### What versions of Java are compatible with WSO2 API Microgateway 3.2.0?
+- Java 8
+- Java 11
+- Java 17
+
 ##### What versions of WSO2 API-M are compatible with WSO2 API Microgateway 3.2.0?
 -   [WSO2 API Manager 4.4.0](https://apim.docs.wso2.com/en/4.4.0/)
 -   [WSO2 API Manager 4.3.0](https://apim.docs.wso2.com/en/4.3.0/)
