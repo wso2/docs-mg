@@ -94,4 +94,4 @@ Follow the instructions below to install the WSO2 API Microgateway related binar
 
 ### ARM compatibility
 
-WSO2 Microgateway Toolkit and Runtime are compatible with ARM processors. It can run on ARM-based systems, such as those with Apple Silicon or ARM-based Linux distributions.
+WSO2 Microgateway Toolkit and Runtime are compatible with ARM processors. They can run on ARM-based systems, such as those with Apple Silicon or ARM-based Linux distributions.
