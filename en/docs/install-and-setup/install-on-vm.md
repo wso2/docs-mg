@@ -91,3 +91,7 @@ Follow the instructions below to install the WSO2 API Microgateway related binar
     2.  Set the Microgateway runtime distribution path using the UI in Windows.
     </details>
 5.  Optionally, [configure WSO2 API Microgateway Runtime with WSO2 API Manager 3.2.0]({{base_path}}/install-and-setup/configuration-for-wso2-api-manager/#configuring-the-microgateway-32x-runtime) .
+
+### ARM compatibility
+
+WSO2 Microgateway Toolkit and Runtime are compatible with ARM processors. They can run on ARM-based systems, such as those with Apple Silicon or ARM-based Linux distributions.
