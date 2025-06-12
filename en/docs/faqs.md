@@ -133,6 +133,12 @@ You can use one of the following options for this purpose.
 
 -   SCP the image to the Kubernetes nodes
 
+##### What are the compatible Kubernetes distributions with WSO2 API Microgateway?
+
+| Software Application | Cluster Version  | Software Version |
+|----------------------|------------------|------------------|
+| Rancher Enterprise   | 1.32.3 (RKE2)    | 2.11.1           |
+
 ### Testing the Microgateway
 
 ##### How can I test the Microgateway?
