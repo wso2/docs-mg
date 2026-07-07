@@ -139,6 +139,7 @@ nav:
         - Configuration for WSO2 API Manager: install-and-setup/configuration-for-wso2-api-manager.md
         - Migrating from Previous Versions : install-and-setup/migrating-from-previous-versions.md
         - Health Check Endpoints: install-and-setup/health-check-endpoints.md
+        - Updating MGW via U2 Update: install-and-setup/update-mgw-u2.md
     - Troubleshooting:
         - Troubleshooting the Microgateway: troubleshooting/troubleshooting.md
         - Adding Debug/Trace Logs: troubleshooting/adding-debug-logs.md
